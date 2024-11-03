@@ -351,7 +351,7 @@
             },
             {
                 id: 'nepal-vol',
-                title: 'Rural Nepal',
+                title: 'Agricultural Nepal',
                 location: 'Nepal',
                 description: '3 months in rural Nepal',
                 image: 'assets/placeholder.jpg',
@@ -361,7 +361,7 @@
             },
             {
                 id: 'indonesia-vol',
-                title: 'Rural Indonesia',
+                title: 'Conservation in Indonesia',
                 location: 'Indonesia',
                 description: '3 months in rural Indonesia',
                 image: 'assets/placeholder.jpg',
@@ -664,19 +664,338 @@
     <!-- Reading Section -->
     <section id="reading">
         <h2>Reading List & Recommendations</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="assets/books.jpg" alt="Book Cover">
-                <h3>Book Title</h3>
-                <p class="author">Author</p>
-                <p class="review">Key insights and personal takeaways...</p>
-                <div class="tags">
-                    <span class="tag">Category</span>
-                    <span class="tag">Rating</span>
-                </div>
+        <!-- Reading Stats -->
+        <div class="reading-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="books-read">0</div>
+                <div class="stat-label">Books Read</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="reading-list">0</div>
+                <div class="stat-label">Reading List</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="top-picks">0</div>
+                <div class="stat-label">Top Recommendations</div>
             </div>
         </div>
+
+        <!-- Category Filter -->
+        <div class="book-filters">
+            <button class="filter-btn active" data-filter="recommended">Recommended</button>
+            <button class="filter-btn" data-filter="read">Read</button>
+            <button class="filter-btn" data-filter="reading-list">Reading List</button>
+        </div>
+
+        <!-- Books Grid -->
+        <div class="books-grid">
+            <!-- Books will be populated by JavaScript -->
+        </div>
     </section>
+
+    <style>
+        /* Reading Section Styles */
+        .reading-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        /* Stats Styles */
+        .reading-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #4b5563;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Filter Styles */
+        .book-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid transparent;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .filter-btn.active[data-filter="recommended"] {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .filter-btn.active[data-filter="read"] {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #166534;
+        }
+
+        .filter-btn.active[data-filter="reading-list"] {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #1e40af;
+        }
+
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .book-content {
+            padding: 1.5rem;
+        }
+
+        .book-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .book-author {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-description {
+            color: #4b5563;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .book-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .book-tag {
+            background: #f3f4f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+
+        .recommendation-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-read {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-reading-list {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        @media (max-width: 768px) {
+            .reading-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .book-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        // Book data structure
+        const books = [
+            {
+                id: 1,
+                title: "Example Book",
+                author: "Author Name",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read", // read, reading-list
+                isRecommended: true,
+                tags: ["Business", "Strategy"],
+                rating: 5,
+                dateRead: "2024-01",
+                review: "My thoughts on the book..."
+            }
+            // Add more books here
+        ];
+
+        // Function to update stats
+        function updateReadingStats() {
+            const readBooks = books.filter(book => book.status === "read").length;
+            const readingList = books.filter(book => book.status === "reading-list").length;
+            const recommendations = books.filter(book => book.isRecommended).length;
+
+            document.getElementById('books-read').textContent = readBooks;
+            document.getElementById('reading-list').textContent = readingList;
+            document.getElementById('top-picks').textContent = recommendations;
+        }
+
+        // Function to create book card
+        function createBookCard(book) {
+            return `
+                <div class="book-card" data-category="${book.status}">
+                    <img src="${book.coverImage}" alt="${book.title}" class="book-cover">
+                    ${book.isRecommended ?
+                    `<div class="recommendation-badge">
+                            ⭐ Highly Recommended
+                        </div>` : ''
+                }
+                    <div class="status-badge ${book.status === 'read' ? 'status-read' : 'status-reading-list'}">
+                        ${book.status === 'read' ? 'Read' : 'Reading List'}
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">by ${book.author}</p>
+                        <p class="book-description">${book.description}</p>
+                        <div class="book-tags">
+                            ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to populate and filter books
+        function populateBooks(filter = 'all') {
+            const grid = document.querySelector('.books-grid');
+            grid.innerHTML = '';
+
+            const filteredBooks = filter === 'all'
+                ? books
+                : filter === 'recommended'
+                    ? books.filter(book => book.isRecommended)
+                    : books.filter(book => book.status === filter);
+
+            filteredBooks.forEach(book => {
+                grid.innerHTML += createBookCard(book);
+            });
+        }
+
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize stats
+            updateReadingStats();
+
+            // Initialize books with recommended filter
+            populateBooks('recommended');
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.filter-btn').forEach(btn =>
+                        btn.classList.remove('active')
+                    );
+                    button.classList.add('active');
+
+                    // Filter books
+                    populateBooks(button.dataset.filter);
+                });
+            });
+        });
+    </script>
 
     <!-- Contact Section -->
     <section id="contact">
