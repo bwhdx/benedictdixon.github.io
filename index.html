@@ -325,7 +325,7 @@
                 location: 'Multiple Countries',
                 description: 'Classic car adventure across continents',
                 image: 'assets/placeholder.jpg',
-                countries: ['GB', 'FR', 'DE', 'PL', 'UA', 'RU', 'KZ', 'MN'],
+                countries: ['GB', 'BE', 'FR', 'DE', 'AT', 'HU', 'RO', 'BG', 'TR', 'GE', 'AM', 'IR', 'TM', 'UZ', 'TJ', 'KG', 'KZ', 'RU', 'MN'],
                 coordinates: { lat: 46.8625, lng: 103.8467 },
                 story: 'Drove from London to Mongolia in a classic car...'
             },
@@ -348,6 +348,26 @@
                 countries: ['MA'],
                 coordinates: { lat: 31.7917, lng: -7.0926 },
                 story: 'Rode from the Sahara to the Ocean on a Monkey Bike...'
+            },
+            {
+                id: 'nepal-vol',
+                title: 'Rural Nepal',
+                location: 'Nepal',
+                description: '3 months in rural Nepal',
+                image: 'assets/placeholder.jpg',
+                countries: ['NP'],
+                coordinates: { lat: 31.7917, lng: -7.0926 },
+                story: 'Volunteering in an agricultural village in Nepal...'
+            },
+            {
+                id: 'indonesia-vol',
+                title: 'Rural Indonesia',
+                location: 'Indonesia',
+                description: '3 months in rural Indonesia',
+                image: 'assets/placeholder.jpg',
+                countries: ['ID'],
+                coordinates: { lat: 31.7917, lng: -7.0926 },
+                story: 'Collecting data and conservation work in the rainforest and ocean...'
             }
         ];
 
@@ -355,6 +375,7 @@
             // Western Europe
             'GB': 'United Kingdom',
             'FR': 'France',
+            'BE': 'Belgium',
             'DE': 'Germany',
             'CH': 'Switzerland',
             'BE': 'Belgium',
@@ -366,6 +387,7 @@
             'ES': 'Spain',
             'PT': 'Portugal',
             'AT': 'Austria',
+            'RU': 'Russia',
 
             // Eastern Europe
             'BG': 'Bulgaria',
@@ -397,6 +419,7 @@
             'AE': 'United Arab Emirates',
             'CY': 'Cyprus',
             'TR': 'Turkey',
+            'IN': 'India',
 
             // Americas
             'US': 'United States',
@@ -426,8 +449,8 @@
             // Calculate continents
             const continents = new Set();
             Object.keys(visitedCountries).forEach(country => {
-                if (['GB', 'FR', 'DE', 'CH', 'BE', 'NL', 'LU', 'IE', 'VA', 'IT', 'ES', 'PT', 'AT', 'BG', 'CZ', 'HU', 'RO', 'AL', 'ME', 'GR'].includes(country)) continents.add('Europe');
-                if (['AM', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ', 'MN', 'CN', 'HK', 'TH', 'VN', 'KH', 'LA', 'ID', 'NP', 'IR', 'AE', 'CY', 'TR'].includes(country)) continents.add('Asia');
+                if (['GB', 'FR', 'DE', 'CH', 'BE', 'NL', 'LU', 'IE', 'VA', 'IT', 'ES', 'PT', 'AT', 'BG', 'CZ', 'HU', 'RO', 'AL', 'ME', 'GR', 'RU'].includes(country)) continents.add('Europe');
+                if (['AM', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ', 'MN', 'CN', 'HK', 'TH', 'VN', 'KH', 'LA', 'ID', 'NP', 'IR', 'AE', 'CY', 'TR', 'IN'].includes(country)) continents.add('Asia');
                 if (['US', 'CA', 'CO', 'KY'].includes(country)) continents.add('Americas');
                 if (['NZ'].includes(country)) continents.add('Oceania');
                 if (['MA', 'ZA'].includes(country)) continents.add('Africa');
@@ -454,16 +477,16 @@
                 // Create a map of country ids to ISO codes
                 const countryMapping = {
                     // Western Europe
-                    826: 'GB', 276: 'DE', 250: 'FR', 756: 'CH', 56: 'BE', 528: 'NL', 442: 'LU', 372: 'IE',
+                    826: 'GB', 56: 'BE', 276: 'DE', 250: 'FR', 756: 'CH', 56: 'BE', 528: 'NL', 442: 'LU', 372: 'IE',
                     336: 'VA', 380: 'IT', 724: 'ES', 620: 'PT', 40: 'AT',
 
                     // Eastern Europe
-                    100: 'BG', 203: 'CZ', 348: 'HU', 642: 'RO', 8: 'AL', 499: 'ME', 300: 'GR',
+                    100: 'BG', 203: 'CZ', 348: 'HU', 642: 'RO', 8: 'AL', 499: 'ME', 300: 'GR', 643: 'RU',
 
                     // Asia
                     51: 'AM', 268: 'GE', 398: 'KZ', 417: 'KG', 762: 'TJ', 795: 'TM', 860: 'UZ',
                     496: 'MN', 156: 'CN', 344: 'HK', 764: 'TH', 704: 'VN', 116: 'KH', 418: 'LA',
-                    360: 'ID', 524: 'NP', 364: 'IR', 784: 'AE', 196: 'CY', 792: 'TR',
+                    360: 'ID', 524: 'NP', 364: 'IR', 784: 'AE', 196: 'CY', 792: 'TR', 356: 'IN',
 
                     // Americas
                     840: 'US', 124: 'CA', 170: 'CO', 136: 'KY',
