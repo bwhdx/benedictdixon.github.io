@@ -416,6 +416,25 @@
         // Get adventure country codes
         const adventureCountries = [...new Set(adventures.flatMap(adv => adv.countries))];
 
+        function updateStats() {
+            // Update countries count
+            document.getElementById('countries-count').textContent = Object.keys(visitedCountries).length;
+
+            // Update adventures count
+            document.getElementById('adventures-count').textContent = adventures.length;
+
+            // Calculate continents
+            const continents = new Set();
+            Object.keys(visitedCountries).forEach(country => {
+                if (['GB', 'FR', 'DE', 'CH', 'BE', 'NL', 'LU', 'IE', 'VA', 'IT', 'ES', 'PT', 'AT', 'BG', 'CZ', 'HU', 'RO', 'AL', 'ME', 'GR'].includes(country)) continents.add('Europe');
+                if (['AM', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ', 'MN', 'CN', 'HK', 'TH', 'VN', 'KH', 'LA', 'ID', 'NP', 'IR', 'AE', 'CY', 'TR'].includes(country)) continents.add('Asia');
+                if (['US', 'CA', 'CO', 'KY'].includes(country)) continents.add('Americas');
+                if (['NZ'].includes(country)) continents.add('Oceania');
+                if (['MA', 'ZA'].includes(country)) continents.add('Africa');
+            });
+            document.getElementById('continents-count').textContent = continents.size;
+        }
+
         // Initialize the map
         async function initializeMap() {
             try {
@@ -434,12 +453,26 @@
 
                 // Create a map of country ids to ISO codes
                 const countryMapping = {
-                    // Add mappings for your visited countries
-                    826: 'GB', // United Kingdom
-                    250: 'FR', // France
-                    276: 'DE', // Germany
-                    756: 'CH', // Switzerland
-                    // ... add more as needed
+                    // Western Europe
+                    826: 'GB', 276: 'DE', 250: 'FR', 756: 'CH', 56: 'BE', 528: 'NL', 442: 'LU', 372: 'IE',
+                    336: 'VA', 380: 'IT', 724: 'ES', 620: 'PT', 40: 'AT',
+
+                    // Eastern Europe
+                    100: 'BG', 203: 'CZ', 348: 'HU', 642: 'RO', 8: 'AL', 499: 'ME', 300: 'GR',
+
+                    // Asia
+                    51: 'AM', 268: 'GE', 398: 'KZ', 417: 'KG', 762: 'TJ', 795: 'TM', 860: 'UZ',
+                    496: 'MN', 156: 'CN', 344: 'HK', 764: 'TH', 704: 'VN', 116: 'KH', 418: 'LA',
+                    360: 'ID', 524: 'NP', 364: 'IR', 784: 'AE', 196: 'CY', 792: 'TR',
+
+                    // Americas
+                    840: 'US', 124: 'CA', 170: 'CO', 136: 'KY',
+
+                    // Oceania
+                    554: 'NZ',
+
+                    // Africa
+                    504: 'MA', 710: 'ZA'
                 };
 
                 // Add map paths
@@ -508,7 +541,8 @@
                 document.getElementById('world-map').appendChild(svg);
                 document.getElementById('world-map').appendChild(legend);
 
-                // Rest of the stats code remains the same...
+                updateStats();
+
             } catch (error) {
                 console.error('Error loading map:', error);
             }
