@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
+
 <body>
     <!-- Header Section -->
     <header>
@@ -15,7 +17,8 @@
             <h1>Benedict Dixon</h1>
             <p class="subtitle">Strategic Leader • Ecosystem Builder • Tech Innovator</p>
             <p class="intro">
-                Building impactful ecosystems through first principles thinking and strategic innovation. From launching L1 blockchains to driving transformative change across industries.
+                Building impactful ecosystems through first principles thinking and strategic innovation. From launching
+                L1 blockchains to driving transformative change across industries.
             </p>
             <a href="#contact" class="btn">Connect With Me</a>
         </div>
@@ -40,15 +43,19 @@
         <div class="grid">
             <div class="card">
                 <h3>Vision & Approach</h3>
-                <p>Strategic leader and problem-solver with a computer science background, applying first principles thinking to build impactful ecosystems. Adaptable across technologies and industries, particularly experienced in Web3 while maintaining versatility in approach.</p>
+                <p>Strategic leader and problem-solver with a computer science background, applying first principles
+                    thinking to build impactful ecosystems. Adaptable across technologies and industries, particularly
+                    experienced in Web3 while maintaining versatility in approach.</p>
             </div>
             <div class="card">
                 <h3>Recent Achievement</h3>
-                <p>Led the successful launch of Voi's L1 blockchain, implementing innovative governance models and incentive programs that grew the community to thousands of engaged users.</p>
+                <p>Led the successful launch of Voi's L1 blockchain, implementing innovative governance models and
+                    incentive programs that grew the community to thousands of engaged users.</p>
             </div>
             <div class="card">
                 <h3>Philosophy</h3>
-                <p>Believe in the power of continuous learning and collaborative innovation. Focused on creating meaningful impact through technology and strategic leadership.</p>
+                <p>Believe in the power of continuous learning and collaborative innovation. Focused on creating
+                    meaningful impact through technology and strategic leadership.</p>
             </div>
         </div>
     </section>
@@ -60,50 +67,482 @@
             <div class="timeline-item">
                 <h3>Voi Network</h3>
                 <p class="role">Chief Ecosystem Officer</p>
-                <p>Led the successful launch of a $150M L1 blockchain, scaled community to tens of thousands, and implemented innovative governance models.</p>
+                <p>Led the successful launch of a $150M L1 blockchain, scaled community to tens of thousands, and
+                    implemented innovative governance models.</p>
             </div>
             <div class="timeline-item">
                 <h3>Pound Token</h3>
                 <p class="role">Chief Technology Officer</p>
-                <p>Reduced technology costs by 94% while maintaining system stability and guiding the company toward acquisition.</p>
+                <p>Reduced technology costs by 94% while maintaining system stability and guiding the company toward
+                    acquisition.</p>
             </div>
             <div class="timeline-item">
                 <h3>Nettle</h3>
                 <p class="role">Chief Technology & Product Officer</p>
-                <p>Built and launched a successful payment solution, reducing time to market by 50% through improved workflows.</p>
+                <p>Built and launched a successful payment solution, reducing time to market by 50% through improved
+                    workflows.</p>
             </div>
         </div>
     </section>
 
     <!-- Adventures Section -->
-    <section id="adventures">
+    <section id="adventures" class="adventures-section">
         <h2>Global Adventures</h2>
-        <div id="world-map"></div>
-        <div class="map-tooltip"></div>
-        <div class="grid">
-            <div class="adventure-card">
-                <img src="assets/mongol.jpeg" alt="London to Mongolia">
-                <div class="overlay">
-                    <h3>London to Mongolia</h3>
-                    <p>Classic car adventure across continents</p>
+
+        <!-- Map Container with Stats -->
+        <div class="map-container">
+            <div id="world-map"></div>
+            <div class="map-tooltip"></div>
+
+            <!-- Adventure Stats -->
+            <div class="adventure-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="countries-count">0</div>
+                    <div class="stat-label">Countries Explored</div>
                 </div>
-            </div>
-            <div class="adventure-card">
-                <img src="assets/india.jpeg" alt="India TukTuk">
-                <div class="overlay">
-                    <h3>India by TukTuk</h3>
-                    <p>Cross-country journey through diverse landscapes</p>
+                <div class="stat-card">
+                    <div class="stat-number" id="continents-count">0</div>
+                    <div class="stat-label">Continents Visited</div>
                 </div>
-            </div>
-            <div class="adventure-card">
-                <img src="assets/morocco.jpeg" alt="Morocco">
-                <div class="overlay">
-                    <h3>Sahara to Ocean</h3>
-                    <p>Monkey Bike expedition across Morocco</p>
+                <div class="stat-card">
+                    <div class="stat-number" id="adventures-count">0</div>
+                    <div class="stat-label">Major Adventures</div>
                 </div>
             </div>
         </div>
+
+        <!-- Featured Adventures -->
+        <div class="featured-adventures">
+            <h3>Featured Adventures</h3>
+            <div class="adventures-grid">
+                <!-- Adventure cards will be populated by JavaScript -->
+            </div>
+        </div>
     </section>
+
+    <style>
+        /* Map Styles */
+        .adventures-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        .map-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        #world-map {
+            width: 100%;
+            height: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .map-tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            pointer-events: none;
+            display: none;
+            max-width: 300px;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .country {
+            fill: #e5e7eb;
+            stroke: rgba(255, 255, 255, 0.5);
+            stroke-width: 0.5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .country.visited {
+            fill: #3b82f6;
+        }
+
+        .country.visited:hover {
+            fill: #2563eb;
+        }
+
+        .country.highlighted {
+            fill: #1e40af;
+        }
+
+        /* Stats Styles */
+        .adventure-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #4b5563;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Featured Adventures Styles */
+        .featured-adventures {
+            margin-top: 4rem;
+        }
+
+        .adventures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .adventure-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .adventure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .adventure-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .adventure-content {
+            padding: 1.5rem;
+        }
+
+        .adventure-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .adventure-location {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .adventure-description {
+            color: #4b5563;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            #world-map {
+                height: 300px;
+            }
+
+            .adventure-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .country {
+            fill: #e5e7eb;
+            stroke: rgba(255, 255, 255, 0.5);
+            stroke-width: 0.5;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .country.visited {
+            fill: #93c5fd;
+            /* Light blue for generally visited countries */
+        }
+
+        .country.adventure {
+            fill: #2563eb;
+            /* Darker blue for adventure countries */
+        }
+
+        .country:hover {
+            fill: #1e40af;
+        }
+
+        /* Add legend styles */
+        .map-legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+        }
+    </style>
+
+    <script>
+        // Adventure data structure
+        const adventures = [
+            {
+                id: 'mongol-rally',
+                title: 'London to Mongolia Rally',
+                location: 'Multiple Countries',
+                description: 'Classic car adventure across continents',
+                image: 'assets/placeholder.jpg',
+                countries: ['GB', 'FR', 'DE', 'PL', 'UA', 'RU', 'KZ', 'MN'],
+                coordinates: { lat: 46.8625, lng: 103.8467 },
+                story: 'Drove from London to Mongolia in a classic car...'
+            },
+            {
+                id: 'india-tuktuk',
+                title: 'India by TukTuk',
+                location: 'India',
+                description: 'Cross-country journey through diverse landscapes',
+                image: 'assets/placeholder.jpg',
+                countries: ['IN'],
+                coordinates: { lat: 20.5937, lng: 78.9629 },
+                story: 'Traveled across India in a TukTuk...'
+            },
+            {
+                id: 'morocco-ride',
+                title: 'Sahara to Ocean',
+                location: 'Morocco',
+                description: 'Monkey Bike expedition across Morocco',
+                image: 'assets/placeholder.jpg',
+                countries: ['MA'],
+                coordinates: { lat: 31.7917, lng: -7.0926 },
+                story: 'Rode from the Sahara to the Ocean on a Monkey Bike...'
+            }
+        ];
+
+        const visitedCountries = {
+            // Western Europe
+            'GB': 'United Kingdom',
+            'FR': 'France',
+            'DE': 'Germany',
+            'CH': 'Switzerland',
+            'BE': 'Belgium',
+            'NL': 'Netherlands',
+            'LU': 'Luxembourg',
+            'IE': 'Ireland',
+            'VA': 'Vatican City',
+            'IT': 'Italy',
+            'ES': 'Spain',
+            'PT': 'Portugal',
+            'AT': 'Austria',
+
+            // Eastern Europe
+            'BG': 'Bulgaria',
+            'CZ': 'Czechia',
+            'HU': 'Hungary',
+            'RO': 'Romania',
+            'AL': 'Albania',
+            'ME': 'Montenegro',
+            'GR': 'Greece',
+
+            // Asia
+            'AM': 'Armenia',
+            'GE': 'Georgia',
+            'KZ': 'Kazakhstan',
+            'KG': 'Kyrgyzstan',
+            'TJ': 'Tajikistan',
+            'TM': 'Turkmenistan',
+            'UZ': 'Uzbekistan',
+            'MN': 'Mongolia',
+            'CN': 'China',
+            'HK': 'Hong Kong',
+            'TH': 'Thailand',
+            'VN': 'Vietnam',
+            'KH': 'Cambodia',
+            'LA': 'Laos',
+            'ID': 'Indonesia',
+            'NP': 'Nepal',
+            'IR': 'Iran',
+            'AE': 'United Arab Emirates',
+            'CY': 'Cyprus',
+            'TR': 'Turkey',
+
+            // Americas
+            'US': 'United States',
+            'CA': 'Canada',
+            'CO': 'Colombia',
+            'KY': 'Cayman Islands',
+
+            // Oceania
+            'NZ': 'New Zealand',
+
+            // Africa
+            'MA': 'Morocco',
+            'ZA': 'South Africa'
+        };
+
+
+        // Get adventure country codes
+        const adventureCountries = [...new Set(adventures.flatMap(adv => adv.countries))];
+
+        // Initialize the map
+        async function initializeMap() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_110m_admin_0_countries.geojson');
+                const data = await response.json();
+
+                const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+                svg.setAttribute('viewBox', '0 0 960 500');
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+
+                // Add map paths
+                data.features.forEach(feature => {
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', feature.geometry);
+
+                    const countryCode = feature.properties.ISO_A2;
+                    const isVisited = countryCode in visitedCountries;
+                    const hasAdventure = adventureCountries.includes(countryCode);
+
+                    path.setAttribute('class', `country ${isVisited ? 'visited' : ''} ${hasAdventure ? 'adventure' : ''}`);
+                    path.setAttribute('data-country', countryCode);
+
+                    // Find related adventures
+                    const relatedAdventures = adventures.filter(adv =>
+                        adv.countries.includes(countryCode)
+                    );
+
+                    // Enhanced hover interaction
+                    path.addEventListener('mouseover', (e) => {
+                        const tooltip = document.querySelector('.map-tooltip');
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = e.pageX + 10 + 'px';
+                        tooltip.style.top = e.pageY + 10 + 'px';
+
+                        if (isVisited) {
+                            let content = `<strong>${visitedCountries[countryCode]}</strong>`;
+                            if (relatedAdventures.length > 0) {
+                                content += `<br><br>Adventures:<br>${relatedAdventures.map(adv => `
+                            <div style="margin-top: 0.5rem;">
+                                <div style="font-weight: 500;">${adv.title}</div>
+                                <div style="font-size: 0.8rem;">${adv.description}</div>
+                            </div>
+                        `).join('')}`;
+                            }
+                            tooltip.innerHTML = content;
+                        } else {
+                            tooltip.textContent = feature.properties.NAME;
+                        }
+                    });
+
+                    path.addEventListener('mouseout', () => {
+                        document.querySelector('.map-tooltip').style.display = 'none';
+                    });
+
+                    svg.appendChild(path);
+                });
+
+                // Add legend
+                const legend = document.createElement('div');
+                legend.className = 'map-legend';
+                legend.innerHTML = `
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #93c5fd;"></div>
+                        <span>Countries Visited</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #2563eb;"></div>
+                        <span>Adventure Locations</span>
+                    </div>
+                `;
+                document.getElementById('world-map').appendChild(legend);
+
+                document.getElementById('world-map').appendChild(svg);
+
+                // Update stats
+                document.getElementById('countries-count').textContent = Object.keys(visitedCountries).length;
+                document.getElementById('adventures-count').textContent = adventures.length;
+
+                // Calculate continents
+                const continents = new Set();
+                Object.keys(visitedCountries).forEach(country => {
+                    // Simple continent mapping based on country codes
+                    if (['GB', 'FR', 'DE', 'CH', 'BE', 'NL', 'LU', 'IE', 'VA', 'IT', 'ES', 'PT', 'AT', 'BG', 'CZ', 'HU', 'RO', 'AL', 'ME', 'GR'].includes(country)) continents.add('Europe');
+                    if (['AM', 'GE', 'KZ', 'KG', 'TJ', 'TM', 'UZ', 'MN', 'CN', 'HK', 'TH', 'VN', 'KH', 'LA', 'ID', 'NP', 'IR', 'AE', 'CY', 'TR'].includes(country)) continents.add('Asia');
+                    if (['US', 'CA', 'CO', 'KY'].includes(country)) continents.add('Americas');
+                    if (['NZ'].includes(country)) continents.add('Oceania');
+                    if (['MA', 'ZA'].includes(country)) continents.add('Africa');
+                });
+                document.getElementById('continents-count').textContent = continents.size;
+            } catch (error) {
+                console.error('Error loading map:', error);
+            }
+        }
+        // Populate adventure cards
+        function populateAdventures() {
+            const grid = document.querySelector('.adventures-grid');
+            adventures.forEach(adventure => {
+                const card = document.createElement('div');
+                card.className = 'adventure-card';
+                card.innerHTML = `
+                <img src="${adventure.image}" alt="${adventure.title}" class="adventure-image">
+                <div class="adventure-content">
+                    <h4 class="adventure-title">${adventure.title}</h4>
+                    <div class="adventure-location">📍 ${adventure.location}</div>
+                    <p class="adventure-description">${adventure.description}</p>
+                </div>
+            `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeMap();
+            populateAdventures();
+        });
+    </script>
 
     <!-- Advisory Section -->
     <section id="advisory">
@@ -147,7 +586,8 @@
 
     <!-- Quote Section -->
     <div class="quote">
-        "Volunteering in Nepal taught me the power of shared goals when I picked up enough Nepali to help a community build a water pipeline together."
+        "Volunteering in Nepal taught me the power of shared goals when I picked up enough Nepali to help a community
+        build a water pipeline together."
     </div>
 
     <!-- Achievements Section -->
@@ -195,4 +635,5 @@
 
     <script src="scripts/main.js"></script>
 </body>
+
 </html>
