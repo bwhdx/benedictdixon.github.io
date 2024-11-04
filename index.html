@@ -3318,7 +3318,7 @@
                 title: 'London to Mongolia Rally',
                 location: 'Multiple Countries',
                 description: 'Classic car adventure across continents',
-                image: 'assets/placeholder.jpg',
+                image: 'assets/mongol.jpeg',
                 countries: ['GB', 'BE', 'FR', 'DE', 'AT', 'HU', 'RO', 'BG', 'TR', 'GE', 'AM', 'IR', 'TM', 'UZ', 'TJ', 'KG', 'KZ', 'RU', 'MN'],
                 coordinates: { lat: 46.8625, lng: 103.8467 },
                 story: 'Drove from London to Mongolia in a classic car...'
@@ -3328,7 +3328,7 @@
                 title: 'India by TukTuk',
                 location: 'India',
                 description: 'Cross-country journey through diverse landscapes',
-                image: 'assets/placeholder.jpg',
+                image: 'assets/india.jpeg',
                 countries: ['IN'],
                 coordinates: { lat: 20.5937, lng: 78.9629 },
                 story: 'Traveled across India in a TukTuk...'
@@ -3338,7 +3338,7 @@
                 title: 'Sahara to Ocean',
                 location: 'Morocco',
                 description: 'Monkey Bike expedition across Morocco',
-                image: 'assets/placeholder.jpg',
+                image: 'assets/morocco.jpeg',
                 countries: ['MA'],
                 coordinates: { lat: 31.7917, lng: -7.0926 },
                 story: 'Rode from the Sahara to the Ocean on a Monkey Bike...'
@@ -3348,7 +3348,7 @@
                 title: 'Agricultural Nepal',
                 location: 'Nepal',
                 description: '3 months in rural Nepal',
-                image: 'assets/placeholder.jpg',
+                image: 'assets/nepal.jpeg',
                 countries: ['NP'],
                 coordinates: { lat: 31.7917, lng: -7.0926 },
                 story: 'Volunteering in an agricultural village in Nepal...'
@@ -3358,7 +3358,7 @@
                 title: 'Conservation in Indonesia',
                 location: 'Indonesia',
                 description: '3 months in rural Indonesia',
-                image: 'assets/placeholder.jpg',
+                image: 'assets/opwal.png',
                 countries: ['ID'],
                 coordinates: { lat: 31.7917, lng: -7.0926 },
                 story: 'Collecting data and conservation work in the rainforest and ocean...'
@@ -3545,15 +3545,15 @@
                 const legend = document.createElement('div');
                 legend.className = 'map-legend';
                 legend.innerHTML = `
-            <div class="legend-item">
-                <div class="legend-color" style="background: #93c5fd;"></div>
-                <span>Countries Visited</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background: #2563eb;"></div>
-                <span>Adventure Locations</span>
-            </div>
-        `;
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #93c5fd;"></div>
+                        <span>Countries Visited</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #2563eb;"></div>
+                        <span>Adventure Locations</span>
+                    </div>
+                `;
 
                 // Append SVG first, then legend
                 document.getElementById('world-map').appendChild(svg);
