@@ -17,14 +17,157 @@
     <header>
         <div class="header-content">
             <h1>Benedict Dixon</h1>
-            <p class="subtitle">Strategic Leader • Ecosystem Builder • Tech Innovator</p>
+            <p class="subtitle">Senior Technology Executive • Product & Ecosystem Builder</p>
             <p class="intro">
-                Building impactful ecosystems through first principles thinking and strategic innovation. From launching
-                L1 blockchains to driving transformative change across industries.
+                Scaling products and ecosystems from concept to market success. Launched a $150M blockchain platform
+                with just $500K budget while driving community growth of over 2000%. Combining technical expertise with
+                strategic vision to transform complex challenges into market-ready solutions.
             </p>
-            <a href="#contact" class="btn">Connect With Me</a>
+            <div class="quick-stats">
+                <div class="stat">
+                    <span class="stat-number">94%</span>
+                    <span class="stat-label">Cost Reduction</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">2000%+</span>
+                    <span class="stat-label">Community Growth</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">90%+</span>
+                    <span class="stat-label">Market Penetration</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn primary">Connect With Me</a>
+                <a href="#advisory" class="btn secondary">Advisory Services</a>
+            </div>
         </div>
     </header>
+
+    <style>
+        header {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #1e3a8a, #3b82f6, #0ea5e9, #0369a1);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 900px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .intro {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quick-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2.5rem 0;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn.primary {
+            background: white;
+            color: #2563eb;
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .quick-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
 
     <!-- Navigation -->
     <nav>
@@ -47,19 +190,22 @@
             <div class="card">
                 <h3>Ecosystem Builder</h3>
                 <p>As a senior technology executive, I specialize in scaling products and ecosystems from concept to
-                    market success. Most notably, I led the launch of a $150M blockchain platform with just $500K budget
+                    market success.<br> Most notably, I led the launch of a $150M blockchain platform with just $500K
+                    budget
                     while driving community growth of over 2000% across multiple channels.</p>
             </div>
             <div class="card">
                 <h3>Strategic Leader</h3>
                 <p>I thrive in managing complex initiatives, having successfully led 5 concurrent product developments
-                    while maintaining lean, autonomous team structures. My approach combines technical expertise with
+                    while maintaining lean, autonomous team structures.<br> My approach combines technical expertise
+                    with
                     strategic vision to transform challenges into market-ready solutions.</p>
             </div>
             <div class="card">
                 <h3>Global Perspective</h3>
                 <p>From developing SMS-based blockchain banking for emerging markets to leading international remote
-                    teams, I bring a global perspective to every project. This is enriched by hands-on experiences like
+                    teams, I bring a global perspective to every project.<br> This is enriched by hands-on experiences
+                    like
                     volunteering in rural communities across Nepal and Indonesia.</p>
             </div>
         </div>
@@ -145,7 +291,8 @@
                         <li>Designed and launched integrated financial ecosystem with three core products</li>
                         <li>Reduced time to market by 50% through improved workflows</li>
                         <li>Successfully pitched and secured venture funding</li>
-                        <li>Built and launched market-ready decentralised payment solution with strong early adoption</li>
+                        <li>Built and launched market-ready decentralised payment solution with strong early adoption
+                        </li>
                     </ul>
                 </div>
             </div>
