@@ -823,26 +823,6 @@
             gap: 0.25rem;
         }
 
-        .status-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .status-read {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .status-reading-list {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
         @media (max-width: 768px) {
             .reading-stats {
                 grid-template-columns: 1fr;
@@ -2918,34 +2898,31 @@
             return `
                 <div class="book-card" data-category="${book.status}" data-recommended="${book.isRecommended}">
                     ${shouldShowImage ?
-                    `<img src="${book.coverImage}" alt="${book.title}" class="book-cover">`
-                    : ''
-                }
+                            `<img src="${book.coverImage}" alt="${book.title}" class="book-cover">`
+                            : ''
+                        }
                     ${book.isRecommended ?
-                    `<div class="recommendation-badge">
+                            `<div class="recommendation-badge">
                             ⭐ Highly Recommended
                         </div>`
-                    : ''
-                }
-                    <div class="status-badge ${book.status === 'read' ? 'status-read' : 'status-reading-list'}">
-                        ${book.status === 'read' ? 'Read' : 'Reading List'}
-                    </div>
+                            : ''
+                        }
                     <div class="book-content">
                         <h3 class="book-title">${book.title}</h3>
                         <p class="book-author">by ${book.author}</p>
                         ${book.rating ?
-                    `<div class="book-rating">
+                            `<div class="book-rating">
                                 ${'★'.repeat(book.rating)}${'☆'.repeat(5 - book.rating)}
                             </div>`
-                    : ''
-                }
+                            : ''
+                        }
                         <p class="book-description">${description}</p>
                         ${book.tags && book.tags.length > 0 ?
-                    `<div class="book-tags">
+                            `<div class="book-tags">
                                 ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
                             </div>`
-                    : ''
-                }
+                            : ''
+                        }
                     </div>
                 </div>
             `;
