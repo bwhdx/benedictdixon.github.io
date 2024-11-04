@@ -62,6 +62,46 @@
         </div>
     </section>
 
+    <!-- Advisory Section -->
+    <section id="advisory">
+        <h2>Advisory Services</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Entrepreneurship Advisory</h3>
+                <ul>
+                    <li>✦ Startup Strategy & Scaling</li>
+                    <li>✦ Fundraising & Pitch Preparation</li>
+                    <li>✦ Business Model Optimization</li>
+                    <li>✦ Market Entry Strategy</li>
+                </ul>
+                <p>Drawing from experience founding and scaling multiple companies across industries.</p>
+            </div>
+            <div class="card">
+                <h3>Product Advisory</h3>
+                <ul>
+                    <li>✦ Product Strategy & Roadmap</li>
+                    <li>✦ Product-Market Fit</li>
+                    <li>✦ User Experience Design</li>
+                    <li>✦ Go-to-Market Strategy</li>
+                </ul>
+                <p>Leveraging experience in successful product launches and optimizations.</p>
+            </div>
+            <div class="card">
+                <h3>Technology Advisory</h3>
+                <ul>
+                    <li>✦ Technical Architecture</li>
+                    <li>✦ Blockchain & Web3</li>
+                    <li>✦ System Optimization</li>
+                    <li>✦ Technology Stack Selection</li>
+                </ul>
+                <p>Based on extensive experience across traditional and blockchain technologies.</p>
+            </div>
+        </div>
+        <div class="cta-container">
+            <a href="#contact" class="btn">Discuss Advisory Services</a>
+        </div>
+    </section>
+
     <!-- Experience Section -->
     <section id="experience">
         <h2>Professional Journey</h2>
@@ -86,6 +126,2686 @@
             </div>
         </div>
     </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2>Key Achievements</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Patent Holder</h3>
+                <p>Developed real-time B2B payment solution at JPMorgan Chase</p>
+            </div>
+            <div class="card">
+                <h3>Ecosystem Growth</h3>
+                <p>Scaled communities to tens of thousands across multiple platforms</p>
+            </div>
+            <div class="card">
+                <h3>Technical Innovation</h3>
+                <p>Led successful launches of multiple blockchain and fintech products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Writing Section -->
+    <section id="thought-leadership" class="thought-leadership-section">
+        <h2>Writing</h2>
+
+        <!-- Featured Article Container -->
+        <div id="featured-article-container"></div>
+
+        <!-- Articles Section -->
+        <div class="articles-section">
+            <h3>Latest Articles</h3>
+            <!-- Loading State -->
+            <div id="articles-loading" class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>Loading articles...</p>
+            </div>
+            <!-- Error State -->
+            <div id="articles-error" class="error-state" style="display: none;">
+                <p>Unable to load articles.</p>
+                <a href="https://medium.com/@bwhdx" class="retry-btn" target="_blank">View on Medium</a>
+            </div>
+            <!-- Articles Grid -->
+            <div class="articles-grid"></div>
+        </div>
+
+        <!-- Medium Profile -->
+        <div class="medium-profile">
+            <div class="profile-content">
+                <div class="profile-info">
+                    <h3>Follow My Writing Journey</h3>
+                    <p>Sharing insights on blockchain, ecosystem building, and technical leadership</p>
+                </div>
+                <div class="profile-actions">
+                    <a href="https://medium.com/@bwhdx" class="follow-btn" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="medium-icon">
+                            <path
+                                d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z" />
+                        </svg>
+                        Follow on Medium
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Section Styles */
+        .thought-leadership-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .featured-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-meta {
+            display: inline-block;
+            background: #f0f9ff;
+            color: #0369a1;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .article-excerpt {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .article-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat {
+            color: #6b7280;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .featured-image {
+            position: relative;
+            min-height: 100%;
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-excerpt {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Medium Profile */
+        .medium-profile {
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .profile-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-info h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-info p {
+            color: #4b5563;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Buttons */
+        .read-more-btn,
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .read-more-btn {
+            background: #2563eb;
+            color: white;
+            margin-top: auto;
+            width: fit-content;
+        }
+
+        .follow-btn {
+            background: #1f2937;
+            color: white;
+            padding: 1rem 2rem;
+        }
+
+        .read-more-btn:hover,
+        .follow-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 1.5rem;
+            }
+
+            .featured-content {
+                padding: 2rem;
+            }
+        }
+
+        /* Loading State */
+        .loading-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 3px solid #2563eb;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Error State */
+        .error-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+            background: white;
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .retry-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: #2563eb;
+            color: white;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        /* Medium Icon */
+        .medium-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 0.5rem;
+        }
+
+        .follow-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Articles Section */
+        .articles-section {
+            margin: 4rem 0;
+        }
+
+        .articles-section h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+    </style>
+
+    <script>
+        // Medium articles data
+        const featuredArticle = {
+            title: "How to incentivise a technical community",
+            excerpt: "Exploring the delicate balance of creating sustainable technical communities through effective incentive mechanisms...",
+            image: "assets/placeholder.jpg",
+            url: "https://medium.com/@benedictdixon/how-to-incentivise-a-technical-community-30d3839437d7",
+            readTime: "5 min",
+            claps: "1.2K"
+        };
+
+        // Function to create featured article
+        function createFeaturedArticle(article) {
+            return `
+                <div class="featured-article">
+                    <div class="featured-content">
+                        <div class="article-meta">Featured Article</div>
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-stats">
+                            <span class="stat">📚 ${article.readTime}</span>
+                            <span class="stat">📅 ${article.pubDate || 'March 2024'}</span>
+                        </div>
+                        <a href="${article.url}" class="read-more-btn" target="_blank">Read Article</a>
+                    </div>
+                    <div class="featured-image">
+                        <img src="${article.image}" alt="${article.title}">
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to fetch and parse Medium RSS feed
+        async function fetchMediumArticles() {
+            try {
+                // Using a CORS proxy to fetch the RSS feed
+                const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@bwhdx`);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    const articles = data.items.map(item => ({
+                        title: item.title,
+                        excerpt: item.description.replace(/<[^>]*>?/gm, '').slice(0, 150) + '...',
+                        image: item.thumbnail || 'assets/placeholder.jpg',
+                        url: item.link,
+                        pubDate: new Date(item.pubDate).toLocaleDateString(),
+                        // Note: Medium API doesn't provide read time and claps through RSS,
+                        // so we'll estimate read time based on content length
+                        readTime: Math.ceil(item.description.split(' ').length / 200) + ' min'
+                    }));
+
+                    populateArticles(articles);
+                }
+            } catch (error) {
+                console.error('Error fetching Medium articles:', error);
+                // Fallback to show an error message or placeholder content
+                document.querySelector('.articles-grid').innerHTML = `
+                    <div class="error-message">
+                        Unable to load articles. Please visit my <a href="https://medium.com/@bwhdx" target="_blank">Medium profile</a> directly.
+                    </div>
+                `;
+            }
+        }
+
+        // Function to create article card
+        function createArticleCard(article) {
+            return `
+                <div class="article-card">
+                    <img src="${article.image}" alt="${article.title}" class="card-image">
+                    <div class="card-content">
+                        <h4 class="card-title">${article.title}</h4>
+                        <p class="card-excerpt">${article.excerpt}</p>
+                        <div class="article-stats">
+                            <span class="stat">📚 ${article.readTime}</span>
+                            <span class="stat">📅 ${article.pubDate}</span>
+                        </div>
+                        <a href="${article.url}" class="read-more-btn" target="_blank">Read Article</a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Function to populate articles
+        function populateArticles(articles) {
+            const grid = document.querySelector('.articles-grid');
+            articles.forEach(article => {
+                grid.innerHTML += createArticleCard(article);
+            });
+        }
+        // Add error message style
+        const styles = document.createElement('style');
+        styles.textContent = `
+            .error-message {
+                text-align: center;
+                padding: 2rem;
+                background: white;
+                border-radius: 16px;
+                color: #4b5563;
+            }
+            
+            .error-message a {
+                color: #2563eb;
+                text-decoration: underline;
+            }
+        `;
+        document.head.appendChild(styles);
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create featured article
+            const featuredContainer = document.getElementById('featured-article-container');
+            featuredContainer.innerHTML = createFeaturedArticle(featuredArticle);
+
+            // Fetch other articles
+            fetchMediumArticles();
+        });
+    </script>
+
+    <!-- Reading Section -->
+    <section id="reading">
+        <h2>Reading List & Recommendations</h2>
+        <!-- Reading Stats -->
+        <div class="reading-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="books-read">0</div>
+                <div class="stat-label">Books Read</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="reading-list">0</div>
+                <div class="stat-label">Reading List</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="top-picks">0</div>
+                <div class="stat-label">Top Recommendations</div>
+            </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="book-filters">
+            <button class="filter-btn active" data-filter="recommended">Recommended</button>
+            <button class="filter-btn" data-filter="read">Read</button>
+            <button class="filter-btn" data-filter="reading-list">Reading List</button>
+        </div>
+
+        <!-- Books Grid -->
+        <div class="books-grid">
+            <!-- Books will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <style>
+        /* Reading Section Styles */
+        .reading-section {
+            padding: 6rem 2rem;
+            background: #f8fafc;
+        }
+
+        /* Stats Styles */
+        .reading-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #4b5563;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Filter Styles */
+        .book-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid transparent;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4b5563;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .filter-btn.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .filter-btn.active[data-filter="recommended"] {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .filter-btn.active[data-filter="read"] {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #166534;
+        }
+
+        .filter-btn.active[data-filter="reading-list"] {
+            background: #dbeafe;
+            color: #1e40af;
+            border-color: #1e40af;
+        }
+
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+        }
+
+        .book-content {
+            padding: 1.5rem;
+        }
+
+        .book-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .book-author {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-description {
+            color: #4b5563;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .book-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .book-tag {
+            background: #f3f4f6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+
+        .recommendation-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .status-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-read {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-reading-list {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        @media (max-width: 768px) {
+            .reading-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .book-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        // Book data structure
+        export const books = [
+            {
+                id: 61539,
+                title: "The Structure of Scientific Revolutions",
+                author: "Thomas S. Kuhn",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 64582,
+                title: "Chaos: Making a New Science",
+                author: "James Gleick",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['currently-reading'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 24113,
+                title: "Gödel, Escher, Bach: An Eternal Golden Braid",
+                author: "Douglas R. Hofstadter",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 162200,
+                title: "Corporate Social Responsibility: Doing the Most Good for Your Company and Your Cause",
+                author: "Philip Kotler",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 683,
+                title: "Natural Capitalism: Creating the Next Industrial Revolution",
+                author: "Paul Hawken",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 26530355,
+                title: "Misbehaving: The Making of Behavioral Economics",
+                author: "Richard H. Thaler",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 313605,
+                title: "Getting to Yes: Negotiating Agreement Without Giving In",
+                author: "Roger Fisher",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1842,
+                title: "Guns, Germs, and Steel: The Fates of Human Societies",
+                author: "Jared Diamond",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 134781,
+                title: "Diffusion of Innovations",
+                author: "Everett M. Rogers",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 330006,
+                title: "The Interpretation of Cultures",
+                author: "Clifford Geertz",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 16192710,
+                title: "A Guide to the Project Management Body of Knowledge (PMBOK® Guide)",
+                author: "Project Management Institute",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1441120,
+                title: "Introduction to Operations Research",
+                author: "Frederick S. Hillier",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 17912916,
+                title: "Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking",
+                author: "Foster Provost",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 8701960,
+                title: "The Information: A History, a Theory, a Flood",
+                author: "James Gleick",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 294941,
+                title: "Cybernetics: or the Control and Communication in the Animal and the Machine",
+                author: "Norbert Wiener",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3268675,
+                title: "Security Engineering: A Guide to Building Dependable Distributed Systems",
+                author: "Ross J. Anderson",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 369409,
+                title: "The Logic of Collective Action: Public Goods and the Theory of Groups",
+                author: "Mancur Olson",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 39383637,
+                title: "The Blockchain and the New Architecture of Trust (Information Policy)",
+                author: "Kevin Werbach",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 44874,
+                title: "Code: And Other Laws of Cyberspace, Version 2.0",
+                author: "Lawrence Lessig",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 629,
+                title: "Zen and the Art of Motorcycle Maintenance: An Inquiry Into Values (Phaedrus, #1)",
+                author: "Robert M. Pirsig",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 23692271,
+                title: "Sapiens: A Brief History of Humankind",
+                author: "Yuval Noah Harari",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 6452731,
+                title: "Justice: What's the Right Thing to Do?",
+                author: "Michael J. Sandel",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 33517721,
+                title: "The Culture Code: The Secrets of Highly Successful Groups",
+                author: "Daniel Coyle",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 6452796,
+                title: "Drive: The Surprising Truth About What Motivates Us",
+                author: "Daniel H. Pink",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 22529127,
+                title: "Team of Teams: New Rules of Engagement for a Complex World",
+                author: "Stanley McChrystal",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1863615,
+                title: "The Origin of Wealth: The Radical Remaking of Economics and What it Means for Business and Society",
+                author: "Eric D. Beinhocker",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 13530973,
+                title: "Antifragile: Things That Gain from Disorder",
+                author: "Nassim Nicholas Taleb",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 407999,
+                title: "Competitive Strategy: Techniques for Analyzing Industries and Competitors",
+                author: "Michael E. Porter",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 6671664,
+                title: "Change by Design: How Design Thinking Transforms Organizations and Inspires Innovation",
+                author: "Tim    Brown",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 383508,
+                title: "Organizational Behavior",
+                author: "Stephen P. Robbins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 26160019,
+                title: "The Innovator's Dilemma: When New Technologies Cause Great Firms to Fail",
+                author: "Clayton M. Christensen",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3450744,
+                title: "Nudge: Improving Decisions About Health, Wealth, and Happiness",
+                author: "Richard H. Thaler",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 69242,
+                title: "Made to Stick: Why Some Ideas Survive and Others Die",
+                author: "Chip Heath",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 2423424,
+                title: "The Art of Strategy: A Game Theorist's Guide to Success in Business and Life",
+                author: "Avinash K. Dixit",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['currently-reading'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 154293,
+                title: "Linked: How Everything Is Connected to Everything Else and What It Means for Business, Science, and Everyday Life",
+                author: "Albert-László Barabási",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 5597902,
+                title: "Complexity: A Guided Tour",
+                author: "Melanie  Mitchell",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['currently-reading'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 61535,
+                title: "The Selfish Gene",
+                author: "Richard Dawkins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 213344681,
+                title: "How To Live An Extraordinary Life",
+                author: "Anthony Pompliano",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 26825341,
+                title: "Design Sprint: A Practical Guidebook for Building Great Digital Products",
+                author: "Richard  Banfield",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 25744928,
+                title: "Deep Work: Rules for Focused Success in a Distracted World",
+                author: "Cal Newport",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 50193084,
+                title: "The Last 100 Yards: The Crucible of Close Combat in Large-Scale Combat Operations",
+                author: "Paul E. Berg",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 25325221,
+                title: "Project Management for the Unofficial Project Manager: A FranklinCovey Title",
+                author: "Kory Kogon",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 57980,
+                title: "Trust: The Social Virtue and the Creation of Prosperity",
+                author: "Francis Fukuyama",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 56696061,
+                title: "How To Raise A Venture Capital Fund: The Essential Guide on Fundraising and Understanding Limited Partners",
+                author: "Winter Mead",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 994560,
+                title: "The Path of Least Resistance: Learning to Become the Creative Force in Your Own Life",
+                author: "Robert Fritz",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 4891811,
+                title: "The Knack: How Street-Smart Entrepreneurs Learn to Handle Whatever Comes Up",
+                author: "Norm Brodsky",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 24490392,
+                title: "The 15 Commitments of Conscious Leadership: A New Paradigm for Sustainable Success",
+                author: "Jim Dethmer",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 123857637,
+                title: "Never Split the Difference: Negotiating as if Your Life Depended on It",
+                author: "Chris Voss",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 209176,
+                title: "The Wealth and Poverty of Nations: Why Some Are So Rich and Some So Poor",
+                author: "David S. Landes",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 9746,
+                title: "Mao: The Unknown Story",
+                author: "Jung Chang",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 17992765,
+                title: "Long Walk to Freedom: The Autobiography of Nelson Mandela",
+                author: "Nelson Mandela",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 17912595,
+                title: "The Story of Philosophy: The Lives and Opinions of the Greater Philosophers",
+                author: "Will Durant",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 38470102,
+                title: "Churchill: Walking with Destiny",
+                author: "Andrew Roberts",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 8625663,
+                title: "Stalin: A Biography",
+                author: "Robert Service",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "reading-list",
+                isRecommended: false,
+                tags: ['to-read'],
+                rating: 0,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 30186948,
+                title: "Think and Grow Rich",
+                author: "Napoleon Hill",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 516999,
+                title: "How Countries Compete: Strategy, Structure, and Government in the Global Economy",
+                author: "Richard H.K. Vietor",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 40176644,
+                title: "Lead the Field: How to Build a Millionaire Mindset (Earl Nightingale Series)",
+                author: "Earl Nightingale",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 37924379,
+                title: "New Business Road Test, The: What Entrepreneurs And Investors Should Do Before Launching A Lean Start-Up",
+                author: "John W. Mullins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 32307358,
+                title: "Origin (Robert Langdon, #5)",
+                author: "Dan       Brown",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 33514,
+                title: "The Elements of Style",
+                author: "William Strunk Jr.",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 12675109,
+                title: "Great by Choice: Uncertainty, Chaos, and Luck—Why Some Thrive Despite Them All",
+                author: "Jim Collins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 42448325,
+                title: "Turning the Flywheel: A Monograph to Accompany Good to Great",
+                author: "Jim Collins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 39286958,
+                title: "Measure What Matters",
+                author: "John Doerr",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 6431063,
+                title: "How The Mighty Fall: And Why Some Companies Never Give In (Good to Great, 4)",
+                author: "Jim Collins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 957355,
+                title: "The Art of Exceptional Living",
+                author: "Jim Rohn",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 33785142,
+                title: "The Power of Your Leadership: Making a Difference with Others",
+                author: "John C. Maxwell",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 18373,
+                title: "Flowers for Algernon",
+                author: "Daniel Keyes",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 22091581,
+                title: "Traction: A Startup Guide to Getting Customers",
+                author: "Gabriel Weinberg",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 48691943,
+                title: "The Great CEO Within: The Tactical Guide to Company Building",
+                author: "Matt Mochary",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 18363552,
+                title: "Disciplined Entrepreneurship",
+                author: "Bill Aulet",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: true,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 33449,
+                title: "The 22 Immutable Laws of Marketing: Violate Them at Your Own Risk",
+                author: "Al Ries",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3828902,
+                title: "Thinking In Systems: A Primer",
+                author: "Donella H. Meadows",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 8908,
+                title: "World War Z: An Oral History of the Zombie War",
+                author: "Max Brooks",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: ['fiction'],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 226507,
+                title: "Smart Choices: A Practical Guide to Making Better Decisions",
+                author: "John S. Hammond",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 28815,
+                title: "Influence: The Psychology of Persuasion",
+                author: "Robert B. Cialdini",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3467088,
+                title: "The Power Of Less: The Fine Art of Limiting Yourself to the Essential",
+                author: "Leo Babauta",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 2251306,
+                title: "Brain Rules: 12 Principles for Surviving and Thriving at Work, Home, and School (Book & DVD)",
+                author: "John Medina",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 174713,
+                title: "The Lessons of History",
+                author: "Will Durant",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 8360431,
+                title: "Accidental Genius: Revolutionize Your Thinking Through Private Writing",
+                author: "Mark Levy",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 76865,
+                title: "Good to Great: Why Some Companies Make the Leap... and Others Don't",
+                author: "Jim Collins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 4122,
+                title: "Built to Last: Successful Habits of Visionary Companies (Good to Great, 2)",
+                author: "Jim Collins",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 35249663,
+                title: "Inspired: How to Create Tech Products Customers Love",
+                author: "Marty Cagan",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 56687715,
+                title: "The Last 100 Yards: The Crucible of Close Combat in Large-Scale Combat Operations",
+                author: "Army University Press",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 14576884,
+                title: "Born to Win: Library Edition",
+                author: "Zig Ziglar",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 289058,
+                title: "About Face: Odyssey Of An American Warrior",
+                author: "David H. Hackworth",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 281259,
+                title: "12: The Elements of Great Managing",
+                author: "Rodd Wagner",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3735293,
+                title: "Clean Code: A Handbook of Agile Software Craftsmanship",
+                author: "Robert C. Martin",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: "2021/01/19",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 49994260,
+                title: "Limitless: Upgrade Your Brain, Learn Anything Faster, and Unlock Your Exceptional Life",
+                author: "Jim Kwik",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: "2021/02/08",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 54222022,
+                title: "Token Economy: How the Web3 reinvents the Internet",
+                author: "Shermin Voshmgir",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: true,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 25698,
+                title: "An Inquiry into the Nature and Causes of the Wealth of Nations",
+                author: "Adam Smith",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1878833,
+                title: "Driven: How Human Nature Shapes our Choices",
+                author: "Paul R. Lawrence",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 46423,
+                title: "Sociology",
+                author: "Anthony Giddens",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 98233,
+                title: "Founders at Work: Stories of Startups' Early Days",
+                author: "Jessica Livingston",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 173953,
+                title: "Public Choice III",
+                author: "Dennis C. Mueller",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 29258142,
+                title: "Public Good by Private Means: How philanthropy shapes Britain",
+                author: "Rhodri  Davies",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 30014114,
+                title: "Product Leadership: How Top Product Managers Launch Awesome Products and Build Successful Teams",
+                author: "Richard  Banfield",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 23848190,
+                title: "Extreme Ownership: How U.S. Navy SEALs Lead and Win",
+                author: "Jocko Willink",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 53746011,
+                title: "Skip the Line: The 10,000 Experiments Rule and Other Surprising Advice for Reaching Your Goals",
+                author: "James Altucher",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 36004703,
+                title: "The Human Planet: How We Created the Anthropocene",
+                author: "Simon L. Lewis",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1001548,
+                title: "Overcoming Insomnia and Sleep Problems (Overcoming Books)",
+                author: "Colin A. Espie",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 12701065,
+                title: "The Startup of You (Revised and Updated): Adapt, Take Risks, Grow Your Network, and Transform Your Career (2022)",
+                author: "Reid Hoffman",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 127932,
+                title: "Java Concurrency in Practice",
+                author: "Brian Goetz",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 52326253,
+                title: "Rebel Ideas: The Power of Diverse Thinking",
+                author: "Matthew Syed",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3023,
+                title: "Basic Economics: A Citizen's Guide to the Economy",
+                author: "Thomas Sowell",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 30231750,
+                title: "Deep Survival: Who Lives, Who Dies, and Why",
+                author: "Laurence Gonzales",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 34137265,
+                title: "Blockchain Basics: A Non-Technical Introduction in 25 Steps",
+                author: "Daniel  Drescher",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1303,
+                title: "The 48 Laws of Power",
+                author: "Robert Greene",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 13589182,
+                title: "Mastery",
+                author: "Robert Greene",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 23398748,
+                title: "Doing Good Better: How Effective Altruism Can Help You Make a Difference",
+                author: "William MacAskill",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 42951225,
+                title: "Gods of the Upper Air: How a Circle of Renegade Anthropologists Reinvented Race, Sex, and Gender in the Twentieth Century",
+                author: "Charles  King",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 82537,
+                title: "The Daily Drucker: 366 Days of Insight and Motivation for Getting the Right Things Done",
+                author: "Peter F. Drucker",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: "2022/09/03",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 13557008,
+                title: "The Startup Owner's Manual: The Step-By-Step Guide for Building a Great Company",
+                author: "Steve Blank",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: "2022/09/03",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1633,
+                title: "Getting Things Done: The Art of Stress-Free Productivity",
+                author: "David    Allen",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: "2021/01/03",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3228917,
+                title: "Outliers: The Story of Success",
+                author: "Malcolm Gladwell",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: "2022/09/03",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 27220736,
+                title: "Shoe Dog: A Memoir by the Creator of Nike",
+                author: "Phil Knight",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: "2021/01/13",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 105099,
+                title: "Effective Java : Programming Language Guide",
+                author: "Joshua Bloch",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: "2021/01/13",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 32283133,
+                title: "Origin (Robert Langdon, #5)",
+                author: "Dan       Brown",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: "2020/01/01",
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 10127019,
+                title: "The Lean Startup",
+                author: "Eric Ries",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 36072,
+                title: "The 7 Habits of Highly Effective People: Powerful Lessons in Personal Change",
+                author: "Stephen R. Covey",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 9549300,
+                title: "Do More Faster: Techstars Lessons to Accelerate Your Startup",
+                author: "Brad Feld",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 10054210,
+                title: "The Innovator's DNA: Mastering the Five Skills of Disruptive Innovators",
+                author: "Jeffrey H. Dyer",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 48019,
+                title: "The Effective Executive: The Definitive Guide to Getting the Right Things Done (Harperbusiness Essentials)",
+                author: "Peter F. Drucker",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 28820024,
+                title: "Competing Against Luck",
+                author: "Clayton M. Christensen",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 65229,
+                title: "Sources of Power: How People Make Decisions",
+                author: "Gary Klein",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 324750,
+                title: "High Output Management",
+                author: "Andrew S. Grove",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 4865,
+                title: "How to Win Friends & Influence People",
+                author: "Dale Carnegie",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 25614523,
+                title: "Originals: How Non-Conformists Move the World",
+                author: "Adam M. Grant",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 3828382,
+                title: "Tribes: We Need You to Lead Us",
+                author: "Seth Godin",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 227552,
+                title: "10 Days to Faster Reading",
+                author: "The Princeton Language Institute",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 578736,
+                title: "Zig Ziglar's Secrets of Closing the Sale: For Anyone Who Must Get Others to Say Yes!",
+                author: "Zig Ziglar",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 11468377,
+                title: "Thinking, Fast and Slow",
+                author: "Daniel Kahneman",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 18050143,
+                title: "Zero to One: Notes on Startups, or How to Build the Future",
+                author: "Peter Thiel",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 160830,
+                title: "All Marketers Are Liars: The Power of Telling Authentic Stories in a Low-Trust World",
+                author: "Seth Godin",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 9512985,
+                title: "The Personal MBA: Master the Art of Business",
+                author: "Josh Kaufman",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: true,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 18176747,
+                title: "The Hard Thing About Hard Things: Building a Business When There Are No Easy Answers",
+                author: "Ben Horowitz",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 5152210,
+                title: "Financial Intelligence for Entrepreneurs: What You Really Need to Know About the Numbers",
+                author: "Karen Berman",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 1091001,
+                title: "The Wall Street MBA: Your Personal Crash Course in Corporate Finance",
+                author: "Reuben Advani",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 3,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 13234710,
+                title: "The Founder's Dilemmas: Anticipating and Avoiding the Pitfalls That Can Sink a Startup (The Kauffman Foundation Series on Innovation and Entrepreneurship)",
+                author: "Noam Wasserman",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 2490652,
+                title: "Ready, Fire, Aim: Zero to $100 Million in No Time Flat",
+                author: "Michael Masterson",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 569871,
+                title: "3-D Negotiation: Powerful Tools to Change the Game in Your Most Important Deals",
+                author: "David A. Lax",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 4,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 61329,
+                title: "Crossing the Chasm: Marketing and Selling High-Tech Products to Mainstream Customers",
+                author: "Geoffrey A. Moore",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 25135194,
+                title: "Prisoners of Geography: Ten Maps That Tell You Everything You Need to Know About Global Politics",
+                author: "Tim  Marshall",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 551520,
+                title: "The Wisdom of Insecurity: A Message for an Age of Anxiety",
+                author: "Alan W. Watts",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 762542,
+                title: "The Four Steps to the Epiphany: Successful Strategies for Products that Win",
+                author: "Steve Blank",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: true,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+            {
+                id: 38398157,
+                title: "Blitzscaling: The Lightning-Fast Path to Building Massively Valuable Companies",
+                author: "Reid Hoffman",
+                coverImage: "assets/placeholder.jpg",
+                description: "Brief description of the book...",
+                status: "read",
+                isRecommended: false,
+                tags: [],
+                rating: 5,
+                dateRead: null,
+                review: "My thoughts on the book..."
+            },
+        ];
+
+        // Function to update stats
+        function updateReadingStats() {
+            const readBooks = books.filter(book => book.status === "read").length;
+            const readingList = books.filter(book => book.status === "reading-list").length;
+            const recommendations = books.filter(book => book.isRecommended).length;
+
+            document.getElementById('books-read').textContent = readBooks;
+            document.getElementById('reading-list').textContent = readingList;
+            document.getElementById('top-picks').textContent = recommendations;
+        }
+
+        // Function to create book card
+        function createBookCard(book) {
+            return `
+                    <div class="book-card" data-category="${book.status}">
+                        <img src="${book.coverImage}" alt="${book.title}" class="book-cover">
+                        ${book.isRecommended ?
+                    `<div class="recommendation-badge">
+                                ⭐ Highly Recommended
+                            </div>` : ''
+                }
+                        <div class="status-badge ${book.status === 'read' ? 'status-read' : 'status-reading-list'}">
+                            ${book.status === 'read' ? 'Read' : 'Reading List'}
+                        </div>
+                        <div class="book-content">
+                            <h3 class="book-title">${book.title}</h3>
+                            <p class="book-author">by ${book.author}</p>
+                            <p class="book-description">${book.description}</p>
+                            <div class="book-tags">
+                                ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+        }
+
+        // Function to populate and filter books
+        function populateBooks(filter = 'all') {
+            const grid = document.querySelector('.books-grid');
+            grid.innerHTML = '';
+
+            const filteredBooks = filter === 'all'
+                ? books
+                : filter === 'recommended'
+                    ? books.filter(book => book.isRecommended)
+                    : books.filter(book => book.status === filter);
+
+            filteredBooks.forEach(book => {
+                grid.innerHTML += createBookCard(book);
+            });
+        }
+
+        // Initialize event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize stats
+            updateReadingStats();
+
+            // Initialize books with recommended filter
+            populateBooks('recommended');
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active state
+                    document.querySelectorAll('.filter-btn').forEach(btn =>
+                        btn.classList.remove('active')
+                    );
+                    button.classList.add('active');
+
+                    // Filter books
+                    populateBooks(button.dataset.filter);
+                });
+            });
+        });
+    </script>
 
     <!-- Adventures Section -->
     <section id="adventures" class="adventures-section">
@@ -593,407 +3313,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeMap();
             populateAdventures();
-        });
-    </script>
-
-    <!-- Advisory Section -->
-    <section id="advisory">
-        <h2>Advisory Services</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Entrepreneurship Advisory</h3>
-                <ul>
-                    <li>✦ Startup Strategy & Scaling</li>
-                    <li>✦ Fundraising & Pitch Preparation</li>
-                    <li>✦ Business Model Optimization</li>
-                    <li>✦ Market Entry Strategy</li>
-                </ul>
-                <p>Drawing from experience founding and scaling multiple companies across industries.</p>
-            </div>
-            <div class="card">
-                <h3>Product Advisory</h3>
-                <ul>
-                    <li>✦ Product Strategy & Roadmap</li>
-                    <li>✦ Product-Market Fit</li>
-                    <li>✦ User Experience Design</li>
-                    <li>✦ Go-to-Market Strategy</li>
-                </ul>
-                <p>Leveraging experience in successful product launches and optimizations.</p>
-            </div>
-            <div class="card">
-                <h3>Technology Advisory</h3>
-                <ul>
-                    <li>✦ Technical Architecture</li>
-                    <li>✦ Blockchain & Web3</li>
-                    <li>✦ System Optimization</li>
-                    <li>✦ Technology Stack Selection</li>
-                </ul>
-                <p>Based on extensive experience across traditional and blockchain technologies.</p>
-            </div>
-        </div>
-        <div class="cta-container">
-            <a href="#contact" class="btn">Discuss Advisory Services</a>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <div class="quote">
-        "Volunteering in Nepal taught me the power of shared goals when I picked up enough Nepali to help a community
-        build a water pipeline together."
-    </div>
-
-    <!-- Achievements Section -->
-    <section id="achievements">
-        <h2>Key Achievements</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Patent Holder</h3>
-                <p>Developed real-time B2B payment solution at JPMorgan Chase</p>
-            </div>
-            <div class="card">
-                <h3>Ecosystem Growth</h3>
-                <p>Scaled communities to tens of thousands across multiple platforms</p>
-            </div>
-            <div class="card">
-                <h3>Technical Innovation</h3>
-                <p>Led successful launches of multiple blockchain and fintech products</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reading Section -->
-    <section id="reading">
-        <h2>Reading List & Recommendations</h2>
-        <!-- Reading Stats -->
-        <div class="reading-stats">
-            <div class="stat-card">
-                <div class="stat-number" id="books-read">0</div>
-                <div class="stat-label">Books Read</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="reading-list">0</div>
-                <div class="stat-label">Reading List</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="top-picks">0</div>
-                <div class="stat-label">Top Recommendations</div>
-            </div>
-        </div>
-
-        <!-- Category Filter -->
-        <div class="book-filters">
-            <button class="filter-btn active" data-filter="recommended">Recommended</button>
-            <button class="filter-btn" data-filter="read">Read</button>
-            <button class="filter-btn" data-filter="reading-list">Reading List</button>
-        </div>
-
-        <!-- Books Grid -->
-        <div class="books-grid">
-            <!-- Books will be populated by JavaScript -->
-        </div>
-    </section>
-
-    <style>
-        /* Reading Section Styles */
-        .reading-section {
-            padding: 6rem 2rem;
-            background: #f8fafc;
-        }
-
-        /* Stats Styles */
-        .reading-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #2563eb;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #4b5563;
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Filter Styles */
-        .book-filters {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: white;
-            border: 2px solid transparent;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #4b5563;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        }
-
-        .filter-btn:hover {
-            background: #f3f4f6;
-        }
-
-        .filter-btn.active {
-            background: #2563eb;
-            color: white;
-        }
-
-        .filter-btn.active[data-filter="recommended"] {
-            background: #2563eb;
-            color: white;
-            border-color: #2563eb;
-        }
-
-        .filter-btn.active[data-filter="read"] {
-            background: #dcfce7;
-            color: #166534;
-            border-color: #166534;
-        }
-
-        .filter-btn.active[data-filter="reading-list"] {
-            background: #dbeafe;
-            color: #1e40af;
-            border-color: #1e40af;
-        }
-
-        /* Books Grid */
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .book-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-        }
-
-        .book-cover {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-        }
-
-        .book-content {
-            padding: 1.5rem;
-        }
-
-        .book-title {
-            font-size: 1.25rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-
-        .book-author {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-        }
-
-        .book-description {
-            color: #4b5563;
-            font-size: 0.875rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .book-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .book-tag {
-            background: #f3f4f6;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            color: #4b5563;
-        }
-
-        .recommendation-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #fef3c7;
-            color: #92400e;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-        }
-
-        .status-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
-
-        .status-read {
-            background: #dcfce7;
-            color: #166534;
-        }
-
-        .status-reading-list {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        @media (max-width: 768px) {
-            .reading-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .book-filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filter-btn {
-                width: 100%;
-            }
-        }
-    </style>
-
-    <script>
-        // Book data structure
-        const books = [
-            {
-                id: 1,
-                title: "Example Book",
-                author: "Author Name",
-                coverImage: "assets/placeholder.jpg",
-                description: "Brief description of the book...",
-                status: "read", // read, reading-list
-                isRecommended: true,
-                tags: ["Business", "Strategy"],
-                rating: 5,
-                dateRead: "2024-01",
-                review: "My thoughts on the book..."
-            }
-            // Add more books here
-        ];
-
-        // Function to update stats
-        function updateReadingStats() {
-            const readBooks = books.filter(book => book.status === "read").length;
-            const readingList = books.filter(book => book.status === "reading-list").length;
-            const recommendations = books.filter(book => book.isRecommended).length;
-
-            document.getElementById('books-read').textContent = readBooks;
-            document.getElementById('reading-list').textContent = readingList;
-            document.getElementById('top-picks').textContent = recommendations;
-        }
-
-        // Function to create book card
-        function createBookCard(book) {
-            return `
-                <div class="book-card" data-category="${book.status}">
-                    <img src="${book.coverImage}" alt="${book.title}" class="book-cover">
-                    ${book.isRecommended ?
-                    `<div class="recommendation-badge">
-                            ⭐ Highly Recommended
-                        </div>` : ''
-                }
-                    <div class="status-badge ${book.status === 'read' ? 'status-read' : 'status-reading-list'}">
-                        ${book.status === 'read' ? 'Read' : 'Reading List'}
-                    </div>
-                    <div class="book-content">
-                        <h3 class="book-title">${book.title}</h3>
-                        <p class="book-author">by ${book.author}</p>
-                        <p class="book-description">${book.description}</p>
-                        <div class="book-tags">
-                            ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Function to populate and filter books
-        function populateBooks(filter = 'all') {
-            const grid = document.querySelector('.books-grid');
-            grid.innerHTML = '';
-
-            const filteredBooks = filter === 'all'
-                ? books
-                : filter === 'recommended'
-                    ? books.filter(book => book.isRecommended)
-                    : books.filter(book => book.status === filter);
-
-            filteredBooks.forEach(book => {
-                grid.innerHTML += createBookCard(book);
-            });
-        }
-
-        // Initialize event listeners
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize stats
-            updateReadingStats();
-
-            // Initialize books with recommended filter
-            populateBooks('recommended');
-
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update active state
-                    document.querySelectorAll('.filter-btn').forEach(btn =>
-                        btn.classList.remove('active')
-                    );
-                    button.classList.add('active');
-
-                    // Filter books
-                    populateBooks(button.dataset.filter);
-                });
-            });
         });
     </script>
 
