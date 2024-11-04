@@ -839,11 +839,32 @@
                 width: 100%;
             }
         }
+
+        .book-rating {
+            color: #f59e0b;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #f3f4f6;
+        }
+
+        .book-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
     </style>
 
     <script>
         // Book data structure
-        export const books = [
+        const books = [
             {
                 id: 61539,
                 title: "The Structure of Scientific Revolutions",
@@ -2744,27 +2765,44 @@
 
         // Function to create book card
         function createBookCard(book) {
+            // Create a meaningful description if none exists
+            const description = book.description.includes('Brief description')
+                ? `${book.title} by ${book.author}. ${book.rating ? `Rated ${book.rating}/5` : ''}`
+                : book.description;
+
+            // Use a better placeholder image
+            const coverImage = book.coverImage.includes('placeholder')
+                ? `/api/placeholder/200/300?text=${encodeURIComponent(book.title)}`
+                : book.coverImage;
+
             return `
-                    <div class="book-card" data-category="${book.status}">
-                        <img src="${book.coverImage}" alt="${book.title}" class="book-cover">
-                        ${book.isRecommended ?
+                <div class="book-card" data-category="${book.status}">
+                    <img src="${coverImage}" alt="${book.title}" class="book-cover">
+                    ${book.isRecommended ?
                     `<div class="recommendation-badge">
-                                ⭐ Highly Recommended
-                            </div>` : ''
+                            ⭐ Highly Recommended
+                        </div>` : ''
                 }
-                        <div class="status-badge ${book.status === 'read' ? 'status-read' : 'status-reading-list'}">
-                            ${book.status === 'read' ? 'Read' : 'Reading List'}
-                        </div>
-                        <div class="book-content">
-                            <h3 class="book-title">${book.title}</h3>
-                            <p class="book-author">by ${book.author}</p>
-                            <p class="book-description">${book.description}</p>
+                    <div class="status-badge ${book.status === 'read' ? 'status-read' : 'status-reading-list'}">
+                        ${book.status === 'read' ? 'Read' : 'Reading List'}
+                    </div>
+                    <div class="book-content">
+                        <h3 class="book-title">${book.title}</h3>
+                        <p class="book-author">by ${book.author}</p>
+                        <p class="book-description">${description}</p>
+                        ${book.rating ? `
+                            <div class="book-rating">
+                                ${'★'.repeat(book.rating)}${'☆'.repeat(5 - book.rating)}
+                            </div>
+                        ` : ''}
+                        ${book.tags && book.tags.length > 0 ? `
                             <div class="book-tags">
                                 ${book.tags.map(tag => `<span class="book-tag">${tag}</span>`).join('')}
                             </div>
-                        </div>
+                        ` : ''}
                     </div>
-                `;
+                </div>
+            `;
         }
 
         // Function to populate and filter books
@@ -2785,25 +2823,30 @@
 
         // Initialize event listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Initialize stats
-            updateReadingStats();
+            try {
+                // Initialize stats first
+                updateReadingStats();
 
-            // Initialize books with recommended filter
-            populateBooks('recommended');
+                // Initialize books with recommended filter
+                populateBooks('recommended');
 
-            // Filter buttons
-            document.querySelectorAll('.filter-btn').forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update active state
-                    document.querySelectorAll('.filter-btn').forEach(btn =>
-                        btn.classList.remove('active')
-                    );
-                    button.classList.add('active');
+                // Filter buttons
+                document.querySelectorAll('.filter-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        console.log('Filter clicked:', button.dataset.filter); // For debugging
+                        // Update active state
+                        document.querySelectorAll('.filter-btn').forEach(btn =>
+                            btn.classList.remove('active')
+                        );
+                        button.classList.add('active');
 
-                    // Filter books
-                    populateBooks(button.dataset.filter);
+                        // Filter books
+                        populateBooks(button.dataset.filter);
+                    });
                 });
-            });
+            } catch (error) {
+                console.error('Error initializing reading section:', error);
+            }
         });
     </script>
 
