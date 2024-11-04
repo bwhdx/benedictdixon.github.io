@@ -860,6 +860,71 @@
             overflow: hidden;
             margin: 0.5rem 0;
         }
+
+        .book-cover-placeholder {
+            height: 300px;
+            background: linear-gradient(145deg, #e6e9f0 0%, #eef1f5 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .book-cover-placeholder h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .book-cover-placeholder p {
+            color: #6b7280;
+        }
+
+        .pagination-container {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .pagination-info {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .pagination-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            background: white;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .pagination-btn:hover {
+            background: #f3f4f6;
+        }
+
+        .pagination-btn.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .pagination-ellipsis {
+            color: #6b7280;
+            padding: 0 0.5rem;
+        }
     </style>
 
     <script>
@@ -2601,7 +2666,7 @@
                 coverImage: "assets/placeholder.jpg",
                 description: "Brief description of the book...",
                 status: "read",
-                isRecommended: true,
+                isRecommended: false,
                 tags: [],
                 rating: 5,
                 dateRead: null,
@@ -2752,6 +2817,10 @@
             },
         ];
 
+        // Add pagination configuration
+        const BOOKS_PER_PAGE = 12;
+        let currentPage = 1;
+
         // Function to update stats
         function updateReadingStats() {
             const readBooks = books.filter(book => book.status === "read").length;
@@ -2765,19 +2834,20 @@
 
         // Function to create book card
         function createBookCard(book) {
-            // Create a meaningful description if none exists
             const description = book.description.includes('Brief description')
                 ? `${book.title} by ${book.author}. ${book.rating ? `Rated ${book.rating}/5` : ''}`
                 : book.description;
 
-            // Use a better placeholder image
-            const coverImage = book.coverImage.includes('placeholder')
-                ? `/api/placeholder/200/300?text=${encodeURIComponent(book.title)}`
-                : book.coverImage;
-
             return `
                 <div class="book-card" data-category="${book.status}">
-                    <img src="${coverImage}" alt="${book.title}" class="book-cover">
+                    ${book.coverImage ? `
+                        <img src="${book.coverImage}" alt="${book.title}" class="book-cover">
+                    ` : `
+                        <div class="book-cover-placeholder">
+                            <h4>${book.title}</h4>
+                            <p>${book.author}</p>
+                        </div>
+                    `}
                     ${book.isRecommended ?
                     `<div class="recommendation-badge">
                             ⭐ Highly Recommended
@@ -2804,9 +2874,8 @@
                 </div>
             `;
         }
-
         // Function to populate and filter books
-        function populateBooks(filter = 'all') {
+        function populateBooks(filter = 'recommended', page = 1) {
             const grid = document.querySelector('.books-grid');
             grid.innerHTML = '';
 
@@ -2816,10 +2885,97 @@
                     ? books.filter(book => book.isRecommended)
                     : books.filter(book => book.status === filter);
 
-            filteredBooks.forEach(book => {
+            // Calculate pagination
+            const totalPages = Math.ceil(filteredBooks.length / BOOKS_PER_PAGE);
+            const startIndex = (page - 1) * BOOKS_PER_PAGE;
+            const paginatedBooks = filteredBooks.slice(startIndex, startIndex + BOOKS_PER_PAGE);
+
+            // Create and append book cards
+            paginatedBooks.forEach(book => {
                 grid.innerHTML += createBookCard(book);
             });
+
+            // Update pagination controls
+            updatePaginationControls(totalPages, page, filter);
         }
+
+        // Create pagination controls
+        function updatePaginationControls(totalPages, currentPage, currentFilter) {
+            const paginationContainer = document.getElementById('books-pagination');
+            if (!paginationContainer) return;
+
+            let paginationHTML = `
+                <div class="pagination-info">
+                    Showing page ${currentPage} of ${totalPages}
+                </div>
+                <div class="pagination-controls">
+                    ${currentPage > 1 ?
+                    `<button class="pagination-btn" data-page="${currentPage - 1}">Previous</button>`
+                    : ''
+                }
+                    ${createPageNumbers(currentPage, totalPages)}
+                    ${currentPage < totalPages ?
+                    `<button class="pagination-btn" data-page="${currentPage + 1}">Next</button>`
+                    : ''
+                }
+                </div>
+            `;
+
+            paginationContainer.innerHTML = paginationHTML;
+
+            // Add event listeners to pagination buttons
+            paginationContainer.querySelectorAll('.pagination-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const newPage = parseInt(button.dataset.page);
+                    currentPage = newPage;
+                    populateBooks(currentFilter, newPage);
+                    window.scrollTo({
+                        top: document.getElementById('reading').offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        }
+
+        // Helper function to create page numbers
+        function createPageNumbers(currentPage, totalPages) {
+            let pages = [];
+            const showPages = 5; // Number of page numbers to show
+
+            let startPage = Math.max(1, currentPage - Math.floor(showPages / 2));
+            let endPage = Math.min(totalPages, startPage + showPages - 1);
+
+            if (endPage - startPage + 1 < showPages) {
+                startPage = Math.max(1, endPage - showPages + 1);
+            }
+
+            if (startPage > 1) {
+                pages.push('1');
+                if (startPage > 2) pages.push('...');
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                pages.push(i.toString());
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) pages.push('...');
+                pages.push(totalPages.toString());
+            }
+
+            return pages.map(page => {
+                if (page === '...') {
+                    return `<span class="pagination-ellipsis">...</span>`;
+                }
+                return `
+                    <button class="pagination-btn ${parseInt(page) === currentPage ? 'active' : ''}" 
+                            data-page="${page}">
+                        ${page}
+                    </button>
+                `;
+            }).join('');
+        }
+
 
         // Initialize event listeners
         document.addEventListener('DOMContentLoaded', () => {
@@ -2848,6 +3004,10 @@
                 console.error('Error initializing reading section:', error);
             }
         });
+
+        document.querySelector('.books-grid').insertAdjacentHTML('afterend', `
+            <div id="books-pagination" class="pagination-container"></div>
+        `);
     </script>
 
     <!-- Adventures Section -->
@@ -3160,6 +3320,7 @@
             'AL': 'Albania',
             'ME': 'Montenegro',
             'GR': 'Greece',
+            'FI': 'Finland',
 
             // Asia
             'AM': 'Armenia',
@@ -3244,7 +3405,7 @@
                     336: 'VA', 380: 'IT', 724: 'ES', 620: 'PT', '040': 'AT',
 
                     // Eastern Europe
-                    100: 'BG', 203: 'CZ', 348: 'HU', 642: 'RO', '008': 'AL', 499: 'ME', 300: 'GR', 643: 'RU',
+                    100: 'BG', 203: 'CZ', 348: 'HU', 642: 'RO', '008': 'AL', 499: 'ME', 300: 'GR', 643: 'RU', 246: 'FI',
 
                     // Asia
                     '051': 'AM', 268: 'GE', 398: 'KZ', 417: 'KG', 762: 'TJ', 795: 'TM', 860: 'UZ',
