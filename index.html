@@ -20,7 +20,8 @@
             <p class="subtitle">Senior Technology Executive • Product & Ecosystem Builder</p>
             <p class="intro">
                 Scaling products and ecosystems from concept to market success. Launched a $150M blockchain platform
-                with just $500K budget while driving community growth of over 2000%. Combining technical expertise with
+                with just $500K budget while driving community growth of over 2000%.<br><br> Combining technical
+                expertise with
                 strategic vision to transform complex challenges into market-ready solutions.
             </p>
             <div class="cta-buttons">
@@ -916,9 +917,25 @@
         /* Books Grid */
         .books-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
+            justify-items: center;
+            justify-content: center;
+        }
+
+        /* Add this if you want to ensure cards maintain their width */
+        .book-card {
+            width: 100%;
+            max-width: 300px;
+            /* Or whatever maximum width you prefer */
+        }
+
+        /* For when there are fewer items */
+        @supports (grid-template-columns: subgrid) {
+            .books-grid {
+                grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            }
         }
 
         .book-card {
@@ -3766,71 +3783,49 @@
     <section id="contact" class="contact-section">
         <h2>Let's Connect</h2>
 
-        <!-- Introduction -->
-        <div class="contact-intro">
+        <div class="connect-intro">
             <p>Whether you're interested in discussing ecosystem building, technical leadership, or exploring potential
                 collaborations, I'm always open to connecting with like-minded professionals.</p>
         </div>
 
-        <!-- Contact Options Grid -->
         <div class="connect-grid">
-            <!-- Email -->
+            <!-- First three cards in a grid -->
             <div class="contact-card">
                 <div class="card-content">
-                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
+                    <svg class="icon"><!-- Email icon --></svg>
                     <h3>Email</h3>
-                    <p>For direct inquiries and opportunities</p>
+                    <p>For direct inquiries</p>
                     <a href="mailto:me@benedictdixon.com" class="contact-link">me@benedictdixon.com</a>
                 </div>
             </div>
 
-            <!-- LinkedIn -->
             <div class="contact-card">
                 <div class="card-content">
-                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
+                    <svg class="icon"><!-- LinkedIn icon --></svg>
                     <h3>LinkedIn</h3>
-                    <p>Connect professionally and follow my journey</p>
-                    <a href="https://www.linkedin.com/in/benedict-dixon/" target="_blank" class="contact-link">View
-                        Profile</a>
+                    <p>Connect professionally</p>
+                    <a href="https://www.linkedin.com/in/benedictdixon/" class="contact-link">View Profile</a>
                 </div>
             </div>
 
-            <!-- Medium -->
             <div class="contact-card">
                 <div class="card-content">
-                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path
-                            d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z" />
-                    </svg>
+                    <svg class="icon"><!-- Medium icon --></svg>
                     <h3>Medium</h3>
-                    <p>Read my latest thoughts and insights</p>
-                    <a href="https://medium.com/@bwhdx" target="_blank" class="contact-link">Follow my writing</a>
+                    <p>Read my articles</p>
+                    <a href="https://medium.com/@bwhdx" class="contact-link">Follow me</a>
                 </div>
             </div>
+        </div>
 
-            <!-- Advisory -->
-            <div class="contact-card featured">
-                <div class="card-content">
-                    <svg class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                    </svg>
-                    <h3>Advisory Services</h3>
-                    <p>Interested in working together? Let's discuss how I can help with your project or organization.
-                    </p>
-                    <a href="mailto:me@benedictdixon.com?subject=Advisory Services Inquiry"
-                        class="contact-link primary">Discuss Advisory Services</a>
-                </div>
+        <!-- Full-width banner card -->
+        <div class="contact-banner">
+            <div class="banner-content">
+                <svg class="icon"><!-- Advisory icon --></svg>
+                <h3>Advisory Services</h3>
+                <p>Interested in working together? Let's discuss how I can help with your project or organization.</p>
+                <a href="mailto:me@benedictdixon.com?subject=Advisory Services Inquiry"
+                    class="contact-link primary">Discuss Advisory Services</a>
             </div>
         </div>
     </section>
@@ -3855,7 +3850,63 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-banner {
+            background: linear-gradient(to right, #2563eb, #1d4ed8);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            color: white;
+            text-align: center;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+
+        .banner-content {
+            max-width: 600px;
             margin: 0 auto;
+        }
+
+        .contact-banner .icon {
+            color: white;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-banner h3 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-banner p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .contact-banner .contact-link.primary {
+            background: white;
+            color: #2563eb;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            display: inline-block;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .contact-banner .contact-link.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .contact-banner {
+                margin: 2rem 1rem;
+                padding: 2rem 1.5rem;
+            }
         }
 
         .contact-card {
