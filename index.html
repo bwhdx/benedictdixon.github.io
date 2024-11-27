@@ -92,58 +92,49 @@
             margin-right: auto;
         }
 
+        /* Updated Quick Stats Styling */
         .quick-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin: 2.5rem 0;
+            margin: 3rem 0;
         }
 
         .stat {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 1.5rem;
+            backdrop-filter: blur(8px);
+            padding: 2rem;
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.75rem;
         }
 
         .stat-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
         }
 
         .stat-title {
-            display: block;
             color: white;
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
         .stat-description {
-            display: block;
             color: rgba(255, 255, 255, 0.9);
-            font-size: 0.875rem;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 768px) {
-            .quick-stats {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .stat {
-                padding: 1.25rem;
-            }
+            font-size: 1rem;
+            line-height: 1.6;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 3rem;
         }
 
         .btn {
@@ -151,6 +142,7 @@
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .btn.primary {
@@ -180,9 +172,21 @@
                 font-size: 2.5rem;
             }
 
+            .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .intro {
+                font-size: 1rem;
+            }
+
             .quick-stats {
-                flex-direction: column;
-                gap: 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat {
+                padding: 1.5rem;
             }
 
             .cta-buttons {
@@ -191,6 +195,20 @@
 
             .btn {
                 width: 100%;
+            }
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
             }
         }
     </style>
