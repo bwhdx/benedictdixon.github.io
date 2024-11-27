@@ -17,13 +17,31 @@
     <header>
         <div class="header-content">
             <h1>Benedict Dixon</h1>
-            <p class="subtitle">Senior Technology Executive • Product & Ecosystem Builder</p>
+            <p class="subtitle">Technology, Product & Ecosystem Leadership Executive</p>
             <p class="intro">
-                Scaling products and ecosystems from concept to market success. Launched a $150M blockchain platform
-                with just $500K budget while driving community growth of over 2000%.<br><br> Combining technical
-                expertise with
-                strategic vision to transform complex challenges into market-ready solutions.
+                Senior product leader transforming complex customer problems into compelling solutions. Launched a $150M
+                blockchain platform and achieved 2000%+ community growth with minimal resources.
+                <br><br>
+                Combining strategic product vision with hands-on leadership across internal teams, external providers,
+                and community-driven development.
             </p>
+            <div class="quick-stats">
+                <div class="stat">
+                    <div class="stat-icon">🔧</div>
+                    <span class="stat-title">Technology</span>
+                    <span class="stat-description">Web3 & Web2, Finance, Payments</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">🎯</div>
+                    <span class="stat-title">Product</span>
+                    <span class="stat-description">Strategy, Innovation, Market Validation</span>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">🌐</div>
+                    <span class="stat-title">Ecosystems</span>
+                    <span class="stat-description">Community Growth, Stakeholder Management, Value Creation</span>
+                </div>
+            </div>
             <div class="cta-buttons">
                 <a href="#contact" class="btn primary">Connect With Me</a>
                 <a href="#advisory" class="btn secondary">Advisory Services</a>
@@ -74,30 +92,50 @@
         }
 
         .quick-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
             margin: 2.5rem 0;
         }
 
         .stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
         }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            display: block;
             color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
-        .stat-label {
+        .stat-description {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            .quick-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stat {
+                padding: 1.25rem;
+            }
         }
 
         .cta-buttons {
