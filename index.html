@@ -332,30 +332,16 @@
     </section>
 
     <!-- Writing Section -->
-    <section id="writing" class="thought-leadership-section">
+    <section id="thought-leadership" class="thought-leadership-section">
         <h2>Writing</h2>
 
-        <!-- Featured Article Container -->
-        <div id="featured-article-container"></div>
+        <!-- Featured Article - Minimal structure -->
+        <div class="featured-article">
+            <!-- Will be populated by JavaScript -->
+        </div>
 
-        <section id="articles" class="articles-section">
-            <h2>Latest Articles</h2>
-
-            <!-- Loading State -->
-            <div id="articles-loading" class="loading-state">
-                <div class="loading-spinner"></div>
-                <p>Loading articles...</p>
-            </div>
-
-            <!-- Error State -->
-            <div id="articles-error" class="error-state" style="display: none;">
-                <p>Unable to load articles. Please visit my <a href="https://medium.com/@bwhdx" target="_blank">Medium
-                        profile</a> directly.</p>
-            </div>
-
-            <!-- Articles Grid -->
-            <div class="articles-grid"></div>
-        </section>
+        <!-- Articles Grid -->
+        <div class="articles-grid"></div>
 
         <!-- Medium Profile -->
         <div class="medium-profile">
@@ -364,16 +350,10 @@
                     <h3>Follow My Writing Journey</h3>
                     <p>Sharing insights on blockchain, ecosystem building, and technical leadership</p>
                 </div>
-                <div class="profile-actions">
-                    <a href="https://medium.com/@bwhdx" class="follow-btn" target="_blank">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="medium-icon">
-                            <path
-                                d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z" />
-                        </svg>
-                        Follow on Medium
-                    </a>
-                </div>
+                <a href="https://medium.com/@bwhdx" class="follow-btn" target="_blank">
+                    <svg class="medium-icon"><!-- ... medium icon svg ... --></svg>
+                    Follow on Medium
+                </a>
             </div>
         </div>
     </section>
@@ -705,33 +685,60 @@
 
     <script>
         // Medium articles data
-        const featuredArticle = {
-            title: "How to incentivise a technical community",
-            excerpt: "Exploring the delicate balance of creating sustainable technical communities through effective incentive mechanisms...",
-            image: "assets/placeholder.jpg",
-            url: "https://medium.com/@benedictdixon/how-to-incentivise-a-technical-community-30d3839437d7",
-            readTime: "5 min",
-            claps: "1.2K"
-        };
+        const FEATURED_ARTICLE_URL = "https://bwhdx.medium.com/the-democratic-myth-of-daos-the-road-to-autocracy-52d03e4e1f8e";
 
-        // Function to create featured article
-        function createFeaturedArticle(article) {
-            return `
-                <div class="featured-article">
-                    <div class="featured-content">
-                        <div class="article-meta">Featured Article</div>
-                        <h3 class="article-title">${article.title}</h3>
-                        <p class="article-excerpt">${article.excerpt}</p>
-                        <div class="article-stats">
-                            <span class="stat">📚 ${article.readTime}</span>
-                            <span class="stat">📅 ${article.pubDate || 'March 2024'}</span>
-                        </div>
-                        <a href="${article.url}" class="read-more-btn" target="_blank">Read Article</a>
+        // Function to fetch featured article details
+        async function fetchFeaturedArticle() {
+            try {
+                // Extract the article path from the URL
+                const articlePath = FEATURED_ARTICLE_URL.split('medium.com/')[1];
+                const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@benedictdixon`);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    // Find the featured article in the feed
+                    const featuredArticle = data.items.find(item => item.link === FEATURED_ARTICLE_URL);
+
+                    if (featuredArticle) {
+                        const article = {
+                            title: featuredArticle.title,
+                            excerpt: featuredArticle.description.replace(/<[^>]*>?/gm, '').slice(0, 150) + '...',
+                            thumbnail: featuredArticle.thumbnail,
+                            url: featuredArticle.link,
+                            pubDate: new Date(featuredArticle.pubDate).toLocaleDateString(),
+                            readTime: Math.ceil(featuredArticle.content.split(' ').length / 200) + ' min'
+                        };
+
+                        updateFeaturedArticle(article);
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching featured article:', error);
+                // Handle error gracefully - maybe hide featured section or show fallback
+                document.querySelector('.featured-article').style.display = 'none';
+            }
+        }
+
+        // Function to update the featured article section
+        function updateFeaturedArticle(article) {
+            const featuredSection = document.querySelector('.featured-article');
+
+            featuredSection.innerHTML = `
+                <div class="featured-content">
+                    <div class="article-meta">Featured Article</div>
+                    <h3 class="article-title">${article.title}</h3>
+                    <p class="article-excerpt">${article.excerpt}</p>
+                    <div class="article-stats">
+                        <span class="stat">📚 ${article.readTime}</span>
+                        <span class="stat">📅 ${article.pubDate}</span>
                     </div>
-                    <div class="featured-image">
-                        <img src="${article.image}" alt="${article.title}">
-                    </div>
+                    <a href="${article.url}" class="read-more-btn" target="_blank">Read Article</a>
                 </div>
+                ${article.thumbnail ? `
+                    <div class="featured-image">
+                        <img src="${article.thumbnail}" alt="${article.title}">
+                    </div>
+                ` : ''}
             `;
         }
 
@@ -814,9 +821,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Create featured article
             const featuredContainer = document.getElementById('featured-article-container');
-            featuredContainer.innerHTML = createFeaturedArticle(featuredArticle);
 
             // Fetch other articles
+            fetchFeaturedArticle();
             fetchMediumArticles();
         });
     </script>
