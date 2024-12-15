@@ -1036,6 +1036,8 @@ h2 {
     gap: var(--spacing-xl);
     position: relative;
     padding: var(--spacing-xl) 0;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .timeline::before {
@@ -1056,34 +1058,33 @@ h2 {
     position: relative;
     padding-left: var(--spacing-xl);
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.timeline-content {
-    width: 100%;
-}
-
-.timeline::before {
-    left: calc((100% - 800px) / 2);
 }
 
 .timeline-section::before {
-    left: calc((100% - 800px) / 2 - 4px);
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
 }
 
 @media (max-width: 900px) {
+    .timeline {
+        max-width: 100%;
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
+    }
+    
     .timeline::before {
         left: 20px;
     }
     
     .timeline-section::before {
         left: 16px;
-    }
-    
-    .timeline-section {
-        padding-left: var(--spacing-xl);
-        max-width: 100%;
     }
 }
 
