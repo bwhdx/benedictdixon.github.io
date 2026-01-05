@@ -976,6 +976,46 @@ h2 {
     }
 } 
 
+/* Speaking Section */
+.speaking-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.speaking-list {
+    display: grid;
+    gap: var(--spacing-md);
+}
+
+.speaking-item {
+    padding: var(--spacing-lg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: var(--border-radius);
+    background: var(--background-color);
+    transition: var(--transition);
+}
+
+.speaking-item:hover {
+    border-color: var(--accent-color);
+}
+
+.speaking-item h4 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.speaking-item p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: var(--spacing-sm);
+}
+
+.speaking-topic {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
 /* Writing Section */
 .writing-section {
     margin-bottom: var(--spacing-xl);
