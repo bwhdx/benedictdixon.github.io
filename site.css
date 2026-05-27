@@ -495,7 +495,12 @@ section {
 }
 @media (max-width: 700px) {
   .hero-section { min-height: 640px; }
-  .hero-portrait { top: 110px; bottom: 170px; }
+  .hero-portrait {
+    top: 110px;
+    bottom: auto;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
 }
 .hero-portrait {
   position: absolute;
