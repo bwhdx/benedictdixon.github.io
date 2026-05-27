@@ -82,7 +82,7 @@ function Hero() {
       {/* Top meta strip */}
       <div className="hero-top-bar">
         <div className="wrap hero-top-grid">
-          <div className="meta meta-strong">An Almanack for Finance, Chains &amp; Code</div>
+          <div className="meta meta-strong">An Almanack for Finance, Operations &amp; Code</div>
           <div className="meta">Vol. I · MMXXVI · Edition 01</div>
         </div>
       </div>
@@ -462,7 +462,7 @@ function Contact() {
           <div>
             <strong>Edition</strong>
             Vol. I · MMXXVI<br/>
-            An Almanack for Finance, Chains &amp; Code
+            An Almanack for Finance, Operations &amp; Code
           </div>
           <div>
             <strong>Words</strong>
