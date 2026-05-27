@@ -49,21 +49,25 @@ function CandlestickPortrait({ grid, width, height, palette = PALETTE, density =
     ctx.fillRect(0, 0, width, height);
 
     const cols = grid.cols, rows = grid.rows;
-    // Aspect-fit the grid into the canvas. Letterbox with paper bg so the
-    // face doesn't stretch (mobile portrait viewports especially).
+    // Cover-fit the grid into the canvas: scale so the grid fills the
+    // canvas and overflow is clipped. The grid's navy sides are mostly
+    // background, so clipping them on tall mobile viewports just zooms
+    // into the face without distorting it. Canvas clip handles overflow.
     const gridAspect = cols / rows;
     const containerAspect = width / height;
     let drawW, drawH, drawX, drawY;
     if (containerAspect > gridAspect) {
-      drawH = height;
-      drawW = height * gridAspect;
-      drawX = (width - drawW) / 2;
-      drawY = 0;
-    } else {
+      // Container wider than grid: fit width, crop top/bottom
       drawW = width;
       drawH = width / gridAspect;
       drawX = 0;
       drawY = (height - drawH) / 2;
+    } else {
+      // Container taller/narrower than grid: fit height, crop sides
+      drawH = height;
+      drawW = height * gridAspect;
+      drawX = (width - drawW) / 2;
+      drawY = 0;
     }
     const colW = drawW / cols;
     const rowH = drawH / rows;
