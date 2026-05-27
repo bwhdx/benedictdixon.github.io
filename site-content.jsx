@@ -33,7 +33,7 @@ function Runner() {
     <header className={`runner ${hidden ? 'hidden' : ''}`}>
       <div className="brand">
         <div className="mark">B</div>
-        <span>Benedict Dixon · An Almanack · MMXXVI</span>
+        <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
       </div>
       <nav>
         {[
@@ -95,11 +95,11 @@ function Hero() {
             <div className="meta">Portrait rendered in 14,560 candles</div>
           </div>
           <h1 className="display hero-title">
-            Benedict <em>Dixon.</em>
+            Benedict W. H. <em>Dixon.</em>
           </h1>
           <div className="hero-band-bottom">
             <p className="hero-tagline-text">
-              Architect &amp; operator at the intersection of
+              An operator at the intersection of
               <em> finance, blockchain &amp; AI.</em>
             </p>
             <a className="hero-scroll" href="#about">
@@ -151,8 +151,8 @@ function About() {
 
         <div className="about-grid">
           <div className="body about-lede drop">
-            <p>From co-inventing payment systems at JPMorgan to solo-architecting an institutional-quality financial platform as COO &amp; Interim CTO, I work across both technical execution and business leadership. I design distributed systems, event-driven architectures, and financial infrastructure — and I build the teams, processes, and strategies that turn them into businesses.</p>
-            <p>My passions are building, leading, and learning. I bring all three to everything I do.</p>
+            <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations, and ecosystems. The throughline is finance, top to bottom.</p>
+            <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point. Whatever I'm building is the backdrop, never the cage.</p>
           </div>
 
           <aside className="margin-note about-margin">
@@ -171,9 +171,9 @@ function About() {
             <p>I run companies and divisions from the ground up — organisational structure, financial controls, operational processes. I build what scales and own the full picture.</p>
           </article>
           <article>
-            <div className="kicker">§ 02.b · Technical</div>
-            <h3 className="subhead">Systems <em>Architecture</em></h3>
-            <p>Distributed systems, event-driven architectures, financial transaction infrastructure, and resilient microservice platforms. Designed and delivered end-to-end, handling real money in production.</p>
+            <div className="kicker">§ 02.b · Product &amp; Technology</div>
+            <h3 className="subhead">Product &amp; <em>Technology</em></h3>
+            <p>Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps, and the calls that turn architecture into a business. Designed, built, and shipped end-to-end, handling real money in production.</p>
           </article>
           <article>
             <div className="kicker">§ 02.c · Commercial</div>
@@ -187,10 +187,10 @@ function About() {
         <div className="achievements">
           <div className="kicker">Key achievements</div>
           <ol className="achievement-list">
-            <li><span className="ach-num">i.</span><span>Solo-built an institutional-quality financial platform from scratch in under <em>six months.</em></span></li>
-            <li><span className="ach-num">ii.</span><span>Built and scaled a blockchain ecosystem from concept to <em>$150M+</em> with 45K+ users.</span></li>
-            <li><span className="ach-num">iii.</span><span>Co-invented a <em>patented</em> real-time B2B payment system at JPMorgan.</span></li>
-            <li><span className="ach-num">iv.</span><span>Navigated a successful acquisition, preserving <em>millions in assets</em> during transition.</span></li>
+            <li><span className="ach-num">i.</span><span>Built and scaled a blockchain ecosystem from concept to <em>$150M+</em> with 45K+ users.</span></li>
+            <li><span className="ach-num">ii.</span><span>Co-invented a <em>patented</em> real-time B2B payment system at JPMorgan.</span></li>
+            <li><span className="ach-num">iii.</span><span>Navigated a successful acquisition, preserving <em>millions in assets</em> during transition.</span></li>
+            <li><span className="ach-num">iv.</span><span>Built an enterprise-grade 50+ microservice platform from scratch as sole engineer in <em>six months.</em></span></li>
           </ol>
         </div>
       </div>
@@ -207,8 +207,8 @@ const PROJECTS = [
     name: 'Kash',
     role: 'COO & Interim CTO',
     period: '2024 –',
-    body: 'Solo-built the entire technical platform from scratch — distributed systems, event-driven architecture, financial infrastructure. Full ownership across product, technology, operations, finance, partnerships. Institutional-quality infrastructure shipped in under six months.',
-    pills: ['Systems Architecture', 'Operations', 'Finance', 'Partnerships'],
+    body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance, and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it.',
+    pills: ['Operations', 'Product', 'Technology', 'Finance', 'Partnerships'],
   },
   {
     num: '04.ii',
@@ -416,7 +416,7 @@ function Contact() {
         <div className="section-head">
           <div>
             <p className="num">§ 08 · Get in touch</p>
-            <h2 className="ttl">Architecture, <em>operations,</em><br/>strategy.</h2>
+            <h2 className="ttl">Operations, <em>strategy,</em><br/>architecture.</h2>
           </div>
           <div className="right">Available now</div>
         </div>
@@ -471,7 +471,7 @@ function Contact() {
           </div>
           <div>
             <strong>© 2026</strong>
-            Benedict Dixon.<br/>
+            Benedict W. H. Dixon.<br/>
             All rights observed.
           </div>
         </footer>
