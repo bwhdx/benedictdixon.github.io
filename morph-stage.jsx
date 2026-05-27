@@ -211,8 +211,10 @@ function getPortraitArea(W, H) {
     // wide / desktop: face on the right
     return { x0: 0.40, x1: 1.00, y0: 0.12, y1: 0.88 };
   }
-  // tall / mobile: face on the top, full width
-  return { x0: 0.05, x1: 0.95, y0: 0.04, y1: 0.50 };
+  // tall / mobile: face on the top, full width.
+  // y0 starts below the chapter/meta overlay labels so the candles
+  // don't sit behind the "Portrait" / "Career" / "World" label.
+  return { x0: 0.05, x1: 0.95, y0: 0.20, y1: 0.58 };
 }
 
 function fitPortrait(px, py, W, H) {
@@ -248,12 +250,13 @@ function getState(particle, key, W, H) {
   } else {
     s = { x: particle.mx, y: particle.my, w: particle.mw, h: particle.mh };
   }
-  // Mobile: shift right-half particles to top half of canvas, leaving the
-  // lower half for the text card (no overlap).
+  // Mobile: shift right-half particles to upper portion of canvas, leaving the
+  // lower portion for the text card. y0 matches the portrait mobile band (0.20)
+  // so candles sit below the chapter/meta labels, not behind them.
   if (W < H && key !== 'P') {  // P is already handled inside fitPortrait
     s = {
       x: (s.x - 0.40) / 0.60,    // expand [0.40, 1.00] horizontally to [0, 1]
-      y: 0.04 + s.y * 0.46,      // compress vertically to top ~50%
+      y: 0.20 + s.y * 0.38,      // compress vertically to band [0.20, 0.58]
       w: s.w * 0.95,
       h: s.h * 0.55,             // shorter candles when squeezed
     };
