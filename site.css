@@ -498,8 +498,8 @@ section {
   .hero-portrait {
     top: 110px;
     bottom: auto;
-    height: auto;
-    aspect-ratio: 16 / 9;
+    left: 0; right: 0;
+    height: 56.25vw; /* exact 16:9 of viewport width */
   }
 }
 .hero-portrait {
