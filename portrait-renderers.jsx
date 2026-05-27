@@ -52,25 +52,28 @@ function CandlestickPortrait({ grid, width, height, palette = PALETTE, density =
     const colW = width / cols;
     const rowH = height / rows;
     const wickW = Math.max(0.8, colW * 0.13);
-    const bodyW = Math.max(2, colW * 0.78);
+    // Bodies fully fill the column at max darkness — no thin cream gap left
+    // between adjacent saturated cells.
+    const bodyW = colW;
 
-    // 1. Draw navy wicks (every column)
+    // 1. Full-height navy wicks in every column (continuous candle field)
     ctx.fillStyle = palette.ink;
     for (let c = 0; c < cols; c++) {
       const x = c * colW + (colW - wickW) / 2;
       ctx.fillRect(x, 0, wickW, height);
     }
 
-    // 2. Paint fat navy where face is dark
-    ctx.fillStyle = palette.ink;
+    // 2. Linear body fill with a slight gamma curve so dark cells snap toward
+    //    full width faster (closes the stripe pattern in shadowy areas while
+    //    keeping the candle character in mid-tones).
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        const v = grid.data[r][c];
-        const cov = 1 - coverage(v, 50, 200); // 1=dark, 0=bright
+        const cov = 1 - coverage(grid.data[r][c], 50, 200);
         if (cov > 0.05) {
-          const w = wickW + (bodyW - wickW) * cov;
+          const filled = Math.pow(cov, 0.65);
+          const w = wickW + (bodyW - wickW) * filled;
           const x = c * colW + (colW - w) / 2;
-          ctx.fillRect(x, r * rowH, w, rowH + 0.5);
+          ctx.fillRect(x, r * rowH, w + 0.4, rowH + 0.5);   // +0.4 hairline overlap
         }
       }
     }
