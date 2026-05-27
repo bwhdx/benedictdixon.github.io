@@ -11,21 +11,20 @@
 const INK = '#1c267a';
 const PAPER = '#d6c585';
 
-// Career timeline — 12 roles in chronological order. Each becomes
+// Career timeline, 11 roles in chronological order. Each becomes
 // a single candle in the timeline state. High/low are visual only.
 const CAREER = [
-  { yr: '2007', co: 'Bath',         role: 'Computer Science',         hi: 0.35, lo: 0.65, w: 0.6 },
-  { yr: '2011', co: 'JPMorgan',     role: 'Patented B2B payments',    hi: 0.18, lo: 0.55, w: 0.9 },
-  { yr: '2013', co: 'Amex',         role: 'R&D, customer acquisition',hi: 0.30, lo: 0.62, w: 0.7 },
-  { yr: '2015', co: 'MAIA / Fulcrum',role:'Hedge fund operations',    hi: 0.28, lo: 0.58, w: 0.7 },
-  { yr: '2017', co: 'Icon',         role: 'Real-time payments',       hi: 0.20, lo: 0.52, w: 0.8 },
-  { yr: '2019', co: 'Yetti',        role: 'CTO · SMS banking',        hi: 0.32, lo: 0.60, w: 0.7 },
-  { yr: '2020', co: 'Nettle',       role: 'CPTO · payments',          hi: 0.25, lo: 0.58, w: 0.8 },
-  { yr: '2021', co: 'Pound Token',  role: 'CTO · UK stablecoin',      hi: 0.15, lo: 0.50, w: 0.9 },
-  { yr: '2022', co: 'Voi Network',  role: 'CEO · $150M L1 ecosystem', hi: 0.08, lo: 0.55, w: 1.0 },
-  { yr: '2023', co: 'Brdge',        role: 'Head of Blockchain',       hi: 0.20, lo: 0.50, w: 0.7 },
-  { yr: '2024', co: 'DD Ventures',  role: 'Founding Partner',         hi: 0.22, lo: 0.48, w: 0.7 },
-  { yr: '2024', co: 'Kash',         role: 'COO & Interim CTO',        hi: 0.05, lo: 0.55, w: 1.1 },
+  { yr: '2014', co: 'Bath',          role: 'Computer Science',           hi: 0.35, lo: 0.65, w: 0.6 },
+  { yr: '2015', co: 'JPMorgan',      role: 'Patented B2B payments',      hi: 0.18, lo: 0.55, w: 0.9 },
+  { yr: '2018', co: 'Amex',          role: 'R&D, customer acquisition',  hi: 0.30, lo: 0.62, w: 0.7 },
+  { yr: '2019', co: 'MAIA / Fulcrum',role: 'Hedge fund, back to front',  hi: 0.28, lo: 0.58, w: 0.7 },
+  { yr: '2021', co: 'Icon',          role: 'Real-time payments',         hi: 0.20, lo: 0.52, w: 0.8 },
+  { yr: '2022', co: 'Nettle',        role: 'CPTO · payments & loyalty',  hi: 0.25, lo: 0.58, w: 0.8 },
+  { yr: '2023', co: 'Pound Token',   role: 'CTO · UK stablecoin',        hi: 0.15, lo: 0.50, w: 0.9 },
+  { yr: '2024', co: 'Voi Network',   role: 'Chief Ecosystem Officer',    hi: 0.08, lo: 0.55, w: 1.0 },
+  { yr: '2024', co: 'Brdge',         role: 'Head of Blockchain',         hi: 0.20, lo: 0.50, w: 0.7 },
+  { yr: '2025', co: 'Kash',          role: 'COO & CTO · predictions',    hi: 0.05, lo: 0.55, w: 1.1 },
+  { yr: '2025', co: 'DD Ventures',   role: 'Founding Partner',           hi: 0.22, lo: 0.48, w: 0.7 },
 ];
 
 // Three expeditions — drawn as candlestick sequences traversing the canvas.
@@ -412,8 +411,10 @@ function PortraitCard({ visible }) {
       <div className="meta">§ 03 · Introduction</div>
       <h2 className="heading"><em>Hey,</em><br/>I'm Benedict.</h2>
       <p className="lede">
-        [Placeholder — your personal intro goes here. A couple of sentences in your
-        voice about who you are, what you build, and what kind of work you take on.]
+        A decade-plus building companies across fintech, blockchain and AI.
+        The career and the life are the same shape: pick the audacious route,
+        trust the process, get through it. The chart on the next page is
+        the career version.
       </p>
     </div>
   );
@@ -423,7 +424,7 @@ function CareerCard({ visible, fading }) {
   return (
     <div className={`morph-card career-card ${visible ? 'in' : 'out'} ${fading ? 'fading' : ''}`}>
       <div className="meta">§ 03.1 · Career</div>
-      <h2 className="heading">Eighteen years,<br/><em>one chart.</em></h2>
+      <h2 className="heading">A decade-plus,<br/><em>in candles.</em></h2>
       <ol className="career-legend">
         {CAREER.map((c, i) => (
           <li key={i}>
@@ -441,12 +442,18 @@ function MapCard({ visible, fading }) {
   return (
     <div className={`morph-card map-card ${visible ? 'in' : 'out'} ${fading ? 'fading' : ''}`}>
       <div className="meta">§ 03.2 · World</div>
-      <h2 className="heading">Fifty-plus<br/>countries.<em>Three<br/>expeditions.</em></h2>
+      <h2 className="heading">The same shape,<br/><em>off the chart.</em></h2>
+      <p className="lede">
+        The career picks the audacious route in candlesticks. The life
+        picks it in continents. London to Mongolia, via Iran, by car.
+        The length of India by tuk-tuk. Sahara to Atlantic across Morocco.
+        Fifty-plus countries, mostly the long way round.
+      </p>
       <dl className="map-stats">
-        <div><dt>50+</dt><dd>Countries explored</dd></div>
-        <div><dt>3</dt><dd>Major expeditions</dd></div>
-        <div><dt>12,000mi</dt><dd>London → Mongolia, classic car</dd></div>
-        <div><dt>2,000mi</dt><dd>Cross-India tuk-tuk</dd></div>
+        <div><dt>50+</dt><dd>Countries</dd></div>
+        <div><dt>3</dt><dd>Expeditions</dd></div>
+        <div><dt>12,000mi</dt><dd>London → Mongolia, via Iran</dd></div>
+        <div><dt>2,000mi</dt><dd>Cross-India, tuk-tuk</dd></div>
       </dl>
     </div>
   );
