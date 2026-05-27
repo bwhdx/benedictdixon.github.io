@@ -348,7 +348,8 @@ function MorphStage() {
         p < 0.48 ? 'career' :
         p < 0.66 ? 'toMap' :
         p < 0.82 ? 'map' :
-                   'back';
+        p < 0.96 ? 'back' :
+                   'final';
       setPhase(prev => prev === next ? prev : next);
       drawNow();
     }
@@ -396,12 +397,13 @@ function MorphOverlay({ phase }) {
            phase === 'career'   ? 'Career' :
            phase === 'toMap'    ? 'Career → World' :
            phase === 'map'      ? 'World' :
-                                  'Returning to portrait'}
+           phase === 'back'     ? 'Returning to portrait' :
+                                  'Portrait'}
         </div>
       </div>
 
       {/* Phase content blocks */}
-      <PortraitCard visible={phase === 'portrait'} />
+      <PortraitCard visible={phase === 'portrait' || phase === 'final'} />
       <CareerCard   visible={phase === 'career' || phase === 'toCareer' || phase === 'toMap'} fading={phase === 'toMap'} />
       <MapCard      visible={phase === 'map' || phase === 'toMap' || phase === 'back'} fading={phase === 'back'} />
     </div>

@@ -767,7 +767,6 @@ section {
   background: var(--ink);
   color: var(--paper);
   border-radius: 4px;
-  max-width: 720px;
 }
 .dd-callout .kicker, .dd-callout .subhead, .dd-callout p {
   color: var(--paper);
