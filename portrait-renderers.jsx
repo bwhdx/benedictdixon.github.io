@@ -49,28 +49,35 @@ function CandlestickPortrait({ grid, width, height, palette = PALETTE, density =
     ctx.fillRect(0, 0, width, height);
 
     const cols = grid.cols, rows = grid.rows;
-    const colW = width / cols;
-    const rowH = height / rows;
+    // Aspect-fit the grid into the canvas. Letterbox with paper bg so the
+    // face doesn't stretch (mobile portrait viewports especially).
+    const gridAspect = cols / rows;
+    const containerAspect = width / height;
+    let drawW, drawH, drawX, drawY;
+    if (containerAspect > gridAspect) {
+      drawH = height;
+      drawW = height * gridAspect;
+      drawX = (width - drawW) / 2;
+      drawY = 0;
+    } else {
+      drawW = width;
+      drawH = width / gridAspect;
+      drawX = 0;
+      drawY = (height - drawH) / 2;
+    }
+    const colW = drawW / cols;
+    const rowH = drawH / rows;
     const wickW = Math.max(0.8, colW * 0.13);
     const bodyW = Math.max(2, colW * 0.78);
 
-    // 1. Draw navy wicks (every column)
+    // 1. Draw navy wicks (every column) within the fitted area
     ctx.fillStyle = palette.ink;
     for (let c = 0; c < cols; c++) {
-      const x = c * colW + (colW - wickW) / 2;
-      ctx.fillRect(x, 0, wickW, height);
+      const x = drawX + c * colW + (colW - wickW) / 2;
+      ctx.fillRect(x, drawY, wickW, drawH);
     }
 
-    // 2. Draw cream bodies where face is bright
-    // Threshold + we draw bodies in *navy*'s gap: actually the trick
-    // is reverse — bg is cream, so dark = full navy body that covers
-    // the wick width and beyond.  Let me reconsider:
-    // Munger: bg is CREAM, vertical NAVY bars are everywhere, the
-    // face shows where the navy bars THIN to wicks only.
-    // So: everywhere navy bar is FAT (background). At face-bright
-    // cells, navy bar shrinks to thin wick — already drawn above.
-    // We need to PAINT FAT NAVY where the face is DARK.
-    // Reset:
+    // 2. Paint fat navy where face is dark
     ctx.fillStyle = palette.ink;
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -78,8 +85,8 @@ function CandlestickPortrait({ grid, width, height, palette = PALETTE, density =
         const cov = 1 - coverage(v, 50, 200); // 1=dark, 0=bright
         if (cov > 0.05) {
           const w = wickW + (bodyW - wickW) * cov;
-          const x = c * colW + (colW - w) / 2;
-          ctx.fillRect(x, r * rowH, w, rowH + 0.5);
+          const x = drawX + c * colW + (colW - w) / 2;
+          ctx.fillRect(x, drawY + r * rowH, w, rowH + 0.5);
         }
       }
     }

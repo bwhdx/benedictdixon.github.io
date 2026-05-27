@@ -358,7 +358,11 @@ section {
   gap: 24px;
 }
 @media (max-width: 800px) {
-  .morph-overlay { padding: 72px 24px 32px; grid-template-columns: 1fr; }
+  .morph-overlay {
+    padding: 72px 24px 32px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr auto;
+  }
 }
 
 .morph-meta-tl {
@@ -383,7 +387,7 @@ section {
   color: var(--ink);
 }
 @media (max-width: 800px) {
-  .morph-phase { grid-column: 1; text-align: left; }
+  .morph-phase { grid-column: 1; grid-row: 2; text-align: left; margin-top: 12px; }
 }
 
 /* All content cards now live in the LEFT column only.  The right column is
@@ -416,7 +420,7 @@ section {
      Stack vertical and prevent particle overlap. */
   .morph-card {
     grid-column: 1 / -1;
-    grid-row: 3;
+    grid-row: 4;
     align-self: end;
     max-width: 100%;
     padding: 18px 18px 24px;
@@ -427,8 +431,8 @@ section {
   }
   .morph-card .heading { font-size: clamp(28px, 8vw, 40px); margin: 10px 0 10px; }
   .morph-card .lede { font-size: 16px; line-height: 1.35; }
-  .career-legend { columns: 1; font-size: 10px; }
-  .career-legend li { grid-template-columns: 40px 80px 1fr; }
+  .morph-card .career-legend { columns: 1; font-size: 10px; }
+  .morph-card .career-legend li { grid-template-columns: 40px 80px 1fr; }
   .map-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
   .map-stats dt { font-size: 28px; }
 }
