@@ -732,8 +732,11 @@ section {
 .services-grid article {
   border-top: 1px solid var(--ink);
   padding-top: 16px;
+  display: flex;
+  flex-direction: column;
 }
 .services-grid .subhead { margin: 8px 0 16px; }
+.services-grid .bare-list { margin-top: auto; }
 
 .bare-list {
   list-style: none;

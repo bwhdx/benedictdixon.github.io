@@ -413,8 +413,7 @@ function PortraitCard({ visible }) {
       <p className="lede">
         A decade-plus building companies across fintech, blockchain and AI.
         The career and the life are the same shape: pick the audacious route,
-        trust the process, get through it. The chart on the next page is
-        the career version.
+        trust the process, get through it.
       </p>
     </div>
   );
