@@ -457,7 +457,7 @@ function Contact() {
         <footer className="colophon">
           <div>
             <strong>Colophon</strong>
-            Set in Fraunces, Inter &amp; JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm cream — the Munger reference, willingly worn.
+            Set in Fraunces, Inter &amp; JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm cream.
           </div>
           <div>
             <strong>Edition</strong>
