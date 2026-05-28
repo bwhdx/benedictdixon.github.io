@@ -434,19 +434,19 @@ function Contact() {
           </p>
 
           <div className="contact-links">
-            <a href="mailto:me@benedictdixon.com">
+            <a href="mailto:me@benedictdixon.com" rel="me">
               <div className="kicker">Email</div>
               <div className="contact-value">me@benedictdixon.com</div>
             </a>
-            <a href="https://www.linkedin.com/in/benedict-dixon/" target="_blank" rel="noreferrer">
+            <a href="https://www.linkedin.com/in/benedict-dixon/" target="_blank" rel="me noreferrer">
               <div className="kicker">LinkedIn</div>
               <div className="contact-value">/in/benedict-dixon</div>
             </a>
-            <a href="https://x.com/bwhdx" target="_blank" rel="noreferrer">
+            <a href="https://x.com/bwhdx" target="_blank" rel="me noreferrer">
               <div className="kicker">Twitter</div>
               <div className="contact-value">@bwhdx</div>
             </a>
-            <a href="https://github.com/bwhdx" target="_blank" rel="noreferrer">
+            <a href="https://github.com/bwhdx" target="_blank" rel="me noreferrer">
               <div className="kicker">GitHub</div>
               <div className="contact-value">@bwhdx</div>
             </a>

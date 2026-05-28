@@ -1623,7 +1623,8 @@ function Contact() {
   }, "For executive leadership, company operations or strategic advisory across fintech, blockchain and AI. Open to conversations with founders and operators building real things."), /*#__PURE__*/React.createElement("div", {
     className: "contact-links"
   }, /*#__PURE__*/React.createElement("a", {
-    href: "mailto:me@benedictdixon.com"
+    href: "mailto:me@benedictdixon.com",
+    rel: "me"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker"
   }, "Email"), /*#__PURE__*/React.createElement("div", {
@@ -1631,7 +1632,7 @@ function Contact() {
   }, "me@benedictdixon.com")), /*#__PURE__*/React.createElement("a", {
     href: "https://www.linkedin.com/in/benedict-dixon/",
     target: "_blank",
-    rel: "noreferrer"
+    rel: "me noreferrer"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker"
   }, "LinkedIn"), /*#__PURE__*/React.createElement("div", {
@@ -1639,7 +1640,7 @@ function Contact() {
   }, "/in/benedict-dixon")), /*#__PURE__*/React.createElement("a", {
     href: "https://x.com/bwhdx",
     target: "_blank",
-    rel: "noreferrer"
+    rel: "me noreferrer"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker"
   }, "Twitter"), /*#__PURE__*/React.createElement("div", {
@@ -1647,7 +1648,7 @@ function Contact() {
   }, "@bwhdx")), /*#__PURE__*/React.createElement("a", {
     href: "https://github.com/bwhdx",
     target: "_blank",
-    rel: "noreferrer"
+    rel: "me noreferrer"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker"
   }, "GitHub"), /*#__PURE__*/React.createElement("div", {

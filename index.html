@@ -45,6 +45,10 @@
 <link rel="preload" href="assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 
+<link rel="preload" href="vendor/react@18.3.1.min.js" as="script">
+<link rel="preload" href="vendor/react-dom@18.3.1.min.js" as="script">
+<link rel="preload" href="bundle.js" as="script">
+
 <link rel="stylesheet" href="site.css">
 
 <script type="application/ld+json">
@@ -228,5 +232,13 @@
   <script defer src="vendor/react@18.3.1.min.js"></script>
   <script defer src="vendor/react-dom@18.3.1.min.js"></script>
   <script defer src="bundle.js"></script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(() => {});
+      });
+    }
+  </script>
 </body>
 </html>
