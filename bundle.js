@@ -1482,6 +1482,11 @@ function Services() {
 // Writing & Speaking
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [{
+  date: 'May 2026',
+  title: 'Building a Second Brain That Doesn\'t Die',
+  excerpt: 'The opinionated template I built to capture, distill and compound. Open-sourced under MIT, populated by a Claude Code wizard in 45 minutes.',
+  url: '/writing/building-a-second-brain/'
+}, {
   date: 'Dec 2024',
   title: 'Autonomous AI Agents: A Platform for Trustless Business Interactions',
   excerpt: 'How autonomous AI agents could revolutionise business interactions by creating trustless systems for commerce and collaboration.',
@@ -1519,7 +1524,7 @@ function Writing() {
     className: "ttl"
   }, "In ", /*#__PURE__*/React.createElement("em", null, "print"), " and at the lectern.")), /*#__PURE__*/React.createElement("div", {
     className: "right"
-  }, "Latest, three of many")), /*#__PURE__*/React.createElement("div", {
+  }, "Latest four")), /*#__PURE__*/React.createElement("div", {
     className: "writing-grid"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "kicker",

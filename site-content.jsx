@@ -339,6 +339,12 @@ function Services() {
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [
   {
+    date: 'May 2026',
+    title: 'Building a Second Brain That Doesn\'t Die',
+    excerpt: 'The opinionated template I built to capture, distill and compound. Open-sourced under MIT, populated by a Claude Code wizard in 45 minutes.',
+    url: '/writing/building-a-second-brain/',
+  },
+  {
     date: 'Dec 2024',
     title: 'Autonomous AI Agents: A Platform for Trustless Business Interactions',
     excerpt: 'How autonomous AI agents could revolutionise business interactions by creating trustless systems for commerce and collaboration.',
@@ -372,7 +378,7 @@ function Writing() {
             <p className="num">§ 06 · Writing &amp; speaking</p>
             <h2 className="ttl">In <em>print</em> and at the lectern.</h2>
           </div>
-          <div className="right">Latest, three of many</div>
+          <div className="right">Latest four</div>
         </div>
 
         <div className="writing-grid">

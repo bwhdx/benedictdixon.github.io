@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="Most personal knowledge management systems die within three months. Here's the opinionated template that doesn't, the three calls that make it work, and where to fork it.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/building-a-second-brain/">
+<title>Building a Second Brain That Doesn't Die — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/building-a-second-brain/">
+<meta property="og:title" content="Building a Second Brain That Doesn't Die">
+<meta property="og:description" content="The opinionated template I built to capture, distill and compound. Open-sourced under MIT, populated by a Claude Code wizard in 45 minutes.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-05-28">
+<meta property="article:section" content="Building">
+<meta property="article:tag" content="Second Brain">
+<meta property="article:tag" content="PKM">
+<meta property="article:tag" content="Obsidian">
+<meta property="article:tag" content="Claude Code">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/building-a-second-brain/#article",
+  "headline": "Building a Second Brain That Doesn't Die",
+  "description": "The opinionated template I built to capture, distill and compound. Open-sourced under MIT, populated by a Claude Code wizard in 45 minutes.",
+  "url": "https://benedictdixon.com/writing/building-a-second-brain/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/building-a-second-brain/",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "wordCount": 1400,
+  "author": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon",
+    "url": "https://benedictdixon.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon"
+  },
+  "image": "https://benedictdixon.com/assets/og-image.png",
+  "keywords": ["Second Brain", "PKM", "Obsidian", "Claude Code", "Zettelkasten", "Personal Knowledge Management"]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.04 · Essay</span>
+          <span>28 May 2026 · ~7 min read</span>
+        </div>
+        <h1 class="ttl">Building a Second Brain<br><em>that doesn't die.</em></h1>
+        <p class="subtitle">An opinionated template to capture, distill and compound. Open-sourced.</p>
+      </header>
+
+      <div class="article-body">
+        <p class="lead">Most personal knowledge management systems die within three months. They die for predictable reasons. Capture is too high-friction. Processing becomes a chore. The structure was over-engineered before the user knew what they needed. The plugin a workflow depended on broke.</p>
+
+        <p>I've watched this happen to friends, to colleagues, and twice to myself. Then I built one that didn't. This is what's in it, why it works, and where to fork it.</p>
+
+        <h2>Why second brains die</h2>
+
+        <p>Four failure modes, in rough order of frequency.</p>
+
+        <p><strong>Capture friction.</strong> If getting an idea from head into system takes more than five seconds, the habit doesn't stick. The note app being used barely matters; the activation energy does. Most templates demand a folder choice, a tag pick, and a title at point of capture. By then the idea is gone.</p>
+
+        <p><strong>Processing as chore.</strong> Most users promise themselves they'll "process the inbox weekly." They don't. The inbox grows. Eventually opening it feels like opening a tax letter that's been ignored for months. The system becomes a source of guilt instead of leverage.</p>
+
+        <p><strong>Over-engineering.</strong> Year one of any PKM project is dominated by architecture conversations the architect (you) is not yet qualified to have. Six months get spent tuning a folder hierarchy for a workflow that hasn't been lived yet. The system arrives at the moment the practitioner abandons it.</p>
+
+        <p><strong>Single point of failure.</strong> The entire knowledge graph runs on a Notion database, or a Roam workspace, or one Obsidian plugin maintained by a single contributor in a different timezone. When any of those die, years of notes die with them.</p>
+
+        <h2>What survives</h2>
+
+        <p>The template starts from the inverse of each failure mode.</p>
+
+        <p><strong>Capture is one keystroke.</strong> A daily note plus an inbox plus an optional voice-to-text pipeline. If something matters, it lands in the inbox in under five seconds. Folder choice, tag choice, title choice are all deferred to processing time. The head is freed immediately.</p>
+
+        <p><strong>Processing is a 15-minute Sunday ritual.</strong> A weekly review with a template and a Claude Code skill that walks through it. Captures get promoted to atoms or archived. The system doesn't punish a skipped week. Consistency over completionism.</p>
+
+        <p><strong>Structure is committed for twelve months.</strong> Ten numbered top-level folders, locked. Atomic notes inside. Maps of content for navigation. State (reading status, draft status, project stage) lives in frontmatter, not in folder location. Files don't migrate as state changes.</p>
+
+        <p><strong>Plain markdown, triple-backed up.</strong> The vault is markdown files in folders. Obsidian for the interface, but the files outlive Obsidian. iCloud or Obsidian Sync for live sync, Git for version history, Time Machine for snapshots. If Obsidian disappeared tomorrow, the vault opens in vim. Nothing is locked into a vendor.</p>
+
+        <h2>The three opinionated calls</h2>
+
+        <p>Most PKM templates try to be neutral. This one isn't, and that's the point. Three things are opinionated; everything else is minimal.</p>
+
+        <h3>Atomic notes plus maps of content</h3>
+
+        <p>One idea per note. Dense linking. Hand-curated maps for navigation. This is Folgezettel-lite: the discipline of Zettelkasten without the numbered IDs. Atoms are the unit of thought. Maps are the unit of synthesis. Atoms get written when ideas surface; maps get maintained during the weekly review.</p>
+
+        <p>What this avoids: the long-document-with-everything-in-it pattern that defeats search and breaks linking. What this enables: surfacing an idea written in 2024 next to a related one written in 2026 because both atoms link to the same map.</p>
+
+        <h3>State in frontmatter, not folders</h3>
+
+        <p>Reading status, decision status, project stage, draft state. All in YAML frontmatter at the top of each note. Obsidian's Bases plugin renders kanban-style boards from those frontmatter fields. Files don't migrate as work moves through stages.</p>
+
+        <p>This means linking is stable across the lifetime of a note. A link to a draft started in 2024 still resolves in 2026 even after the draft has shipped. Most PKM systems break this by moving files between "Drafts" and "Published" folders.</p>
+
+        <h3>Anti-AI cadence rules for anything shipped</h3>
+
+        <p>Em dashes capped. No "It's not X, it's Y" mirror inversions every paragraph. No tricolon-then-pivot ("X. Y. Z. But..."). No colon-reveals. No "in an age of..." openers. Most LLM-generated content reads as such within two sentences because of these patterns. The template installs a pre-publish gate that surfaces them so they can be edited out.</p>
+
+        <p>This matters because the template assumes Claude Code as a thinking partner. The risk of using AI for drafting is that the AI's cadence leaks into the writer's voice. The cadence rules close that gap.</p>
+
+        <h2>What it looks like</h2>
+
+        <p>Twelve folders. That's the whole structure.</p>
+
+        <pre style="font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; background: rgba(28,38,122,0.05); padding: 20px 24px; border-left: 2px solid rgba(28,38,122,0.22); overflow-x: auto; margin: 0;">00 Inbox/         Where everything starts. One file per capture.
+10 Daily/         One file per day. Quick thoughts, what mattered.
+20 Atoms/         One idea per file. Beliefs, concepts, moments.
+30 Maps/          Hand-curated indexes. Themes, frameworks, clusters.
+40 Sources/       Books, articles, papers, talks. With notes.
+50 Content/       Drafts and published work. Voice formula. Pillars.
+60 People/        Family, friends, network. A quiet CRM.
+70 Projects/      Active work. Outcome-defined.
+80 Areas/         Identity, health, finances, learning.
+90 Decisions/     Annie Duke-style decision journal.
+99 Archive/       Cold storage.
+_Meta/            Schema, workflows, plugins, durability plan.</pre>
+
+        <p>Each folder is opinionated about what lives in it and what doesn't. The schema can be read once and used forever.</p>
+
+        <h2>What the Claude integration does</h2>
+
+        <p>Every PKM template until now has assumed the user would do the populating by hand. That's where most of them die. The blank vault is a steeper hill to climb than the daily habit itself.</p>
+
+        <p>This template assumes Claude Code at your side. A <code>CLAUDE.md</code> at the vault root onboards any Claude session to the schema, the conventions, and the user's voice. A <code>/setup</code> skill walks the user through fifteen to twenty questions over forty-five minutes and populates:</p>
+
+        <ul>
+          <li>The <code>Now.md</code> dashboard, glanced at daily</li>
+          <li>An <code>Who I am.md</code> integrating narrative</li>
+          <li><code>Why</code>, <code>Mission</code>, <code>Values</code> as the identity spine</li>
+          <li>Nine initial atoms (three beliefs, three moments, three concepts) drawn from the user's answers</li>
+          <li>Optionally: voice formula, brand bible, content pillars for users who do content</li>
+          <li>Optionally: ten people stubs for users who track relationships</li>
+          <li>Optionally: an open decision and an active project</li>
+        </ul>
+
+        <p>The setup wizard branches based on which disciplines the user wants. Nothing gets installed that isn't going to be used. Forty-five minutes in, the vault is already personal, not a blank Notion-style template that demands months of population before it earns its keep.</p>
+
+        <p>Other skills cover the daily and weekly rhythms: <code>/capture</code> for one-line inbox entries, <code>/atomize</code> for promoting captures to atoms, <code>/weekly-review</code> for the Sunday ritual, <code>/draft</code> and <code>/grade</code> for content if that discipline is opted in.</p>
+
+        <h2>What I actually use it for</h2>
+
+        <p>A few weeks in, my own vault has 66 atoms, 13 maps, 363 sources catalogued, three drafts in flight (this article is one of them) and five published pieces. The vault is young. The structure is older than the content, by design.</p>
+
+        <p>The point isn't the file count. The point is what the structure makes routine. Capturing an idea: five seconds. Surfacing all related material on a theme: one click on the map. Drafting an essay: open the draft, follow the atoms that link to it, write. Reviewing the week: open <code>Now.md</code>, glance, close. The friction is gone.</p>
+
+        <p>The brain isn't a museum. It produces things: articles, decisions, kept relationships, retained reading. This site, and every article on it, lives in the vault before it lives anywhere else.</p>
+
+        <h2>Fork it</h2>
+
+        <p>The template is open source under MIT:</p>
+
+        <p><a href="https://github.com/bwhdx/brain-starter">github.com/bwhdx/brain-starter</a></p>
+
+        <p>Clone it, open in Obsidian, run <code>/setup</code> in Claude Code, and have a populated vault in forty-five minutes.</p>
+
+        <p>If you fork it, send a note to <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>. The interesting part of any template is what other people do with it.</p>
+      </div>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <span class="nth">No. 04 of 04</span>
+        </div>
+
+        <a class="read-next" href="/">
+          <div class="kicker">End of edition · Return</div>
+          <h3>To the <em>cover.</em></h3>
+          <div class="next-meta">Benedict W. H. Dixon · An Almanack →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Operator at the intersection of finance, blockchain &amp; AI. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            28 May 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack for Finance, Operations &amp; Code
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://github.com/bwhdx/brain-starter">brain-starter on GitHub</a><br>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
