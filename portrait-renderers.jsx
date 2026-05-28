@@ -79,7 +79,7 @@ function CandlestickPortrait({ grid, width, height, palette = PALETTE, density =
     }
   }, [grid, width, height, palette, density]);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} aria-hidden="true" />;
 }
 
 // ──────────────────────────────────────────────────────────
@@ -123,7 +123,7 @@ function HistogramPortrait({ grid, width, height, palette = PALETTE }) {
     }
   }, [grid, width, height, palette]);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} aria-hidden="true" />;
 }
 
 // ──────────────────────────────────────────────────────────
@@ -192,7 +192,7 @@ function BlockchainPortrait({ grid, width, height, palette = PALETTE }) {
     }
   }, [grid, width, height, palette]);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} aria-hidden="true" />;
 }
 
 // ──────────────────────────────────────────────────────────
@@ -253,7 +253,7 @@ function AsciiPortrait({ grid, width, height, palette = PALETTE }) {
     }
   }, [grid, width, height, palette]);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} aria-hidden="true" />;
 }
 
 // ──────────────────────────────────────────────────────────
@@ -299,7 +299,7 @@ function TickerPortrait({ grid, width, height, palette = PALETTE }) {
     }
   }, [grid, width, height, palette]);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} aria-hidden="true" />;
 }
 
 // ──────────────────────────────────────────────────────────
@@ -350,7 +350,7 @@ function DotPortrait({ grid, width, height, palette = PALETTE }) {
     }
   }, [grid, width, height, palette]);
 
-  return <canvas ref={ref} />;
+  return <canvas ref={ref} aria-hidden="true" />;
 }
 
 Object.assign(window, {

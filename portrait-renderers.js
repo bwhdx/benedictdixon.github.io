@@ -86,7 +86,8 @@ function CandlestickPortrait({
     }
   }, [grid, width, height, palette, density]);
   return /*#__PURE__*/React.createElement("canvas", {
-    ref: ref
+    ref: ref,
+    "aria-hidden": "true"
   });
 }
 
@@ -134,7 +135,8 @@ function HistogramPortrait({
     }
   }, [grid, width, height, palette]);
   return /*#__PURE__*/React.createElement("canvas", {
-    ref: ref
+    ref: ref,
+    "aria-hidden": "true"
   });
 }
 
@@ -209,7 +211,8 @@ function BlockchainPortrait({
     }
   }, [grid, width, height, palette]);
   return /*#__PURE__*/React.createElement("canvas", {
-    ref: ref
+    ref: ref,
+    "aria-hidden": "true"
   });
 }
 
@@ -277,7 +280,8 @@ function AsciiPortrait({
     }
   }, [grid, width, height, palette]);
   return /*#__PURE__*/React.createElement("canvas", {
-    ref: ref
+    ref: ref,
+    "aria-hidden": "true"
   });
 }
 
@@ -327,7 +331,8 @@ function TickerPortrait({
     }
   }, [grid, width, height, palette]);
   return /*#__PURE__*/React.createElement("canvas", {
-    ref: ref
+    ref: ref,
+    "aria-hidden": "true"
   });
 }
 
@@ -385,7 +390,8 @@ function DotPortrait({
     }
   }, [grid, width, height, palette]);
   return /*#__PURE__*/React.createElement("canvas", {
-    ref: ref
+    ref: ref,
+    "aria-hidden": "true"
   });
 }
 Object.assign(window, {

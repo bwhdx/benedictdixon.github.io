@@ -522,7 +522,8 @@ function MorphStage() {
     className: "morph-sticky"
   }, /*#__PURE__*/React.createElement("canvas", {
     ref: canvasRef,
-    className: "morph-canvas"
+    className: "morph-canvas",
+    "aria-hidden": "true"
   }), /*#__PURE__*/React.createElement(MorphOverlay, {
     phase: phase,
     progress: progressRef

@@ -3,16 +3,19 @@
 function App() {
   return (
     <React.Fragment>
+      <a className="skip-link" href="#main-content">Skip to main content</a>
       <Runner />
-      <Hero />
-      <Ticker />
-      <About />
-      <div id="morph"><MorphStage /></div>
-      <Ticker />
-      <Projects />
-      <Services />
-      <Writing />
-      <Contact />
+      <main id="main-content">
+        <Hero />
+        <Ticker />
+        <About />
+        <div id="morph"><MorphStage /></div>
+        <Ticker />
+        <Projects />
+        <Services />
+        <Writing />
+        <Contact />
+      </main>
       <CursorTrail />
     </React.Fragment>
   );

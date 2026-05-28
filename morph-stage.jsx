@@ -370,7 +370,7 @@ function MorphStage() {
   return (
     <section className="morph-stage" ref={stageRef} data-screen-label="03 Career Morph">
       <div className="morph-sticky">
-        <canvas ref={canvasRef} className="morph-canvas" />
+        <canvas ref={canvasRef} className="morph-canvas" aria-hidden="true" />
         <MorphOverlay phase={phase} progress={progressRef} />
       </div>
     </section>
