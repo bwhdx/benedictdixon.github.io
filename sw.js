@@ -2,11 +2,12 @@
 // Strategy: cache-first for static assets, network-first for HTML.
 // Bump CACHE_VERSION to invalidate the existing cache on deploy.
 
-const CACHE_VERSION = 'bd-v3';
+const CACHE_VERSION = 'bd-v4';
 const PRECACHE = [
   '/',
   '/index.html',
   '/site.css',
+  '/writing.css',
   '/bundle.js',
   '/vendor/react@18.3.1.min.js',
   '/vendor/react-dom@18.3.1.min.js',
@@ -17,6 +18,7 @@ const PRECACHE = [
   '/assets/beanie_hero_16x9_navySides.json',
   '/assets/beanie_morph_grid.json',
   '/favicons/favicon.svg',
+  '/writing/',
 ];
 
 self.addEventListener('install', (e) => {

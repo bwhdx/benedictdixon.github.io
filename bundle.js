@@ -1485,17 +1485,17 @@ const ARTICLES = [{
   date: 'Dec 2024',
   title: 'Autonomous AI Agents: A Platform for Trustless Business Interactions',
   excerpt: 'How autonomous AI agents could revolutionise business interactions by creating trustless systems for commerce and collaboration.',
-  url: 'https://bwhdx.medium.com/autonomous-ai-agents-a-platform-for-trustless-business-interactions-75bdfbc3cbfb'
+  url: '/writing/autonomous-ai-agents/'
 }, {
   date: 'Dec 2024',
   title: 'The Holy Trinity: Blockchain, AI &amp; IoT',
   excerpt: 'Three powerful tools coming together in ways that make each of them more useful than they are alone.',
-  url: 'https://bwhdx.medium.com/the-holy-trinity-the-natural-partnership-of-blockchain-ai-and-iot-730786253400'
+  url: '/writing/the-holy-trinity/'
 }, {
   date: 'Nov 2024',
   title: 'The Democratic Myth of DAOs: The Road to Autocracy',
   excerpt: 'How DAOs, despite their promise of radical decentralisation, are not immune to an inadvertent slide toward autocracy.',
-  url: 'https://bwhdx.medium.com/the-democratic-myth-of-daos-the-road-to-autocracy-52d03e4e1f8e'
+  url: '/writing/the-democratic-myth-of-daos/'
 }];
 const SPEAKING = [{
   event: 'Zebu Live',
@@ -1531,9 +1531,7 @@ function Writing() {
   }, ARTICLES.map((a, i) => /*#__PURE__*/React.createElement("a", {
     key: i,
     className: "article-link",
-    href: a.url,
-    target: "_blank",
-    rel: "noreferrer"
+    href: a.url
   }, /*#__PURE__*/React.createElement("div", {
     className: "meta"
   }, a.date), /*#__PURE__*/React.createElement("h3", {
@@ -1547,16 +1545,14 @@ function Writing() {
     }
   }), /*#__PURE__*/React.createElement("span", {
     className: "link-arrow"
-  }, "Read on Medium \u2192")))), /*#__PURE__*/React.createElement("p", {
+  }, "Read \u2192")))), /*#__PURE__*/React.createElement("p", {
     style: {
       marginTop: 32
     }
   }, /*#__PURE__*/React.createElement("a", {
     className: "link-arrow",
-    href: "https://bwhdx.medium.com",
-    target: "_blank",
-    rel: "noreferrer"
-  }, "All writing on Medium \u2192"))), /*#__PURE__*/React.createElement("aside", {
+    href: "/writing/"
+  }, "All writing \u2192"))), /*#__PURE__*/React.createElement("aside", {
     className: "speaking"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker",
