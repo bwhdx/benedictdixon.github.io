@@ -341,26 +341,38 @@ const ARTICLES = [
   {
     date: 'May 2026',
     title: 'Building a Second Brain That Doesn\'t Die',
-    excerpt: 'The opinionated template I built to capture, distill and compound. Open-sourced under MIT, populated by a Claude Code wizard in 45 minutes.',
+    excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
     url: '/writing/building-a-second-brain/',
+  },
+  {
+    date: 'Aug 2025',
+    title: 'Define Your Core',
+    excerpt: 'Your moat will crumble. Your core is the one thing you do better than anyone else, even when all your walls fall down.',
+    url: '/writing/define-your-core/',
+  },
+  {
+    date: 'Aug 2025',
+    title: 'Finding Your First 10 Customers',
+    excerpt: 'Your friends saying they\'d buy isn\'t validation, it\'s politeness. Real validation comes from strangers with every reason to say no.',
+    url: '/writing/finding-your-first-10-customers/',
+  },
+  {
+    date: 'Aug 2025',
+    title: 'Quantifying Your Value Proposition',
+    excerpt: 'Customers don\'t buy features, they buy outcomes. And outcomes have numbers. The $50K question nobody can answer.',
+    url: '/writing/quantifying-your-value-proposition/',
+  },
+  {
+    date: 'Aug 2025',
+    title: 'Why Your MVP Is Already Too Big',
+    excerpt: 'Most startups write a 10,000-word product spec instead of drawing a picture. Six months later they build exactly what nobody wanted.',
+    url: '/writing/why-your-mvp-is-already-too-big/',
   },
   {
     date: 'Dec 2024',
     title: 'Autonomous AI Agents: A Platform for Trustless Business Interactions',
-    excerpt: 'How autonomous AI agents could revolutionise business interactions by creating trustless systems for commerce and collaboration.',
+    excerpt: 'When IoT, blockchain and AI converge, autonomous agents can represent individuals and businesses, executing decisions in milliseconds rather than weeks.',
     url: '/writing/autonomous-ai-agents/',
-  },
-  {
-    date: 'Dec 2024',
-    title: 'The Holy Trinity: Blockchain, AI &amp; IoT',
-    excerpt: 'Three powerful tools coming together in ways that make each of them more useful than they are alone.',
-    url: '/writing/the-holy-trinity/',
-  },
-  {
-    date: 'Nov 2024',
-    title: 'The Democratic Myth of DAOs: The Road to Autocracy',
-    excerpt: 'How DAOs, despite their promise of radical decentralisation, are not immune to an inadvertent slide toward autocracy.',
-    url: '/writing/the-democratic-myth-of-daos/',
   },
 ];
 
@@ -378,7 +390,7 @@ function Writing() {
             <p className="num">§ 06 · Writing &amp; speaking</p>
             <h2 className="ttl">In <em>print</em> and at the lectern.</h2>
           </div>
-          <div className="right">Latest four</div>
+          <div className="right">Latest six</div>
         </div>
 
         <div className="writing-grid">
