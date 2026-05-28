@@ -1,8 +1,14 @@
 // Service worker for benedictdixon.com
-// Strategy: cache-first for static assets, network-first for HTML.
-// Bump CACHE_VERSION to invalidate the existing cache on deploy.
+// Strategy:
+//   - network-first for HTML so deploys land immediately
+//   - stale-while-revalidate for static assets so cached files
+//     show instantly but get re-fetched in the background for
+//     next time. Avoids the "old CSS / new HTML" mismatch you
+//     get with strict cache-first.
+// Bump CACHE_VERSION to force-evict everything on a deploy that
+// breaks compatibility.
 
-const CACHE_VERSION = 'bd-v4';
+const CACHE_VERSION = 'bd-v5';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -54,17 +60,19 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // Cache-first for static assets.
+  // Stale-while-revalidate for static assets: return cached
+  // immediately (instant paint), kick off a background fetch to
+  // update the cache, so the next page load picks up changes.
   e.respondWith(
     caches.match(req).then((cached) => {
-      if (cached) return cached;
-      return fetch(req).then((res) => {
-        if (res.ok) {
+      const fetchPromise = fetch(req).then((res) => {
+        if (res && res.ok) {
           const copy = res.clone();
           caches.open(CACHE_VERSION).then((c) => c.put(req, copy));
         }
         return res;
-      });
+      }).catch(() => cached);
+      return cached || fetchPromise;
     })
   );
 });
