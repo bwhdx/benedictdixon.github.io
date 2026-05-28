@@ -42,6 +42,16 @@
   .ticker-track { animation-play-state: paused !important; }
 }
 
+/* Keyboard focus ring — two-tone box-shadow so it's visible on
+   either navy or cream backgrounds without context-aware rules. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px #d6c585, 0 0 0 4px #1c267a;
+  border-radius: 2px;
+}
+
 /* Skip-to-content link, visible on keyboard focus only */
 .skip-link {
   position: absolute;
