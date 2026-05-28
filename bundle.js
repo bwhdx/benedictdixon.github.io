@@ -1484,23 +1484,33 @@ function Services() {
 const ARTICLES = [{
   date: 'May 2026',
   title: 'Building a Second Brain That Doesn\'t Die',
-  excerpt: 'The opinionated template I built to capture, distill and compound. Open-sourced under MIT, populated by a Claude Code wizard in 45 minutes.',
+  excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
   url: '/writing/building-a-second-brain/'
 }, {
-  date: 'Dec 2024',
-  title: 'Autonomous AI Agents: A Platform for Trustless Business Interactions',
-  excerpt: 'How autonomous AI agents could revolutionise business interactions by creating trustless systems for commerce and collaboration.',
-  url: '/writing/autonomous-ai-agents/'
+  date: 'Aug 2025',
+  title: 'Mapping the Customer Acquisition Process',
+  excerpt: 'Your 30-day sales cycle is actually 400 days. The 17 hidden steps founders mistake for three.',
+  url: '/writing/mapping-the-customer-acquisition-process/'
 }, {
-  date: 'Dec 2024',
-  title: 'The Holy Trinity: Blockchain, AI &amp; IoT',
-  excerpt: 'Three powerful tools coming together in ways that make each of them more useful than they are alone.',
-  url: '/writing/the-holy-trinity/'
+  date: 'Aug 2025',
+  title: 'The Decision-Making Unit',
+  excerpt: 'Why the person who loves your product usually can\'t buy it, and the person who can might not know you exist.',
+  url: '/writing/the-decision-making-unit/'
 }, {
-  date: 'Nov 2024',
-  title: 'The Democratic Myth of DAOs: The Road to Autocracy',
-  excerpt: 'How DAOs, despite their promise of radical decentralisation, are not immune to an inadvertent slide toward autocracy.',
-  url: '/writing/the-democratic-myth-of-daos/'
+  date: 'Aug 2025',
+  title: 'Charting Your Competitive Position',
+  excerpt: 'Your real competition isn\'t other startups. It\'s Excel, email, sticky notes and the way things have always been done.',
+  url: '/writing/charting-your-competitive-position/'
+}, {
+  date: 'Aug 2025',
+  title: 'Define Your Core',
+  excerpt: 'Your moat will crumble. Your core is the one thing you do better than anyone else, even when all your walls fall down.',
+  url: '/writing/define-your-core/'
+}, {
+  date: 'Aug 2025',
+  title: 'Finding Your First 10 Customers',
+  excerpt: 'Your friends saying they\'d buy isn\'t validation, it\'s politeness. Real validation comes from strangers with every reason to say no.',
+  url: '/writing/finding-your-first-10-customers/'
 }];
 const SPEAKING = [{
   event: 'Zebu Live',
@@ -1524,7 +1534,7 @@ function Writing() {
     className: "ttl"
   }, "In ", /*#__PURE__*/React.createElement("em", null, "print"), " and at the lectern.")), /*#__PURE__*/React.createElement("div", {
     className: "right"
-  }, "Latest four")), /*#__PURE__*/React.createElement("div", {
+  }, "Latest six")), /*#__PURE__*/React.createElement("div", {
     className: "writing-grid"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "kicker",

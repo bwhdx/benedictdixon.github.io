@@ -346,6 +346,24 @@ const ARTICLES = [
   },
   {
     date: 'Aug 2025',
+    title: 'Mapping the Customer Acquisition Process',
+    excerpt: 'Your 30-day sales cycle is actually 400 days. The 17 hidden steps founders mistake for three.',
+    url: '/writing/mapping-the-customer-acquisition-process/',
+  },
+  {
+    date: 'Aug 2025',
+    title: 'The Decision-Making Unit',
+    excerpt: 'Why the person who loves your product usually can\'t buy it, and the person who can might not know you exist.',
+    url: '/writing/the-decision-making-unit/',
+  },
+  {
+    date: 'Aug 2025',
+    title: 'Charting Your Competitive Position',
+    excerpt: 'Your real competition isn\'t other startups. It\'s Excel, email, sticky notes and the way things have always been done.',
+    url: '/writing/charting-your-competitive-position/',
+  },
+  {
+    date: 'Aug 2025',
     title: 'Define Your Core',
     excerpt: 'Your moat will crumble. Your core is the one thing you do better than anyone else, even when all your walls fall down.',
     url: '/writing/define-your-core/',
@@ -355,24 +373,6 @@ const ARTICLES = [
     title: 'Finding Your First 10 Customers',
     excerpt: 'Your friends saying they\'d buy isn\'t validation, it\'s politeness. Real validation comes from strangers with every reason to say no.',
     url: '/writing/finding-your-first-10-customers/',
-  },
-  {
-    date: 'Aug 2025',
-    title: 'Quantifying Your Value Proposition',
-    excerpt: 'Customers don\'t buy features, they buy outcomes. And outcomes have numbers. The $50K question nobody can answer.',
-    url: '/writing/quantifying-your-value-proposition/',
-  },
-  {
-    date: 'Aug 2025',
-    title: 'Why Your MVP Is Already Too Big',
-    excerpt: 'Most startups write a 10,000-word product spec instead of drawing a picture. Six months later they build exactly what nobody wanted.',
-    url: '/writing/why-your-mvp-is-already-too-big/',
-  },
-  {
-    date: 'Dec 2024',
-    title: 'Autonomous AI Agents: A Platform for Trustless Business Interactions',
-    excerpt: 'When IoT, blockchain and AI converge, autonomous agents can represent individuals and businesses, executing decisions in milliseconds rather than weeks.',
-    url: '/writing/autonomous-ai-agents/',
   },
 ];
 
