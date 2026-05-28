@@ -151,8 +151,8 @@ function About() {
 
         <div className="about-grid">
           <div className="body about-lede drop">
-            <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations, and ecosystems. The throughline is finance, top to bottom.</p>
-            <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point. Whatever I'm building is the backdrop, never the cage.</p>
+            <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom.</p>
+            <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point. Always the backdrop, never the cage.</p>
           </div>
 
           <aside className="margin-note about-margin">
@@ -168,17 +168,17 @@ function About() {
           <article>
             <div className="kicker">§ 02.a · Operational</div>
             <h3 className="subhead">Operational <em>Leadership</em></h3>
-            <p>I run companies and divisions from the ground up — organisational structure, financial controls, operational processes. I build what scales and own the full picture.</p>
+            <p>Companies and divisions, run from the ground up. Organisational structure, financial controls, operational processes. Built to scale. Full-picture ownership.</p>
           </article>
           <article>
             <div className="kicker">§ 02.b · Product &amp; Technology</div>
             <h3 className="subhead">Product &amp; <em>Technology</em></h3>
-            <p>Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps, and the calls that turn architecture into a business. Designed, built, and shipped end-to-end, handling real money in production.</p>
+            <p>Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production.</p>
           </article>
           <article>
             <div className="kicker">§ 02.c · Commercial</div>
             <h3 className="subhead">Growth &amp; <em>Go-to-Market</em></h3>
-            <p>I build the engines that take products to market — ecosystem partnerships, community growth, sales strategy, and stakeholder management. Zero to 45K+ users and $150M+ in value.</p>
+            <p>Engines that take products to market: ecosystem partnerships, community growth, sales strategy and stakeholder management. Zero to 45K+ users and $150M+ in value.</p>
           </article>
         </div>
 
@@ -207,7 +207,7 @@ const PROJECTS = [
     name: 'Kash',
     role: 'COO & Interim CTO',
     period: '2025 –',
-    body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance, and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it.',
+    body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it.',
     pills: ['Operations', 'Product', 'Technology', 'Finance', 'Partnerships'],
   },
   {
@@ -321,7 +321,7 @@ function Services() {
         <div className="dd-callout">
           <div className="kicker">§ 05 · A note</div>
           <h3 className="subhead">DD Ventures — <em>entrepreneurship</em> advisory</h3>
-          <p>Specialised advisory leveraging deep entrepreneurship experience to help founders successfully launch, run, and scale companies and products.</p>
+          <p>Specialised advisory leveraging deep entrepreneurship experience to help founders successfully launch, run and scale companies and products.</p>
           <a className="link-arrow" href="https://dd.ventures" target="_blank" rel="noreferrer">dd.ventures →</a>
         </div>
       </div>
@@ -397,7 +397,7 @@ function Writing() {
             <hr className="hairline" style={{margin: '40px 0'}}/>
             <div className="kicker" style={{marginBottom: 16}}>Open to —</div>
             <p style={{fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px'}}>
-              Keynotes &amp; panels on fintech, blockchain, AI, distributed systems, and the operator's lens on technical leadership.
+              Keynotes &amp; panels on fintech, blockchain, AI, distributed systems and the operator's lens on technical leadership.
             </p>
           </aside>
         </div>
@@ -423,8 +423,8 @@ function Contact() {
 
         <div className="contact-grid">
           <p className="lede" style={{maxWidth: 720}}>
-            For executive leadership, company operations, or strategic advisory across
-            fintech, blockchain, and AI. Always interested in talking to founders
+            For executive leadership, company operations or strategic advisory across
+            fintech, blockchain and AI. Open to conversations with founders
             and operators building real things.
           </p>
 

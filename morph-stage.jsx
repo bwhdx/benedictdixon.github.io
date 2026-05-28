@@ -416,10 +416,10 @@ function PortraitCard({ visible }) {
   return (
     <div className={`morph-card portrait-card ${visible ? 'in' : 'out'}`}>
       <div className="meta">§ 03 · Introduction</div>
-      <h2 className="heading"><em>Hey,</em><br/>I'm Benedict.</h2>
+      <h2 className="heading">An <em>operator's</em><br/>almanack.</h2>
       <p className="lede">
         A decade-plus building companies across fintech, blockchain and AI.
-        Operator, COO, CTO. Deep across product, technology, operations,
+        Operator, COO, CTO. Deep across product, technology, operations
         and ecosystems.
       </p>
     </div>
