@@ -19,12 +19,12 @@ const CAREER = [
   { yr: '2018', co: 'Amex',          role: 'R&D, customer acquisition',  hi: 0.30, lo: 0.62, w: 0.7 },
   { yr: '2019', co: 'MAIA / Fulcrum',role: 'Hedge fund, back to front',  hi: 0.28, lo: 0.58, w: 0.7 },
   { yr: '2021', co: 'Icon',          role: 'Real-time payments',         hi: 0.20, lo: 0.52, w: 0.8 },
-  { yr: '2022', co: 'Nettle',        role: 'CPTO · payments & loyalty',  hi: 0.25, lo: 0.58, w: 0.8 },
-  { yr: '2023', co: 'Pound Token',   role: 'CTO · UK stablecoin',        hi: 0.15, lo: 0.50, w: 0.9 },
-  { yr: '2024', co: 'Voi Network',   role: 'Chief Ecosystem Officer',    hi: 0.08, lo: 0.55, w: 1.0 },
-  { yr: '2024', co: 'Brdge',         role: 'Head of Blockchain',         hi: 0.20, lo: 0.50, w: 0.7 },
-  { yr: '2025', co: 'Kash',          role: 'COO & CTO · predictions',    hi: 0.05, lo: 0.55, w: 1.1 },
-  { yr: '2025', co: 'DD Ventures',   role: 'Founding Partner',           hi: 0.22, lo: 0.48, w: 0.7 },
+  { yr: '2022', co: 'Nettle',        role: 'CPTO · payments & loyalty',         hi: 0.25, lo: 0.58, w: 0.8 },
+  { yr: '2023', co: 'Pound Token',   role: 'CTO · UK stablecoin',               hi: 0.15, lo: 0.50, w: 0.9 },
+  { yr: '2024', co: 'Voi Network',   role: 'Chief Ecosystem Officer · L1',      hi: 0.08, lo: 0.55, w: 1.0 },
+  { yr: '2024', co: 'Brdge',         role: 'Head of Blockchain · AI consultancy', hi: 0.20, lo: 0.50, w: 0.7 },
+  { yr: '2025', co: 'Kash',          role: 'COO & CTO · prediction marketplace',  hi: 0.05, lo: 0.55, w: 1.1 },
+  { yr: '2025', co: 'DD Ventures',   role: 'Founding Partner · advisory',       hi: 0.22, lo: 0.48, w: 0.7 },
 ];
 
 // Three expeditions — drawn as candlestick sequences traversing the canvas.
@@ -419,8 +419,8 @@ function PortraitCard({ visible }) {
       <h2 className="heading"><em>Hey,</em><br/>I'm Benedict.</h2>
       <p className="lede">
         A decade-plus building companies across fintech, blockchain and AI.
-        The career and the life are the same shape: pick the audacious route,
-        trust the process, get through it.
+        Operator, COO, CTO. Deep across product, technology, operations,
+        and ecosystems.
       </p>
     </div>
   );
@@ -460,12 +460,11 @@ function MapCard({ visible, fading }) {
   return (
     <div className={`morph-card map-card ${visible ? 'in' : 'out'} ${fading ? 'fading' : ''}`}>
       <div className="meta">§ 03.2 · World</div>
-      <h2 className="heading">The same shape,<br/><em>off the chart.</em></h2>
+      <h2 className="heading">The long way<br/><em>round.</em></h2>
       <p className="lede">
-        The career picks the audacious route in candlesticks. The life
-        picks it in continents. London to Mongolia, via Iran, by car.
-        The length of India by tuk-tuk. Sahara to Atlantic across Morocco.
-        Fifty-plus countries, mostly the long way round.
+        Three expeditions. Fifty-plus countries. London to Mongolia,
+        via Iran, by car. India by tuk-tuk. Sahara to Atlantic, across
+        Morocco.
       </p>
       <dl className="map-stats">
         <div><dt>50+</dt><dd>Countries</dd></div>
