@@ -388,12 +388,18 @@ button:focus-visible {
 
 /* ── Index / listing page ──────────────────────────────── */
 .listing {
-  max-width: 760px;
+  max-width: 880px;
   margin: 0 auto;
   padding: 80px 24px 120px;
 }
+
+/* Section head — title left, edition meta right */
 .listing .section-head {
-  margin-bottom: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: 48px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--ink-hair);
 }
@@ -411,82 +417,193 @@ button:focus-visible {
   font-size: clamp(48px, 7vw, 84px);
   line-height: 1;
   margin: 0;
+  letter-spacing: -0.01em;
 }
 .listing .section-head h1 em { font-style: italic; font-weight: 300; }
-.listing .section-head .lede-meta {
+.listing .section-head .right {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-align: right;
+  padding-bottom: 8px;
+  white-space: nowrap;
+}
+
+/* Editor's note — newspaper lede with drop cap + margin aside */
+.editor-note {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: 48px;
+  margin-bottom: 56px;
+}
+.editor-note p {
+  font-family: var(--font-serif);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 16px;
+}
+.editor-note p.lede {
+  font-size: 22px;
+  line-height: 1.45;
+}
+.editor-note p:last-of-type { margin-bottom: 0; }
+.editor-note p.drop::first-letter {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 72px;
+  line-height: 0.85;
+  float: left;
+  margin: 6px 12px 0 0;
+  color: var(--ink);
+}
+
+.editor-aside {
+  border-left: 1px solid var(--ink-hair);
+  padding: 4px 0 4px 24px;
+  font-family: var(--font-mono);
+  color: var(--ink-soft);
+}
+.editor-aside .aside-label {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.editor-aside .aside-stat {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 300;
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--ink-soft);
-  margin: 24px 0 0;
-  max-width: 580px;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+.editor-aside .aside-sub {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Hairline rule between major sections */
+.major-rule {
+  border: 0;
+  border-top: 1px solid var(--ink-hair);
+  margin: 56px 0;
 }
 
 /* ── Category sections ────────────────────────────────── */
 .listing .category {
-  margin-top: 72px;
+  margin-top: 0;
 }
-.listing .category:first-of-type { margin-top: 0; }
 .listing .category-head {
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 48px;
+  margin-bottom: 32px;
 }
+.listing .category-head > div:first-child { flex: 1; }
 .listing .category-head .kicker {
   font-family: var(--font-mono);
   font-size: 12px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 }
 .listing .category-head .cat-ttl {
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: clamp(36px, 5vw, 56px);
-  line-height: 1.05;
+  line-height: 1.02;
   margin: 0 0 16px;
   letter-spacing: -0.01em;
 }
 .listing .category-head .cat-ttl em { font-style: italic; font-weight: 300; }
-.listing .category-head .cat-meta {
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.55;
+.listing .category-head .cat-desc {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.5;
   color: var(--ink-soft);
   margin: 0;
-  max-width: 580px;
+  max-width: 540px;
 }
-.listing .category-head .cat-count {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.listing .category-head .cat-right {
+  text-align: right;
+  border-left: 1px solid var(--ink-hair);
+  padding: 4px 0 4px 24px;
+  min-width: 140px;
+}
+.listing .category-head .cat-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: 40px;
+  line-height: 1;
   color: var(--ink);
-  display: inline-block;
-  margin-left: 6px;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.listing .category-head .cat-num-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
-/* ── Post cards ───────────────────────────────────────── */
-.listing .post {
-  display: block;
+/* ── Post list (ol reset) ─────────────────────────────── */
+.listing .post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   border-top: 1px solid var(--ink-hair);
+}
+.listing .post-list li {
+  border-bottom: 1px solid var(--ink-hair);
+}
+
+/* ── Post cards — section number left, content right ───── */
+.listing .post {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 28px;
   padding: 28px 0;
   text-decoration: none;
   color: var(--ink);
+  transition: background 150ms;
 }
+.listing .post:hover { background: rgba(28, 38, 122, 0.03); }
 .listing .post:hover h3 { color: var(--ink-soft); }
-.listing .post .meta-row {
+.listing .post-section {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-top: 4px;
+}
+.listing .post-content { min-width: 0; }
+.listing .post-meta-row {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 14px;
+  gap: 16px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 .listing .post .meta {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -503,15 +620,15 @@ button:focus-visible {
   text-transform: uppercase;
   color: var(--ink);
   background: rgba(28, 38, 122, 0.08);
-  padding: 4px 8px;
+  padding: 3px 8px;
   border-radius: 2px;
 }
 .listing .post h3 {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1.15;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   letter-spacing: -0.01em;
   transition: color 150ms;
 }
@@ -519,10 +636,23 @@ button:focus-visible {
 .listing .post p.excerpt {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 1.45;
   margin: 0;
   color: var(--ink-soft);
+}
+
+@media (max-width: 800px) {
+  .editor-note { grid-template-columns: 1fr; gap: 32px; }
+  .editor-aside { border-left: 0; border-top: 1px solid var(--ink-hair); padding: 16px 0 0; }
+  .listing .category-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .listing .category-head .cat-right {
+    border-left: 0;
+    border-top: 1px solid var(--ink-hair);
+    padding: 16px 0 0;
+    text-align: left;
+    width: 100%;
+  }
 }
 
 @media (max-width: 700px) {
@@ -531,6 +661,10 @@ button:focus-visible {
   .article-body { font-size: 17px; }
   .article-body h2 { font-size: 26px; }
   .listing { padding: 56px 20px 80px; }
+  .listing .section-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .listing .section-head .right { text-align: left; white-space: normal; }
+  .listing .post { grid-template-columns: 70px 1fr; gap: 16px; }
+  .listing .post h3 { font-size: 22px; }
   .masthead { padding: 14px 20px; font-size: 11px; }
   .masthead nav a { margin-left: 16px; }
 }
