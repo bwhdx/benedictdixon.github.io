@@ -1,0 +1,15 @@
+/* TEAM */
+
+Benedict W. H. Dixon — operator, COO/CTO
+Site: https://benedictdixon.com
+LinkedIn: https://www.linkedin.com/in/benedict-dixon/
+Twitter: https://x.com/bwhdx
+GitHub: https://github.com/bwhdx
+Medium: https://bwhdx.medium.com/
+
+/* SITE */
+
+Standards: HTML5, CSS3, ES2020+
+Components: React 18 (compiled JSX)
+Type: Fraunces · Inter · JetBrains Mono
+Palette: Royal navy #1c267a on warm cream #d6c585

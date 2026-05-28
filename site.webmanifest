@@ -1,11 +1,33 @@
 {
-  "name": "Benedict Dixon · An Almanack",
+  "name": "Benedict W. H. Dixon · An Almanack",
   "short_name": "Benedict Dixon",
+  "description": "An operator at the intersection of finance, blockchain and AI.",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
+  "lang": "en-GB",
   "icons": [
-    { "src": "favicons/favicon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "favicons/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "favicons/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicons/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicons/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "theme_color": "#1c267a",
   "background_color": "#d6c585",
-  "display": "standalone"
+  "display": "standalone",
+  "categories": ["business", "finance"]
 }
