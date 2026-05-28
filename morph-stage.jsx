@@ -398,14 +398,15 @@ function MorphOverlay({ phase }) {
            phase === 'toMap'    ? 'Career → World' :
            phase === 'map'      ? 'World' :
            phase === 'back'     ? 'Returning to portrait' :
-                                  'Portrait'}
+                                  'Outro'}
         </div>
       </div>
 
       {/* Phase content blocks */}
-      <PortraitCard visible={phase === 'portrait' || phase === 'final'} />
+      <PortraitCard visible={phase === 'portrait'} />
       <CareerCard   visible={phase === 'career' || phase === 'toCareer' || phase === 'toMap'} fading={phase === 'toMap'} />
       <MapCard      visible={phase === 'map' || phase === 'toMap' || phase === 'back'} fading={phase === 'back'} />
+      <OutroCard    visible={phase === 'final'} />
     </div>
   );
 }
@@ -438,6 +439,18 @@ function CareerCard({ visible, fading }) {
           </li>
         ))}
       </ol>
+    </div>
+  );
+}
+
+function OutroCard({ visible }) {
+  return (
+    <div className={`morph-card portrait-card ${visible ? 'in' : 'out'}`}>
+      <div className="meta">§ 03.3 · Outro</div>
+      <h2 className="heading">The only way<br/><em>is through.</em></h2>
+      <p className="lede">
+        Pick the audacious route. Trust the process. Get through it.
+      </p>
     </div>
   );
 }
