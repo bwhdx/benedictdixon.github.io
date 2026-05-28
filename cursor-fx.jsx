@@ -10,8 +10,9 @@ function CursorTrail({ enabled = true }) {
     if (!enabled) return;
     const wrap = wrapRef.current;
     if (!wrap) return;
-    // Skip on touch-only devices
+    // Skip on touch-only devices and when the user prefers reduced motion.
     if (window.matchMedia('(hover: none)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     let frameQueued = false;
     let nextPos = { x: 0, y: 0 };

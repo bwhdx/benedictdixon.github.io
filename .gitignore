@@ -3,3 +3,10 @@ node_modules/
 *.log
 package-lock.json
 assets/og-image.svg
+
+# Compiled JSX → JS intermediates; only bundle.js ships
+portrait-renderers.js
+cursor-fx.js
+morph-stage.js
+site-content.js
+portfolio-app.js

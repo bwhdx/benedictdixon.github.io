@@ -35,7 +35,7 @@ function Runner() {
         <div className="mark">B</div>
         <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
       </div>
-      <nav>
+      <nav aria-label="Sections">
         {[
           ['about', 'About'],
           ['morph', 'Career'],
@@ -44,7 +44,12 @@ function Runner() {
           ['writing', 'Writing'],
           ['contact', 'Contact'],
         ].map(([id, label]) => (
-          <a key={id} href={`#${id}`} className={active === id ? 'active' : ''}>{label}</a>
+          <a
+            key={id}
+            href={`#${id}`}
+            className={active === id ? 'active' : ''}
+            aria-current={active === id ? 'location' : undefined}
+          >{label}</a>
         ))}
       </nav>
     </header>

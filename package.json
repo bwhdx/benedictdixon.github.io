@@ -4,7 +4,7 @@
   "private": true,
   "description": "Benedict W. H. Dixon · An Almanack — personal site.",
   "scripts": {
-    "build": "babel . --out-dir . --presets=@babel/preset-react --only='*.jsx' --extensions='.jsx' --out-file-extension=.js",
+    "build": "babel . --out-dir . --presets=@babel/preset-react --only='*.jsx' --extensions='.jsx' --out-file-extension=.js && node tools/bundle.cjs",
     "build:og": "node tools/generate-og.cjs && rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png && pngquant --quality=75-95 --strip --force --output assets/og-image.png assets/og-image.png && rm assets/og-image.svg"
   },
   "devDependencies": {
