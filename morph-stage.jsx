@@ -212,9 +212,10 @@ function getPortraitArea(W, H) {
     return { x0: 0.40, x1: 1.00, y0: 0.12, y1: 0.88 };
   }
   // tall / mobile: face on the top, full width.
-  // y0 starts below the chapter/meta overlay labels so the candles
-  // don't sit behind the "Portrait" / "Career" / "World" label.
-  return { x0: 0.05, x1: 0.95, y0: 0.28, y1: 0.62 };
+  // Portrait band sits lower than the timeline/map band because the
+  // beanie/hair candles cluster at the top of the face, making the
+  // visual edge denser and more prone to overlapping the chapter label.
+  return { x0: 0.05, x1: 0.95, y0: 0.35, y1: 0.69 };
 }
 
 function fitPortrait(px, py, W, H) {
