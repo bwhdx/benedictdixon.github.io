@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="A year of intensive Claude Code, distilled. The mental model, the environment setup, the phased workflow, parallelisation, and the quality practices that turn a fancy autocomplete into a 100x force multiplier.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/in-clawd-we-trust/">
+<title>In Clawd We Trust — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/in-clawd-we-trust/">
+<meta property="og:title" content="In Clawd We Trust">
+<meta property="og:description" content="A year of intensive Claude Code, distilled. The mental model, the environment, the workflow, the quality practices.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-05-28">
+<meta property="article:section" content="Building &amp; Technology">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="Workflow">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/in-clawd-we-trust/#article",
+  "headline": "In Clawd We Trust: A Year of Claude Code, Distilled",
+  "description": "The mental model, environment, phased workflow, parallelisation, and quality practices that make Claude Code a 100x force multiplier rather than a fancy autocomplete.",
+  "url": "https://benedictdixon.com/writing/in-clawd-we-trust/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/in-clawd-we-trust/",
+  "datePublished": "2026-05-28",
+  "dateModified": "2026-05-28",
+  "wordCount": 5200,
+  "author": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon",
+    "url": "https://benedictdixon.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon"
+  },
+  "image": "https://benedictdixon.com/assets/og-image.png",
+  "keywords": ["Claude Code", "AI", "Software Engineering", "Developer Tools", "Workflow", "Anthropic"]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.05 · Essay</span>
+          <span>28 May 2026 · ~20 min read</span>
+        </div>
+        <h1 class="ttl">In Clawd<br><em>we trust.</em></h1>
+        <p class="subtitle">A year of Claude Code, distilled.</p>
+      </header>
+
+      <div class="article-byline">
+        <span>By <a href="/">Benedict W. H. Dixon</a></span>
+        <span class="by-sep">·</span>
+        <span>Operator across finance, blockchain &amp; AI</span>
+      </div>
+
+      <div class="article-body">
+        <blockquote>
+          <p>This guide is the result of a year of intensive Claude Code usage, approximately 100x normal usage per week. These insights have been hard-won through thousands of hours of iteration, mistakes and refinement. Whether you're just getting started or looking to level up, this document will help you get the most out of Claude Code.</p>
+        </blockquote>
+
+        <h2>Part 1: The Right Mental Model</h2>
+
+        <p>Before touching any settings or writing any prompts, you need to understand what Claude Code actually is, and what it isn't.</p>
+
+        <h3>Build. Don't code.</h3>
+
+        <p>This is the single most important mindset shift. Claude Code is not a fancy autocomplete. It's not a search engine for Stack Overflow answers. It's a collaborator that can execute on your vision.</p>
+
+        <p>Your job is to <strong>build.</strong> To think about architecture, user experience, system design and business value. Claude's job is to help you realise that vision in code. The more you focus on the "what" and "why", the more Claude can handle the "how".</p>
+
+        <h3>Claude Code amplifies. It doesn't replace.</h3>
+
+        <p>Claude Code is a way to increase your output, not replace your ability to think. Treat it as such.</p>
+
+        <p>You still need to:</p>
+        <ul>
+          <li>Understand your codebase deeply</li>
+          <li>Know the patterns, standards, conventions and naming in your system</li>
+          <li>Make architectural decisions</li>
+          <li>Review everything</li>
+        </ul>
+
+        <p>If you abdicate your thinking to Claude, you'll end up with a codebase you don't understand, full of subtle issues you can't diagnose. Claude amplifies your expertise, it doesn't substitute for it.</p>
+
+        <h3>It does exactly what you tell it to do.</h3>
+
+        <p>This is both Claude's greatest strength and the source of most frustrations. Claude will do exactly what you tell it to do. The problem is that what you tell it to do may not be what you actually wanted.</p>
+
+        <p>This is why:</p>
+        <ul>
+          <li>Precision in your prompts matters</li>
+          <li>Planning before execution matters</li>
+          <li>Review after execution matters</li>
+        </ul>
+
+        <p>When something goes wrong, the first question to ask is: "Did I actually communicate what I wanted?"</p>
+
+        <h3>Claude will take the path of least resistance.</h3>
+
+        <p>Like humans, Claude will by default take the shortest route to achieve a goal, even if that route is detrimental to code quality and architecture.</p>
+
+        <p>This manifests as:</p>
+        <ul>
+          <li>Quick fixes instead of proper solutions</li>
+          <li>Workarounds instead of addressing root causes</li>
+          <li>Minimal implementations that technically satisfy the request but miss the spirit</li>
+          <li>Incomplete implementations and TODOs</li>
+        </ul>
+
+        <p>This is where specificity becomes critical. Be explicit about quality expectations. And importantly: <strong>telling Claude what NOT to do is very powerful.</strong> If you've seen it take shortcuts before, preemptively forbid those shortcuts.</p>
+
+        <p>Course correction is your friend here. When you see Claude heading toward a lazy solution, interrupt and redirect.</p>
+
+        <h3>You must understand your codebase.</h3>
+
+        <p>You need to know your codebase and repository deeply. You need to know:</p>
+        <ul>
+          <li>The patterns in use</li>
+          <li>The standards and conventions</li>
+          <li>The naming conventions</li>
+          <li>How different parts of the system interconnect</li>
+        </ul>
+
+        <p>This knowledge is what enables you to:</p>
+        <ul>
+          <li>Catch issues early</li>
+          <li>Course-correct when Claude creates anti-patterns</li>
+          <li>Recognise when Claude doesn't have the full context</li>
+          <li>Make good architectural decisions</li>
+        </ul>
+
+        <p>Without this understanding, you can't effectively review Claude's work or guide it toward good solutions.</p>
+
+        <hr>
+
+        <h2>Part 2: Setting up your environment for scale</h2>
+
+        <p>Your environment determines your ceiling. A well-configured setup multiplies your effectiveness; a poor setup creates constant friction.</p>
+
+        <h3>Architectural documentation over CLAUDE.md</h3>
+
+        <p>CLAUDE.md files are useful for giving Claude immediate context, but what's far more valuable is actual architectural documentation in your repository.</p>
+
+        <p>This includes:</p>
+        <ul>
+          <li><strong>Standards and patterns:</strong> how things should be done in this codebase</li>
+          <li><strong>Architectural decisions:</strong> why the system is structured the way it is</li>
+          <li><strong>Conventions:</strong> naming, file organisation, code style</li>
+          <li><strong>System overview:</strong> how different components interact</li>
+        </ul>
+
+        <p>This documentation serves two purposes. Claude can reference it to understand how to work within your system. And it forces you to codify decisions that might otherwise be trivial knowledge.</p>
+
+        <p>Invest time in creating and maintaining this documentation. It pays dividends not just for Claude, but for your entire team.</p>
+
+        <h3>Get your entire system running locally</h3>
+
+        <p>This is critical. When Claude can access your entire system locally, it can:</p>
+        <ul>
+          <li>Safely inspect every facet of the codebase</li>
+          <li>Make changes to database schemas</li>
+          <li>Modify infrastructure configurations</li>
+          <li>Test changes end-to-end</li>
+          <li>Understand how components interact in practice</li>
+        </ul>
+
+        <p>If parts of your system only exist in remote environments, Claude is working with incomplete information and can't fully verify its changes.</p>
+
+        <h3>Let Claude see the bigger picture</h3>
+
+        <p>If you have multiple repositories that form a larger system, configure Claude to read adjacent repositories in the same directory. This allows Claude to understand how the entire system interconnects, not just the slice it's currently working on.</p>
+
+        <p>This context is invaluable for understanding API contracts between services, avoiding breaking changes and maintaining consistency across the system.</p>
+
+        <h3>Create reusable assets</h3>
+
+        <p>Power users don't start from scratch every time. Build up a library of reusable assets.</p>
+
+        <p><strong>Prompt guides.</strong> Create guides for different types of work:</p>
+        <ul>
+          <li><strong>Research prompts:</strong> how to investigate a problem or technology</li>
+          <li><strong>Architecture prompts:</strong> how to design a system</li>
+          <li><strong>Implementation prompts:</strong> how to build the solution</li>
+          <li><strong>Prompt creation prompts:</strong> how to generate prompts for each of the above</li>
+        </ul>
+
+        <p>These guides ensure consistency and capture your accumulated knowledge about what works.</p>
+
+        <p><strong>Saved prompts in your repository.</strong> Store general prompts that you'll want to execute repeatedly: audit prompts for code quality review, test-fixing loop prompts, documentation update prompts, refactoring prompts. Having these ready to go eliminates friction and ensures you're using proven approaches.</p>
+
+        <p><strong>Custom CLI tools.</strong> Create CLI tools that Claude can use to execute multi-step tasks more easily. This saves context (Claude doesn't need to understand the underlying complexity), saves time (complex operations become single commands) and reduces errors (the tool encapsulates the correct sequence of steps).</p>
+
+        <p><strong>Custom hooks and commands.</strong> Build your own hooks and commands that integrate with Claude's workflow. This lets you extend Claude's capabilities in ways specific to your needs.</p>
+
+        <h3>External documentation and MCPs</h3>
+
+        <p>For third-party integrations:</p>
+        <ul>
+          <li><strong>MCP servers:</strong> if a provider has an MCP integration, use it</li>
+          <li><strong>llm.txt files:</strong> many providers offer their entire documentation in a single file designed for LLMs. Download or copy these locally for easy Claude access</li>
+          <li><strong>Figma MCP:</strong> useful for frontend work, though don't over-optimise here</li>
+        </ul>
+
+        <p>The key insight: sometimes a simple local text file is more effective than a complex integration.</p>
+
+        <h3>Keep it simple</h3>
+
+        <p>Don't try to overcomplicate things by setting up the most advanced workflows possible. This is a common trap.</p>
+
+        <p>Overly complex setups waste valuable context on workflow overhead, won't be specific to your actual needs, result in worse output not better and create maintenance burden.</p>
+
+        <p>Start simple. Add complexity only when you have a clear, demonstrated need for it. The goal is effective output, not impressive tooling.</p>
+
+        <h3>Model selection</h3>
+
+        <p>For primary work, use the most capable model available with extended thinking enabled. The additional reasoning capability is worth it for complex tasks.</p>
+
+        <p>For sub-agents handling discrete, well-defined tasks, you can use lighter models appropriate to their needs. The sub-agent doesn't need the full power of your primary model if it's just executing a narrow, well-scoped task.</p>
+
+        <p>Match the model to the cognitive demands of the work.</p>
+
+        <hr>
+
+        <h2>Part 3: The phased workflow</h2>
+
+        <p>One of the most important realisations is that thinking and doing should be separated. Don't try to do everything in one conversation.</p>
+
+        <h3>Research → Architect → Implement</h3>
+
+        <p>For any significant piece of work, use separate conversations for each phase:</p>
+
+        <ol>
+          <li><strong>Research:</strong> investigate the problem space, understand constraints, explore options (plan agentic mode)</li>
+          <li><strong>Architect:</strong> design the solution, make structural decisions, plan the approach (plan agentic mode + architecture.md / CLAUDE.md file)</li>
+          <li><strong>Implement:</strong> execute on the plan (agentic mode with edit / write access)</li>
+        </ol>
+
+        <p>Each phase gets its own conversation, with its own focused context. Use Claude to create the prompt for each phase, following your prompt guides.</p>
+
+        <p>This separation provides several benefits. Each conversation stays focused and doesn't degrade. You can iterate deeply on each phase without context pollution. The output of each phase becomes the input to the next. You can parallelise research while implementing something else.</p>
+
+        <h3>Leverage markdown files extensively</h3>
+
+        <p>Use markdown files as your continuity mechanism. They help you track progress through complex tasks, maintain continuity when you need to start new conversations due to context degradation, preserve decisions and rationale, and hand off context between conversation phases.</p>
+
+        <p>When a conversation is going well and producing valuable output, have Claude write key decisions and plans to markdown files. This way, if you need to start fresh, you haven't lost that work.</p>
+
+        <p><strong>Critical for multi-day work:</strong> ensure Claude updates your local progress markdown files as it goes, not just its internal plan files. When you return the next day or after a break, these files are how you pick back up. They're your continuity across sessions, conversations and context resets.</p>
+
+        <h3>Make your prompts idempotent</h3>
+
+        <p>Idempotency is critical for reusable prompts. An idempotent prompt can be executed multiple times without modification and will produce consistent, correct results each time.</p>
+
+        <p>This matters because you may need to re-run a prompt if a conversation degrades, you might want to apply the same prompt across different contexts, and it enables automation and reduces manual intervention.</p>
+
+        <p>Design your saved prompts so they don't depend on specific conversation state or require manual tweaking before each use.</p>
+
+        <h3>Don't rush to execute</h3>
+
+        <p>Don't be afraid to spend significant time in back-and-forth conversation before executing anything. Ask questions. Explore edge cases. Challenge assumptions.</p>
+
+        <p>This is why separating architecture from implementation is so powerful. You can take your time getting the design right without feeling pressure to start coding.</p>
+
+        <p>When Claude asks you a question about approach, don't just pick an option to move forward. Talk through it. Understand the tradeoffs. Come up with the best solution together.</p>
+
+        <p>It's better to take your time and plan correctly than to execute blindly and have to undo or redo work.</p>
+
+        <h3>Plan mode and interrupts</h3>
+
+        <p>Use plan mode liberally. It lets Claude think through an approach without immediately executing.</p>
+
+        <p>And critically: <strong>don't be afraid to interrupt.</strong> Use ESC mid-execution to course-correct if you see Claude heading in the wrong direction. It's much cheaper to interrupt early than to let a flawed approach run to completion.</p>
+
+        <h3>Don't be afraid to repeat yourself</h3>
+
+        <p>Sometimes you need to send Claude the exact same message you sent before.</p>
+
+        <p>This happens when Claude summarises what it would do instead of actually doing it, when execution was interrupted and needs to resume, or when Claude misunderstood and you want it to try again with fresh attention.</p>
+
+        <p>Don't feel like you need to rephrase. If your original prompt was clear and correct, just send it again. Sometimes emphasis through repetition is exactly what's needed.</p>
+
+        <h3>Review always</h3>
+
+        <p>This is non-negotiable. Review everything Claude produces. Not just a quick glance. Actually understand what changed and why.</p>
+
+        <p>Your review is the quality gate. Claude is fast but not infallible. Your expertise is what catches the issues that slip through.</p>
+
+        <h3>Feedback loops are everything</h3>
+
+        <p>The most effective Claude Code workflows have tight feedback loops that allow rapid iteration toward the desired outcome.</p>
+
+        <p><strong>Backend work</strong> benefits enormously from tests. Write tests first or alongside implementation, and let test results guide Claude's iteration. When tests fail, Claude has clear signal about what needs to change.</p>
+
+        <p><strong>Frontend work</strong> is harder because feedback loops are less automated. You need to be more hands-on, checking visual output, testing interactions, verifying behaviour. Consider tools that can provide automated feedback (visual regression, accessibility checks) where possible. You can also use the Claude Code browser extension as a way to test out the final output and close the feedback loop between testing and final developed solution.</p>
+
+        <p>The tighter your feedback loop, the faster Claude can converge on the right solution.</p>
+
+        <h3>When debugging, talk through the problem</h3>
+
+        <p>When something isn't working, resist the urge to just let Claude brute-force it with repeated attempts.</p>
+
+        <p>Instead, talk through the problem. Understand it together. Claude doesn't replace your brain. It augments it. Often Claude can go in the wrong direction, and it's up to you to provide insights, advice or suggestions about what might have gone wrong.</p>
+
+        <p><strong>Important nuance:</strong> don't be afraid to share your hypotheses, but frame them as possibilities rather than certainties. Say "I think it might be X, but I could be wrong" rather than "It's definitely X". This leaves room for Claude to explore other avenues while still taking your insights into consideration. If you state something as fact, Claude may take your word as gospel and stop exploring alternatives.</p>
+
+        <h3>Managing conversation context</h3>
+
+        <p>Claude conversations will deteriorate over time as context accumulates. You need to develop judgment about when to continue an existing conversation (when it already has all the context necessary for your current questions or execution needs) and when to start fresh (when the conversation has become muddled, when you're starting a new phase of work, or when accumulated context is causing confusion).</p>
+
+        <p>The VS Code chat UI is helpful here, it lets you restore previous conversations easily, so you can revisit earlier context when needed.</p>
+
+        <hr>
+
+        <h2>Part 4: Parallelisation and async leverage</h2>
+
+        <p>This is where power users pull away from casual users. The ability to run multiple Claude instances effectively can multiply your output dramatically.</p>
+
+        <h3>The multi-clone workflow</h3>
+
+        <p>For work that could potentially conflict, use separate clones of your repository.</p>
+
+        <p><strong>Setup.</strong> Create multiple clones of the same repository. Each clone handles work that might have a large blast radius or conflict with other changes. Each clone merges back to a base branch in that cloned repository. Maintain one "primary" repository that pulls all commits on the base branch.</p>
+
+        <p><strong>The primary repository is for</strong> reviewing changes from all clones, auditing for issues, merging changes and picking up missed anti-patterns or code smells.</p>
+
+        <p><strong>For non-overlapping work:</strong> keep it in the base repository. No need for clone overhead.</p>
+
+        <p><strong>For large changes with big blast radiuses:</strong> use separate clones to avoid agents stepping on each other's toes.</p>
+
+        <p>This approach is more robust than workstreams because each clone has complete isolation.</p>
+
+        <h3>Divide and conquer</h3>
+
+        <p>When facing a large goal, ask: can this be divided and conquered in parallel?</p>
+
+        <p>If yes:</p>
+        <ol>
+          <li>Break the work into independent pieces</li>
+          <li>Use Claude to create prompts for each piece (following your prompt guides)</li>
+          <li>Execute each piece in a separate Claude Code instance</li>
+          <li>Integrate the results</li>
+        </ol>
+
+        <p><strong>Critical warning:</strong> be careful with work that must be executed sequentially. Parallel execution of sequential dependencies will create merge conflicts and integration nightmares. Make sure pieces are truly independent before parallelising.</p>
+
+        <h3>Sub-agents: power with caveats</h3>
+
+        <p>Don't be afraid to use sub-agents, but be very aware of their limitations.</p>
+
+        <p>Sub-agents can much more easily veer off course, and you cannot directly course-correct them the way you can with your main conversation. By the time you see their output, they've already gone down whatever path they chose.</p>
+
+        <p>Best practices for sub-agents:</p>
+        <ul>
+          <li>Use them for very discrete and explicit tasks</li>
+          <li>Limit them to pure execution, not decision-making</li>
+          <li>Ensure they return only summaries to the main worker</li>
+          <li>Keep the main conversation's context clean. Don't let sub-agent details pollute it</li>
+        </ul>
+
+        <p>Sub-agents are powerful for parallelisation, but they require tight scoping to be effective.</p>
+
+        <h3>Async thinking</h3>
+
+        <p>Use Claude for background thinking while you work on other things.</p>
+
+        <p>Have a question about your codebase? An idea you want to explore? Kick off a Claude instance to research it while you continue your main work. When you're ready, come back to that conversation with all the research done and context loaded.</p>
+
+        <p>This turns idle curiosity into actionable insights without interrupting your flow.</p>
+
+        <h3>Never sit idle</h3>
+
+        <p>During long-running Claude executions, don't just watch the terminal.</p>
+
+        <p>Productive alternatives: research and architect your next steps, improve project hygiene (there's always something), review recent changes, update documentation, work through your TODO list.</p>
+
+        <p>There's always something that can be done. Waiting for Claude to finish is wasted time.</p>
+
+        <hr>
+
+        <h2>Part 5: Maintaining quality at speed</h2>
+
+        <p>Speed without quality creates technical debt that eventually slows you down more than you gained. These practices keep quality high even at high velocity.</p>
+
+        <h3>Commit religiously</h3>
+
+        <p>Commit regularly. Commit often. Commit after every meaningful change.</p>
+
+        <p>This makes it trivially easy to revert when something goes wrong. Without frequent commits, a bad change can contaminate a large amount of work, making recovery painful.</p>
+
+        <p>Think of commits as save points. You can always go back.</p>
+
+        <h3>Git is your best friend. Learn it deeply.</h3>
+
+        <p>One of the biggest wins in using Claude Code effectively is deeply understanding Git and using it to your advantage. Git is a tool you cannot avoid, and failure to understand it will result in lost changes and huge headaches when merging.</p>
+
+        <p>Key practices:</p>
+        <ul>
+          <li><strong>Rebase early:</strong> rebase your branches to their source branch as soon as you possibly can. The longer you wait, the more painful merges become.</li>
+          <li><strong>Leverage branching:</strong> whether you're collaborating with others or working solo with multiple Claude instances, branches keep work isolated and safe.</li>
+          <li><strong>Understand Git operations:</strong> when Claude performs git operations (resets, checkouts, rebases) you need to understand what's happening. If multiple workers have edited the same file and Claude tries to reset it, you can lose all changes.</li>
+        </ul>
+
+        <p><strong>Watch out for multi-instance conflicts.</strong> When you have multiple Claude instances working in the same repository, be especially careful. Claude might try to reset a file that multiple workers have edited, and you'll lose both sets of changes. Commit frequently and keep work on separate branches to prevent this.</p>
+
+        <h3>Beware scripts that modify files in bulk</h3>
+
+        <p>Be extremely careful when Claude attempts to write and run scripts that edit files in bulk.</p>
+
+        <p>This often happens with large refactoring tasks: Claude decides it's too tedious to make changes systematically one by one, so it writes a script to do a mass find-and-replace or batch modification.</p>
+
+        <p><strong>This can end in disaster.</strong></p>
+
+        <p>Before Claude runs any script that modifies multiple files, you <strong>must</strong> commit all current changes. This ensures you can easily revert if the script does something unexpected. If you don't commit first and the script causes problems, you may have to rewind and lose legitimate changes you've made.</p>
+
+        <p>When in doubt, push back on the script approach and ask Claude to tackle changes one by one. It's slower, but it's safer and more reviewable.</p>
+
+        <h3>Encapsulation is critical</h3>
+
+        <p>Good encapsulation saves context (Claude doesn't need to understand everything to work on something), keeps code clean and maintainable, reduces blast radius of changes and makes parallel work safer.</p>
+
+        <p>Invest in good abstractions and clear boundaries. They pay dividends in Claude Code effectiveness.</p>
+
+        <h3>Don't be afraid to refactor</h3>
+
+        <p>Refactoring is not a luxury. It's essential maintenance.</p>
+
+        <p>When you see code that's becoming unwieldy, that has accumulated cruft, or that no longer fits the current architecture, refactor it. Claude makes refactoring cheaper than ever, so there's less excuse to let technical debt accumulate.</p>
+
+        <p>Just remember to update documentation after refactoring.</p>
+
+        <h3>Prefer breaking changes over backwards compatibility</h3>
+
+        <p>Claude will, by default, attempt to maintain backwards compatibility. This can be helpful, but be aware of when it's doing this, especially when you actually want breaking changes.</p>
+
+        <p>Generally, prefer breaking changes to ensure clean code and architecture, no pollution from legacy code and artefacts, clear migration paths rather than accumulated shims, and simpler mental models for the codebase.</p>
+
+        <p>Backwards compatibility has a cost: complexity that compounds over time. Unless you have a strong reason to maintain it (external APIs, gradual rollouts), opt for clean breaks.</p>
+
+        <h3>Keep your source code lean</h3>
+
+        <p>Always prioritise keeping your source code clean and not bloated.</p>
+
+        <p>More unnecessary bloat means more context lost when Claude is working. Every line of legacy code, every unused function, every backwards-compatibility shim is context that Claude has to process, potential confusion about what's current vs deprecated and maintenance burden.</p>
+
+        <p>Spend time regularly to clean up unused code, refactor verbose implementations, remove legacy compatibility layers and delete code that's no longer needed.</p>
+
+        <p>A lean codebase is a codebase Claude can work with effectively.</p>
+
+        <h3>Hacks and workarounds are signals</h3>
+
+        <p>If you see Claude creating hacks or workarounds, stop and pay attention.</p>
+
+        <p>This usually indicates a larger architectural issue. Claude is trying to solve a problem, but the system's structure is making a clean solution difficult or impossible.</p>
+
+        <p>When this happens, take a step back. See the forest, not just the trees. Often the right response is not to accept the hack, but to address the underlying architectural problem that's forcing it.</p>
+
+        <h3>Regular audits</h3>
+
+        <p>Run regular audits of your codebase as a background task. Here's an effective audit workflow:</p>
+        <ol>
+          <li><strong>Initial audit:</strong> ask Claude to audit changes or sections of the codebase, outputting findings to a dedicated markdown file</li>
+          <li><strong>Deep dive:</strong> ask Claude to iterate over each identified issue, investigating whether it's a legitimate issue or a false positive</li>
+          <li><strong>Final list:</strong> you now have a vetted list of real issues</li>
+          <li><strong>Remediation:</strong> ask Claude to create remediation plans for each issue</li>
+          <li><strong>Execution:</strong> generate prompts for each remediation following your prompt guides</li>
+          <li><strong>Testing:</strong> make Claude Code write unit tests for every feature or bug fixed to ensure the code actually runs</li>
+        </ol>
+
+        <p>This systematic approach catches issues early, before they compound.</p>
+
+        <h3>Beware performative tests</h3>
+
+        <p>When writing tests, watch out for tests that pass consistently but don't actually test your source code, mock so heavily that they're testing the mocks not the implementation, or check that code runs without verifying it produces correct results.</p>
+
+        <p>Tests should provide genuine confidence that code works correctly. Performative tests provide false confidence, which is worse than no tests.</p>
+
+        <h3>Documentation hygiene</h3>
+
+        <p>Maintain your documentation:</p>
+        <ul>
+          <li><strong>Purge ephemeral docs:</strong> remove temporary notes, outdated plans, completed TODOs</li>
+          <li><strong>Update real documentation:</strong> keep architectural docs, standards and guides current, especially after refactoring</li>
+          <li><strong>Keep things organised:</strong> a messy docs folder becomes a docs folder that nobody reads</li>
+        </ul>
+
+        <h3>TODO documents</h3>
+
+        <p>Maintain TODO documents for capturing thoughts and ideas. These are simple markdown files where you note things you want to investigate, capture ideas for improvements and track non-urgent issues.</p>
+
+        <p>When you have time, pick items from your TODO list and run them through the Research → Architect → Implement workflow.</p>
+
+        <hr>
+
+        <h2>Part 6: Understanding the power (and danger)</h2>
+
+        <p>Claude Code can do anything the CLI can do. This is incredibly powerful, and also dangerous.</p>
+
+        <h3>Respect the capabilities</h3>
+
+        <p>Claude can modify any file in your system, execute arbitrary commands, change database schemas, alter infrastructure and delete things.</p>
+
+        <p>This power is what makes Claude Code so effective. It's also what makes review and understanding essential.</p>
+
+        <h3>Your expertise is the guardrail</h3>
+
+        <p>Claude doesn't have your judgment about what changes are safe vs risky, what the business impact of a change might be, what conventions matter in your specific context, or what "done" looks like for your specific needs.</p>
+
+        <p>Your expertise is what keeps Claude's power channeled productively. Without it, that power can create messes as easily as it creates value.</p>
+
+        <h3>When Claude asks questions</h3>
+
+        <p>When Claude asks for your input on an approach, that's not a moment to just pick something and move on.</p>
+
+        <p>It's an opportunity to understand the tradeoffs Claude has identified, think through implications, bring your domain knowledge to bear and arrive at a better solution together.</p>
+
+        <p>Don't short-circuit this collaboration. It's where some of the best outcomes come from.</p>
+
+        <hr>
+
+        <h2>Part 7: Principles for long-term success</h2>
+
+        <h3>Focus on architecture and code quality</h3>
+
+        <p>Everything else follows from this. If your architecture is sound and your code is clean, Claude can work more effectively, changes are less likely to cause problems, the system remains maintainable and velocity stays high over time.</p>
+
+        <p>If you sacrifice architecture for speed, you'll eventually lose the speed too.</p>
+
+        <h3>Follow modern standards and best practices</h3>
+
+        <p>Always follow industry standards, best practices and established patterns. This gives Claude proven patterns to follow, makes code more maintainable, reduces the chance of novel bugs and makes onboarding easier.</p>
+
+        <p>Resist the temptation to do things in non-standard ways unless you have a very good reason.</p>
+
+        <h3>Know when to step back</h3>
+
+        <p>Sometimes you're too deep in the details to see the real problem.</p>
+
+        <p>If you find yourself fighting the same issue repeatedly, accepting hacks just to move forward, or confused about why things aren't working: stop. Step back. Look at the bigger picture. Often the problem isn't where you're looking, it's in a decision made earlier or an assumption that's no longer valid.</p>
+
+        <h3>This is a skill</h3>
+
+        <p>Using Claude Code effectively is a skill that develops over time. You'll make mistakes. You'll learn what works for your specific context. You'll develop intuitions that are hard to articulate.</p>
+
+        <p>Give yourself permission to experiment, fail and iterate. The insights that will matter most to you are the ones you discover through your own experience.</p>
+
+        <hr>
+
+        <h2>A note on these guidelines</h2>
+
+        <p>These are guidelines, not rules to die by.</p>
+
+        <p>Claude will evolve over time, its capabilities, its behaviours, its quirks. These guidelines will need to evolve too. What works today may be unnecessary or counterproductive tomorrow.</p>
+
+        <p>More importantly, your context is unique. Your codebase, your team, your domain, your working style, they're all different from anyone else's. Some of these practices will resonate immediately. Others might not fit your situation at all.</p>
+
+        <p>Do what feels best for you. Use this guide as a starting point, not a prescription. The goal is to help you develop your own effective relationship with Claude Code, not to follow someone else's playbook rigidly.</p>
+
+        <hr>
+
+        <h2>Quick reference: key practices</h2>
+
+        <table class="ref-table">
+          <thead>
+            <tr><th>Practice</th><th>Why it matters</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Separate Research → Architect → Implement</td><td>Keeps conversations focused, enables iteration</td></tr>
+            <tr><td>Use multiple repo clones for parallel work</td><td>Prevents conflicts, enables safe parallel execution</td></tr>
+            <tr><td>Commit religiously</td><td>Easy rollback, clear history</td></tr>
+            <tr><td>Master Git (branching, rebasing)</td><td>Prevents lost changes, enables collaboration</td></tr>
+            <tr><td>Review everything</td><td>Quality gate, catches issues</td></tr>
+            <tr><td>Plan mode + ESC interrupts</td><td>Control execution, course-correct early</td></tr>
+            <tr><td>Tight feedback loops (tests)</td><td>Fast convergence to correct solutions</td></tr>
+            <tr><td>Talk through problems, don't brute force</td><td>Better debugging, collaborative problem-solving</td></tr>
+            <tr><td>Regular audits</td><td>Catch issues early</td></tr>
+            <tr><td>Maintain documentation</td><td>Enables Claude, captures knowledge</td></tr>
+            <tr><td>Build reusable prompts and tools</td><td>Consistency, efficiency</td></tr>
+            <tr><td>Don't sit idle during execution</td><td>Maximise productive time</td></tr>
+            <tr><td>Understand your codebase deeply</td><td>Enables effective guidance and review</td></tr>
+            <tr><td>Watch for hacks as signals</td><td>Catch architectural issues</td></tr>
+            <tr><td>Focus on architecture and quality</td><td>Everything else follows</td></tr>
+            <tr><td>Prefer breaking changes over backwards compatibility</td><td>Keeps codebase clean and lean</td></tr>
+            <tr><td>Keep source code lean</td><td>More bloat = more lost context</td></tr>
+            <tr><td>Use sub-agents for discrete tasks only</td><td>They veer off course easily</td></tr>
+            <tr><td>Leverage markdown for continuity</td><td>Survive conversation degradation and multi-day work</td></tr>
+            <tr><td>Make prompts idempotent</td><td>Enables reuse without modification</td></tr>
+            <tr><td>Tell Claude what NOT to do</td><td>Prevents lazy shortcuts</td></tr>
+            <tr><td>Keep it simple</td><td>Complex workflows waste context</td></tr>
+            <tr><td>Commit before bulk-modify scripts</td><td>Prevents catastrophic loss of changes</td></tr>
+            <tr><td>Share hypotheses as possibilities</td><td>Leaves room for Claude to explore</td></tr>
+          </tbody>
+        </table>
+
+        <hr>
+
+        <h2>Final thought</h2>
+
+        <p>Claude Code is a tool of remarkable capability. In the hands of someone who understands their craft, it's a force multiplier unlike anything we've had before. Not 10x or 20x, but 100x.</p>
+
+        <p>But it's still a tool. The thinking, the judgment, the architecture, the quality standards: those come from you.</p>
+
+        <p><strong>Build. Don't just code.</strong></p>
+
+        <p style="text-align:center;font-family:var(--font-serif);font-style:italic;font-size:24px;margin-top:48px;color:var(--ink);">In Clawd we trust.</p>
+
+      </div>
+
+      <section class="article-related" aria-label="Related articles">
+        <p class="related-kicker">Related</p>
+        <div class="related-grid">
+          <a class="related-card" href="/writing/building-a-second-brain/">
+            <div class="related-meta">§ 06.04 · 28 May 2026</div>
+            <div class="related-title">Building a Second Brain <em>that doesn't die</em></div>
+          </a>
+          <a class="related-card" href="/writing/autonomous-ai-agents/">
+            <div class="related-meta">§ 06.03 · 13 Dec 2024</div>
+            <div class="related-title">Autonomous <em>AI Agents</em></div>
+          </a>
+          <a class="related-card" href="/writing/the-holy-trinity/">
+            <div class="related-meta">§ 06.02 · 12 Dec 2024</div>
+            <div class="related-title">The <em>Holy Trinity</em></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <span class="nth">§ 06.05</span>
+        </div>
+
+        <a class="read-next" href="/writing/building-a-second-brain/">
+          <div class="kicker">Read next</div>
+          <h3>Building a Second Brain <em>that doesn't die.</em></h3>
+          <div class="next-meta">§ 06.04 · The PKM template populated by Claude Code in 45 minutes →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Operator at the intersection of finance, blockchain &amp; AI. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            28 May 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack for Finance, Operations &amp; Code
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="https://github.com/bwhdx" rel="me">GitHub</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

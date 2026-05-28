@@ -1483,6 +1483,11 @@ function Services() {
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [{
   date: 'May 2026',
+  title: 'In Clawd We Trust',
+  excerpt: 'A year of intensive Claude Code, distilled. The mental model, environment, phased workflow and quality practices that turn it into a 100x force multiplier.',
+  url: '/writing/in-clawd-we-trust/'
+}, {
+  date: 'May 2026',
   title: 'Building a Second Brain That Doesn\'t Die',
   excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
   url: '/writing/building-a-second-brain/'
@@ -1524,7 +1529,7 @@ function Writing() {
     className: "ttl"
   }, "In ", /*#__PURE__*/React.createElement("em", null, "print"), " and at the lectern.")), /*#__PURE__*/React.createElement("div", {
     className: "right"
-  }, "Latest four \xB7 technology")), /*#__PURE__*/React.createElement("div", {
+  }, "Latest five \xB7 technology")), /*#__PURE__*/React.createElement("div", {
     className: "writing-grid"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "kicker",

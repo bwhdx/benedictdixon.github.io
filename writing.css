@@ -241,6 +241,34 @@ button:focus-visible {
   font-size: 22px;
   line-height: 1.4;
 }
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.45;
+  font-family: var(--font-sans);
+}
+.article-body table th,
+.article-body table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--ink-hair);
+}
+.article-body table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 10px;
+}
+.article-body table td:first-child {
+  font-weight: 500;
+  width: 42%;
+}
+.article-body table tr:last-child td { border-bottom: 0; }
 
 /* ── Related articles ──────────────────────────────────── */
 .article-related {
