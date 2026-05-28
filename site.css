@@ -493,15 +493,6 @@ section {
   overflow: hidden;
   background: var(--ink);
 }
-@media (max-width: 700px) {
-  .hero-section { min-height: 640px; }
-  .hero-portrait {
-    top: 110px;
-    bottom: auto;
-    left: 0; right: 0;
-    height: 56.25vw; /* exact 16:9 of viewport width */
-  }
-}
 .hero-portrait {
   position: absolute;
   top: 130px;         /* below the running header + top meta strip */
@@ -513,6 +504,14 @@ section {
   display: block;
   width: 100%;
   height: 100%;
+}
+@media (max-width: 700px) {
+  .hero-section { min-height: 640px; }
+  .hero-portrait {
+    top: 110px;
+    bottom: auto;
+    height: 56.25vw; /* exact 16:9 of viewport width */
+  }
 }
 
 .hero-top-bar {
