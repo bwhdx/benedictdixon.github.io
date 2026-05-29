@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="The five-to-ten things you've been pretending you know but haven't tested. The audit that catches your blind spots before you write code.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/identifying-your-key-assumptions/">
+<title>Identifying Your Key Assumptions — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/identifying-your-key-assumptions/">
+<meta property="og:title" content="Identifying Your Key Assumptions">
+<meta property="og:description" content="What you've been quietly pretending to know. The audit that catches your blind spots before you write code.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-07-08">
+<meta property="article:section" content="Operations">
+<meta property="article:tag" content="Assumptions">
+<meta property="article:tag" content="Risk">
+<meta property="article:tag" content="Startups">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/identifying-your-key-assumptions/#article",
+  "headline": "Identifying Your Key Assumptions: What You've Been Pretending You Know",
+  "description": "The five-to-ten things you've been quietly pretending to know. The audit that catches your blind spots before you build.",
+  "url": "https://benedictdixon.com/writing/identifying-your-key-assumptions/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/identifying-your-key-assumptions/",
+  "datePublished": "2026-07-08",
+  "dateModified": "2026-07-08",
+  "wordCount": 1200,
+  "author": { "@type": "Person", "@id": "https://benedictdixon.com/#person", "name": "Benedict W. H. Dixon", "url": "https://benedictdixon.com/" },
+  "publisher": { "@type": "Person", "@id": "https://benedictdixon.com/#person", "name": "Benedict W. H. Dixon" },
+  "image": "https://benedictdixon.com/assets/og-image.png",
+  "isPartOf": { "@type": "CreativeWorkSeries", "@id": "https://benedictdixon.com/writing/#disciplined-entrepreneurship", "name": "Disciplined Entrepreneurship", "url": "https://benedictdixon.com/writing/" },
+  "position": 20,
+  "keywords": ["Assumptions", "Risk", "Validation", "Startups", "Disciplined Entrepreneurship"]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.B.20 · Essay</span>
+          <span>8 Jul 2026 · ~5 min read</span>
+        </div>
+        <h1 class="ttl">Identifying your<br><em>key assumptions.</em></h1>
+        <p class="subtitle">What you've been quietly pretending to know.</p>
+      </header>
+
+      <div class="article-byline">
+        <span>By <a href="/">Benedict W. H. Dixon</a></span>
+        <span class="by-sep">·</span>
+        <span>Operator across finance, blockchain &amp; AI</span>
+        <span class="by-sep">·</span>
+        <span>After Bill Aulet's <a href="/writing/"><em>Disciplined Entrepreneurship</em></a></span>
+      </div>
+
+      <div class="article-body">
+        <p class="lead">You are now nineteen steps in. The plan looks good. The spreadsheet works. The customer is named, the value is quantified, the model is priced, the unit economics make sense on paper.</p>
+
+        <p>That's the problem. On paper.</p>
+
+        <p>Step twenty is the moment you stop and ask: what are the things I've assumed that I have not actually checked?</p>
+
+        <p>Because there are some. There are always some. And the ones that bite hardest are the ones that felt too obvious to question.</p>
+
+        <h2>The audit nobody wants to run</h2>
+
+        <p>Most founders refuse this step instinctively. It feels like backtracking. You've done the work. You've earned the right to start building.</p>
+
+        <p>Wrong. You've earned the right to test what you've concluded, before you spend money making it real.</p>
+
+        <p>Aulet's structure is simple. Go back through every step. For each one, ask: what am I treating as fact that is actually a logical inference from incomplete data?</p>
+
+        <p>Those inferences are your key assumptions. Five to ten of them. Rank by importance. The ranking is the work.</p>
+
+        <h2>The questions that surface the real assumptions</h2>
+
+        <p>Six questions cover most of the ground. Walk through them slowly.</p>
+
+        <p><strong>Is the persona's priority list right?</strong> You wrote down Melissa's top three pains in step five. How sure are you? Did you ask twenty people who match her profile, or did you ask three and extrapolate? Priorities shift between intent and behaviour. The thing customers tell you matters often isn't what makes them sign.</p>
+
+        <p><strong>Will the customer find the value proposition compelling at purchase time?</strong> Not in conversation. At the moment a card comes out. Those are different moments. The first is hypothetical. The second is real, and the real one has a hundred reasons not to happen.</p>
+
+        <p><strong>Will the customer integrate your product into their workflow?</strong> Buying is one thing. Adopting is another. Plenty of B2B software sits unused after purchase because the customer assumed they'd find the time and didn't. If the integration is real work, you've assumed they'll do it. Test that assumption.</p>
+
+        <p><strong>Is your gross margin actually achievable?</strong> The cost targets you put into the LTV calculation: are those targets, or are those today's costs? If they're targets, what bridge gets you from today to target? If you don't know, that's an assumption.</p>
+
+        <p><strong>For hardware: have you actually priced the bill of materials?</strong> A spreadsheet of components is not a quote. Get quotes. From real suppliers. At your projected volumes. Most early hardware founders are 30% off on BOM cost and don't find out until tooling.</p>
+
+        <p><strong>For software: have you scoped the build honestly?</strong> Engineers underestimate by 2x even when they're trying not to. Founders who aren't engineers underestimate by 5x. The question isn't "can we build it?" The question is "how long, and at what burn rate?" Both of those are usually assumed, not estimated.</p>
+
+        <h2>The lighthouse and linchpin questions</h2>
+
+        <p>Two more, specific to the Next 10 Customer list you made back in step nine.</p>
+
+        <p><strong>Are any of the next 10 lighthouse customers?</strong> A lighthouse is the customer whose adoption changes other customers' minds. Their logo on your website opens doors. Their reference closes deals. If you have one, you have an asset. If you don't, you've assumed referenceability you may not have.</p>
+
+        <p><strong>Are any of them linchpin customers?</strong> Linchpins are different. A linchpin is the customer who must buy or the rest will refuse. The market-maker. Their veto kills the segment for you. If a linchpin exists and you haven't talked to them, that's an assumption you cannot afford to leave standing.</p>
+
+        <h2>The DMU question that gets skipped</h2>
+
+        <p>You mapped the decision-making unit back in step twelve. Has anything changed since then?</p>
+
+        <p>The companies you sell into are organisms. People move. Job titles change. New executives come in and reset the priority stack. Your champion gets promoted out of the buying role. Your veto-holder gets a new boss with different politics.</p>
+
+        <p>The DMU map you drew is six months old, probably. Refresh it. Ask the question: if I sent the proposal tomorrow, who actually signs?</p>
+
+        <p>If the answer is "I'm not totally sure", that is the most important assumption you have. Go fix it.</p>
+
+        <h2>How to write the list</h2>
+
+        <p>Each assumption becomes a single sentence. Specific. Testable. No hedges.</p>
+
+        <p>Not: "customers will love the product." That's not testable. It's a wish dressed as a sentence.</p>
+
+        <p>Yes: "fifty percent of contacted prospects in the dental-supply segment will agree to a fifteen-minute discovery call." That's testable. You can run it. You'll know within two weeks whether it's true.</p>
+
+        <p>Each assumption you put on the list must pass that test. Specific actor, specific action, specific threshold. If it doesn't, break it down further until it does.</p>
+
+        <p>The shorter the list, the better. Five sharp assumptions beat fifteen mushy ones. Discipline yourself to the five that matter most. The next step is testing them, and you only have time and money to run experiments on what's load-bearing.</p>
+
+        <h2>The honest part</h2>
+
+        <p>Doing this well requires admitting how much of your plan is still made of inference. Most founders find that uncomfortable. They've been telling investors the plan is solid.</p>
+
+        <p>The plan is solid in its structure. Aulet's twenty-four steps give you a coherent shape. But the inputs you've fed into that shape are still partly guesses. That's not a flaw. That's the nature of starting a business before it exists.</p>
+
+        <p>Acknowledging which inputs are guesses is the only way to find out which ones are wrong.</p>
+
+        <p>That's step twenty. The next step is checking them.</p>
+      </div>
+
+      <section class="article-related" aria-label="Related articles">
+        <p class="related-kicker">Related</p>
+        <div class="related-grid">
+          <a class="related-card" href="/writing/building-your-persona/">
+            <div class="related-meta">§ 06.B.05 · 30 Jul 2025</div>
+            <div class="related-title">Building your <em>persona</em></div>
+          </a>
+          <a class="related-card" href="/writing/quantifying-your-value-proposition/">
+            <div class="related-meta">§ 06.B.08 · 6 Aug 2025</div>
+            <div class="related-title">Quantifying your <em>value proposition</em></div>
+          </a>
+          <a class="related-card" href="/writing/the-decision-making-unit/">
+            <div class="related-meta">§ 06.B.12 · 15 Aug 2025</div>
+            <div class="related-title">The <em>decision-making unit</em></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <span class="nth">§ 06.B.20</span>
+        </div>
+
+        <a class="read-next" href="/writing/testing-your-assumptions/">
+          <div class="kicker">Read next · § 06.B.21</div>
+          <h3>Testing your <em>assumptions.</em></h3>
+          <div class="next-meta">The scientific method nobody applies to their startup. →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Operator at the intersection of finance, blockchain &amp; AI. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            8 July 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack for Finance, Operations &amp; Code
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="https://github.com/bwhdx" rel="me">GitHub</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

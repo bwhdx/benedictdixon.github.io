@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="Why bottom-up CAC calculations lie. The top-down formula every operator should know, and the seven levers that bring CAC down over time.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/calculating-cac-honestly/">
+<title>Calculating CAC Honestly — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/calculating-cac-honestly/">
+<meta property="og:title" content="Calculating CAC Honestly">
+<meta property="og:description" content="Top-down beats bottom-up, every time. The arithmetic that prices your sales team and tells you whether you have a business.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-06-30">
+<meta property="article:section" content="Operations">
+<meta property="article:tag" content="CAC">
+<meta property="article:tag" content="Unit Economics">
+<meta property="article:tag" content="Sales">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/calculating-cac-honestly/#article",
+  "headline": "Calculating CAC Honestly: Top-Down Beats Bottom-Up",
+  "description": "Why bottom-up CAC lies. The top-down formula every operator should know, and the seven levers that bring CAC down over time.",
+  "url": "https://benedictdixon.com/writing/calculating-cac-honestly/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/calculating-cac-honestly/",
+  "datePublished": "2026-06-30",
+  "dateModified": "2026-06-30",
+  "wordCount": 1300,
+  "author": { "@type": "Person", "@id": "https://benedictdixon.com/#person", "name": "Benedict W. H. Dixon", "url": "https://benedictdixon.com/" },
+  "publisher": { "@type": "Person", "@id": "https://benedictdixon.com/#person", "name": "Benedict W. H. Dixon" },
+  "image": "https://benedictdixon.com/assets/og-image.png",
+  "isPartOf": { "@type": "CreativeWorkSeries", "@id": "https://benedictdixon.com/writing/#disciplined-entrepreneurship", "name": "Disciplined Entrepreneurship", "url": "https://benedictdixon.com/writing/" },
+  "position": 19,
+  "keywords": ["CAC", "Customer Acquisition Cost", "Unit Economics", "Sales", "Marketing", "Startups", "Disciplined Entrepreneurship"]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.B.19 · Essay</span>
+          <span>30 Jun 2026 · ~6 min read</span>
+        </div>
+        <h1 class="ttl">Calculating CAC<br><em>honestly.</em></h1>
+        <p class="subtitle">Top-down beats bottom-up, every time.</p>
+      </header>
+
+      <div class="article-byline">
+        <span>By <a href="/">Benedict W. H. Dixon</a></span>
+        <span class="by-sep">·</span>
+        <span>Operator across finance, blockchain &amp; AI</span>
+        <span class="by-sep">·</span>
+        <span>After Bill Aulet's <a href="/writing/"><em>Disciplined Entrepreneurship</em></a></span>
+      </div>
+
+      <div class="article-body">
+        <p class="lead">"Our CAC is about £200."</p>
+
+        <p>The founder had a bottom-up calculation. Salary of one sales rep, divided by the number of customers they could close in a year. £200, give or take.</p>
+
+        <p>Their actual CAC, calculated top-down across all sales and marketing spend, was £2,100. They were off by a factor of ten. They were running out of money and didn't know why.</p>
+
+        <p>This is the classic bottom-up trap. The numbers feel precise. The numbers are a lie.</p>
+
+        <h2>Why bottom-up always lies</h2>
+
+        <p>Bottom-up CAC says: pick a salesperson, count what they cost, divide by the deals they close. Add in some marketing cost per deal. Add in the demo time, the laptop, the travel. Multiply, divide, present.</p>
+
+        <p>The problem is everything you forgot to include.</p>
+
+        <p>The marketing spend on customers who never closed. The website team's salaries. The conference booth. The brochure printing. The exec time spent on sales calls instead of strategy. The customer that ghosted after six months of pipeline.</p>
+
+        <p>By the time you remember all of it, your "precise" £200 is £2,000 and your business plan is fiction.</p>
+
+        <p>Bottom-up gives you a number that feels rigorous and is wrong. Top-down gives you a number that feels lossy and is right.</p>
+
+        <h2>The actual formula</h2>
+
+        <p>Take a period of time. A quarter is usually right. Tally every penny you spent on sales and marketing during that quarter.</p>
+
+        <p>Everything.</p>
+
+        <ul>
+          <li>Salaries and benefits of every salesperson</li>
+          <li>Salaries of the marketing team</li>
+          <li>Auto, travel, entertainment</li>
+          <li>Phone, internet, software subscriptions</li>
+          <li>Demo units, technical sales support</li>
+          <li>Website development and maintenance</li>
+          <li>Consultants, agencies, fractional sales help</li>
+          <li>Trade shows, conferences, sponsorships</li>
+          <li>Office costs allocated to the sales/marketing team</li>
+          <li>Computers, equipment</li>
+          <li>Admin support attributable to sales</li>
+          <li>Executive time spent on sales — this is the one nobody books, and it is huge</li>
+        </ul>
+
+        <p>That's your total marketing and sales expense for the period. Aulet calls it TMSE(t). Whatever you call it, it's a single number.</p>
+
+        <p>Now subtract the portion that went to retaining existing customers rather than acquiring new ones — customer success salaries, account renewals, that kind of thing. Aulet's IBSE(t). You're left with the spend that actually bought new customers.</p>
+
+        <p>Divide by the number of new customers you closed in that period.</p>
+
+        <p>That's your CAC. Period.</p>
+
+        <h2>The number you don't want to see</h2>
+
+        <p>Most founders, doing this honestly for the first time, get a number two to ten times higher than what they thought.</p>
+
+        <p>Good. That's the truth, and now you can work with it.</p>
+
+        <p>The follow-up question is not "is this number good?" The follow-up question is "is this number falling?"</p>
+
+        <p>In a healthy startup, CAC starts high and falls. The first ten customers cost an arm and a leg. The next hundred cost less. The next thousand should cost less still. By the time you're at scale, CAC has converged on a terminal value that's roughly stable.</p>
+
+        <p>If your CAC is flat over four quarters, something is broken. Probably the sales process. Probably you haven't moved out of the missionary stage. Probably you're still hand-selling every deal.</p>
+
+        <p>If your CAC is rising, something is on fire. Likely the channel mix has shifted toward expensive direct sales, or your conversion rate is falling, or word of mouth has stopped helping.</p>
+
+        <p>Plot CAC on a graph over time. If it doesn't curve downward, you have a problem the spreadsheet won't fix.</p>
+
+        <h2>The seven levers</h2>
+
+        <p>Aulet's list of CAC-reducers is unsentimental and worth committing to memory.</p>
+
+        <p><strong>Use direct sales judiciously.</strong> Direct sales work. Direct sales are expensive. Hire a salesperson when the deal size can pay for them three times over, not when you "need" sales coverage.</p>
+
+        <p><strong>Automate.</strong> Every step of the funnel that a human touches and could be replaced by software, replace it. This is the part nobody likes because it threatens to make sales feel less artisanal. Do it anyway.</p>
+
+        <p><strong>Improve conversion rates.</strong> The biggest CAC reduction in your power is closing more of the leads you already have. Doubling conversion halves CAC, near enough. Most founders chase more leads when they should chase better closing.</p>
+
+        <p><strong>Reduce the cost of leads.</strong> Cold lists are cheap and useless. Inbound is expensive at the start and free at scale. Build the inbound engine early so it compounds while you sleep.</p>
+
+        <p><strong>Shorten the sales cycle.</strong> Time is money in sales like nowhere else. A six-month deal that becomes a six-week deal cuts CAC by a factor that nothing else can match. Removing one approval step from your sales process is worth more than hiring two more reps.</p>
+
+        <p><strong>Pick the business model with CAC in mind.</strong> SaaS subscriptions have higher LTV but higher CAC. One-time sales have lower LTV but faster decisions. Hybrid models — like Atlassian's product-led growth into enterprise — have driven entire categories. Choose deliberately.</p>
+
+        <p><strong>Word of mouth.</strong> The single biggest CAC lever, and the hardest to engineer. Net Promoter Score is the proxy worth tracking. Customers who would recommend you reduce next-customer CAC more than anything else. They also pay more, churn less, and forgive bugs.</p>
+
+        <h2>The discipline</h2>
+
+        <p>LTV and CAC are both estimates. Both can be optimistic. Both can be tortured to support a narrative.</p>
+
+        <p>Don't. Be the founder who reports them flat, calculates them top-down, and shows the trend honestly.</p>
+
+        <p>Investors who matter will respect the rigour. The ones who don't, you don't need.</p>
+
+        <p>The point of the calculation isn't to make the numbers look good. The point is to know the numbers, so you can change them.</p>
+
+        <p>You can't fix what you won't measure.</p>
+      </div>
+
+      <section class="article-related" aria-label="Related articles">
+        <p class="related-kicker">Related</p>
+        <div class="related-grid">
+          <a class="related-card" href="/writing/mapping-the-sales-process/">
+            <div class="related-meta">§ 06.B.18 · 21 Jun 2026</div>
+            <div class="related-title">Mapping the <em>sales process</em></div>
+          </a>
+          <a class="related-card" href="/writing/calculating-customer-ltv/">
+            <div class="related-meta">§ 06.B.17 · 13 Jun 2026</div>
+            <div class="related-title">Calculating <em>customer LTV</em></div>
+          </a>
+          <a class="related-card" href="/writing/mapping-the-customer-acquisition-process/">
+            <div class="related-meta">§ 06.B.13 · 18 Aug 2025</div>
+            <div class="related-title">Mapping the <em>customer acquisition process</em></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <span class="nth">§ 06.B.19</span>
+        </div>
+
+        <a class="read-next" href="/writing/identifying-your-key-assumptions/">
+          <div class="kicker">Read next · § 06.B.20</div>
+          <h3>Identifying your <em>key assumptions.</em></h3>
+          <div class="next-meta">Everything you've been quietly pretending to know. →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Operator at the intersection of finance, blockchain &amp; AI. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            30 June 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack for Finance, Operations &amp; Code
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="https://github.com/bwhdx" rel="me">GitHub</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
