@@ -187,6 +187,7 @@ button:focus-visible {
   font-size: 18px;
   line-height: 1.65;
   color: var(--ink);
+  margin-top: 40px;
 }
 .article-body > * + * { margin-top: 24px; }
 .article-body p {
