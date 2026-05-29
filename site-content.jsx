@@ -162,7 +162,7 @@ function About() {
 
           <aside className="margin-note about-margin">
             <p>Read also —</p>
-            <p>§ 03 The career, in candles<br/>§ 04 Featured projects<br/>§ 05 Services on offer</p>
+            <p>§ 03 An operator's almanack<br/>§ 04 Featured projects<br/>§ 05 Services on offer</p>
             <p style={{marginTop: 16}}>Contact — <br/>me@benedictdixon.com</p>
           </aside>
         </div>
