@@ -189,10 +189,25 @@ button:focus-visible {
   color: var(--ink);
   margin-top: 40px;
 }
-.article-body > * + * { margin-top: 24px; }
-.article-body p {
-  margin: 0;
-}
+
+/* Universal reset on direct children — keeps sibling rules in control */
+.article-body > * { margin: 0; }
+
+/* Default spacing between consecutive children */
+.article-body > * + * { margin-top: 28px; }
+
+/* Headings get extra breathing room above (chapter feel) */
+.article-body > * + h2 { margin-top: 64px; }
+.article-body > * + h3 { margin-top: 44px; }
+
+/* …but content immediately after a heading is grouped tighter */
+.article-body > h2 + * { margin-top: 16px; }
+.article-body > h3 + * { margin-top: 10px; }
+
+/* Indented padding for lists — universal reset zeroed the default left margin */
+.article-body > ul,
+.article-body > ol { padding-left: 24px; }
+
 .article-body p.lead {
   font-size: 22px;
   line-height: 1.5;
@@ -204,7 +219,6 @@ button:focus-visible {
   font-weight: 400;
   font-size: 32px;
   line-height: 1.15;
-  margin: 56px 0 8px;
   letter-spacing: -0.01em;
 }
 .article-body h3 {
@@ -212,15 +226,10 @@ button:focus-visible {
   font-weight: 500;
   font-size: 22px;
   line-height: 1.25;
-  margin: 40px 0 4px;
   font-style: italic;
 }
 .article-body em { font-style: italic; }
 .article-body strong { font-weight: 600; }
-.article-body ul, .article-body ol {
-  padding-left: 24px;
-  margin: 0;
-}
 .article-body li { margin-top: 8px; }
 .article-body li:first-child { margin-top: 0; }
 .article-body a {
