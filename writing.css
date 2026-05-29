@@ -331,6 +331,93 @@ button:focus-visible {
   .related-grid { grid-template-columns: 1fr; }
 }
 
+/* ── Author bio (between article body & related) ──────── */
+.author-bio {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-top: 72px;
+  padding-top: 40px;
+  border-top: 1px solid var(--ink-hair);
+}
+.author-bio .bio-mark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 36px;
+}
+.author-bio .bio-content { max-width: 580px; }
+.author-bio .bio-kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+.author-bio .bio-name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.15;
+  margin: 0 0 14px;
+  letter-spacing: -0.01em;
+}
+.author-bio .bio-name em { font-style: italic; font-weight: 300; }
+.author-bio .bio-text {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0 0 22px;
+}
+.author-bio .bio-text a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink-hair);
+  text-decoration: none;
+}
+.author-bio .bio-text a:hover { border-bottom-color: var(--ink); }
+.author-bio .bio-ctas {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.author-bio .bio-ctas a {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink-hair);
+  padding-bottom: 4px;
+  transition: border-color 150ms;
+}
+.author-bio .bio-ctas a:hover { border-bottom-color: var(--ink); }
+
+@media (max-width: 600px) {
+  .author-bio {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-top: 32px;
+    margin-top: 56px;
+  }
+  .author-bio .bio-mark {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+  }
+  .author-bio .bio-name { font-size: 24px; }
+}
+
 /* ── Footer / colophon ─────────────────────────────────── */
 .article-foot {
   margin-top: 80px;

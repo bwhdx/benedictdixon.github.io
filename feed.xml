@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Benedict W. H. Dixon · An Almanack</title>
+  <subtitle>Essays on operations, entrepreneurship, AI, blockchain and what gets built.</subtitle>
+  <link href="https://benedictdixon.com/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://benedictdixon.com/" rel="alternate" type="text/html"/>
+  <updated>2026-08-05T00:00:00Z</updated>
+  <id>https://benedictdixon.com/</id>
+  <author>
+    <name>Benedict W. H. Dixon</name>
+    <email>me@benedictdixon.com</email>
+    <uri>https://benedictdixon.com/</uri>
+  </author>
+  <rights>© 2026 Benedict W. H. Dixon. All rights observed.</rights>
+  <icon>https://benedictdixon.com/favicons/favicon.svg</icon>
+  <logo>https://benedictdixon.com/assets/og-image.png</logo>
+  <generator uri="https://benedictdixon.com/">benedictdixon.com</generator>
+
+  <entry>
+    <title>Developing Your Product Plan</title>
+    <link href="https://benedictdixon.com/writing/developing-your-product-plan/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/developing-your-product-plan/</id>
+    <published>2026-08-05T00:00:00Z</published>
+    <updated>2026-08-05T00:00:00Z</updated>
+    <summary>Beyond the beachhead. The roadmap that keeps your core intact while you expand. The last step of the 24-part series.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Roadmap"/>
+  </entry>
+
+  <entry>
+    <title>Will the Dogs Eat the Dog Food?</title>
+    <link href="https://benedictdixon.com/writing/will-the-dogs-eat-the-dog-food/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/will-the-dogs-eat-the-dog-food/</id>
+    <published>2026-07-27T00:00:00Z</published>
+    <updated>2026-07-27T00:00:00Z</updated>
+    <summary>Data beats wishful thinking. The four metrics that tell you if customers are actually using your MVBP, not just saying nice things.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Validation"/>
+  </entry>
+
+  <entry>
+    <title>Testing Your Assumptions</title>
+    <link href="https://benedictdixon.com/writing/testing-your-assumptions/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/testing-your-assumptions/</id>
+    <published>2026-07-18T00:00:00Z</published>
+    <updated>2026-07-18T00:00:00Z</updated>
+    <summary>The escalation ladder that separates real demand from polite interest, from prepayment to letters of intent.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Validation"/>
+  </entry>
+
+  <entry>
+    <title>Identifying Your Key Assumptions</title>
+    <link href="https://benedictdixon.com/writing/identifying-your-key-assumptions/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/identifying-your-key-assumptions/</id>
+    <published>2026-07-08T00:00:00Z</published>
+    <updated>2026-07-08T00:00:00Z</updated>
+    <summary>The five-to-ten things you've been quietly pretending you know. The audit that catches your blind spots before you build.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Risk"/>
+  </entry>
+
+  <entry>
+    <title>Calculating CAC Honestly</title>
+    <link href="https://benedictdixon.com/writing/calculating-cac-honestly/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/calculating-cac-honestly/</id>
+    <published>2026-06-30T00:00:00Z</published>
+    <updated>2026-06-30T00:00:00Z</updated>
+    <summary>Why bottom-up CAC calculations lie. The top-down formula every operator should know, and the seven levers that bring CAC down over time.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Unit Economics"/>
+  </entry>
+
+  <entry>
+    <title>Mapping the Sales Process</title>
+    <link href="https://benedictdixon.com/writing/mapping-the-sales-process/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/mapping-the-sales-process/</id>
+    <published>2026-06-21T00:00:00Z</published>
+    <updated>2026-06-21T00:00:00Z</updated>
+    <summary>Three time horizons, one funnel. Short-term missionary, medium-term channel, long-term scaled — and why founders confuse them.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Sales"/>
+  </entry>
+
+  <entry>
+    <title>Calculating Customer LTV</title>
+    <link href="https://benedictdixon.com/writing/calculating-customer-ltv/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/calculating-customer-ltv/</id>
+    <published>2026-06-13T00:00:00Z</published>
+    <updated>2026-06-13T00:00:00Z</updated>
+    <summary>Profit, not revenue. Discounted by the cost of capital. The 3:1 rule that decides whether your unit economics actually work.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Unit Economics"/>
+  </entry>
+
+  <entry>
+    <title>Drawing Your Product Brochure</title>
+    <link href="https://benedictdixon.com/writing/drawing-your-product-brochure/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/drawing-your-product-brochure/</id>
+    <published>2026-06-04T00:00:00Z</published>
+    <updated>2026-06-04T00:00:00Z</updated>
+    <summary>Dropbox sold 75,000 users with a 3-minute video and no product. The visual spec that beats the 50-page PRD.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Product Specification"/>
+  </entry>
+
+  <entry>
+    <title>Building a Second Brain That Doesn't Die</title>
+    <link href="https://benedictdixon.com/writing/building-a-second-brain/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/building-a-second-brain/</id>
+    <published>2026-05-28T00:00:00Z</published>
+    <updated>2026-05-28T00:00:00Z</updated>
+    <summary>The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="PKM"/>
+  </entry>
+
+  <entry>
+    <title>In Clawd We Trust: A Year of Claude Code, Distilled</title>
+    <link href="https://benedictdixon.com/writing/in-clawd-we-trust/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/in-clawd-we-trust/</id>
+    <published>2026-02-15T00:00:00Z</published>
+    <updated>2026-02-15T00:00:00Z</updated>
+    <summary>A year of intensive Claude Code, distilled. The mental model, the environment, the phased workflow and the quality practices that turn it into a 100x force multiplier.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="AI"/>
+  </entry>
+
+  <entry>
+    <title>Setting Your Pricing Framework</title>
+    <link href="https://benedictdixon.com/writing/setting-your-pricing-framework/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/setting-your-pricing-framework/</id>
+    <published>2025-09-05T00:00:00Z</published>
+    <updated>2025-09-05T00:00:00Z</updated>
+    <summary>Your price isn't what it costs plus margin. Your price is what transformation is worth.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Pricing"/>
+  </entry>
+
+  <entry>
+    <title>Designing Your Business Model</title>
+    <link href="https://benedictdixon.com/writing/designing-your-business-model/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/designing-your-business-model/</id>
+    <published>2025-08-28T00:00:00Z</published>
+    <updated>2025-08-28T00:00:00Z</updated>
+    <summary>Your business model is your strategy. Your pricing is just a tactic. Get the strategy right and the tactics barely matter.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Strategy"/>
+  </entry>
+
+  <entry>
+    <title>Calculating TAM for Follow-On Markets</title>
+    <link href="https://benedictdixon.com/writing/calculating-tam-for-follow-on-markets/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/calculating-tam-for-follow-on-markets/</id>
+    <published>2025-08-22T00:00:00Z</published>
+    <updated>2025-08-22T00:00:00Z</updated>
+    <summary>Follow-on markets are like dessert. Great to plan, fatal to eat before dinner. Win the beachhead first.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Expansion"/>
+  </entry>
+
+  <entry>
+    <title>Mapping the Customer Acquisition Process</title>
+    <link href="https://benedictdixon.com/writing/mapping-the-customer-acquisition-process/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/mapping-the-customer-acquisition-process/</id>
+    <published>2025-08-18T00:00:00Z</published>
+    <updated>2025-08-18T00:00:00Z</updated>
+    <summary>Your 30-day sales cycle is actually 400 days. The 17 hidden steps founders mistake for three.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Sales"/>
+  </entry>
+
+  <entry>
+    <title>The Decision-Making Unit</title>
+    <link href="https://benedictdixon.com/writing/the-decision-making-unit/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-decision-making-unit/</id>
+    <published>2025-08-15T00:00:00Z</published>
+    <updated>2025-08-15T00:00:00Z</updated>
+    <summary>Why the person who loves your product usually can't buy it, and the person who can might not know you exist.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="B2B Sales"/>
+  </entry>
+
+  <entry>
+    <title>Charting Your Competitive Position</title>
+    <link href="https://benedictdixon.com/writing/charting-your-competitive-position/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/charting-your-competitive-position/</id>
+    <published>2025-08-13T00:00:00Z</published>
+    <updated>2025-08-13T00:00:00Z</updated>
+    <summary>Your real competition isn't other startups. It's Excel, email, sticky notes and the way things have always been done.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Strategy"/>
+  </entry>
+
+  <entry>
+    <title>Define Your Core</title>
+    <link href="https://benedictdixon.com/writing/define-your-core/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/define-your-core/</id>
+    <published>2025-08-11T00:00:00Z</published>
+    <updated>2025-08-11T00:00:00Z</updated>
+    <summary>Your moat will crumble. Your core is the one thing you do better than anyone, even when all your walls fall down.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Strategy"/>
+  </entry>
+
+  <entry>
+    <title>Finding Your First 10 Customers</title>
+    <link href="https://benedictdixon.com/writing/finding-your-first-10-customers/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/finding-your-first-10-customers/</id>
+    <published>2025-08-07T00:00:00Z</published>
+    <updated>2025-08-07T00:00:00Z</updated>
+    <summary>Your friends saying they'd buy isn't validation, it's politeness. Real validation comes from strangers.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Validation"/>
+  </entry>
+
+  <entry>
+    <title>Quantifying Your Value Proposition</title>
+    <link href="https://benedictdixon.com/writing/quantifying-your-value-proposition/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/quantifying-your-value-proposition/</id>
+    <published>2025-08-06T00:00:00Z</published>
+    <updated>2025-08-06T00:00:00Z</updated>
+    <summary>Customers don't buy features. They buy outcomes. And outcomes have numbers.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Sales"/>
+  </entry>
+
+  <entry>
+    <title>Why Your MVP Is Already Too Big</title>
+    <link href="https://benedictdixon.com/writing/why-your-mvp-is-already-too-big/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/why-your-mvp-is-already-too-big/</id>
+    <published>2025-08-05T00:00:00Z</published>
+    <updated>2025-08-05T00:00:00Z</updated>
+    <summary>Most startups write a 10,000-word product spec instead of drawing a picture. Six months later they build exactly what nobody wanted.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="MVP"/>
+  </entry>
+
+  <entry>
+    <title>Mapping Your Full Customer Journey</title>
+    <link href="https://benedictdixon.com/writing/mapping-your-full-customer-journey/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/mapping-your-full-customer-journey/</id>
+    <published>2025-07-31T00:00:00Z</published>
+    <updated>2025-07-31T00:00:00Z</updated>
+    <summary>The $2M feature nobody wanted. The journey map that catches it before you build.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Product"/>
+  </entry>
+
+  <entry>
+    <title>Building Your Persona</title>
+    <link href="https://benedictdixon.com/writing/building-your-persona/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/building-your-persona/</id>
+    <published>2025-07-30T00:00:00Z</published>
+    <updated>2025-07-30T00:00:00Z</updated>
+    <summary>The one customer who matters more than all others. Name them, know them, build for them.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Persona"/>
+  </entry>
+
+  <entry>
+    <title>Why Every TAM Slide Is a Lie</title>
+    <link href="https://benedictdixon.com/writing/why-every-tam-slide-is-a-lie/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/why-every-tam-slide-is-a-lie/</id>
+    <published>2025-07-29T00:00:00Z</published>
+    <updated>2025-07-29T00:00:00Z</updated>
+    <summary>Bottom-up beachhead sizing in 9 days, not 9 months. The TAM that actually matters to your seed round.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="TAM"/>
+  </entry>
+
+  <entry>
+    <title>Building Your End User Profile</title>
+    <link href="https://benedictdixon.com/writing/building-your-end-user-profile/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/building-your-end-user-profile/</id>
+    <published>2025-07-25T00:00:00Z</published>
+    <updated>2025-07-25T00:00:00Z</updated>
+    <summary>Why demographics are dead. The behavioural profile that actually predicts buying behaviour.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Customer Discovery"/>
+  </entry>
+
+  <entry>
+    <title>The Beachhead Market</title>
+    <link href="https://benedictdixon.com/writing/the-beachhead-market/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-beachhead-market/</id>
+    <published>2025-07-23T00:00:00Z</published>
+    <updated>2025-07-23T00:00:00Z</updated>
+    <summary>Why starting small is your only path to going big. Pick the market you can own, then expand.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Beachhead"/>
+  </entry>
+
+  <entry>
+    <title>Market Segmentation</title>
+    <link href="https://benedictdixon.com/writing/market-segmentation/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/market-segmentation/</id>
+    <published>2025-07-21T00:00:00Z</published>
+    <updated>2025-07-21T00:00:00Z</updated>
+    <summary>Why 99% of startups target the wrong customers first. Focus is your only superpower.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Segmentation"/>
+  </entry>
+
+  <entry>
+    <title>Prediction Markets</title>
+    <link href="https://benedictdixon.com/writing/prediction-markets/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/prediction-markets/</id>
+    <published>2025-07-17T00:00:00Z</published>
+    <updated>2025-07-17T00:00:00Z</updated>
+    <summary>From gambling to humanity's decision engine. Why prediction markets are the most important information primitive nobody's using.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="Markets"/>
+  </entry>
+
+  <entry>
+    <title>Beyond Lean: The Complete Entrepreneurship Framework</title>
+    <link href="https://benedictdixon.com/writing/beyond-lean/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/beyond-lean/</id>
+    <published>2025-07-15T00:00:00Z</published>
+    <updated>2025-07-15T00:00:00Z</updated>
+    <summary>Why Lean and Disciplined Entrepreneurship stop at product-market fit, and the playbook for what comes next.</summary>
+    <category term="Operations &amp; Entrepreneurship"/>
+    <category term="Manifesto"/>
+  </entry>
+
+  <entry>
+    <title>Tesserakt Protocol</title>
+    <link href="https://benedictdixon.com/writing/tesserakt-protocol/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/tesserakt-protocol/</id>
+    <published>2025-02-18T00:00:00Z</published>
+    <updated>2025-02-18T00:00:00Z</updated>
+    <summary>Purpose-built infrastructure for AI agents. The missing protocol layer between models and the world.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="AI Agents"/>
+  </entry>
+
+  <entry>
+    <title>The Missing Infrastructure for AI Agents</title>
+    <link href="https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/</id>
+    <published>2025-02-07T00:00:00Z</published>
+    <updated>2025-02-07T00:00:00Z</updated>
+    <summary>Why today's agents fail at production-scale tasks, and what the infrastructure layer needs to look like.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="AI Agents"/>
+  </entry>
+
+  <entry>
+    <title>Autonomous AI Agents</title>
+    <link href="https://benedictdixon.com/writing/autonomous-ai-agents/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/autonomous-ai-agents/</id>
+    <published>2024-12-13T00:00:00Z</published>
+    <updated>2024-12-13T00:00:00Z</updated>
+    <summary>When IoT, blockchain and AI converge, autonomous agents can represent individuals and businesses in milliseconds.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="AI"/>
+  </entry>
+
+  <entry>
+    <title>The Holy Trinity</title>
+    <link href="https://benedictdixon.com/writing/the-holy-trinity/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-holy-trinity/</id>
+    <published>2024-12-12T00:00:00Z</published>
+    <updated>2024-12-12T00:00:00Z</updated>
+    <summary>Three powerful tools — blockchain, AI and IoT — coming together in ways that make each more useful than they are alone.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="Blockchain"/>
+  </entry>
+
+  <entry>
+    <title>The Democratic Myth of DAOs</title>
+    <link href="https://benedictdixon.com/writing/the-democratic-myth-of-daos/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-democratic-myth-of-daos/</id>
+    <published>2024-11-27T00:00:00Z</published>
+    <updated>2024-11-27T00:00:00Z</updated>
+    <summary>DAOs promise radical decentralisation. Under current models they may inadvertently slide toward autocracy.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="DAO"/>
+  </entry>
+
+</feed>
