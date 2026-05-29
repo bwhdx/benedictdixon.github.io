@@ -1492,20 +1492,15 @@ const ARTICLES = [{
   excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
   url: '/writing/building-a-second-brain/'
 }, {
-  date: 'Dec 2024',
-  title: 'Autonomous AI Agents',
-  excerpt: 'When IoT, blockchain and AI converge, autonomous agents can represent individuals and businesses in milliseconds.',
-  url: '/writing/autonomous-ai-agents/'
+  date: 'Jul 2025',
+  title: 'Prediction Markets',
+  excerpt: 'From gambling to humanity\'s decision engine. Why prediction markets are the most important information primitive nobody\'s using.',
+  url: '/writing/prediction-markets/'
 }, {
-  date: 'Dec 2024',
-  title: 'The Holy Trinity',
-  excerpt: 'Three powerful tools coming together in ways that make each more useful than they are alone.',
-  url: '/writing/the-holy-trinity/'
-}, {
-  date: 'Nov 2024',
-  title: 'The Democratic Myth of DAOs',
-  excerpt: 'DAOs promise radical decentralisation. Under current models they may inadvertently slide toward autocracy.',
-  url: '/writing/the-democratic-myth-of-daos/'
+  date: 'Feb 2025',
+  title: 'Tesserakt Protocol',
+  excerpt: 'Purpose-built infrastructure for AI agents. The missing protocol layer between models and the world.',
+  url: '/writing/tesserakt-protocol/'
 }];
 const SPEAKING = [{
   event: 'Zebu Live',
@@ -1529,7 +1524,7 @@ function Writing() {
     className: "ttl"
   }, "In ", /*#__PURE__*/React.createElement("em", null, "print"), " and at the lectern.")), /*#__PURE__*/React.createElement("div", {
     className: "right"
-  }, "Latest five \xB7 technology")), /*#__PURE__*/React.createElement("div", {
+  }, "Latest four \xB7 technology")), /*#__PURE__*/React.createElement("div", {
     className: "writing-grid"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "kicker",

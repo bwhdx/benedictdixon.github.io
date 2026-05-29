@@ -351,22 +351,16 @@ const ARTICLES = [
     url: '/writing/building-a-second-brain/',
   },
   {
-    date: 'Dec 2024',
-    title: 'Autonomous AI Agents',
-    excerpt: 'When IoT, blockchain and AI converge, autonomous agents can represent individuals and businesses in milliseconds.',
-    url: '/writing/autonomous-ai-agents/',
+    date: 'Jul 2025',
+    title: 'Prediction Markets',
+    excerpt: 'From gambling to humanity\'s decision engine. Why prediction markets are the most important information primitive nobody\'s using.',
+    url: '/writing/prediction-markets/',
   },
   {
-    date: 'Dec 2024',
-    title: 'The Holy Trinity',
-    excerpt: 'Three powerful tools coming together in ways that make each more useful than they are alone.',
-    url: '/writing/the-holy-trinity/',
-  },
-  {
-    date: 'Nov 2024',
-    title: 'The Democratic Myth of DAOs',
-    excerpt: 'DAOs promise radical decentralisation. Under current models they may inadvertently slide toward autocracy.',
-    url: '/writing/the-democratic-myth-of-daos/',
+    date: 'Feb 2025',
+    title: 'Tesserakt Protocol',
+    excerpt: 'Purpose-built infrastructure for AI agents. The missing protocol layer between models and the world.',
+    url: '/writing/tesserakt-protocol/',
   },
 ];
 
@@ -384,7 +378,7 @@ function Writing() {
             <p className="num">§ 06 · Writing &amp; speaking</p>
             <h2 className="ttl">In <em>print</em> and at the lectern.</h2>
           </div>
-          <div className="right">Latest five · technology</div>
+          <div className="right">Latest four · technology</div>
         </div>
 
         <div className="writing-grid">
