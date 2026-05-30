@@ -1,0 +1,51 @@
+{
+  "title": "Brown butter chocolate chip cookies",
+  "dek": "The diner cookie, refined. Browned butter and a 24-hour rest do the heavy lifting.",
+  "publishedAt": "2026-05-29",
+  "category": "baking",
+  "cuisine": "American",
+  "difficulty": "moderate",
+  "tags": ["cookies", "brown butter", "make-ahead", "chocolate"],
+  "serves": "makes 18 cookies",
+  "totalTime": "PT26H",
+  "activeTime": "PT45M",
+  "heroImage": "hero.jpg",
+  "heroAlt": "A stack of three dark-edged chocolate chip cookies on baking parchment, the top one broken open to show melted chocolate pools.",
+  "ingredients": [
+    {
+      "section": "dough",
+      "items": [
+        { "metric": "227g", "us": "1 cup", "item": "unsalted butter" },
+        { "metric": "200g", "us": "1 cup", "item": "light brown sugar, packed" },
+        { "metric": "100g", "us": "1/2 cup", "item": "granulated sugar" },
+        { "metric": "2 large", "us": "2 large", "item": "eggs", "note": "room temperature" },
+        { "metric": "1 large", "us": "1 large", "item": "egg yolk", "note": "room temperature" },
+        { "metric": "10ml", "us": "2 tsp", "item": "vanilla extract" },
+        { "metric": "315g", "us": "2 1/2 cups", "item": "all-purpose flour" },
+        { "metric": "5g", "us": "1 tsp", "item": "baking soda" },
+        { "metric": "6g", "us": "1 1/4 tsp", "item": "fine sea salt" },
+        { "metric": "300g", "us": "2 cups", "item": "dark chocolate", "note": "chopped, 60–70% cacao" }
+      ]
+    },
+    {
+      "section": "to finish",
+      "items": [
+        { "metric": "flaky", "us": "flaky", "item": "Maldon salt", "note": "to taste" }
+      ]
+    }
+  ],
+  "steps": [
+    "Brown the butter in a light-coloured pan over medium heat. Swirl constantly once it starts to foam. It's done when the milk solids at the bottom are deep amber and the whole pan smells like toffee — about 6–8 minutes. Pour into a heatproof bowl, scraping in every brown bit, and cool to barely warm.",
+    "Whisk the sugars into the warm butter until smooth and glossy. Add the eggs and yolk one at a time, whisking well between each. Stir in the vanilla.",
+    "In a separate bowl, whisk the flour, baking soda, and salt. Fold into the wet mixture with a spatula until no streaks remain. Fold in the chopped chocolate.",
+    "Cover and refrigerate for at least 24 hours. This is non-negotiable — the rest is what makes the flavour.",
+    "When ready to bake, heat the oven to 190°C / 375°F. Line two baking sheets with parchment.",
+    "Scoop 60g portions (about 2 heaped tablespoons) onto the sheets, spacing well apart. Sprinkle each with flaky salt.",
+    "Bake one tray at a time for 11–13 minutes — edges set and golden, centres still soft and a little underdone. Cool on the tray for 5 minutes before moving."
+  ],
+  "notes": [
+    "The 24-hour rest is doing real work — the flour hydrates, the flavours deepen. Don't skip.",
+    "Pull them a minute early for chewy centres; a minute later for crisp edges.",
+    "Dough keeps in the fridge for 72 hours and freezes (pre-scooped) for a month."
+  ]
+}

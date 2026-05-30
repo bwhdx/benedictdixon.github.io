@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mikaela Ikenouye</title>
+  <link href="https://example.com/"/>
+  <link rel="self" href="https://example.com/feed.xml"/>
+  <id>https://example.com/</id>
+  <updated>2026-05-30T05:11:30.345Z</updated>
+  <author><name>Mikaela Ikenouye</name></author>
+  <entry>
+    <title>Brown butter chocolate chip cookies</title>
+    <link href="https://example.com/recipes/classic-chocolate-chip-cookies/"/>
+    <id>https://example.com/recipes/classic-chocolate-chip-cookies/</id>
+    <updated>2026-05-29T00:00:00Z</updated>
+    <published>2026-05-29T00:00:00Z</published>
+    <summary>The diner cookie, refined. Browned butter and a 24-hour rest do the heavy lifting.</summary>
+    <category term="baking"/>
+  </entry>
+</feed>
