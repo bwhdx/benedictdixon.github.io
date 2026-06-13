@@ -104,8 +104,8 @@ function Hero() {
           </h1>
           <div className="hero-band-bottom">
             <p className="hero-tagline-text">
-              An operator at the intersection of
-              <em> finance, blockchain &amp; AI.</em>
+              An operator who <em>ships the code and runs the company</em>
+              — across finance, blockchain &amp; AI.
             </p>
             <a className="hero-scroll" href="#about">
               <span className="meta">Read on</span>
@@ -178,7 +178,7 @@ function About() {
           <article>
             <div className="kicker">§ 02.b · Product &amp; Technology</div>
             <h3 className="subhead">Product &amp; <em>Technology</em></h3>
-            <p>Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production.</p>
+            <p>Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production. AI woven into the products themselves — and into how they get built.</p>
           </article>
           <article>
             <div className="kicker">§ 02.c · Commercial</div>
@@ -248,7 +248,7 @@ function Projects() {
         <div className="section-head">
           <div>
             <p className="num">§ 04 · Featured projects</p>
-            <h2 className="ttl">Four <em>case studies.</em></h2>
+            <h2 className="ttl">Selected <em>work.</em></h2>
           </div>
           <div className="right">pp. 32–48</div>
         </div>
@@ -434,9 +434,9 @@ function Contact() {
 
         <div className="contact-grid">
           <p className="lede" style={{maxWidth: 720}}>
-            For executive leadership, company operations or strategic advisory across
-            fintech, blockchain and AI. Open to conversations with founders
-            and operators building real things.
+            Operating roles — direct. Advisory, fractional &amp; board engagements —
+            via DD Ventures. Across fintech, blockchain and AI. Open to conversations
+            with founders and operators building real things.
           </p>
 
           <div className="contact-links">

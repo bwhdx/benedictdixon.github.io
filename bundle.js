@@ -1262,7 +1262,7 @@ function Hero() {
     className: "hero-band-bottom"
   }, /*#__PURE__*/React.createElement("p", {
     className: "hero-tagline-text"
-  }, "An operator at the intersection of", /*#__PURE__*/React.createElement("em", null, " finance, blockchain & AI.")), /*#__PURE__*/React.createElement("a", {
+  }, "An operator who ", /*#__PURE__*/React.createElement("em", null, "ships the code and runs the company"), "\u2014 across finance, blockchain & AI."), /*#__PURE__*/React.createElement("a", {
     className: "hero-scroll",
     href: "#about"
   }, /*#__PURE__*/React.createElement("span", {
@@ -1328,7 +1328,7 @@ function About() {
     className: "kicker"
   }, "\xA7 02.b \xB7 Product & Technology"), /*#__PURE__*/React.createElement("h3", {
     className: "subhead"
-  }, "Product & ", /*#__PURE__*/React.createElement("em", null, "Technology")), /*#__PURE__*/React.createElement("p", null, "Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production.")), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
+  }, "Product & ", /*#__PURE__*/React.createElement("em", null, "Technology")), /*#__PURE__*/React.createElement("p", null, "Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production. AI woven into the products themselves \u2014 and into how they get built.")), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
     className: "kicker"
   }, "\xA7 02.c \xB7 Commercial"), /*#__PURE__*/React.createElement("h3", {
     className: "subhead"
@@ -1399,7 +1399,7 @@ function Projects() {
     className: "num"
   }, "\xA7 04 \xB7 Featured projects"), /*#__PURE__*/React.createElement("h2", {
     className: "ttl"
-  }, "Four ", /*#__PURE__*/React.createElement("em", null, "case studies."))), /*#__PURE__*/React.createElement("div", {
+  }, "Selected ", /*#__PURE__*/React.createElement("em", null, "work."))), /*#__PURE__*/React.createElement("div", {
     className: "right"
   }, "pp. 32\u201348")), /*#__PURE__*/React.createElement("div", {
     className: "list-divided"
@@ -1621,7 +1621,7 @@ function Contact() {
     style: {
       maxWidth: 720
     }
-  }, "For executive leadership, company operations or strategic advisory across fintech, blockchain and AI. Open to conversations with founders and operators building real things."), /*#__PURE__*/React.createElement("div", {
+  }, "Operating roles \u2014 direct. Advisory, fractional & board engagements \u2014 via DD Ventures. Across fintech, blockchain and AI. Open to conversations with founders and operators building real things."), /*#__PURE__*/React.createElement("div", {
     className: "contact-links"
   }, /*#__PURE__*/React.createElement("a", {
     href: "mailto:me@benedictdixon.com",
