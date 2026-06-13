@@ -212,8 +212,9 @@ const PROJECTS = [
     name: 'Kash',
     role: 'COO & Interim CTO',
     period: '2025 –',
-    body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
-    pills: ['Operations', 'Product', 'Technology', 'Finance', 'Partnerships'],
+    body: 'COO and CTO from inception of an AI-powered prediction marketplace — users trade straight from social media, and the AI reads their intent, places the trade and resolves the market. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
+    pills: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
+    url: 'https://kash.bot/',
   },
   {
     num: '04.ii',
@@ -222,6 +223,7 @@ const PROJECTS = [
     period: '2024 – 2025',
     body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention.',
     pills: ['Ecosystem Growth', 'Team Leadership', 'Strategic Vision'],
+    url: 'https://voi.network/',
   },
   {
     num: '04.iii',
@@ -263,6 +265,13 @@ function Projects() {
               <div className="project-body">
                 <h3 className="subhead">{p.name}<span className="project-role"> · {p.role}</span></h3>
                 <p>{p.body}</p>
+                {p.url && (
+                  <p style={{marginTop: 16}}>
+                    <a className="link-arrow" href={p.url} target="_blank" rel="noreferrer">
+                      {p.url.replace(/^https?:\/\//, '').replace(/\/$/, '')} →
+                    </a>
+                  </p>
+                )}
                 <div className="project-pills">
                   {p.pills.map((t, j) => <span key={j} className="pill">{t}</span>)}
                 </div>

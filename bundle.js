@@ -1362,15 +1362,17 @@ const PROJECTS = [{
   name: 'Kash',
   role: 'COO & Interim CTO',
   period: '2025 –',
-  body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
-  pills: ['Operations', 'Product', 'Technology', 'Finance', 'Partnerships']
+  body: 'COO and CTO from inception of an AI-powered prediction marketplace — users trade straight from social media, and the AI reads their intent, places the trade and resolves the market. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
+  pills: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
+  url: 'https://kash.bot/'
 }, {
   num: '04.ii',
   name: 'Voi Network',
   role: 'Chief Ecosystem Officer',
   period: '2024 – 2025',
   body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention.',
-  pills: ['Ecosystem Growth', 'Team Leadership', 'Strategic Vision']
+  pills: ['Ecosystem Growth', 'Team Leadership', 'Strategic Vision'],
+  url: 'https://voi.network/'
 }, {
   num: '04.iii',
   name: 'Pound Token',
@@ -1418,7 +1420,16 @@ function Projects() {
     className: "subhead"
   }, p.name, /*#__PURE__*/React.createElement("span", {
     className: "project-role"
-  }, " \xB7 ", p.role)), /*#__PURE__*/React.createElement("p", null, p.body), /*#__PURE__*/React.createElement("div", {
+  }, " \xB7 ", p.role)), /*#__PURE__*/React.createElement("p", null, p.body), p.url && /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: 16
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "link-arrow",
+    href: p.url,
+    target: "_blank",
+    rel: "noreferrer"
+  }, p.url.replace(/^https?:\/\//, '').replace(/\/$/, ''), " \u2192")), /*#__PURE__*/React.createElement("div", {
     className: "project-pills"
   }, p.pills.map((t, j) => /*#__PURE__*/React.createElement("span", {
     key: j,
