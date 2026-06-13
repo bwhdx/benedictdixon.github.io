@@ -434,9 +434,9 @@ function Contact() {
 
         <div className="contact-grid">
           <p className="lede" style={{maxWidth: 720}}>
-            Operating roles — direct. Advisory, fractional &amp; board engagements —
-            via DD Ventures. Across fintech, blockchain and AI. Open to conversations
-            with founders and operators building real things.
+            Open to conversations with founders and operators building real things
+            across fintech, blockchain and AI. Operating roles direct; advisory,
+            fractional and board engagements through DD Ventures.
           </p>
 
           <div className="contact-links">

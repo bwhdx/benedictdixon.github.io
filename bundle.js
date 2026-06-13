@@ -1621,7 +1621,7 @@ function Contact() {
     style: {
       maxWidth: 720
     }
-  }, "Operating roles \u2014 direct. Advisory, fractional & board engagements \u2014 via DD Ventures. Across fintech, blockchain and AI. Open to conversations with founders and operators building real things."), /*#__PURE__*/React.createElement("div", {
+  }, "Open to conversations with founders and operators building real things across fintech, blockchain and AI. Operating roles direct; advisory, fractional and board engagements through DD Ventures."), /*#__PURE__*/React.createElement("div", {
     className: "contact-links"
   }, /*#__PURE__*/React.createElement("a", {
     href: "mailto:me@benedictdixon.com",
