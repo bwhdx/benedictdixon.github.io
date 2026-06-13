@@ -1362,7 +1362,7 @@ const PROJECTS = [{
   name: 'Kash',
   role: 'COO & Interim CTO',
   period: '2025 –',
-  body: 'COO and CTO from inception of an AI-powered prediction marketplace — users trade straight from social media, and the AI reads their intent, places the trade and resolves the market. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
+  body: 'COO and CTO from inception of an AI-powered prediction marketplace — users trade straight from social media, and the AI parses their intent, creates the markets and resolves them. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
   pills: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
   url: 'https://kash.bot/'
 }, {
@@ -1370,7 +1370,7 @@ const PROJECTS = [{
   name: 'Voi Network',
   role: 'Chief Ecosystem Officer',
   period: '2024 – 2025',
-  body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention.',
+  body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention. Exited the role in 2025.',
   pills: ['Ecosystem Growth', 'Team Leadership', 'Strategic Vision'],
   url: 'https://voi.network/'
 }, {
@@ -1385,7 +1385,7 @@ const PROJECTS = [{
   name: 'Nettle',
   role: 'Chief Product & Technology Officer',
   period: '2022 – 2023',
-  body: 'Led product and technology for an innovative fintech payments and loyalty platform. Architected a multi-currency payment system. Accelerated time-to-market through customer-driven development.',
+  body: 'Led product and technology for an innovative fintech payments and loyalty platform. Architected a multi-currency payment system. Accelerated time-to-market through customer-driven development. The company later ceased operations.',
   pills: ['Product Strategy', 'Payment Systems', 'Team Building']
 }];
 function Projects() {
