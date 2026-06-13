@@ -1307,7 +1307,7 @@ function About() {
     className: "about-grid"
   }, /*#__PURE__*/React.createElement("div", {
     className: "body about-lede drop"
-  }, /*#__PURE__*/React.createElement("p", null, "A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom."), /*#__PURE__*/React.createElement("p", null, "JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point. Always the backdrop, never the cage.")), /*#__PURE__*/React.createElement("aside", {
+  }, /*#__PURE__*/React.createElement("p", null, "A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom."), /*#__PURE__*/React.createElement("p", null, "JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. Every one reached production and moved real money \u2014 live, at volume, without incident. The breadth is the point. Always the backdrop, never the cage.")), /*#__PURE__*/React.createElement("aside", {
     className: "margin-note about-margin"
   }, /*#__PURE__*/React.createElement("p", null, "Read also \u2014"), /*#__PURE__*/React.createElement("p", null, "\xA7 03 An operator's almanack", /*#__PURE__*/React.createElement("br", null), "\xA7 04 Featured projects", /*#__PURE__*/React.createElement("br", null), "\xA7 05 Services on offer"), /*#__PURE__*/React.createElement("p", {
     style: {
@@ -1362,7 +1362,7 @@ const PROJECTS = [{
   name: 'Kash',
   role: 'COO & Interim CTO',
   period: '2025 –',
-  body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it.',
+  body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
   pills: ['Operations', 'Product', 'Technology', 'Finance', 'Partnerships']
 }, {
   num: '04.ii',

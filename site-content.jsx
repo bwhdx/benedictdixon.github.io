@@ -157,7 +157,7 @@ function About() {
         <div className="about-grid">
           <div className="body about-lede drop">
             <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom.</p>
-            <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point. Always the backdrop, never the cage.</p>
+            <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. Every one reached production and moved real money — live, at volume, without incident. The breadth is the point. Always the backdrop, never the cage.</p>
           </div>
 
           <aside className="margin-note about-margin">
@@ -212,7 +212,7 @@ const PROJECTS = [
     name: 'Kash',
     role: 'COO & Interim CTO',
     period: '2025 –',
-    body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it.',
+    body: 'COO and CTO from inception. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
     pills: ['Operations', 'Product', 'Technology', 'Finance', 'Partnerships'],
   },
   {
