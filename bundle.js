@@ -1642,6 +1642,14 @@ function Contact() {
   }, "Email"), /*#__PURE__*/React.createElement("div", {
     className: "contact-value"
   }, "me@benedictdixon.com")), /*#__PURE__*/React.createElement("a", {
+    href: "https://calendar.app.google/TkGwibhqQHXMRX5QA",
+    target: "_blank",
+    rel: "noreferrer"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "kicker"
+  }, "Book a call"), /*#__PURE__*/React.createElement("div", {
+    className: "contact-value"
+  }, "Find a time")), /*#__PURE__*/React.createElement("a", {
     href: "https://www.linkedin.com/in/benedict-dixon/",
     target: "_blank",
     rel: "me noreferrer"

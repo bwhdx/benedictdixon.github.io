@@ -453,6 +453,10 @@ function Contact() {
               <div className="kicker">Email</div>
               <div className="contact-value">me@benedictdixon.com</div>
             </a>
+            <a href="https://calendar.app.google/TkGwibhqQHXMRX5QA" target="_blank" rel="noreferrer">
+              <div className="kicker">Book a call</div>
+              <div className="contact-value">Find a time</div>
+            </a>
             <a href="https://www.linkedin.com/in/benedict-dixon/" target="_blank" rel="me noreferrer">
               <div className="kicker">LinkedIn</div>
               <div className="contact-value">/in/benedict-dixon</div>
