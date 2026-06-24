@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="A year building a 55-microservice system near-solo. AI didn't just make the typing faster; it deleted the coordination overhead. The cap that's left is judgement.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/the-unit-of-production-has-changed/">
+<title>The unit of production has changed — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/the-unit-of-production-has-changed/">
+<meta property="og:title" content="The unit of production has changed">
+<meta property="og:description" content="AI didn't just make the typing faster; it deleted the coordination overhead. The cap that's left is judgement.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-06-24">
+<meta property="article:section" content="Technology">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="Building">
+<meta property="article:tag" content="Claude Code">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+<link rel="alternate" type="application/atom+xml" title="Benedict W. H. Dixon · An Almanack" href="https://benedictdixon.com/feed.xml">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/#article",
+  "headline": "The unit of production has changed",
+  "description": "A year building a 55-microservice system near-solo. AI didn't just make the typing faster; it deleted the coordination overhead. The cap that's left is judgement.",
+  "url": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/",
+  "datePublished": "2026-06-24",
+  "dateModified": "2026-06-24",
+  "wordCount": 480,
+  "author": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon",
+    "url": "https://benedictdixon.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://benedictdixon.com/assets/og-image.png",
+    "width": 1200,
+    "height": 630,
+    "caption": "Benedict W. H. Dixon — candlestick portrait on a navy book cover."
+  },
+  "keywords": [
+    "AI",
+    "Building",
+    "Claude Code",
+    "Solo Engineering",
+    "Coordination Overhead"
+  ],
+  "articleSection": "Building & Technology",
+  "inLanguage": "en-GB"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://benedictdixon.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Writing",
+      "item": "https://benedictdixon.com/writing/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The unit of production has changed",
+      "item": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.A.11 · Essay</span>
+          <span>24 Jun 2026 · ~3 min read</span>
+        </div>
+        <h1 class="ttl">The unit of production<br><em>has changed.</em></h1>
+        <p class="subtitle">A year building solo with AI, and the cap that's actually left.</p>
+      </header>
+
+      <div class="article-byline">
+        <span>By <a href="/">Benedict W. H. Dixon</a></span>
+        <span class="by-sep">·</span>
+        <span>Operator across finance, blockchain &amp; AI</span>
+      </div>
+
+      <div class="article-body">
+        <p class="lead">About a year ago I joined Kash. Since then I've built, near enough solo, a system of 55-plus microservices. Event-driven, with a stack of edge functions, infrastructure-as-code, the database schema underneath, and four Next.js apps on top. It spans payments, blockchain, AI and social, and it's built to enterprise-grade resiliency throughout, because it moves real money.</p>
+
+        <p>The old way, that's twenty-plus people across several pods, a couple of years, and millions in salaries. I've had help. A designer on the UI, a teammate on the on-chain protocol. But the architecture and most of the stack is one head and a lot of <a href="/writing/in-clawd-we-trust/">Claude Code</a>.</p>
+
+        <p>People hear that and reach for the obvious read: AI writes code fast, so one person goes faster. That's not really it. Writing the code was never the slow part.</p>
+
+        <p>The slow part was always the coordination. A team big enough to do the work has to be big enough to carry the cost of being a team. Specs, reviews, the meeting to agree on what was already obvious to whoever was building the thing. That overhead sits on top of the actual work, and it scales worse than the work does. AI plus one operator just deletes it. No handoff, no alignment meeting. I track the whole programme in markdown files in the repos, no Jira, no Trello. The work moves at the speed of a decision rather than the speed of a standup.</p>
+
+        <p>I've been building this way since late 2024. Copy-pasting into a browser at first, then Cursor and the rest, eventually Claude Code, where I settled, because it just performs. It's light and runs in the terminal, so I can have thirty or forty sessions open at once and actually hold the throughput. The hard part isn't any single session. It's sequencing yourself across all of them so the deployments land clean.</p>
+
+        <h2>What's actually the cap</h2>
+
+        <p>The easy answer is capacity, how much of the system you can hold in your head. I don't buy it, or not for long. AI holds the context and keeps the architecture in mind for you. It's working memory bolted on the side, and it keeps getting bigger. What it doesn't hand you is judgement. Knowing what's worth building, which complexity earns its place. That's the cap that doesn't move. It was never a tooling problem in the first place.</p>
+
+        <p>Which is why the unlock isn't evenly shared. The five years I spent running things, away from the keyboard, are what told me what to build. AI did the building. Put the judgement in and the throughput is a step-change. Leave it out and no amount of tooling covers for it. The operators who can hold the shape of a system and direct the work pull away from the ones who can't, and that gap is only going to widen.</p>
+      </div>
+
+      <aside class="author-bio" aria-label="About the author">
+        <div class="bio-mark"><span>B</span></div>
+        <div class="bio-content">
+          <p class="bio-kicker">About the author</p>
+          <h3 class="bio-name">Benedict W. H. Dixon</h3>
+          <p class="bio-text">Operator across finance, blockchain and AI. Co-inventor of a patented B2B payment system at JPMorgan, built and scaled a $150M blockchain ecosystem to 45K+ users, shipped enterprise-grade infrastructure as sole engineer in six months. Currently COO &amp; Interim CTO at Kash; founding partner at <a href="https://dd.ventures">DD Ventures</a>.</p>
+          <p class="bio-ctas">
+            <a href="/writing/">More essays →</a>
+            <a href="/feed.xml">RSS</a>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a>
+            <a href="mailto:me@benedictdixon.com">Get in touch</a>
+          </p>
+        </div>
+      </aside>
+
+      <section class="article-related" aria-label="Related articles">
+        <p class="related-kicker">Related</p>
+        <div class="related-grid">
+          <a class="related-card" href="/writing/the-assistant-that-knows-you/">
+            <div class="related-meta">§ 06.A.10 · 26 Jun 2026</div>
+            <div class="related-title">The assistant <em>that knows you</em></div>
+          </a>
+          <a class="related-card" href="/writing/always-on-assistant/">
+            <div class="related-meta">§ 06.A.09 · 19 Jun 2026</div>
+            <div class="related-title">An always-on <em>assistant</em></div>
+          </a>
+          <a class="related-card" href="/writing/in-clawd-we-trust/">
+            <div class="related-meta">§ 06.A.07 · 15 Feb 2026</div>
+            <div class="related-title">In Clawd <em>we trust</em></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <span class="nth">§ 06.A.11</span>
+        </div>
+
+        <a class="read-next" href="/writing/the-assistant-that-knows-you/">
+          <div class="kicker">Read next · § 06.A.10</div>
+          <h3>The assistant <em>that knows you.</em></h3>
+          <div class="next-meta">26 Jun 2026 · ~4 min →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Operator at the intersection of finance, blockchain &amp; AI. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            24 June 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack for Finance, Operations &amp; Code
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="https://github.com/bwhdx" rel="me">GitHub</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
