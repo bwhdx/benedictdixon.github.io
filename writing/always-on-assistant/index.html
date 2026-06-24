@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="A personal AI assistant that runs on your own machine, reaches you on the app you already text in, and only touches what you let it.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/always-on-assistant/">
+<title>The assistant that's always on — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/always-on-assistant/">
+<meta property="og:title" content="The assistant that's always on">
+<meta property="og:description" content="Setting up your own ClawdBot, on your machine, on your terms.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-06-19">
+<meta property="article:section" content="Technology">
+<meta property="article:tag" content="Personal AI">
+<meta property="article:tag" content="OpenClaw">
+<meta property="article:tag" content="Claude Code">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+<link rel="alternate" type="application/atom+xml" title="Benedict W. H. Dixon · An Almanack" href="https://benedictdixon.com/feed.xml">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/always-on-assistant/#article",
+  "headline": "The assistant that's always on",
+  "description": "A personal AI assistant that runs on your own machine, reaches you on the app you already text in, and only touches what you let it.",
+  "url": "https://benedictdixon.com/writing/always-on-assistant/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/always-on-assistant/",
+  "datePublished": "2026-06-19",
+  "dateModified": "2026-06-19",
+  "wordCount": 800,
+  "author": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon",
+    "url": "https://benedictdixon.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://benedictdixon.com/assets/og-image.png",
+    "width": 1200,
+    "height": 630,
+    "caption": "Benedict W. H. Dixon — candlestick portrait on a navy book cover."
+  },
+  "keywords": [
+    "Personal AI",
+    "OpenClaw",
+    "Claude Code",
+    "Self-hosted",
+    "Assistant"
+  ],
+  "articleSection": "Building & Technology",
+  "inLanguage": "en-GB"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://benedictdixon.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Writing",
+      "item": "https://benedictdixon.com/writing/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The assistant that's always on",
+      "item": "https://benedictdixon.com/writing/always-on-assistant/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.A.09 · Essay</span>
+          <span>19 Jun 2026 · ~5 min read</span>
+        </div>
+        <h1 class="ttl">The assistant<br><em>that's always on.</em></h1>
+        <p class="subtitle">Setting up your own ClawdBot, on your machine, on your terms.</p>
+      </header>
+
+      <div class="article-byline">
+        <span>By <a href="/">Benedict W. H. Dixon</a></span>
+        <span class="by-sep">·</span>
+        <span>Operator across finance, blockchain &amp; AI</span>
+      </div>
+
+      <div class="article-body">
+        <p class="lead">I didn't want to rent another assistant. Every "personal AI" I'd tried lived on someone else's server and learned me on someone else's terms, and I could never quite see what it was doing with any of it. I wanted the opposite. Something on my own laptop, that I could actually look inside. It reaches me where I already am, so there's no new app to open. I built one over an evening, and most of that evening went on three things nobody mentions, so I'll get those out of the way first.</p>
+
+        <p>The tool underneath is OpenClaw. It's a small background service that runs on your Mac and connects an AI agent to whatever messaging app you already use. You don't open a new app or learn a new interface; you just text it, the same as you'd text anyone. I use Telegram for it. The agent thinks through the Claude CLI on my existing subscription instead of running up an API bill, so if you already pay for Claude it costs nothing extra to run.</p>
+
+        <p>That's most of it. The rest is setup.</p>
+
+        <h2>The three things that ate the evening</h2>
+
+        <p>Node first. OpenClaw wants a recent version and I was sitting just under the line. Quick to fix once you know, but the error doesn't tell you that's what's wrong. Bump it with whatever version manager you use, and leave your system default alone if other projects depend on it.</p>
+
+        <p>Then the keyring. The first time the thing goes to save a credential, macOS throws up a Keychain permission box. Fine while you're sat there to click it. No use at all to a background service that needs to do the same thing at three in the morning with nobody around. You switch it to a file-based keyring with a password the service holds itself, and the unattended case sorts itself out. Took me a while to even work out that this was the problem.</p>
+
+        <p>The third one properly stumped me. With token auth turned on, the command-line tool registers as a device that needs admin rights, and granting admin rights needs a device that already has them. Round in circles. The fix is to do that first grant through the proper onboarding rather than the back way I tried. Set it up right once and it doesn't come back.</p>
+
+        <p>None of these are hard. They're just not signposted anywhere, so you lose an hour to each assuming you've broken something.</p>
+
+        <h2>The bit that actually matters</h2>
+
+        <p>Most of the setup is preference. This part isn't. The thing runs on your machine with real access to your life, so the question worth caring about is what it's allowed to touch. Which folders it can read and write to, and whether it can run commands at all. I keep that list short and only widen it on purpose. Mine started able to do almost nothing. Read a couple of things, reply, and stop there. It can do more now, but only because I handed it each piece deliberately, not because it asked.</p>
+
+        <p>The gateway only listens on the machine itself, so nothing out on the internet can reach it in the first place. And the chat's locked to me. Anyone else who messages the bot gets a pairing prompt and nothing else.</p>
+
+        <h2>What it does once it's running</h2>
+
+        <p>It texts me a brief in the morning and nudges me toward bed at a reasonable hour. It tells me what my day looks like when I ask, and checks whether there's anything in my email worth bothering with. All of that stays on the laptop. The only thing that leaves is the message to my phone.</p>
+
+        <p>It's not hosted, so the laptop has to stay on for any of it to work, which is a real limitation until I move it onto something always-up. Fine trade for now. It's mine and it runs for nothing. The whole thing sits behind a bot only I can message.</p>
+
+        <h2>Getting started</h2>
+
+        <p>None of this is bespoke. OpenClaw is open source: <a href="https://github.com/openclaw/openclaw">github.com/openclaw/openclaw</a>, docs at <a href="https://docs.openclaw.ai">docs.openclaw.ai</a>. The shape of it:</p>
+
+        <ol>
+          <li>Get a current Node on your machine. That's the first trap above.</li>
+          <li>Install OpenClaw and run the onboarding it ships with, rather than wiring token auth up by hand. That's the third trap.</li>
+          <li>Point it at the Claude CLI you already pay for, so nothing runs up an API bill.</li>
+          <li>Connect the messaging app you actually live in. I use Telegram. You text the bot, it pairs to you, and everyone else gets a wall.</li>
+          <li>Move the keyring to a file before you leave it running unattended. Second trap.</li>
+        </ol>
+
+        <p>Start it able to do almost nothing, and widen that by hand, one thing at a time.</p>
+      </div>
+
+      <aside class="author-bio" aria-label="About the author">
+        <div class="bio-mark"><span>B</span></div>
+        <div class="bio-content">
+          <p class="bio-kicker">About the author</p>
+          <h3 class="bio-name">Benedict W. H. Dixon</h3>
+          <p class="bio-text">Operator across finance, blockchain and AI. Co-inventor of a patented B2B payment system at JPMorgan, built and scaled a $150M blockchain ecosystem to 45K+ users, shipped enterprise-grade infrastructure as sole engineer in six months. Currently COO &amp; Interim CTO at Kash; founding partner at <a href="https://dd.ventures">DD Ventures</a>.</p>
+          <p class="bio-ctas">
+            <a href="/writing/">More essays →</a>
+            <a href="/feed.xml">RSS</a>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a>
+            <a href="mailto:me@benedictdixon.com">Get in touch</a>
+          </p>
+        </div>
+      </aside>
+
+      <section class="article-related" aria-label="Related articles">
+        <p class="related-kicker">Related</p>
+        <div class="related-grid">
+          <a class="related-card" href="/writing/building-a-second-brain/">
+            <div class="related-meta">§ 06.A.08 · 28 May 2026</div>
+            <div class="related-title">Building a Second Brain <em>that doesn't die</em></div>
+          </a>
+          <a class="related-card" href="/writing/in-clawd-we-trust/">
+            <div class="related-meta">§ 06.A.07 · 15 Feb 2026</div>
+            <div class="related-title">In Clawd <em>we trust</em></div>
+          </a>
+          <a class="related-card" href="/writing/autonomous-ai-agents/">
+            <div class="related-meta">§ 06.A.03 · 13 Dec 2024</div>
+            <div class="related-title">Autonomous <em>AI Agents</em></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <span class="nth">§ 06.A.09</span>
+        </div>
+
+        <a class="read-next" href="/writing/building-a-second-brain/">
+          <div class="kicker">Read next · § 06.A.08</div>
+          <h3>Building a Second Brain <em>that doesn't die.</em></h3>
+          <div class="next-meta">28 May 2026 · ~7 min →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Operator at the intersection of finance, blockchain &amp; AI. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            19 June 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack for Finance, Operations &amp; Code
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="https://github.com/bwhdx" rel="me">GitHub</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
