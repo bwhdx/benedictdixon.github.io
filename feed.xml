@@ -72,23 +72,12 @@
   </entry>
 
   <entry>
-    <title>The assistant that knows you</title>
-    <link href="https://benedictdixon.com/writing/the-assistant-that-knows-you/" rel="alternate" type="text/html"/>
-    <id>https://benedictdixon.com/writing/the-assistant-that-knows-you/</id>
-    <published>2026-06-26T00:00:00Z</published>
-    <updated>2026-06-26T00:00:00Z</updated>
-    <summary>Point your ClawdBot at your own second brain and it stops guessing. It answers from your notes, in your own words.</summary>
-    <category term="Building &amp; Technology"/>
-    <category term="Second Brain"/>
-  </entry>
-
-  <entry>
-    <title>The unit of production has changed</title>
-    <link href="https://benedictdixon.com/writing/the-unit-of-production-has-changed/" rel="alternate" type="text/html"/>
-    <id>https://benedictdixon.com/writing/the-unit-of-production-has-changed/</id>
+    <title>AI collapsed the build, not the operation</title>
+    <link href="https://benedictdixon.com/writing/ai-collapsed-the-build/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/ai-collapsed-the-build/</id>
     <published>2026-06-24T00:00:00Z</published>
     <updated>2026-06-24T00:00:00Z</updated>
-    <summary>I built a 55-microservice system near-solo in a year. AI deleted the coordination overhead, not just the typing. What's left is judgement.</summary>
+    <summary>One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money's on the line, still takes people.</summary>
     <category term="Building &amp; Technology"/>
     <category term="AI"/>
   </entry>
@@ -105,14 +94,25 @@
   </entry>
 
   <entry>
-    <title>The assistant that's always on</title>
-    <link href="https://benedictdixon.com/writing/always-on-assistant/" rel="alternate" type="text/html"/>
-    <id>https://benedictdixon.com/writing/always-on-assistant/</id>
-    <published>2026-06-19T00:00:00Z</published>
-    <updated>2026-06-19T00:00:00Z</updated>
-    <summary>A personal AI on your own laptop, reaching you on the app you already text in. What it took to set up, and what it's allowed to touch.</summary>
+    <title>The unit of production has changed</title>
+    <link href="https://benedictdixon.com/writing/the-unit-of-production-has-changed/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-unit-of-production-has-changed/</id>
+    <published>2026-06-20T00:00:00Z</published>
+    <updated>2026-06-20T00:00:00Z</updated>
+    <summary>I built a 55-microservice system near-solo in a year. AI deleted the coordination overhead, not just the typing. What's left is judgement.</summary>
     <category term="Building &amp; Technology"/>
-    <category term="Personal AI"/>
+    <category term="AI"/>
+  </entry>
+
+  <entry>
+    <title>The assistant that knows you</title>
+    <link href="https://benedictdixon.com/writing/the-assistant-that-knows-you/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/the-assistant-that-knows-you/</id>
+    <published>2026-06-16T00:00:00Z</published>
+    <updated>2026-06-16T00:00:00Z</updated>
+    <summary>Point your ClawdBot at your own second brain and it stops guessing. It answers from your notes, in your own words.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="Second Brain"/>
   </entry>
 
   <entry>
@@ -124,6 +124,17 @@
     <summary>Profit, not revenue. Discounted by the cost of capital. The 3:1 rule that decides whether your unit economics actually work.</summary>
     <category term="Operations &amp; Entrepreneurship"/>
     <category term="Unit Economics"/>
+  </entry>
+
+  <entry>
+    <title>The assistant that's always on</title>
+    <link href="https://benedictdixon.com/writing/always-on-assistant/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/always-on-assistant/</id>
+    <published>2026-06-12T00:00:00Z</published>
+    <updated>2026-06-12T00:00:00Z</updated>
+    <summary>A personal AI on your own laptop, reaching you on the app you already text in. What it took to set up, and what it's allowed to touch.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="Personal AI"/>
   </entry>
 
   <entry>

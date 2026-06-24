@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="description" content="A year building a 55-microservice system near-solo. AI didn't just make the typing faster; it deleted the coordination overhead. The cap that's left is judgement.">
+<meta name="description" content="One person with AI can build what fifty used to. But the operation — incidents, maintenance, 3am — doesn't collapse with the build. Why fewer people is the wrong read.">
 <meta name="author" content="Benedict W. H. Dixon">
-<link rel="canonical" href="https://benedictdixon.com/writing/the-unit-of-production-has-changed/">
-<title>The unit of production has changed — Benedict W. H. Dixon</title>
+<link rel="canonical" href="https://benedictdixon.com/writing/ai-collapsed-the-build/">
+<title>AI collapsed the build, not the operation — Benedict W. H. Dixon</title>
 
 <link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
@@ -18,19 +18,19 @@
 
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_GB">
-<meta property="og:url" content="https://benedictdixon.com/writing/the-unit-of-production-has-changed/">
-<meta property="og:title" content="The unit of production has changed">
-<meta property="og:description" content="AI didn't just make the typing faster; it deleted the coordination overhead. The cap that's left is judgement.">
+<meta property="og:url" content="https://benedictdixon.com/writing/ai-collapsed-the-build/">
+<meta property="og:title" content="AI collapsed the build, not the operation">
+<meta property="og:description" content="AI made the building cheap. Running it safely, and answering at 3am when money's on the line, still takes people.">
 <meta property="og:image" content="https://benedictdixon.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Benedict W. H. Dixon">
 <meta property="article:author" content="Benedict W. H. Dixon">
-<meta property="article:published_time" content="2026-06-20">
+<meta property="article:published_time" content="2026-06-24">
 <meta property="article:section" content="Technology">
 <meta property="article:tag" content="AI">
 <meta property="article:tag" content="Building">
-<meta property="article:tag" content="Claude Code">
+<meta property="article:tag" content="Leadership">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@bwhdx">
@@ -47,14 +47,14 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "@id": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/#article",
-  "headline": "The unit of production has changed",
-  "description": "A year building a 55-microservice system near-solo. AI didn't just make the typing faster; it deleted the coordination overhead. The cap that's left is judgement.",
-  "url": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/",
-  "mainEntityOfPage": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/",
-  "datePublished": "2026-06-20",
-  "dateModified": "2026-06-20",
-  "wordCount": 480,
+  "@id": "https://benedictdixon.com/writing/ai-collapsed-the-build/#article",
+  "headline": "AI collapsed the build, not the operation",
+  "description": "One person with AI can build what fifty used to. But the operation — incidents, maintenance, 3am — doesn't collapse with the build. Why fewer people is the wrong read.",
+  "url": "https://benedictdixon.com/writing/ai-collapsed-the-build/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/ai-collapsed-the-build/",
+  "datePublished": "2026-06-24",
+  "dateModified": "2026-06-24",
+  "wordCount": 540,
   "author": {
     "@type": "Person",
     "@id": "https://benedictdixon.com/#person",
@@ -76,9 +76,9 @@
   "keywords": [
     "AI",
     "Building",
-    "Claude Code",
-    "Solo Engineering",
-    "Coordination Overhead"
+    "Leadership",
+    "Hiring",
+    "Solo Engineering"
   ],
   "articleSection": "Building & Technology",
   "inLanguage": "en-GB"
@@ -104,8 +104,8 @@
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "The unit of production has changed",
-      "item": "https://benedictdixon.com/writing/the-unit-of-production-has-changed/"
+      "name": "AI collapsed the build, not the operation",
+      "item": "https://benedictdixon.com/writing/ai-collapsed-the-build/"
     }
   ]
 }
@@ -131,11 +131,11 @@
 
       <header class="article-head">
         <div class="kicker-row">
-          <span>§ 06.A.11 · Essay</span>
-          <span>20 Jun 2026 · ~3 min read</span>
+          <span>§ 06.A.12 · Essay</span>
+          <span>24 Jun 2026 · ~4 min read</span>
         </div>
-        <h1 class="ttl">The unit of production<br><em>has changed.</em></h1>
-        <p class="subtitle">A year building solo with AI, and the cap that's actually left.</p>
+        <h1 class="ttl">AI collapsed the build,<br><em>not the operation.</em></h1>
+        <p class="subtitle">Why one-person-builds-it is the wrong reason to shrink a team.</p>
       </header>
 
       <div class="article-byline">
@@ -145,21 +145,27 @@
       </div>
 
       <div class="article-body">
-        <p class="lead">About a year ago I joined Kash. Since then I've built, near enough solo, a system of 55-plus microservices. Event-driven, with a stack of edge functions, infrastructure-as-code, the database schema underneath, and four Next.js apps on top. It spans payments, blockchain, AI and social, and it's built to enterprise-grade resiliency throughout, because it moves real money.</p>
+        <p class="lead">Yes, one person with AI can now do the work that used to take ten, or fifty, or a hundred. I've done <a href="/writing/the-unit-of-production-has-changed/">a version of it</a>. But the conclusion a lot of people draw from that, fewer people and smaller teams, is the wrong one, and it's wrong in a way that bites.</p>
 
-        <p>The old way, that's twenty-plus people across several pods, a couple of years, and millions in salaries. I've had help. A designer on the UI, a teammate on the on-chain protocol. But the architecture and most of the stack is one head and a lot of <a href="/writing/in-clawd-we-trust/">Claude Code</a>.</p>
+        <p>AI collapsed the build. The operation is another matter, and it didn't collapse with it.</p>
 
-        <p>People hear that and reach for the obvious read: AI writes code fast, so one person goes faster. That's not really it. Writing the code was never the slow part.</p>
+        <h2>The operation doesn't collapse</h2>
 
-        <p>The slow part was always the coordination. A team big enough to do the work has to be big enough to carry the cost of being a team. Specs, reviews, the meeting to agree on what was already obvious to whoever was building the thing. That overhead sits on top of the actual work, and it scales worse than the work does. AI plus one operator just deletes it. No handoff, no alignment meeting. I track the whole programme in markdown files in the repos, no Jira, no Trello. The work moves at the speed of a decision rather than the speed of a standup.</p>
+        <p>Building the architecture, one operator with AI is a genuine step-change, mostly because the communication overhead just disappears. Once the thing is live, you're somewhere else. There's incidents to handle and the slow, unglamorous maintenance that never makes a headline. None of it runs on one person, because a person sleeps, eats, goes to the shops.</p>
 
-        <p>I've been building this way since late 2024. Copy-pasting into a browser at first, then Cursor and the rest, eventually Claude Code, where I settled, because it just performs. It's light and runs in the terminal, so I can have thirty or forty sessions open at once and actually hold the throughput. The hard part isn't any single session. It's sequencing yourself across all of them so the deployments land clean.</p>
+        <p>We haven't had an incident at Kash. But it's a real risk and I treat it like one. I've built runbooks, feature flags and kill switches, enough that someone non-technical can step in and stop the bleeding while I'm asleep. What they can't do is fix the root cause. That waits for me to wake up and charge my phone. Picture a vulnerability with money at risk at three in the morning, and the only person who can actually fix it unreachable. That isn't a one-off you design around. It's the standing condition of a single-technical-person system, and AI doesn't touch it. Bugs come either way.</p>
 
-        <h2>What's actually the cap</h2>
+        <h2>The headcount maths is backwards</h2>
 
-        <p>The easy answer is capacity, how much of the system you can hold in your head. I don't buy it, or not for long. AI holds the context and keeps the architecture in mind for you. It's working memory bolted on the side, and it keeps getting bigger. What it doesn't hand you is judgement. Knowing what's worth building, which complexity earns its place. That's the cap that doesn't move. It was never a tooling problem in the first place.</p>
+        <p>So "one person can build it, so we need fewer" has the economics backwards. If AI hands each person a step-change in output, banking that as a headcount cut is the bearish move. Same output, smaller team, and you've capped yourself. The better play is to keep the people and turn the new capacity into more. More revenue, more of the markets that never penciled out before. If you can't find more to create with the extra capacity, something's saturated or broken upstream.</p>
 
-        <p>Which is why the unlock isn't evenly shared. The five years I spent running things, away from the keyboard, are what told me what to build. AI did the building. Put the judgement in and the throughput is a step-change. Leave it out and no amount of tooling covers for it. The operators who can hold the shape of a system and direct the work pull away from the ones who can't, and that gap is only going to widen.</p>
+        <h2>Who comes out ahead</h2>
+
+        <p>The people who win are the ones who actually embrace this and get good at it. Management thins out. Leadership doesn't, because someone still has to point twenty agents at the right problem and keep the humans around them motivated. It'll be harder for a junior to land the first rung, which I hate, because it's already brutal out there. I've mentored a few people fresh out of university and they're scared. I think it's a short-term retraction, and it'll settle.</p>
+
+        <p>The value is moving around. Small companies can produce what only big ones could before. Big ones can lift their throughput too. The danger sits in the middle, squeezed from both ends, while a lot of new ground opens up that the old cost base never allowed.</p>
+
+        <p>So if you're reading the solo-build story as a reason to shrink, you've got it backwards. AI made the building cheap. Running it safely, and answering at 3am when money's on the line, still takes people.</p>
       </div>
 
       <aside class="author-bio" aria-label="About the author">
@@ -180,13 +186,13 @@
       <section class="article-related" aria-label="Related articles">
         <p class="related-kicker">Related</p>
         <div class="related-grid">
-          <a class="related-card" href="/writing/the-assistant-that-knows-you/">
-            <div class="related-meta">§ 06.A.10 · 16 Jun 2026</div>
-            <div class="related-title">The assistant <em>that knows you</em></div>
+          <a class="related-card" href="/writing/the-unit-of-production-has-changed/">
+            <div class="related-meta">§ 06.A.11 · 20 Jun 2026</div>
+            <div class="related-title">The unit of production <em>has changed</em></div>
           </a>
           <a class="related-card" href="/writing/always-on-assistant/">
             <div class="related-meta">§ 06.A.09 · 12 Jun 2026</div>
-            <div class="related-title">An always-on <em>assistant</em></div>
+            <div class="related-title">The assistant <em>that's always on</em></div>
           </a>
           <a class="related-card" href="/writing/in-clawd-we-trust/">
             <div class="related-meta">§ 06.A.07 · 15 Feb 2026</div>
@@ -198,13 +204,13 @@
       <footer class="article-foot">
         <div class="article-foot-nav">
           <a class="back" href="/writing/">← All writing</a>
-          <span class="nth">§ 06.A.11</span>
+          <span class="nth">§ 06.A.12</span>
         </div>
 
-        <a class="read-next" href="/writing/ai-collapsed-the-build/">
-          <div class="kicker">Read next · § 06.A.12</div>
-          <h3>AI collapsed the build, <em>not the operation.</em></h3>
-          <div class="next-meta">24 Jun 2026 · ~4 min →</div>
+        <a class="read-next" href="/writing/the-unit-of-production-has-changed/">
+          <div class="kicker">Read next · § 06.A.11</div>
+          <h3>The unit of production <em>has changed.</em></h3>
+          <div class="next-meta">20 Jun 2026 · ~3 min →</div>
         </a>
 
         <div class="article-colophon">
@@ -214,7 +220,7 @@
           </div>
           <div>
             <strong>Published</strong>
-            20 June 2026<br>
+            24 June 2026<br>
             Vol. I · Edition 01<br>
             An Almanack for Finance, Operations &amp; Code
           </div>
