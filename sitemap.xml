@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/</loc>
-    <lastmod>2026-06-19</lastmod>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -195,6 +195,12 @@
   <url>
     <loc>https://benedictdixon.com/writing/mapping-the-sales-process/</loc>
     <lastmod>2026-06-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/the-assistant-that-knows-you/</loc>
+    <lastmod>2026-06-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
