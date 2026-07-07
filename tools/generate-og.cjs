@@ -104,7 +104,7 @@ svg += `<text x="40" y="${bandY + 100}" font-family="Fraunces, 'Times New Roman'
 
 // Tagline
 svg += `<line x1="40" y1="${bandY + 120}" x2="${W - 40}" y2="${bandY + 120}" stroke="${HAIR_BOT}" stroke-width="1"/>\n`;
-svg += `<text x="40" y="${bandY + 152}" font-family="Inter, system-ui, sans-serif" font-size="20" fill="${PAPER}">An operator at the intersection of <tspan font-style="italic">finance, blockchain &amp; AI.</tspan></text>\n`;
+svg += `<text x="40" y="${bandY + 152}" font-family="Inter, system-ui, sans-serif" font-size="20" fill="${PAPER}">An operator at the intersection of <tspan font-style="italic">AI &amp; finance.</tspan></text>\n`;
 
 svg += `</svg>\n`;
 

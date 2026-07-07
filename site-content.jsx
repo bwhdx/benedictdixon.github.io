@@ -104,8 +104,7 @@ function Hero() {
           </h1>
           <div className="hero-band-bottom">
             <p className="hero-tagline-text">
-              An operator who <em>ships the code and runs the company</em>
-              — across finance, blockchain &amp; AI.
+              An operator who <em>ships the code and runs the company</em> — at the intersection of AI &amp; finance.
             </p>
             <a className="hero-scroll" href="#about">
               <span className="meta">Read on</span>
@@ -156,7 +155,7 @@ function About() {
 
         <div className="about-grid">
           <div className="body about-lede drop">
-            <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom.</p>
+            <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom. The leverage is AI, end to end.</p>
             <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point — and every one reached production and moved real money, live, at volume, without incident.</p>
           </div>
 
@@ -192,7 +191,7 @@ function About() {
         <div className="achievements">
           <div className="kicker">Key achievements</div>
           <ol className="achievement-list">
-            <li><span className="ach-num">i.</span><span>Built and scaled a blockchain ecosystem from concept to <em>$150M+</em> with 45K+ users.</span></li>
+            <li><span className="ach-num">i.</span><span>Built and scaled an L1 ecosystem from concept to <em>$150M+</em> with 45K+ users.</span></li>
             <li><span className="ach-num">ii.</span><span>Co-invented a <em>patented</em> real-time B2B payment system at JPMorgan.</span></li>
             <li><span className="ach-num">iii.</span><span>Navigated a successful acquisition, preserving <em>millions in assets</em> during transition.</span></li>
             <li><span className="ach-num">iv.</span><span>Built an enterprise-grade 50+ microservice platform from scratch as sole engineer in <em>six months.</em></span></li>
@@ -348,6 +347,18 @@ function Services() {
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [
   {
+    date: 'Jun 2026',
+    title: 'AI Collapsed the Build, Not the Operation',
+    excerpt: 'One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money\'s on the line, still takes people.',
+    url: '/writing/ai-collapsed-the-build/',
+  },
+  {
+    date: 'Jun 2026',
+    title: 'The Unit of Production Has Changed',
+    excerpt: 'A year building a 55-microservice system near-solo. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
+    url: '/writing/the-unit-of-production-has-changed/',
+  },
+  {
     date: 'May 2026',
     title: 'Building a Second Brain That Doesn\'t Die',
     excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
@@ -358,18 +369,6 @@ const ARTICLES = [
     title: 'In Clawd We Trust',
     excerpt: 'A year of intensive Claude Code, distilled. The mental model, environment, phased workflow and quality practices that turn it into a 100x force multiplier.',
     url: '/writing/in-clawd-we-trust/',
-  },
-  {
-    date: 'Jul 2025',
-    title: 'Prediction Markets',
-    excerpt: 'From gambling to humanity\'s decision engine. Why prediction markets are the most important information primitive nobody\'s using.',
-    url: '/writing/prediction-markets/',
-  },
-  {
-    date: 'Feb 2025',
-    title: 'Tesserakt Protocol',
-    excerpt: 'Purpose-built infrastructure for AI agents. The missing protocol layer between models and the world.',
-    url: '/writing/tesserakt-protocol/',
   },
 ];
 
@@ -387,7 +386,7 @@ function Writing() {
             <p className="num">§ 06 · Writing &amp; speaking</p>
             <h2 className="ttl">In <em>print</em> and at the lectern.</h2>
           </div>
-          <div className="right">Latest four · technology</div>
+          <div className="right">Selected four · technology</div>
         </div>
 
         <div className="writing-grid">
@@ -403,7 +402,7 @@ function Writing() {
                 </a>
               ))}
             </div>
-            <p style={{marginTop: 32}}><a className="link-arrow" href="/writing/">All writing →</a></p>
+            <p style={{marginTop: 32}}><a className="link-arrow" href="/writing/">All writing →</a>&nbsp;&nbsp;<a className="link-arrow" href="/ai/">How I work with AI →</a></p>
           </div>
 
           <aside className="speaking">
@@ -417,7 +416,7 @@ function Writing() {
             <hr className="hairline" style={{margin: '40px 0'}}/>
             <div className="kicker" style={{marginBottom: 16}}>Open to —</div>
             <p style={{fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px'}}>
-              Keynotes &amp; panels on fintech, blockchain, AI, distributed systems and the operator's lens on technical leadership.
+              Keynotes &amp; panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.
             </p>
           </aside>
         </div>
@@ -444,7 +443,7 @@ function Contact() {
         <div className="contact-grid">
           <p className="lede" style={{maxWidth: 720}}>
             Open to conversations with founders and operators building real things
-            across fintech, blockchain and AI. Operating roles direct; advisory,
+            across AI, fintech and blockchain. Operating roles direct; advisory,
             fractional and board engagements through DD Ventures.
           </p>
 

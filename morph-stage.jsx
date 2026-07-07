@@ -418,7 +418,7 @@ function PortraitCard({ visible }) {
       <div className="meta">§ 03 · Introduction</div>
       <h2 className="heading">An <em>operator's</em><br/>almanack.</h2>
       <p className="lede">
-        A decade-plus building companies across fintech, blockchain and AI.
+        A decade-plus building companies across AI, fintech and blockchain.
         Operator, COO, CTO. Deep across product, technology, operations
         and ecosystems.
       </p>

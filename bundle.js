@@ -1099,7 +1099,7 @@ function PortraitCard({
     className: "heading"
   }, "An ", /*#__PURE__*/React.createElement("em", null, "operator's"), /*#__PURE__*/React.createElement("br", null), "almanack."), /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, "A decade-plus building companies across fintech, blockchain and AI. Operator, COO, CTO. Deep across product, technology, operations and ecosystems."));
+  }, "A decade-plus building companies across AI, fintech and blockchain. Operator, COO, CTO. Deep across product, technology, operations and ecosystems."));
 }
 function CareerCard({
   visible,
@@ -1262,7 +1262,7 @@ function Hero() {
     className: "hero-band-bottom"
   }, /*#__PURE__*/React.createElement("p", {
     className: "hero-tagline-text"
-  }, "An operator who ", /*#__PURE__*/React.createElement("em", null, "ships the code and runs the company"), "\u2014 across finance, blockchain & AI."), /*#__PURE__*/React.createElement("a", {
+  }, "An operator who ", /*#__PURE__*/React.createElement("em", null, "ships the code and runs the company"), " \u2014 at the intersection of AI & finance."), /*#__PURE__*/React.createElement("a", {
     className: "hero-scroll",
     href: "#about"
   }, /*#__PURE__*/React.createElement("span", {
@@ -1307,7 +1307,7 @@ function About() {
     className: "about-grid"
   }, /*#__PURE__*/React.createElement("div", {
     className: "body about-lede drop"
-  }, /*#__PURE__*/React.createElement("p", null, "A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom."), /*#__PURE__*/React.createElement("p", null, "JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point \u2014 and every one reached production and moved real money, live, at volume, without incident.")), /*#__PURE__*/React.createElement("aside", {
+  }, /*#__PURE__*/React.createElement("p", null, "A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom. The leverage is AI, end to end."), /*#__PURE__*/React.createElement("p", null, "JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point \u2014 and every one reached production and moved real money, live, at volume, without incident.")), /*#__PURE__*/React.createElement("aside", {
     className: "margin-note about-margin"
   }, /*#__PURE__*/React.createElement("p", null, "Read also \u2014"), /*#__PURE__*/React.createElement("p", null, "\xA7 03 An operator's almanack", /*#__PURE__*/React.createElement("br", null), "\xA7 04 Featured projects", /*#__PURE__*/React.createElement("br", null), "\xA7 05 Services on offer"), /*#__PURE__*/React.createElement("p", {
     style: {
@@ -1345,7 +1345,7 @@ function About() {
     className: "achievement-list"
   }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
     className: "ach-num"
-  }, "i."), /*#__PURE__*/React.createElement("span", null, "Built and scaled a blockchain ecosystem from concept to ", /*#__PURE__*/React.createElement("em", null, "$150M+"), " with 45K+ users.")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
+  }, "i."), /*#__PURE__*/React.createElement("span", null, "Built and scaled an L1 ecosystem from concept to ", /*#__PURE__*/React.createElement("em", null, "$150M+"), " with 45K+ users.")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
     className: "ach-num"
   }, "ii."), /*#__PURE__*/React.createElement("span", null, "Co-invented a ", /*#__PURE__*/React.createElement("em", null, "patented"), " real-time B2B payment system at JPMorgan.")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
     className: "ach-num"
@@ -1493,6 +1493,16 @@ function Services() {
 // Writing & Speaking
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [{
+  date: 'Jun 2026',
+  title: 'AI Collapsed the Build, Not the Operation',
+  excerpt: 'One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money\'s on the line, still takes people.',
+  url: '/writing/ai-collapsed-the-build/'
+}, {
+  date: 'Jun 2026',
+  title: 'The Unit of Production Has Changed',
+  excerpt: 'A year building a 55-microservice system near-solo. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
+  url: '/writing/the-unit-of-production-has-changed/'
+}, {
   date: 'May 2026',
   title: 'Building a Second Brain That Doesn\'t Die',
   excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
@@ -1502,16 +1512,6 @@ const ARTICLES = [{
   title: 'In Clawd We Trust',
   excerpt: 'A year of intensive Claude Code, distilled. The mental model, environment, phased workflow and quality practices that turn it into a 100x force multiplier.',
   url: '/writing/in-clawd-we-trust/'
-}, {
-  date: 'Jul 2025',
-  title: 'Prediction Markets',
-  excerpt: 'From gambling to humanity\'s decision engine. Why prediction markets are the most important information primitive nobody\'s using.',
-  url: '/writing/prediction-markets/'
-}, {
-  date: 'Feb 2025',
-  title: 'Tesserakt Protocol',
-  excerpt: 'Purpose-built infrastructure for AI agents. The missing protocol layer between models and the world.',
-  url: '/writing/tesserakt-protocol/'
 }];
 const SPEAKING = [{
   event: 'Zebu Live',
@@ -1535,7 +1535,7 @@ function Writing() {
     className: "ttl"
   }, "In ", /*#__PURE__*/React.createElement("em", null, "print"), " and at the lectern.")), /*#__PURE__*/React.createElement("div", {
     className: "right"
-  }, "Latest four \xB7 technology")), /*#__PURE__*/React.createElement("div", {
+  }, "Selected four \xB7 technology")), /*#__PURE__*/React.createElement("div", {
     className: "writing-grid"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
     className: "kicker",
@@ -1568,7 +1568,10 @@ function Writing() {
   }, /*#__PURE__*/React.createElement("a", {
     className: "link-arrow",
     href: "/writing/"
-  }, "All writing \u2192"))), /*#__PURE__*/React.createElement("aside", {
+  }, "All writing \u2192"), "\xA0\xA0", /*#__PURE__*/React.createElement("a", {
+    className: "link-arrow",
+    href: "/ai/"
+  }, "How I work with AI \u2192"))), /*#__PURE__*/React.createElement("aside", {
     className: "speaking"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker",
@@ -1604,7 +1607,7 @@ function Writing() {
       fontStyle: 'italic',
       fontSize: '20px'
     }
-  }, "Keynotes & panels on fintech, blockchain, AI, distributed systems and the operator's lens on technical leadership.")))));
+  }, "Keynotes & panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.")))));
 }
 
 // ─────────────────────────────────────────────────────────
@@ -1632,7 +1635,7 @@ function Contact() {
     style: {
       maxWidth: 720
     }
-  }, "Open to conversations with founders and operators building real things across fintech, blockchain and AI. Operating roles direct; advisory, fractional and board engagements through DD Ventures."), /*#__PURE__*/React.createElement("div", {
+  }, "Open to conversations with founders and operators building real things across AI, fintech and blockchain. Operating roles direct; advisory, fractional and board engagements through DD Ventures."), /*#__PURE__*/React.createElement("div", {
     className: "contact-links"
   }, /*#__PURE__*/React.createElement("a", {
     href: "mailto:me@benedictdixon.com",

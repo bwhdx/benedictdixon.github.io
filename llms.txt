@@ -1,0 +1,32 @@
+# Benedict W. H. Dixon
+
+> Personal site of Benedict W. H. Dixon — an operator at the intersection of AI & finance. COO/CTO who builds the systems and runs the companies around them: co-inventor of a patented real-time B2B payment system at JPMorgan, took an L1 ecosystem to $150M with 45K+ users, CTO of a UK stablecoin through acquisition, and built a 50+ microservice platform as sole engineer in six months. Currently COO & Interim CTO at Kash, an AI-powered prediction marketplace; founding partner at DD Ventures (advisory).
+
+Key facts:
+- Technical operator who both ships the code and runs the company — a rare build-and-run hybrid across the C-suite (COO/CTO) and the codebase.
+- A decade-plus in regulated, real-time, money-moving systems: JPMorgan, real-time payments, a UK stablecoin, an AI-powered prediction marketplace. Advisory work through DD Ventures spans sectors.
+- Prolific AI practitioner: builds with Claude Code daily, runs an always-on personal AI assistant on his own hardware, maintains an AI-wired second brain, and operates an AI-powered marketplace in production.
+
+## Key pages
+
+- [How I work with AI](https://benedictdixon.com/ai/): The standing map of the AI practice — the work, the tooling, the personal stack, the view.
+- [Home / About](https://benedictdixon.com/): Career, achievements, services, contact.
+- [Writing](https://benedictdixon.com/writing/): All essays — the AI series plus a 24-part Disciplined Entrepreneurship series.
+
+## The AI essays
+
+- [AI collapsed the build, not the operation](https://benedictdixon.com/writing/ai-collapsed-the-build/): One person with AI can build what fifty used to; the operation doesn't collapse with it.
+- [The unit of production has changed](https://benedictdixon.com/writing/the-unit-of-production-has-changed/): A year building a 55-microservice system near-solo; AI deleted the coordination overhead.
+- [The assistant that knows you](https://benedictdixon.com/writing/the-assistant-that-knows-you/): Point a personal AI at your second brain and it answers from your notes.
+- [The assistant that's always on](https://benedictdixon.com/writing/always-on-assistant/): A personal AI assistant on your own machine, reachable where you already text.
+- [Building a second brain that doesn't die](https://benedictdixon.com/writing/building-a-second-brain/): An Obsidian PKM template wired for Claude Code, open-sourced under MIT.
+- [In Clawd We Trust](https://benedictdixon.com/writing/in-clawd-we-trust/): A year of intensive Claude Code, distilled into a practical guide.
+- [Tesserakt Protocol](https://benedictdixon.com/writing/tesserakt-protocol/): Purpose-built infrastructure for AI agents.
+- [The missing infrastructure for AI agents](https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/): Agents are forced through rails built for humans.
+- [Autonomous AI agents](https://benedictdixon.com/writing/autonomous-ai-agents/): Agents representing individuals and businesses, executing in milliseconds.
+
+## Optional
+
+- [Disciplined Entrepreneurship series](https://benedictdixon.com/writing/): 24-part operator's reading of Bill Aulet's framework.
+- [Atom feed](https://benedictdixon.com/feed.xml)
+- [DD Ventures](https://dd.ventures): Advisory, fractional and board engagements.
