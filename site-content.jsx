@@ -361,7 +361,7 @@ const ARTICLES = [
   {
     date: 'May 2026',
     title: 'Building a Second Brain That Doesn\'t Die',
-    excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard in 45 minutes.',
+    excerpt: 'The opinionated PKM template, open-sourced under MIT. Populated by a Claude Code setup wizard.',
     url: '/writing/building-a-second-brain/',
   },
   {

@@ -20,7 +20,7 @@
 <meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://benedictdixon.com/writing/building-a-second-brain/">
 <meta property="og:title" content="Building a Second Brain That Doesn't Die">
-<meta property="og:description" content="The opinionated Obsidian second brain template, populated by Claude Code in 45 minutes.">
+<meta property="og:description" content="The opinionated Obsidian second brain template, populated by Claude Code.">
 <meta property="og:image" content="https://benedictdixon.com/assets/og/building-a-second-brain.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -54,7 +54,7 @@
   "url": "https://benedictdixon.com/writing/building-a-second-brain/",
   "mainEntityOfPage": "https://benedictdixon.com/writing/building-a-second-brain/",
   "datePublished": "2026-05-28",
-  "dateModified": "2026-07-06",
+  "dateModified": "2026-08-16",
   "wordCount": 1400,
   "author": {
     "@type": "Person",
@@ -215,20 +215,21 @@
 
         <h2>What it looks like</h2>
 
-        <p>Twelve folders. That's the whole structure.</p>
+        <p>Thirteen folders. That's the whole structure.</p>
 
         <pre style="font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.5; background: rgba(28,38,122,0.05); padding: 20px 24px; border-left: 2px solid rgba(28,38,122,0.22); overflow-x: auto; margin: 0;">00 Inbox/         Where everything starts. One file per capture.
 10 Daily/         One file per day. Quick thoughts, what mattered.
 20 Atoms/         One idea per file. Beliefs, concepts, moments.
 30 Maps/          Hand-curated indexes. Themes, frameworks, clusters.
-40 Sources/       Books, articles, papers, talks. With notes.
+40 Sources/       Books, articles, talks, frameworks, checklists, references.
 50 Content/       Drafts and published work. Voice formula. Pillars.
 60 People/        Family, friends, network. A quiet CRM.
 70 Projects/      Active work. Outcome-defined.
-80 Areas/         Identity, health, finances, learning.
+80 Areas/         Identity, health, finances, learning, goals, routines.
 90 Decisions/     Annie Duke-style decision journal.
 99 Archive/       Cold storage.
-_Meta/            Schema, workflows, plugins, durability plan.</pre>
+_Meta/            Schema, workflows, plugins, durability plan.
+_Wiki/            Agent-compiled synthesis layer, read from Sources.</pre>
 
         <p>Each folder is opinionated about what lives in it and what doesn't. The schema can be read once and used forever.</p>
 
@@ -236,21 +237,22 @@ _Meta/            Schema, workflows, plugins, durability plan.</pre>
 
         <p>Every PKM template until now has assumed you'd do the populating by hand. That's where most of them die. The blank vault is a steeper hill to climb than the daily habit itself.</p>
 
-        <p>Mine assumes Claude Code at your side. A <code>CLAUDE.md</code> at the vault root onboards any Claude session to the schema, the conventions and your voice. A <code>/setup</code> skill walks you through fifteen to twenty questions over forty-five minutes and populates:</p>
+        <p>Mine assumes Claude Code at your side. A <code>CLAUDE.md</code> at the vault root onboards any Claude session to the schema, the conventions and your voice. A <code>/setup</code> skill is thorough by default, checks in after each phase, and picks up wherever you left off. It populates:</p>
 
         <ul>
           <li>The <code>Now.md</code> dashboard, glanced at daily</li>
           <li>A <code>Who I am.md</code> integrating narrative</li>
-          <li><code>Why</code>, <code>Mission</code>, <code>Values</code> as the identity spine</li>
+          <li><code>Why</code>, <code>Mission</code>, <code>Values</code> as the identity spine (including Covey's centre diagnostic)</li>
+          <li>Goals linked to your ten roles, plus a first weekly plan</li>
           <li>Nine initial atoms (three beliefs, three moments, three concepts) drawn from your answers</li>
           <li>Optional: voice formula, brand bible, content pillars if you do content</li>
-          <li>Optional: ten people stubs if you track relationships</li>
+          <li>Optional: five to ten people stubs if you track relationships</li>
           <li>Optional: an open decision and an active project</li>
         </ul>
 
-        <p>The setup wizard branches based on which disciplines you want. Nothing gets installed that isn't going to be used. Forty-five minutes in, the vault is already yours, not a blank Notion-style template that demands months of population before it earns its keep.</p>
+        <p>The setup wizard branches based on which disciplines you want. Nothing gets installed that isn't going to be used. By the end of it, the vault is already yours, not a blank Notion-style template that demands months of population before it earns its keep.</p>
 
-        <p>Other skills cover the daily and weekly rhythms: <code>/capture</code> for one-line inbox entries, <code>/atomize</code> for promoting captures to atoms, <code>/weekly-review</code> for the Sunday ritual, <code>/draft</code> and <code>/grade</code> for content if that discipline is opted in.</p>
+        <p>Other skills cover the daily and weekly rhythms: <code>/capture</code> for one-line inbox entries, <code>/process-inbox</code> for promoting captures to atoms, <code>/review</code> for the Sunday ritual, <code>/draft</code> and <code>/grade</code> for content if that discipline is opted in.</p>
 
         <h2>What I actually use it for</h2>
 
@@ -266,7 +268,7 @@ _Meta/            Schema, workflows, plugins, durability plan.</pre>
 
         <p><a href="https://github.com/bwhdx/brain-starter">github.com/bwhdx/brain-starter</a></p>
 
-        <p>Clone it, open in Obsidian, run <code>/setup</code> in Claude Code, and have a populated vault in forty-five minutes.</p>
+        <p>Clone it, open in Obsidian, run <code>/setup</code> in Claude Code, and have a populated vault by the time you're done.</p>
 
         <p>If you fork it, send a note to <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>. The interesting part of any template is what other people do with it.</p>
       </div>
@@ -289,17 +291,17 @@ _Meta/            Schema, workflows, plugins, durability plan.</pre>
       <section class="article-related" aria-label="Related articles">
         <p class="related-kicker">Related</p>
         <div class="related-grid">
-          <a class="related-card" href="/writing/autonomous-ai-agents/">
-            <div class="related-meta">§ 06.A.03 · 13 Dec 2024</div>
-            <div class="related-title">Autonomous <em>AI Agents</em></div>
+          <a class="related-card" href="/writing/the-assistant-that-knows-you/">
+            <div class="related-meta">§ 06.A.10 · 16 Jun 2026</div>
+            <div class="related-title">The assistant <em>that knows you</em></div>
           </a>
-          <a class="related-card" href="/writing/the-holy-trinity/">
-            <div class="related-meta">§ 06.A.02 · 12 Dec 2024</div>
-            <div class="related-title">The <em>Holy Trinity</em></div>
+          <a class="related-card" href="/writing/always-on-assistant/">
+            <div class="related-meta">§ 06.A.09 · 12 Jun 2026</div>
+            <div class="related-title">The assistant <em>that's always on</em></div>
           </a>
-          <a class="related-card" href="/writing/the-democratic-myth-of-daos/">
-            <div class="related-meta">§ 06.A.01 · 27 Nov 2024</div>
-            <div class="related-title">The Democratic Myth of <em>DAOs</em></div>
+          <a class="related-card" href="/writing/in-clawd-we-trust/">
+            <div class="related-meta">§ 06.A.07 · 15 Feb 2026</div>
+            <div class="related-title">In Clawd <em>we trust</em></div>
           </a>
         </div>
       </section>
