@@ -99,7 +99,7 @@
     <id>https://benedictdixon.com/writing/the-unit-of-production-has-changed/</id>
     <published>2026-06-20T00:00:00Z</published>
     <updated>2026-06-20T00:00:00Z</updated>
-    <summary>I built a 55-microservice system near-solo in a year. AI deleted the coordination overhead, not just the typing. What's left is judgement.</summary>
+    <summary>Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. What's left is judgement.</summary>
     <category term="Building &amp; Technology"/>
     <category term="AI"/>
   </entry>
@@ -399,17 +399,6 @@
     <summary>When IoT, blockchain and AI converge, autonomous agents can represent individuals and businesses in milliseconds.</summary>
     <category term="Building &amp; Technology"/>
     <category term="AI"/>
-  </entry>
-
-  <entry>
-    <title>The Holy Trinity</title>
-    <link href="https://benedictdixon.com/writing/the-holy-trinity/" rel="alternate" type="text/html"/>
-    <id>https://benedictdixon.com/writing/the-holy-trinity/</id>
-    <published>2024-12-12T00:00:00Z</published>
-    <updated>2024-12-12T00:00:00Z</updated>
-    <summary>Three powerful tools — blockchain, AI and IoT — coming together in ways that make each more useful than they are alone.</summary>
-    <category term="Building &amp; Technology"/>
-    <category term="Blockchain"/>
   </entry>
 
   <entry>

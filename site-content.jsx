@@ -15,7 +15,7 @@ function Runner() {
       setHidden(y > lastY.current && y > 240);
       lastY.current = y;
       // Find current section
-      const sections = ['hero', 'about', 'morph', 'projects', 'services', 'writing', 'reading', 'contact'];
+      const sections = ['hero', 'about', 'morph', 'projects', 'writing', 'reading', 'contact'];
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.getBoundingClientRect().top < 100) {
@@ -33,21 +33,20 @@ function Runner() {
     <header className={`runner ${hidden ? 'hidden' : ''}`}>
       <div className="brand">
         <div className="mark">B</div>
-        <span>Benedict W. H. Dixon · An Almanack · MMXXVI</span>
+        <span>Benedict W. H. Dixon<span className="brand-long"> · An Almanack · MMXXVI</span></span>
       </div>
       <nav aria-label="Sections">
         {[
-          ['about', 'About'],
-          ['morph', 'Career'],
-          ['projects', 'Projects'],
-          ['services', 'Services'],
-          ['writing', 'Writing'],
-          ['contact', 'Contact'],
-        ].map(([id, label]) => (
+          ['about', 'About', true],
+          ['morph', 'Career', true],
+          ['projects', 'Projects', true],
+          ['writing', 'Writing', false],
+          ['contact', 'Contact', false],
+        ].map(([id, label, wideOnly]) => (
           <a
             key={id}
             href={`#${id}`}
-            className={active === id ? 'active' : ''}
+            className={[active === id ? 'active' : '', wideOnly ? 'nav-wide' : ''].join(' ').trim() || undefined}
             aria-current={active === id ? 'location' : undefined}
           >{label}</a>
         ))}
@@ -55,6 +54,10 @@ function Runner() {
     </header>
   );
 }
+
+const HERO_LINE = <React.Fragment>Building and running companies, <em>end to end.</em></React.Fragment>;
+
+const MASTHEAD = 'An Almanack · Building, leading & learning';
 
 // ─────────────────────────────────────────────────────────
 // Hero — full-bleed candlestick portrait + masthead
@@ -87,7 +90,7 @@ function Hero() {
       {/* Top meta strip */}
       <div className="hero-top-bar">
         <div className="wrap hero-top-grid">
-          <div className="meta meta-strong">An Almanack for Finance, Operations &amp; Code</div>
+          <div className="meta meta-strong">{MASTHEAD}</div>
           <div className="meta">Vol. I · MMXXVI · Edition 01</div>
         </div>
       </div>
@@ -103,13 +106,17 @@ function Hero() {
             Benedict W. H. <em>Dixon.</em>
           </h1>
           <div className="hero-band-bottom">
-            <p className="hero-tagline-text">
-              An operator who <em>ships the code and runs the company</em> — at the intersection of AI &amp; finance.
-            </p>
-            <a className="hero-scroll" href="#about">
-              <span className="meta">Read on</span>
-              <span className="arrow">↓</span>
-            </a>
+            <div className="hero-lines">
+              <p className="hero-tagline-text">{HERO_LINE}</p>
+              <p className="hero-subline">Building, leading &amp; learning</p>
+            </div>
+            <div className="hero-actions">
+              <a className="hero-cta" href="mailto:me@benedictdixon.com?subject=Compare%20notes">Compare notes</a>
+              <a className="hero-scroll" href="#about">
+                <span className="meta">Read on</span>
+                <span className="arrow" aria-hidden="true">↓</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -118,22 +125,42 @@ function Hero() {
 }
 
 // ─────────────────────────────────────────────────────────
-// Ticker tape — between sections, a marquee of career stats
+// Ticker tape — between sections. A design element, not a stat wall:
+// his tagline, or his essay titles. Decorative, so hidden from screen
+// readers; a visible Pause control stops it (WCAG 2.2.2), and under
+// prefers-reduced-motion it doesn't move at all (see site.css).
 // ─────────────────────────────────────────────────────────
-function Ticker() {
-  const items = [
-    '$150M ECOSYSTEM',  'KASH · COO & INTERIM CTO',  '45K USERS',
-    'JPMORGAN PATENT',  '94% COST REDUCTION',  '50+ COUNTRIES',
-    'VOI NETWORK',  '12,000mi LONDON → MONGOLIA',  'POUND TOKEN',
-    'DD VENTURES',  'AMEX R&D',  '6 MONTHS SOLO BUILD',
-    'BATH · COMPUTER SCIENCE',
-  ];
+const TICKER_TAGLINE = [
+  'BUILDING', 'LEADING', 'LEARNING', 'AN ALMANACK · VOL. I · MMXXVI',
+  'BUILDING', 'LEADING', 'LEARNING', 'BENEDICT W. H. DIXON',
+];
+const TICKER_ESSAYS = [
+  'AI COLLAPSED THE BUILD, NOT THE OPERATION',
+  'THE UNIT OF PRODUCTION HAS CHANGED',
+  'IN CLAWD WE TRUST',
+  'THE ASSISTANT THAT KNOWS YOU',
+  'THE ASSISTANT THAT\'S ALWAYS ON',
+  'BUILDING A SECOND BRAIN THAT DOESN\'T DIE',
+];
+
+function Ticker({ items = TICKER_TAGLINE, label = 'ticker' }) {
+  const [paused, setPaused] = React.useState(false);
   const line = items.join('   ·   ');
   return (
-    <div className="ticker">
-      <div className="ticker-track">
+    <div className={`ticker ${paused ? 'is-paused' : ''}`}>
+      <div className="ticker-track" aria-hidden="true">
         <span>{line}   ·   {line}</span>
       </div>
+      <button
+        type="button"
+        className="ticker-toggle"
+        aria-pressed={paused}
+        aria-label={`${paused ? 'Play' : 'Pause'} the ${label}`}
+        onClick={() => setPaused(p => !p)}
+      >
+        <span aria-hidden="true" className="ticker-toggle-glyph">{paused ? '▶' : '❚❚'}</span>
+        {paused ? 'Play' : 'Pause'}
+      </button>
     </div>
   );
 }
@@ -141,62 +168,38 @@ function Ticker() {
 // ─────────────────────────────────────────────────────────
 // About
 // ─────────────────────────────────────────────────────────
+// About — both options are his LinkedIn About, verbatim, except A's last
+// line, which is his own Q13 wording joined into one sentence.
+const ABOUT_P1 = "I started out as an engineer, building payment systems at JPMorgan, then on the R&D team for Amex's referral campaigns. That's where I first got to see beyond the terminal. We went into those design, user interview and research centres, behind the double glass, and got some exposure to the positioning and the marketing side as well. After that came a hedge fund, fintech, and founding my own startups.";
+const ABOUT_P2 = "Then I made a very conscious and intentional move from writing code to running companies and teams. When AI tooling arrived, I went back to building. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.";
+const ABOUT = [ABOUT_P1, ABOUT_P2,
+      "I build end-to-end, full solutions, and I run and operate products and businesses completely end to end."];
+
 function About() {
+  const paras = ABOUT;
   return (
     <section id="about" className="about-section" data-screen-label="02 About">
       <div className="wrap">
         <div className="section-head">
           <div>
             <p className="num">§ 02 · About</p>
-            <h2 className="ttl"><em>From co-inventing</em><br/>payment systems to running them.</h2>
+            <h2 className="ttl">Beyond <em>the terminal.</em></h2>
           </div>
           <div className="right">Edition 01 · pp. 12–14</div>
         </div>
 
         <div className="about-grid">
           <div className="body about-lede drop">
-            <p>A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom. The leverage is AI, end to end.</p>
-            <p>JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point — and every one reached production and moved real money, live, at volume, without incident.</p>
+            {paras.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
           <aside className="margin-note about-margin">
             <p>Read also —</p>
-            <p>§ 03 An operator's almanack<br/>§ 04 Featured projects<br/>§ 05 Services on offer</p>
+            <p>§ 03 An operator's almanack<br/>§ 04 Featured projects<br/>§ 06 Writing &amp; speaking</p>
             <p style={{marginTop: 16}}>Contact — <br/>me@benedictdixon.com</p>
           </aside>
         </div>
 
-        <hr className="hairline" style={{margin: '64px 0'}} />
-
-        <div className="three-cards">
-          <article>
-            <div className="kicker">§ 02.a · Operational</div>
-            <h3 className="subhead">Operational <em>Leadership</em></h3>
-            <p>Companies and divisions, run from the ground up. Organisational structure, financial controls, operational processes. Built to scale. Full-picture ownership.</p>
-          </article>
-          <article>
-            <div className="kicker">§ 02.b · Product &amp; Technology</div>
-            <h3 className="subhead">Product &amp; <em>Technology</em></h3>
-            <p>Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production. AI woven into the products themselves — and into how they get built.</p>
-          </article>
-          <article>
-            <div className="kicker">§ 02.c · Commercial</div>
-            <h3 className="subhead">Growth &amp; <em>Go-to-Market</em></h3>
-            <p>Engines that take products to market: ecosystem partnerships, community growth, sales strategy and stakeholder management. Zero to 45K+ users and $150M+ in value.</p>
-          </article>
-        </div>
-
-        <hr className="hairline" style={{margin: '64px 0 32px'}} />
-
-        <div className="achievements">
-          <div className="kicker">Key achievements</div>
-          <ol className="achievement-list">
-            <li><span className="ach-num">i.</span><span>Built and scaled an L1 ecosystem from concept to <em>$150M+</em> with 45K+ users.</span></li>
-            <li><span className="ach-num">ii.</span><span>Co-invented a <em>patented</em> real-time B2B payment system at JPMorgan.</span></li>
-            <li><span className="ach-num">iii.</span><span>Navigated a successful acquisition, preserving <em>millions in assets</em> during transition.</span></li>
-            <li><span className="ach-num">iv.</span><span>Built an enterprise-grade 50+ microservice platform from scratch as sole engineer in <em>six months.</em></span></li>
-          </ol>
-        </div>
       </div>
     </section>
   );
@@ -208,10 +211,10 @@ function About() {
 const PROJECTS = [
   {
     num: '04.i',
-    name: 'Kash',
-    role: 'COO & Interim CTO',
-    period: '2025 –',
-    body: 'COO and CTO from inception of an AI-powered prediction marketplace — users trade straight from social media, and the AI parses their intent, creates the markets and resolves them. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
+    name: 'kash',
+    role: 'Co-founder, COO & Interim CTO',
+    period: 'May 2025 – Present',
+    body: "Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.",
     pills: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
     url: 'https://kash.bot/',
   },
@@ -228,15 +231,15 @@ const PROJECTS = [
     num: '04.iii',
     name: 'Pound Token',
     role: 'Chief Technology Officer',
-    period: '2023 – 2024',
+    period: 'Aug 2023 – Aug 2024',
     body: 'Led technical strategy through a successful acquisition. Executed zero-downtime migration reducing operating costs by 94%. Preserved millions in assets during the transition.',
     pills: ['Technical Strategy', 'Migration', 'Team Retention'],
   },
   {
     num: '04.iv',
     name: 'Nettle',
-    role: 'Chief Product & Technology Officer',
-    period: '2022 – 2023',
+    role: 'Chief Product & Technology Officer, Co-Founder',
+    period: 'May 2021 – Aug 2023',
     body: 'Led product and technology for an innovative fintech payments and loyalty platform. Architected a multi-currency payment system. Accelerated time-to-market through customer-driven development. The company later ceased operations.',
     pills: ['Product Strategy', 'Payment Systems', 'Team Building'],
   },
@@ -284,65 +287,6 @@ function Projects() {
 }
 
 // ─────────────────────────────────────────────────────────
-// Services
-// ─────────────────────────────────────────────────────────
-function Services() {
-  return (
-    <section id="services" className="services-section" data-screen-label="05 Services">
-      <div className="wrap">
-        <div className="section-head">
-          <div>
-            <p className="num">§ 05 · Services</p>
-            <h2 className="ttl">For founders, <em>operators</em> &amp; boards.</h2>
-          </div>
-          <div className="right">Available via DD Ventures</div>
-        </div>
-
-        <div className="services-grid">
-          <article>
-            <div className="kicker">§ 05.a</div>
-            <h3 className="subhead">Executive &amp; <em>Operational</em><br/>Advisory</h3>
-            <ul className="bare-list">
-              <li>Organisational design &amp; scaling</li>
-              <li>Operational process architecture</li>
-              <li>Financial controls &amp; governance</li>
-              <li>Executive leadership coaching</li>
-            </ul>
-          </article>
-          <article>
-            <div className="kicker">§ 05.b</div>
-            <h3 className="subhead">Product &amp; <em>Technology</em><br/>Strategy</h3>
-            <ul className="bare-list">
-              <li>Product-market fit analysis</li>
-              <li>Technical architecture review</li>
-              <li>AI, blockchain &amp; payments strategy</li>
-              <li>Scalability &amp; infrastructure planning</li>
-            </ul>
-          </article>
-          <article>
-            <div className="kicker">§ 05.c</div>
-            <h3 className="subhead">Growth &amp; <em>Go-to-Market</em></h3>
-            <ul className="bare-list">
-              <li>Ecosystem &amp; community growth</li>
-              <li>Partnership &amp; BD strategy</li>
-              <li>Stakeholder &amp; investor management</li>
-              <li>Team building &amp; culture</li>
-            </ul>
-          </article>
-        </div>
-
-        <div className="dd-callout">
-          <div className="kicker">§ 05 · A note</div>
-          <h3 className="subhead">DD Ventures — <em>entrepreneurship</em> advisory</h3>
-          <p>Specialised advisory leveraging deep entrepreneurship experience to help founders successfully launch, run and scale companies and products.</p>
-          <a className="link-arrow" href="https://dd.ventures" target="_blank" rel="noreferrer">dd.ventures →</a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─────────────────────────────────────────────────────────
 // Writing & Speaking
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [
@@ -355,7 +299,7 @@ const ARTICLES = [
   {
     date: 'Jun 2026',
     title: 'The Unit of Production Has Changed',
-    excerpt: 'A year building a 55-microservice system near-solo. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
+    excerpt: 'Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
     url: '/writing/the-unit-of-production-has-changed/',
   },
   {
@@ -418,6 +362,7 @@ function Writing() {
             <p style={{fontFamily: 'var(--font-serif)', fontStyle: 'italic', fontSize: '20px'}}>
               Keynotes &amp; panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.
             </p>
+            <p style={{marginTop: 24}}><a className="link-arrow" href="/hosts/">For podcast hosts →</a></p>
           </aside>
         </div>
       </div>
@@ -435,16 +380,15 @@ function Contact() {
         <div className="section-head">
           <div>
             <p className="num">§ 08 · Get in touch</p>
-            <h2 className="ttl">Operations, <em>strategy,</em><br/>architecture.</h2>
+            <h2 className="ttl">Compare <em>notes.</em></h2>
           </div>
-          <div className="right">Available now</div>
         </div>
 
         <div className="contact-grid">
           <p className="lede" style={{maxWidth: 720}}>
-            Open to conversations with founders and operators building real things
-            across AI, fintech and blockchain. Operating roles direct; advisory,
-            fractional and board engagements through DD Ventures.
+            I'm also a strategic, product and technology advisor to early-stage
+            startups and founders. Always interested to compare notes with people
+            doing the work.
           </p>
 
           <div className="contact-links">
@@ -473,6 +417,24 @@ function Contact() {
               <div className="contact-value">dd.ventures</div>
             </a>
           </div>
+
+          {/* PREVIEW ONLY — visual email capture. No provider is chosen yet,
+              so the form posts nowhere: submit is swallowed client-side.
+              Wire `action` to the provider before this ships. */}
+          <form
+            className="edition-signup"
+            data-provider="none"
+            onSubmit={(e) => e.preventDefault()}
+            aria-labelledby="edition-signup-label"
+          >
+            <p className="kicker" id="edition-signup-label">Next edition</p>
+            <p className="edition-signup-line">The next edition lands when there's something worth reading.</p>
+            <div className="edition-signup-row">
+              <label className="sr-only" htmlFor="edition-email">Email address</label>
+              <input id="edition-email" type="email" name="email" autoComplete="email" placeholder="you@example.com" required />
+              <button type="submit">Subscribe</button>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -485,7 +447,7 @@ function Contact() {
           <div>
             <strong>Edition</strong>
             Vol. I · MMXXVI<br/>
-            An Almanack for Finance, Operations &amp; Code
+            {MASTHEAD}
           </div>
           <div>
             <strong>Words</strong>
@@ -503,4 +465,4 @@ function Contact() {
   );
 }
 
-Object.assign(window, { Runner, Hero, Ticker, About, Projects, Services, Writing, Contact });
+Object.assign(window, { HERO_LINE, MASTHEAD, TICKER_TAGLINE, TICKER_ESSAYS, Runner, Hero, Ticker, About, Projects, Writing, Contact });

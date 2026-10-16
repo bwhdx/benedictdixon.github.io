@@ -39,7 +39,10 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  .ticker-track { animation-play-state: paused !important; }
+  /* Nothing moves: the ticker sits still, left-aligned, and its control
+     is hidden because there is nothing to pause. */
+  .ticker-track { animation: none !important; padding-left: 0 !important; transform: none !important; }
+  .ticker-toggle { display: none !important; }
 }
 
 /* Keyboard focus ring — two-tone box-shadow so it's visible on
@@ -78,7 +81,7 @@ button:focus-visible,
   --paper-dim: #c8b876;
   --ink: #1c267a;
   --ink-2: #2a3499;
-  --ink-soft: rgba(28, 38, 122, 0.62);
+  --ink-soft: rgba(28, 38, 122, 0.80);
   --ink-mute: rgba(28, 38, 122, 0.42);
   --ink-hair: rgba(28, 38, 122, 0.22);
   --ink-faint: rgba(28, 38, 122, 0.12);
@@ -298,10 +301,20 @@ section {
   letter-spacing: 0;
 }
 .runner nav { display: flex; gap: 28px; }
-.runner nav a { color: var(--ink-soft); transition: color 0.18s; }
+.runner nav a { color: var(--ink-soft); transition: color 0.18s; padding: 7px 0; }
 .runner nav a:hover, .runner nav a.active { color: var(--ink); }
+/* Narrow screens: the nav stays, cut to Writing and Contact, and the
+   brand drops its long tail so both fit at 390 px. */
 @media (max-width: 800px) {
-  .runner nav { display: none; }
+  .runner { padding: 0 var(--gutter-sm); }
+  .runner nav { gap: 20px; }
+  .runner nav a.nav-wide { display: none; }
+  .runner .brand-long { display: none; }
+}
+@media (max-width: 480px) {
+  .runner { letter-spacing: 0.14em; }
+  .runner nav { gap: 16px; }
+  .runner .brand { gap: 8px; }
 }
 
 /* Footer */
@@ -650,7 +663,38 @@ section {
   color: var(--paper);
 }
 .hero-tagline-text em { font-style: italic; font-weight: 300; color: rgba(214,197,133,0.85); }
+.hero-lines .hero-tagline-text { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; }
+.hero-subline {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(214,197,133,0.92);
+}
 
+.hero-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 28px;
+}
+.hero-cta {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+  padding: 11px 18px;
+  border: 1px solid var(--paper);
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background-color 0.18s, color 0.18s;
+}
+.hero-cta:hover { background: var(--paper); color: var(--ink); }
+@media (max-width: 800px) {
+  .hero-actions { justify-content: space-between; align-items: center; }
+}
 .hero-scroll {
   display: flex;
   flex-direction: column;
@@ -660,7 +704,7 @@ section {
   color: var(--paper);
   text-align: right;
 }
-.hero-scroll .meta { color: rgba(214,197,133,0.65); }
+.hero-scroll .meta { color: rgba(214,197,133,0.92); }
 .hero-scroll .arrow {
   font-family: var(--font-serif);
   font-size: 22px;
@@ -703,7 +747,29 @@ section {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.ticker-track { animation-duration: 90s; }
+.ticker-track { animation-duration: 90s; animation-delay: -30s; } /* start mid-flow, never an empty band */
+.ticker { position: relative; }
+.ticker.is-paused .ticker-track { animation-play-state: paused; }
+.ticker-toggle {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 var(--gutter-sm) 0 20px;
+  border: 0;
+  background: var(--ink);
+  box-shadow: -24px 0 16px var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 24px;
+}
+.ticker-toggle-glyph { font-size: 9px; letter-spacing: 0; opacity: 0.85; }
+.ticker-toggle:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* ── About section ──────────────────────────────────────── */
 .about-grid {
@@ -939,6 +1005,7 @@ section {
 /* ── Contact ────────────────────────────────────────────── */
 .contact-grid {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* keep the signup row inside 390 px */
   gap: 48px;
 }
 .contact-links {
@@ -964,6 +1031,61 @@ section {
   line-height: 1.1;
   color: var(--ink);
 }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+/* Email capture — quiet, one line and a field. Visual only for now. */
+.edition-signup {
+  max-width: 720px;
+  padding-top: 8px;
+}
+.edition-signup-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 20px;
+  line-height: 1.35;
+  margin: 0 0 16px;
+  color: var(--ink);
+}
+.edition-signup-row {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+}
+.edition-signup input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  padding: 8px 0;
+  border-radius: 0;
+}
+.edition-signup input::placeholder { color: var(--ink-mute); }
+.edition-signup input:focus-visible {
+  outline: none;
+  box-shadow: 0 2px 0 0 var(--ink);
+}
+.edition-signup button {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background-color 0.18s, color 0.18s;
+}
+.edition-signup button:hover { background: var(--ink); color: var(--paper); }
 
 @media (max-width: 700px) {
   .contact-links { grid-template-columns: 1fr; }

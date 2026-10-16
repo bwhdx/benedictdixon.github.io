@@ -7,12 +7,11 @@ function App() {
       <Runner />
       <main id="main-content">
         <Hero />
-        <Ticker />
+        <Ticker items={TICKER_TAGLINE} label="tagline ticker" />
         <About />
         <div id="morph"><MorphStage /></div>
-        <Ticker />
+        <Ticker items={TICKER_ESSAYS} label="essay ticker" />
         <Projects />
-        <Services />
         <Writing />
         <Contact />
       </main>

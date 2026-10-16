@@ -574,17 +574,20 @@ const CAREER = [{
   hi: 0.20,
   lo: 0.52,
   w: 0.8
-}, {
-  yr: '2022',
+},
+// Titles and start years match LinkedIn (checked against the 29 Sep 2026 snapshot).
+// Voi Network is left exactly as it was, pending his ruling.
+{
+  yr: '2021',
   co: 'Nettle',
-  role: 'CPTO · payments & loyalty',
+  role: 'Chief Product & Technology Officer, Co-Founder',
   hi: 0.25,
   lo: 0.58,
   w: 0.8
 }, {
   yr: '2023',
   co: 'Pound Token',
-  role: 'CTO · UK stablecoin',
+  role: 'Chief Technology Officer',
   hi: 0.15,
   lo: 0.50,
   w: 0.9
@@ -596,26 +599,26 @@ const CAREER = [{
   lo: 0.55,
   w: 1.0
 }, {
-  yr: '2024',
+  yr: '2025',
   co: 'Brdge',
-  role: 'Head of Blockchain · AI consultancy',
+  role: 'Head of Blockchain',
   hi: 0.20,
   lo: 0.50,
   w: 0.7
 }, {
   yr: '2025',
-  co: 'Kash',
-  role: 'COO & CTO · prediction marketplace',
-  hi: 0.05,
-  lo: 0.55,
-  w: 1.1
-}, {
-  yr: '2025',
   co: 'DD Ventures',
-  role: 'Founding Partner · advisory',
+  role: 'Founding Partner',
   hi: 0.22,
   lo: 0.48,
   w: 0.7
+}, {
+  yr: '2025',
+  co: 'kash',
+  role: 'Co-founder, COO & Interim CTO',
+  hi: 0.05,
+  lo: 0.55,
+  w: 1.1
 }];
 
 // Three expeditions — drawn as candlestick sequences traversing the canvas.
@@ -1010,6 +1013,12 @@ function MorphStage() {
     drawFrame(c, parts, progressRef.current, W, H);
   }, []);
 
+  // Reduced motion: keep the same scroll length and the same three acts, but
+  // snap between the held states instead of tweening 1,100 particles.
+  const reduceRef = React.useRef(typeof window !== 'undefined' && window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : {
+    matches: false
+  });
+
   // Scroll: compute progress, update phase, redraw. No RAF — fires on every
   // scroll event (passive listener) and on resize. Bypasses the iframe-hidden
   // RAF throttling that pauses background tabs entirely.
@@ -1021,7 +1030,7 @@ function MorphStage() {
       const vh = window.innerHeight;
       const total = r.height - vh;
       const p = clamp(-r.top / total, 0, 1);
-      progressRef.current = p;
+      progressRef.current = reduceRef.current.matches ? p < 0.18 ? 0 : p < 0.48 ? 0.36 : p < 0.96 ? 0.70 : 1 : p;
       const next = p < 0.18 ? 'portrait' : p < 0.36 ? 'toCareer' : p < 0.48 ? 'career' : p < 0.66 ? 'toMap' : p < 0.82 ? 'map' : p < 0.96 ? 'back' : 'final';
       setPhase(prev => prev === next ? prev : next);
       drawNow();
@@ -1172,7 +1181,7 @@ function Runner() {
       setHidden(y > lastY.current && y > 240);
       lastY.current = y;
       // Find current section
-      const sections = ['hero', 'about', 'morph', 'projects', 'services', 'writing', 'reading', 'contact'];
+      const sections = ['hero', 'about', 'morph', 'projects', 'writing', 'reading', 'contact'];
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.getBoundingClientRect().top < 100) {
@@ -1193,15 +1202,19 @@ function Runner() {
     className: "brand"
   }, /*#__PURE__*/React.createElement("div", {
     className: "mark"
-  }, "B"), /*#__PURE__*/React.createElement("span", null, "Benedict W. H. Dixon \xB7 An Almanack \xB7 MMXXVI")), /*#__PURE__*/React.createElement("nav", {
+  }, "B"), /*#__PURE__*/React.createElement("span", null, "Benedict W. H. Dixon", /*#__PURE__*/React.createElement("span", {
+    className: "brand-long"
+  }, " \xB7 An Almanack \xB7 MMXXVI"))), /*#__PURE__*/React.createElement("nav", {
     "aria-label": "Sections"
-  }, [['about', 'About'], ['morph', 'Career'], ['projects', 'Projects'], ['services', 'Services'], ['writing', 'Writing'], ['contact', 'Contact']].map(([id, label]) => /*#__PURE__*/React.createElement("a", {
+  }, [['about', 'About', true], ['morph', 'Career', true], ['projects', 'Projects', true], ['writing', 'Writing', false], ['contact', 'Contact', false]].map(([id, label, wideOnly]) => /*#__PURE__*/React.createElement("a", {
     key: id,
     href: `#${id}`,
-    className: active === id ? 'active' : '',
+    className: [active === id ? 'active' : '', wideOnly ? 'nav-wide' : ''].join(' ').trim() || undefined,
     "aria-current": active === id ? 'location' : undefined
   }, label))));
 }
+const HERO_LINE = /*#__PURE__*/React.createElement(React.Fragment, null, "Building and running companies, ", /*#__PURE__*/React.createElement("em", null, "end to end."));
+const MASTHEAD = 'An Almanack · Building, leading & learning';
 
 // ─────────────────────────────────────────────────────────
 // Hero — full-bleed candlestick portrait + masthead
@@ -1244,7 +1257,7 @@ function Hero() {
     className: "wrap hero-top-grid"
   }, /*#__PURE__*/React.createElement("div", {
     className: "meta meta-strong"
-  }, "An Almanack for Finance, Operations & Code"), /*#__PURE__*/React.createElement("div", {
+  }, MASTHEAD), /*#__PURE__*/React.createElement("div", {
     className: "meta"
   }, "Vol. I \xB7 MMXXVI \xB7 Edition 01"))), /*#__PURE__*/React.createElement("div", {
     className: "hero-band"
@@ -1260,35 +1273,69 @@ function Hero() {
     className: "display hero-title"
   }, "Benedict W. H. ", /*#__PURE__*/React.createElement("em", null, "Dixon.")), /*#__PURE__*/React.createElement("div", {
     className: "hero-band-bottom"
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "hero-lines"
   }, /*#__PURE__*/React.createElement("p", {
     className: "hero-tagline-text"
-  }, "An operator who ", /*#__PURE__*/React.createElement("em", null, "ships the code and runs the company"), " \u2014 at the intersection of AI & finance."), /*#__PURE__*/React.createElement("a", {
+  }, HERO_LINE), /*#__PURE__*/React.createElement("p", {
+    className: "hero-subline"
+  }, "Building, leading & learning")), /*#__PURE__*/React.createElement("div", {
+    className: "hero-actions"
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "hero-cta",
+    href: "mailto:me@benedictdixon.com?subject=Compare%20notes"
+  }, "Compare notes"), /*#__PURE__*/React.createElement("a", {
     className: "hero-scroll",
     href: "#about"
   }, /*#__PURE__*/React.createElement("span", {
     className: "meta"
   }, "Read on"), /*#__PURE__*/React.createElement("span", {
-    className: "arrow"
-  }, "\u2193"))))));
+    className: "arrow",
+    "aria-hidden": "true"
+  }, "\u2193")))))));
 }
 
 // ─────────────────────────────────────────────────────────
-// Ticker tape — between sections, a marquee of career stats
+// Ticker tape — between sections. A design element, not a stat wall:
+// his tagline, or his essay titles. Decorative, so hidden from screen
+// readers; a visible Pause control stops it (WCAG 2.2.2), and under
+// prefers-reduced-motion it doesn't move at all (see site.css).
 // ─────────────────────────────────────────────────────────
-function Ticker() {
-  const items = ['$150M ECOSYSTEM', 'KASH · COO & INTERIM CTO', '45K USERS', 'JPMORGAN PATENT', '94% COST REDUCTION', '50+ COUNTRIES', 'VOI NETWORK', '12,000mi LONDON → MONGOLIA', 'POUND TOKEN', 'DD VENTURES', 'AMEX R&D', '6 MONTHS SOLO BUILD', 'BATH · COMPUTER SCIENCE'];
+const TICKER_TAGLINE = ['BUILDING', 'LEADING', 'LEARNING', 'AN ALMANACK · VOL. I · MMXXVI', 'BUILDING', 'LEADING', 'LEARNING', 'BENEDICT W. H. DIXON'];
+const TICKER_ESSAYS = ['AI COLLAPSED THE BUILD, NOT THE OPERATION', 'THE UNIT OF PRODUCTION HAS CHANGED', 'IN CLAWD WE TRUST', 'THE ASSISTANT THAT KNOWS YOU', 'THE ASSISTANT THAT\'S ALWAYS ON', 'BUILDING A SECOND BRAIN THAT DOESN\'T DIE'];
+function Ticker({
+  items = TICKER_TAGLINE,
+  label = 'ticker'
+}) {
+  const [paused, setPaused] = React.useState(false);
   const line = items.join('   ·   ');
   return /*#__PURE__*/React.createElement("div", {
-    className: "ticker"
+    className: `ticker ${paused ? 'is-paused' : ''}`
   }, /*#__PURE__*/React.createElement("div", {
-    className: "ticker-track"
-  }, /*#__PURE__*/React.createElement("span", null, line, "   \xB7   ", line)));
+    className: "ticker-track",
+    "aria-hidden": "true"
+  }, /*#__PURE__*/React.createElement("span", null, line, "   \xB7   ", line)), /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: "ticker-toggle",
+    "aria-pressed": paused,
+    "aria-label": `${paused ? 'Play' : 'Pause'} the ${label}`,
+    onClick: () => setPaused(p => !p)
+  }, /*#__PURE__*/React.createElement("span", {
+    "aria-hidden": "true",
+    className: "ticker-toggle-glyph"
+  }, paused ? '▶' : '❚❚'), paused ? 'Play' : 'Pause'));
 }
 
 // ─────────────────────────────────────────────────────────
 // About
 // ─────────────────────────────────────────────────────────
+// About — both options are his LinkedIn About, verbatim, except A's last
+// line, which is his own Q13 wording joined into one sentence.
+const ABOUT_P1 = "I started out as an engineer, building payment systems at JPMorgan, then on the R&D team for Amex's referral campaigns. That's where I first got to see beyond the terminal. We went into those design, user interview and research centres, behind the double glass, and got some exposure to the positioning and the marketing side as well. After that came a hedge fund, fintech, and founding my own startups.";
+const ABOUT_P2 = "Then I made a very conscious and intentional move from writing code to running companies and teams. When AI tooling arrived, I went back to building. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.";
+const ABOUT = [ABOUT_P1, ABOUT_P2, "I build end-to-end, full solutions, and I run and operate products and businesses completely end to end."];
 function About() {
+  const paras = ABOUT;
   return /*#__PURE__*/React.createElement("section", {
     id: "about",
     className: "about-section",
@@ -1301,57 +1348,21 @@ function About() {
     className: "num"
   }, "\xA7 02 \xB7 About"), /*#__PURE__*/React.createElement("h2", {
     className: "ttl"
-  }, /*#__PURE__*/React.createElement("em", null, "From co-inventing"), /*#__PURE__*/React.createElement("br", null), "payment systems to running them.")), /*#__PURE__*/React.createElement("div", {
+  }, "Beyond ", /*#__PURE__*/React.createElement("em", null, "the terminal."))), /*#__PURE__*/React.createElement("div", {
     className: "right"
   }, "Edition 01 \xB7 pp. 12\u201314")), /*#__PURE__*/React.createElement("div", {
     className: "about-grid"
   }, /*#__PURE__*/React.createElement("div", {
     className: "body about-lede drop"
-  }, /*#__PURE__*/React.createElement("p", null, "A decade-plus running and building companies in financial technology. Operator, COO, CTO. Deep across product, technology, operations and ecosystems. The throughline is finance, top to bottom. The leverage is AI, end to end."), /*#__PURE__*/React.createElement("p", null, "JPMorgan to Kash. A patented B2B payment system. A $150M L1 ecosystem with 45K+ users. A stablecoin steered through acquisition. An enterprise-grade microservice platform shipped solo. The breadth is the point \u2014 and every one reached production and moved real money, live, at volume, without incident.")), /*#__PURE__*/React.createElement("aside", {
+  }, paras.map((p, i) => /*#__PURE__*/React.createElement("p", {
+    key: i
+  }, p))), /*#__PURE__*/React.createElement("aside", {
     className: "margin-note about-margin"
-  }, /*#__PURE__*/React.createElement("p", null, "Read also \u2014"), /*#__PURE__*/React.createElement("p", null, "\xA7 03 An operator's almanack", /*#__PURE__*/React.createElement("br", null), "\xA7 04 Featured projects", /*#__PURE__*/React.createElement("br", null), "\xA7 05 Services on offer"), /*#__PURE__*/React.createElement("p", {
+  }, /*#__PURE__*/React.createElement("p", null, "Read also \u2014"), /*#__PURE__*/React.createElement("p", null, "\xA7 03 An operator's almanack", /*#__PURE__*/React.createElement("br", null), "\xA7 04 Featured projects", /*#__PURE__*/React.createElement("br", null), "\xA7 06 Writing & speaking"), /*#__PURE__*/React.createElement("p", {
     style: {
       marginTop: 16
     }
-  }, "Contact \u2014 ", /*#__PURE__*/React.createElement("br", null), "me@benedictdixon.com"))), /*#__PURE__*/React.createElement("hr", {
-    className: "hairline",
-    style: {
-      margin: '64px 0'
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "three-cards"
-  }, /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 02.a \xB7 Operational"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "Operational ", /*#__PURE__*/React.createElement("em", null, "Leadership")), /*#__PURE__*/React.createElement("p", null, "Companies and divisions, run from the ground up. Organisational structure, financial controls, operational processes. Built to scale. Full-picture ownership.")), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 02.b \xB7 Product & Technology"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "Product & ", /*#__PURE__*/React.createElement("em", null, "Technology")), /*#__PURE__*/React.createElement("p", null, "Distributed systems, event-driven architectures, financial transaction infrastructure. Product strategy, roadmaps and the calls that turn architecture into a business. Designed, built and shipped end-to-end, handling real money in production. AI woven into the products themselves \u2014 and into how they get built.")), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 02.c \xB7 Commercial"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "Growth & ", /*#__PURE__*/React.createElement("em", null, "Go-to-Market")), /*#__PURE__*/React.createElement("p", null, "Engines that take products to market: ecosystem partnerships, community growth, sales strategy and stakeholder management. Zero to 45K+ users and $150M+ in value."))), /*#__PURE__*/React.createElement("hr", {
-    className: "hairline",
-    style: {
-      margin: '64px 0 32px'
-    }
-  }), /*#__PURE__*/React.createElement("div", {
-    className: "achievements"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "Key achievements"), /*#__PURE__*/React.createElement("ol", {
-    className: "achievement-list"
-  }, /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
-    className: "ach-num"
-  }, "i."), /*#__PURE__*/React.createElement("span", null, "Built and scaled an L1 ecosystem from concept to ", /*#__PURE__*/React.createElement("em", null, "$150M+"), " with 45K+ users.")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
-    className: "ach-num"
-  }, "ii."), /*#__PURE__*/React.createElement("span", null, "Co-invented a ", /*#__PURE__*/React.createElement("em", null, "patented"), " real-time B2B payment system at JPMorgan.")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
-    className: "ach-num"
-  }, "iii."), /*#__PURE__*/React.createElement("span", null, "Navigated a successful acquisition, preserving ", /*#__PURE__*/React.createElement("em", null, "millions in assets"), " during transition.")), /*#__PURE__*/React.createElement("li", null, /*#__PURE__*/React.createElement("span", {
-    className: "ach-num"
-  }, "iv."), /*#__PURE__*/React.createElement("span", null, "Built an enterprise-grade 50+ microservice platform from scratch as sole engineer in ", /*#__PURE__*/React.createElement("em", null, "six months.")))))));
+  }, "Contact \u2014 ", /*#__PURE__*/React.createElement("br", null), "me@benedictdixon.com")))));
 }
 
 // ─────────────────────────────────────────────────────────
@@ -1359,10 +1370,10 @@ function About() {
 // ─────────────────────────────────────────────────────────
 const PROJECTS = [{
   num: '04.i',
-  name: 'Kash',
-  role: 'COO & Interim CTO',
-  period: '2025 –',
-  body: 'COO and CTO from inception of an AI-powered prediction marketplace — users trade straight from social media, and the AI parses their intent, creates the markets and resolves them. Full ownership across product, technology, operations, finance and partnerships. Built the entire 50+ microservice platform as sole engineer in six months, then shipped the company around it — live in production, processing real payments.',
+  name: 'kash',
+  role: 'Co-founder, COO & Interim CTO',
+  period: 'May 2025 – Present',
+  body: "Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.",
   pills: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
   url: 'https://kash.bot/'
 }, {
@@ -1377,14 +1388,14 @@ const PROJECTS = [{
   num: '04.iii',
   name: 'Pound Token',
   role: 'Chief Technology Officer',
-  period: '2023 – 2024',
+  period: 'Aug 2023 – Aug 2024',
   body: 'Led technical strategy through a successful acquisition. Executed zero-downtime migration reducing operating costs by 94%. Preserved millions in assets during the transition.',
   pills: ['Technical Strategy', 'Migration', 'Team Retention']
 }, {
   num: '04.iv',
   name: 'Nettle',
-  role: 'Chief Product & Technology Officer',
-  period: '2022 – 2023',
+  role: 'Chief Product & Technology Officer, Co-Founder',
+  period: 'May 2021 – Aug 2023',
   body: 'Led product and technology for an innovative fintech payments and loyalty platform. Architected a multi-currency payment system. Accelerated time-to-market through customer-driven development. The company later ceased operations.',
   pills: ['Product Strategy', 'Payment Systems', 'Team Building']
 }];
@@ -1438,58 +1449,6 @@ function Projects() {
 }
 
 // ─────────────────────────────────────────────────────────
-// Services
-// ─────────────────────────────────────────────────────────
-function Services() {
-  return /*#__PURE__*/React.createElement("section", {
-    id: "services",
-    className: "services-section",
-    "data-screen-label": "05 Services"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "wrap"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "section-head"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("p", {
-    className: "num"
-  }, "\xA7 05 \xB7 Services"), /*#__PURE__*/React.createElement("h2", {
-    className: "ttl"
-  }, "For founders, ", /*#__PURE__*/React.createElement("em", null, "operators"), " & boards.")), /*#__PURE__*/React.createElement("div", {
-    className: "right"
-  }, "Available via DD Ventures")), /*#__PURE__*/React.createElement("div", {
-    className: "services-grid"
-  }, /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 05.a"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "Executive & ", /*#__PURE__*/React.createElement("em", null, "Operational"), /*#__PURE__*/React.createElement("br", null), "Advisory"), /*#__PURE__*/React.createElement("ul", {
-    className: "bare-list"
-  }, /*#__PURE__*/React.createElement("li", null, "Organisational design & scaling"), /*#__PURE__*/React.createElement("li", null, "Operational process architecture"), /*#__PURE__*/React.createElement("li", null, "Financial controls & governance"), /*#__PURE__*/React.createElement("li", null, "Executive leadership coaching"))), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 05.b"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "Product & ", /*#__PURE__*/React.createElement("em", null, "Technology"), /*#__PURE__*/React.createElement("br", null), "Strategy"), /*#__PURE__*/React.createElement("ul", {
-    className: "bare-list"
-  }, /*#__PURE__*/React.createElement("li", null, "Product-market fit analysis"), /*#__PURE__*/React.createElement("li", null, "Technical architecture review"), /*#__PURE__*/React.createElement("li", null, "AI, blockchain & payments strategy"), /*#__PURE__*/React.createElement("li", null, "Scalability & infrastructure planning"))), /*#__PURE__*/React.createElement("article", null, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 05.c"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "Growth & ", /*#__PURE__*/React.createElement("em", null, "Go-to-Market")), /*#__PURE__*/React.createElement("ul", {
-    className: "bare-list"
-  }, /*#__PURE__*/React.createElement("li", null, "Ecosystem & community growth"), /*#__PURE__*/React.createElement("li", null, "Partnership & BD strategy"), /*#__PURE__*/React.createElement("li", null, "Stakeholder & investor management"), /*#__PURE__*/React.createElement("li", null, "Team building & culture")))), /*#__PURE__*/React.createElement("div", {
-    className: "dd-callout"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "kicker"
-  }, "\xA7 05 \xB7 A note"), /*#__PURE__*/React.createElement("h3", {
-    className: "subhead"
-  }, "DD Ventures \u2014 ", /*#__PURE__*/React.createElement("em", null, "entrepreneurship"), " advisory"), /*#__PURE__*/React.createElement("p", null, "Specialised advisory leveraging deep entrepreneurship experience to help founders successfully launch, run and scale companies and products."), /*#__PURE__*/React.createElement("a", {
-    className: "link-arrow",
-    href: "https://dd.ventures",
-    target: "_blank",
-    rel: "noreferrer"
-  }, "dd.ventures \u2192"))));
-}
-
-// ─────────────────────────────────────────────────────────
 // Writing & Speaking
 // ─────────────────────────────────────────────────────────
 const ARTICLES = [{
@@ -1500,7 +1459,7 @@ const ARTICLES = [{
 }, {
   date: 'Jun 2026',
   title: 'The Unit of Production Has Changed',
-  excerpt: 'A year building a 55-microservice system near-solo. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
+  excerpt: 'Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
   url: '/writing/the-unit-of-production-has-changed/'
 }, {
   date: 'May 2026',
@@ -1607,7 +1566,14 @@ function Writing() {
       fontStyle: 'italic',
       fontSize: '20px'
     }
-  }, "Keynotes & panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.")))));
+  }, "Keynotes & panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership."), /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: 24
+    }
+  }, /*#__PURE__*/React.createElement("a", {
+    className: "link-arrow",
+    href: "/hosts/"
+  }, "For podcast hosts \u2192"))))));
 }
 
 // ─────────────────────────────────────────────────────────
@@ -1626,16 +1592,14 @@ function Contact() {
     className: "num"
   }, "\xA7 08 \xB7 Get in touch"), /*#__PURE__*/React.createElement("h2", {
     className: "ttl"
-  }, "Operations, ", /*#__PURE__*/React.createElement("em", null, "strategy,"), /*#__PURE__*/React.createElement("br", null), "architecture.")), /*#__PURE__*/React.createElement("div", {
-    className: "right"
-  }, "Available now")), /*#__PURE__*/React.createElement("div", {
+  }, "Compare ", /*#__PURE__*/React.createElement("em", null, "notes.")))), /*#__PURE__*/React.createElement("div", {
     className: "contact-grid"
   }, /*#__PURE__*/React.createElement("p", {
     className: "lede",
     style: {
       maxWidth: 720
     }
-  }, "Open to conversations with founders and operators building real things across AI, fintech and blockchain. Operating roles direct; advisory, fractional and board engagements through DD Ventures."), /*#__PURE__*/React.createElement("div", {
+  }, "I'm also a strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work."), /*#__PURE__*/React.createElement("div", {
     className: "contact-links"
   }, /*#__PURE__*/React.createElement("a", {
     href: "mailto:me@benedictdixon.com",
@@ -1684,19 +1648,46 @@ function Contact() {
     className: "kicker"
   }, "Advisory"), /*#__PURE__*/React.createElement("div", {
     className: "contact-value"
-  }, "dd.ventures"))))), /*#__PURE__*/React.createElement("div", {
+  }, "dd.ventures"))), /*#__PURE__*/React.createElement("form", {
+    className: "edition-signup",
+    "data-provider": "none",
+    onSubmit: e => e.preventDefault(),
+    "aria-labelledby": "edition-signup-label"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "kicker",
+    id: "edition-signup-label"
+  }, "Next edition"), /*#__PURE__*/React.createElement("p", {
+    className: "edition-signup-line"
+  }, "The next edition lands when there's something worth reading."), /*#__PURE__*/React.createElement("div", {
+    className: "edition-signup-row"
+  }, /*#__PURE__*/React.createElement("label", {
+    className: "sr-only",
+    htmlFor: "edition-email"
+  }, "Email address"), /*#__PURE__*/React.createElement("input", {
+    id: "edition-email",
+    type: "email",
+    name: "email",
+    autoComplete: "email",
+    placeholder: "you@example.com",
+    required: true
+  }), /*#__PURE__*/React.createElement("button", {
+    type: "submit"
+  }, "Subscribe"))))), /*#__PURE__*/React.createElement("div", {
     className: "wrap"
   }, /*#__PURE__*/React.createElement("footer", {
     className: "colophon"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Colophon"), "Set in Fraunces, Inter & JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm cream."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Edition"), "Vol. I \xB7 MMXXVI", /*#__PURE__*/React.createElement("br", null), "An Almanack for Finance, Operations & Code"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Words"), "Approx. 1,400.", /*#__PURE__*/React.createElement("br", null), "Reading time: ~6 minutes."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "\xA9 2026"), "Benedict W. H. Dixon.", /*#__PURE__*/React.createElement("br", null), "All rights observed."))));
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Colophon"), "Set in Fraunces, Inter & JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm cream."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Edition"), "Vol. I \xB7 MMXXVI", /*#__PURE__*/React.createElement("br", null), MASTHEAD), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Words"), "Approx. 1,400.", /*#__PURE__*/React.createElement("br", null), "Reading time: ~6 minutes."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "\xA9 2026"), "Benedict W. H. Dixon.", /*#__PURE__*/React.createElement("br", null), "All rights observed."))));
 }
 Object.assign(window, {
+  HERO_LINE,
+  MASTHEAD,
+  TICKER_TAGLINE,
+  TICKER_ESSAYS,
   Runner,
   Hero,
   Ticker,
   About,
   Projects,
-  Services,
   Writing,
   Contact
 });
@@ -1710,8 +1701,14 @@ function App() {
     href: "#main-content"
   }, "Skip to main content"), /*#__PURE__*/React.createElement(Runner, null), /*#__PURE__*/React.createElement("main", {
     id: "main-content"
-  }, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Ticker, null), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement(Hero, null), /*#__PURE__*/React.createElement(Ticker, {
+    items: TICKER_TAGLINE,
+    label: "tagline ticker"
+  }), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement("div", {
     id: "morph"
-  }, /*#__PURE__*/React.createElement(MorphStage, null)), /*#__PURE__*/React.createElement(Ticker, null), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Services, null), /*#__PURE__*/React.createElement(Writing, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement(CursorTrail, null));
+  }, /*#__PURE__*/React.createElement(MorphStage, null)), /*#__PURE__*/React.createElement(Ticker, {
+    items: TICKER_ESSAYS,
+    label: "essay ticker"
+  }), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Writing, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement(CursorTrail, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));
