@@ -907,3 +907,31 @@ button:focus-visible {
   .hosts-photo { max-width: 240px; }
   .hosts-contact { font-size: 20px; }
 }
+
+/* ── Touch targets on narrow screens ─────────────────────
+   WCAG 2.2 target size: the tap area grows to ~40 px, the look
+   doesn't change. On phones the masthead drops its long tail and
+   the Cover link (the brand already goes home) so the nav sits
+   on one row. */
+@media (max-width: 800px) {
+  .masthead nav a, .bio-ctas a, .listing-closer .closer-action,
+  .article-foot-nav a, .hosts-photo figcaption a, .link-arrow { position: relative; }
+  .masthead nav a::after, .bio-ctas a::after, .listing-closer .closer-action::after,
+  .article-foot-nav a::after, .hosts-photo figcaption a::after, .link-arrow::after {
+    content: '';
+    position: absolute;
+    inset: -12px -6px;
+  }
+}
+@media (max-width: 480px) {
+  .masthead .brand-long { display: none; }
+  .masthead nav { display: flex; gap: 20px; flex-shrink: 0; white-space: nowrap; }
+  .masthead nav a { margin-left: 0; }
+  .masthead nav a[href="/"] { display: none; }
+}
+@media (max-width: 800px) {
+  /* The colophon's link column: lines far enough apart to tap. */
+  .article-colophon a { display: inline-block; margin: 4px 0; }
+  .article-byline a { position: relative; }
+  .article-byline a::after { content: ''; position: absolute; inset: -12px -6px; }
+}

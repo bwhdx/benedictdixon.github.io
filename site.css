@@ -1091,3 +1091,9 @@ section {
   .contact-links { grid-template-columns: 1fr; }
   .contact-value { font-size: 22px; }
 }
+
+/* Touch targets on narrow screens (WCAG 2.2): bigger tap area, same look. */
+@media (max-width: 800px) {
+  .link-arrow { position: relative; }
+  .link-arrow::after { content: ''; position: absolute; inset: -12px -6px; }
+}

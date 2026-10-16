@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://benedictdixon.com/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -14,19 +14,19 @@
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benedictdixon.com/ai/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/ai-collapsed-the-build/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/prediction-markets/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -212,7 +212,7 @@
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/the-unit-of-production-has-changed/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
