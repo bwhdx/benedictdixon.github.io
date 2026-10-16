@@ -173,7 +173,7 @@ function Ticker({ items = TICKER_TAGLINE, label = 'ticker' }) {
 // About — both options are his LinkedIn About, verbatim, except A's last
 // line, which is his own Q13 wording joined into one sentence.
 const ABOUT_P1 = "I started out as an engineer, building payment systems at JPMorgan, then on the R&D team for Amex's referral campaigns. That's where I first got to see beyond the terminal. We went into those design, user interview and research centres, behind the double glass, and got some exposure to the positioning and the marketing side as well. After that came a hedge fund, fintech, and founding my own startups.";
-const ABOUT_P2 = "Then I made a very conscious and intentional move from writing code to running companies and teams. When AI tooling arrived, I went back to building. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.";
+const ABOUT_P2 = "Then I made a very conscious and intentional move from writing code to running companies and teams. When AI tooling arrived, I went back to building. Three of us built kash's whole product. I built everything in between, from the hooks the frontend calls down to indexing on-chain events.";
 const ABOUT = [ABOUT_P1, ABOUT_P2,
       "I build end-to-end, full solutions, and I run and operate products and businesses completely end to end."];
 
@@ -216,7 +216,7 @@ const PROJECTS = [
     name: 'kash',
     role: 'Co-founder, COO & Interim CTO',
     period: 'May 2025 – Present',
-    body: "Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.",
+    body: "Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. I built everything in between, from the hooks the frontend calls down to indexing on-chain events.",
     pills: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
     url: 'https://kash.bot/',
   },
@@ -301,7 +301,7 @@ const ARTICLES = [
   {
     date: 'Jun 2026',
     title: 'The Unit of Production Has Changed',
-    excerpt: 'Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
+    excerpt: 'Three of us built kash, and I built everything in between. AI deleted the coordination overhead, not just the typing. The cap that\'s left is judgement.',
     url: '/writing/the-unit-of-production-has-changed/',
   },
   {

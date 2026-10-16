@@ -1,6 +1,6 @@
 # Benedict W. H. Dixon
 
-> Personal site of Benedict W. H. Dixon. Building, leading & learning. Engineer turned operator: JPMorgan, Amex, a hedge fund, fintech, then co-founding companies. Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.
+> Personal site of Benedict W. H. Dixon. Building, leading & learning. Engineer turned operator: JPMorgan, Amex, a hedge fund, fintech, then co-founding companies. Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. I built everything in between, from the hooks the frontend calls down to indexing on-chain events.
 
 Key facts:
 - Started out as an engineer, building payment systems at JPMorgan, then on the R&D team for Amex's referral campaigns. After that came a hedge fund, fintech, and founding his own startups.
@@ -17,7 +17,7 @@ Key facts:
 ## The essays
 
 - [AI collapsed the build, not the operation](https://benedictdixon.com/writing/ai-collapsed-the-build/): One person with AI can build what fifty used to; the operation doesn't collapse with it.
-- [The unit of production has changed](https://benedictdixon.com/writing/the-unit-of-production-has-changed/): Three of us built kash, and mine is kind of the fat middle; AI deleted the coordination overhead.
+- [The unit of production has changed](https://benedictdixon.com/writing/the-unit-of-production-has-changed/): Three of us built kash, and I built everything in between; AI deleted the coordination overhead.
 - [The assistant that knows you](https://benedictdixon.com/writing/the-assistant-that-knows-you/): Point a personal AI at your second brain and it answers from your notes.
 - [The assistant that's always on](https://benedictdixon.com/writing/always-on-assistant/): A personal AI assistant on your own machine, reachable where you already text.
 - [Building a second brain that doesn't die](https://benedictdixon.com/writing/building-a-second-brain/): An Obsidian PKM template wired for Claude Code, open-sourced under MIT.
