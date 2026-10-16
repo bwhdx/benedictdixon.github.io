@@ -55,6 +55,8 @@ function Runner() {
   );
 }
 
+const EMAIL_CAPTURE_LIVE = false;
+
 const HERO_LINE = <React.Fragment>Building and running companies, <em>end to end.</em></React.Fragment>;
 
 const MASTHEAD = 'An Almanack · Building, leading & learning';
@@ -418,9 +420,10 @@ function Contact() {
             </a>
           </div>
 
-          {/* PREVIEW ONLY — visual email capture. No provider is chosen yet,
-              so the form posts nowhere: submit is swallowed client-side.
-              Wire `action` to the provider before this ships. */}
+          {/* Email capture: hidden until a newsletter provider is wired up.
+              Wire the form's `action` to the provider, then set
+              EMAIL_CAPTURE_LIVE to true. */}
+          {EMAIL_CAPTURE_LIVE && (
           <form
             className="edition-signup"
             data-provider="none"
@@ -435,6 +438,7 @@ function Contact() {
               <button type="submit">Subscribe</button>
             </div>
           </form>
+          )}
         </div>
       </div>
 

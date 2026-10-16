@@ -1213,6 +1213,7 @@ function Runner() {
     "aria-current": active === id ? 'location' : undefined
   }, label))));
 }
+const EMAIL_CAPTURE_LIVE = false;
 const HERO_LINE = /*#__PURE__*/React.createElement(React.Fragment, null, "Building and running companies, ", /*#__PURE__*/React.createElement("em", null, "end to end."));
 const MASTHEAD = 'An Almanack · Building, leading & learning';
 
@@ -1648,7 +1649,7 @@ function Contact() {
     className: "kicker"
   }, "Advisory"), /*#__PURE__*/React.createElement("div", {
     className: "contact-value"
-  }, "dd.ventures"))), /*#__PURE__*/React.createElement("form", {
+  }, "dd.ventures"))), EMAIL_CAPTURE_LIVE && /*#__PURE__*/React.createElement("form", {
     className: "edition-signup",
     "data-provider": "none",
     onSubmit: e => e.preventDefault(),
