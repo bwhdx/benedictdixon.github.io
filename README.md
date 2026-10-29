@@ -43,6 +43,16 @@ robots.txt, sitemap.xml          Crawler-facing
 site.webmanifest                 PWA manifest
 ```
 
+## Analytics
+
+Cloudflare Web Analytics, cookieless. Every page except the retired-essay redirect loads the beacon just before `</body>`:
+
+```html
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
+```
+
+`CF_BEACON_TOKEN` is a placeholder. Replace it on every page with the site token from the Cloudflare dashboard (Web Analytics → the site → Manage site → the JS snippet). The token is a public site identifier, not a secret. A new page copies the same line.
+
 ## Deployment
 
 Push to `main`. GitHub Pages serves `benedictdixon.com` via the `CNAME` file. No CI required.
