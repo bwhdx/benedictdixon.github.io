@@ -349,6 +349,16 @@ function Writing() {
               ))}
             </div>
             <p style={{marginTop: 32}}><a className="link-arrow" href="/writing/">All writing →</a>&nbsp;&nbsp;<a className="link-arrow" href="/ai/">How I work with AI →</a></p>
+            <div style={{marginTop: 32}}>
+              <div className="kicker" style={{marginBottom: 12}}>Follow</div>
+              <p>
+                <a className="link-arrow" href="https://x.com/bwhdx" target="_blank" rel="me noreferrer">X · @bwhdx →</a>&nbsp;&nbsp;
+                <a className="link-arrow" href="https://www.linkedin.com/in/benedict-dixon/" target="_blank" rel="me noreferrer">LinkedIn →</a>
+                {/* Add each channel once it exists, with the same markup:
+                &nbsp;&nbsp;<a className="link-arrow" href="https://www.youtube.com/@HANDLE" target="_blank" rel="me noreferrer">YouTube →</a>
+                &nbsp;&nbsp;<a className="link-arrow" href="https://www.tiktok.com/@HANDLE" target="_blank" rel="me noreferrer">TikTok →</a> */}
+              </p>
+            </div>
           </div>
 
           <aside className="speaking">
@@ -407,7 +417,7 @@ function Contact() {
               <div className="contact-value">/in/benedict-dixon</div>
             </a>
             <a href="https://x.com/bwhdx" target="_blank" rel="me noreferrer">
-              <div className="kicker">Twitter</div>
+              <div className="kicker">X</div>
               <div className="contact-value">@bwhdx</div>
             </a>
             <a href="https://github.com/bwhdx" target="_blank" rel="me noreferrer">
