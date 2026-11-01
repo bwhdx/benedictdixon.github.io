@@ -428,16 +428,21 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px 24px;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.article-foot-nav .back {
+.article-foot-nav .back,
+.article-foot-nav .discuss {
   color: var(--ink);
   text-decoration: none;
 }
-.article-foot-nav .back:hover { color: var(--ink-soft); }
+.article-foot-nav .discuss { border-bottom: 1px solid var(--ink-hair); padding-bottom: 2px; }
+.article-foot-nav .back:hover,
+.article-foot-nav .discuss:hover { color: var(--ink-soft); }
 .article-foot-nav .nth { color: var(--ink-soft); }
 
 .read-next {

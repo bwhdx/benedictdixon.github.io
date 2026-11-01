@@ -1531,7 +1531,26 @@ function Writing() {
   }, "All writing \u2192"), "\xA0\xA0", /*#__PURE__*/React.createElement("a", {
     className: "link-arrow",
     href: "/ai/"
-  }, "How I work with AI \u2192"))), /*#__PURE__*/React.createElement("aside", {
+  }, "How I work with AI \u2192")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      marginTop: 32
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    className: "kicker",
+    style: {
+      marginBottom: 12
+    }
+  }, "Follow"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("a", {
+    className: "link-arrow",
+    href: "https://x.com/bwhdx",
+    target: "_blank",
+    rel: "me noreferrer"
+  }, "X \xB7 @bwhdx \u2192"), "\xA0\xA0", /*#__PURE__*/React.createElement("a", {
+    className: "link-arrow",
+    href: "https://www.linkedin.com/in/benedict-dixon/",
+    target: "_blank",
+    rel: "me noreferrer"
+  }, "LinkedIn \u2192")))), /*#__PURE__*/React.createElement("aside", {
     className: "speaking"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker",
@@ -1631,7 +1650,7 @@ function Contact() {
     rel: "me noreferrer"
   }, /*#__PURE__*/React.createElement("div", {
     className: "kicker"
-  }, "Twitter"), /*#__PURE__*/React.createElement("div", {
+  }, "X"), /*#__PURE__*/React.createElement("div", {
     className: "contact-value"
   }, "@bwhdx")), /*#__PURE__*/React.createElement("a", {
     href: "https://github.com/bwhdx",
