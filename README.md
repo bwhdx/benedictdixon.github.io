@@ -55,7 +55,7 @@ Cloudflare Web Analytics, cookieless. Every page except the retired-essay redire
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script>
 ```
 
-`CF_BEACON_TOKEN` is a placeholder. Replace it on every page with the site token from the Cloudflare dashboard (Web Analytics → the site → Manage site → the JS snippet). The token is a public site identifier, not a secret. A new page copies the same line.
+**Off for now:** until the real token is set, the line ships inside an HTML comment (`<!-- off until the token is set: … -->`) so no page calls Cloudflare with a placeholder, and `npm run check` reports every page as missing the beacon. To switch it on, unwrap the comment and replace `CF_BEACON_TOKEN` with the site token from the Cloudflare dashboard (Web Analytics → the site → Manage site → the JS snippet). The token is a public site identifier, not a secret. A new page copies the same line.
 
 ## Deployment
 
