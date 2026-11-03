@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -25,6 +25,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/</loc>
+    <lastmod>2026-11-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://benedictdixon.com/writing/ai-collapsed-the-build/</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
@@ -32,7 +38,7 @@
   </url>
   <url>
     <loc>https://benedictdixon.com/feed.xml</loc>
-    <lastmod>2026-08-05</lastmod>
+    <lastmod>2026-11-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
