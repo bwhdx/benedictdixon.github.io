@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.">
+<meta name="author" content="Benedict W. H. Dixon">
+<link rel="canonical" href="https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/">
+<title>The agent can't be its own checker — Benedict W. H. Dixon</title>
+
+<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#1c267a">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/">
+<meta property="og:title" content="The agent can't be its own checker">
+<meta property="og:description" content="Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.">
+<meta property="og:image" content="https://benedictdixon.com/assets/og/the-agent-cant-be-its-own-checker.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Cover card: a candlestick portrait on a navy book cover, with the title The agent can't be its own checker, An Almanack, by Benedict W. H. Dixon.">
+<meta property="og:site_name" content="Benedict W. H. Dixon">
+<meta property="article:author" content="Benedict W. H. Dixon">
+<meta property="article:published_time" content="2026-11-03">
+<meta property="article:section" content="Technology">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI Agents">
+<meta property="article:tag" content="Code Review">
+<meta property="article:tag" content="Fintech">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@bwhdx">
+<meta name="twitter:creator" content="@bwhdx">
+<meta name="twitter:image" content="https://benedictdixon.com/assets/og/the-agent-cant-be-its-own-checker.png">
+<meta name="twitter:image:alt" content="Cover card: a candlestick portrait on a navy book cover, with the title The agent can't be its own checker, An Almanack, by Benedict W. H. Dixon.">
+
+<link rel="preload" href="/assets/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+<link rel="stylesheet" href="/writing.css">
+<link rel="alternate" type="application/atom+xml" title="Benedict W. H. Dixon · An Almanack" href="https://benedictdixon.com/feed.xml">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/#article",
+  "headline": "The agent can't be its own checker",
+  "description": "Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.",
+  "url": "https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/",
+  "mainEntityOfPage": "https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/",
+  "datePublished": "2026-11-03",
+  "dateModified": "2026-11-03",
+  "wordCount": 724,
+  "author": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon",
+    "url": "https://benedictdixon.com/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://benedictdixon.com/#person",
+    "name": "Benedict W. H. Dixon"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://benedictdixon.com/assets/og/the-agent-cant-be-its-own-checker.png",
+    "width": 1200,
+    "height": 630,
+    "caption": "Cover card for “The agent can't be its own checker”, candlestick portrait, An Almanack, by Benedict W. H. Dixon."
+  },
+  "keywords": [
+    "AI",
+    "AI Agents",
+    "Code Review",
+    "Fintech",
+    "Testing",
+    "Staging"
+  ],
+  "articleSection": "Building & Technology",
+  "inLanguage": "en-GB"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://benedictdixon.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Writing",
+      "item": "https://benedictdixon.com/writing/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The agent can't be its own checker",
+      "item": "https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="masthead">
+    <a class="brand" href="/">
+      <span class="mark">B</span>
+      <span>Benedict W. H. Dixon<span class="brand-long"> · An Almanack · MMXXVI</span></span>
+    </a>
+    <nav aria-label="Sections">
+      <a href="/writing/">Writing</a>
+      <a href="/">Cover</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="article">
+
+      <header class="article-head">
+        <div class="kicker-row">
+          <span>§ 06.A.13 · Essay</span>
+          <span>3 Nov 2026 · ~5 min read</span>
+        </div>
+        <h1 class="ttl">The agent can't be<br><em>its own checker.</em></h1>
+        <p class="subtitle">Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.</p>
+      </header>
+
+      <div class="article-byline">
+        <span>By <a href="/">Benedict W. H. Dixon</a></span>
+      </div>
+
+      <div class="article-body">
+        <p class="lead">If you run a fintech, you'll know the rule that the person who writes a change can't be the one who approves it. I'm a co-founder of our company, its COO and interim CTO. We're a fintech whose product moves real money, and AI coding agents write its code. Neither Miguel, who builds our interface, nor I have written a line of that code by hand in a year and a half, so the agents are the authors, and the rule has to hold for them too. An agent saying "done" doesn't make anything done here. If an agent's word is enough to close the work on your team, the agent is reviewing its own work.</p>
+
+        <h2>The agent's own "done"</h2>
+
+        <p>The rule is right, and an author approving its own work is exactly what it's there to stop. An agent marking its own work done is that same failure. Every time an agent says something is done or fully wrapped up, it never is. Agents do the bare minimum to satisfy the criteria, then tell you it's done when it isn't done to the standard you'd want. In a system that moves money, taking that at face value means real money moving through work nobody proved.</p>
+
+        <p>So at our company the agent's report closes nothing. Work isn't marked finished until there's evidence from staging on record. Staging is a working copy of our system that customers never touch, where changes are tested before they go live. The evidence is tests passing there, such as the quick checks that the main paths still work, written down against the piece of work. The list where we track our work gets corrected to match what staging shows.</p>
+
+        <h2>Who checks the evidence</h2>
+
+        <p>Miguel or I review all of that evidence, and we also do our own testing and checking of the work by hand.</p>
+
+        <p>There isn't a single second in the day when agents aren't building something for us. You may wonder whether that review slows the work down. Review does take our time, but I don't think that time is wasted. Time the agents spend waiting on one of us is where the important decisions are made, and you need a person in the loop to make sure they're the right ones. The alternative is to let the agents run, keep a log of what they decided and review it all at the end, but that could take longer to unwind any wrong decisions they made.</p>
+
+        <h2>Who decides, and who can stop it</h2>
+
+        <p>The agents carry out our architecture and our product plans; they don't make business decisions or product decisions. I don't know why you would ever expect an agent to know the right business or product decision. I make the architectural decisions, and Miguel focuses on the front end: the interface and the components it's made of. We often talk through specific features, but our responsibilities are different, and they fit together to get the whole product built and shipped for the people who use it.</p>
+
+        <p>One week in October, a bad change was caught in staging, our test environment, and taken back out the same day, before anything reached production and without holding anything else up. For what's live, I've put a considerable amount of work into switches that turn features and services on and off, emergency stops included. It isn't only me, or someone else with developer access to our systems, who can use them: people on our internal teams can too, so protecting the system in an emergency doesn't depend on one person.</p>
+
+        <h2>A check that never ran</h2>
+
+        <p>The automated checks are the other place agent-written work can look approved when nothing has proven it. When a check can't run and gets skipped, nothing turns red, so it looks the same as a check that passed. <a href="/writing/in-clawd-we-trust/">In February I wrote</a> that "tests should provide genuine confidence," and that "performative tests provide false confidence, which is worse than no tests."</p>
+
+        <p>At our company a check that can't run fails. Where our system repairs a fault on its own, each switch that does the repair has to declare in advance what it does if the repair fails. If a check that can't run shows up as a pass in your pipeline, your team can approve agent-written work that nothing ever checked.</p>
+      </div>
+
+      <aside class="author-bio" aria-label="About the author">
+        <div class="bio-mark"><span>B</span></div>
+        <div class="bio-content">
+          <p class="bio-kicker">About the author</p>
+          <h3 class="bio-name">Benedict W. H. Dixon</h3>
+          <p class="bio-text">Engineer turned operator: JPMorgan, Amex, a hedge fund, fintech, then co-founding companies. Co-founder, COO &amp; Interim CTO at kash.</p>
+          <p class="bio-ctas">
+            <a href="/writing/">More essays →</a>
+            <a href="/feed.xml">RSS</a>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a>
+            <a href="https://x.com/bwhdx" rel="me">X</a>
+            <a href="mailto:me@benedictdixon.com">Get in touch</a>
+          </p>
+        </div>
+      </aside>
+
+      <section class="article-related" aria-label="Related articles">
+        <p class="related-kicker">Related</p>
+        <div class="related-grid">
+          <a class="related-card" href="/writing/ai-collapsed-the-build/">
+            <div class="related-meta">§ 06.A.12 · 24 Jun 2026</div>
+            <div class="related-title">AI collapsed the build, <em>not the operation</em></div>
+          </a>
+          <a class="related-card" href="/writing/the-unit-of-production-has-changed/">
+            <div class="related-meta">§ 06.A.11 · 20 Jun 2026</div>
+            <div class="related-title">The unit of production <em>has changed</em></div>
+          </a>
+          <a class="related-card" href="/writing/in-clawd-we-trust/">
+            <div class="related-meta">§ 06.A.07 · 15 Feb 2026</div>
+            <div class="related-title">In Clawd <em>we trust</em></div>
+          </a>
+        </div>
+      </section>
+
+      <footer class="article-foot">
+        <div class="article-foot-nav">
+          <a class="back" href="/writing/">← All writing</a>
+          <!-- Discuss on X: when the X Article or post is live, set href to its URL,
+               uncomment the link, and add the same URL as "discussionUrl" in the
+               BlogPosting JSON-LD.
+          <a class="discuss" href="X_DISCUSSION_URL">Discuss on X →</a>
+          -->
+          <span class="nth">§ 06.A.13</span>
+        </div>
+
+        <a class="read-next" href="/writing/ai-collapsed-the-build/">
+          <div class="kicker">Read next · § 06.A.12</div>
+          <h3>AI collapsed the build, <em>not the operation.</em></h3>
+          <div class="next-meta">24 Jun 2026 · ~4 min →</div>
+        </a>
+
+        <div class="article-colophon">
+          <div>
+            <strong>By</strong>
+            Benedict W. H. Dixon. Building, leading &amp; learning. More at <a href="/">benedictdixon.com</a>.
+          </div>
+          <div>
+            <strong>Published</strong>
+            3 November 2026<br>
+            Vol. I · Edition 01<br>
+            An Almanack · Building, leading &amp; learning
+          </div>
+          <div>
+            <strong>Elsewhere</strong>
+            <a href="https://www.linkedin.com/in/benedict-dixon/" rel="me">LinkedIn</a><br>
+            <a href="https://x.com/bwhdx" rel="me">X · @bwhdx</a><br>
+            <a href="https://github.com/bwhdx" rel="me">GitHub</a><br>
+            <a href="mailto:me@benedictdixon.com">me@benedictdixon.com</a>
+          </div>
+        </div>
+      </footer>
+    </article>
+  </main>
+  <!-- Cloudflare Web Analytics, cookieless. See README, Analytics. -->
+  <!-- off until the token is set: <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "CF_BEACON_TOKEN"}'></script> -->
+</body>
+</html>
