@@ -15,6 +15,7 @@ function App() {
         <Writing />
         <Contact />
       </main>
+      <Insignia />
       <CursorTrail />
     </React.Fragment>
   );

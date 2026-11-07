@@ -1222,6 +1222,84 @@ function Cipher({
 }
 
 // ─────────────────────────────────────────────────────────
+// Insignia: the word mark fixed in the bottom-left corner, linking back to
+// the top. It hides where ink would not read or would get in the way, and
+// while the footer's own mark is on screen. Two IntersectionObservers, no
+// scroll handler:
+//  - one watches the surfaces below through a root narrowed to the
+//    insignia's own corner, so it hides only while one is actually under it;
+//  - one watches the footer against the whole viewport.
+// The corner is measured from the element and re-measured on resize.
+// ─────────────────────────────────────────────────────────
+// Surfaces the mark must not sit on: the navy panels, and on phones the
+// career card, which is pinned to the bottom of the screen for the whole
+// career stage and would otherwise stay under it.
+const INSIGNIA_AVOID = '#hero, .ticker, .dd-callout, .morph-card';
+const INSIGNIA_FOOTER = '.colophon';
+const INSIGNIA_SLACK = 12; // px around the mark that also counts as under it
+
+function Insignia() {
+  const ref = React.useRef(null);
+  const [hidden, setHidden] = React.useState(true);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || !('IntersectionObserver' in window)) {
+      setHidden(false);
+      return undefined;
+    }
+    const under = new Set();
+    let footerInView = false;
+    const update = () => setHidden(under.size > 0 || footerInView);
+    const footer = document.querySelector(INSIGNIA_FOOTER);
+    const footerObserver = new IntersectionObserver(([entry]) => {
+      footerInView = entry.isIntersecting;
+      update();
+    });
+    if (footer) footerObserver.observe(footer);
+    let cornerObserver = null;
+    function observeCorner() {
+      if (cornerObserver) cornerObserver.disconnect();
+      under.clear();
+      // offset* ignores the hide transform, so this is the resting box.
+      const vw = document.documentElement.clientWidth;
+      const vh = window.innerHeight;
+      const s = INSIGNIA_SLACK;
+      const top = Math.max(0, el.offsetTop - s);
+      const left = Math.max(0, el.offsetLeft - s);
+      const right = Math.max(0, vw - (el.offsetLeft + el.offsetWidth + s));
+      const bottom = Math.max(0, vh - (el.offsetTop + el.offsetHeight + s));
+      cornerObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => e.isIntersecting ? under.add(e.target) : under.delete(e.target));
+        update();
+      }, {
+        rootMargin: `-${top}px -${right}px -${bottom}px -${left}px`
+      });
+      document.querySelectorAll(INSIGNIA_AVOID).forEach(n => cornerObserver.observe(n));
+    }
+    observeCorner();
+    let frame = 0;
+    function onResize() {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(observeCorner);
+    }
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      cancelAnimationFrame(frame);
+      footerObserver.disconnect();
+      if (cornerObserver) cornerObserver.disconnect();
+    };
+  }, []);
+  return /*#__PURE__*/React.createElement("a", {
+    ref: ref,
+    className: "insignia",
+    href: "#hero",
+    "aria-label": "bwhdx, back to the top",
+    "data-hidden": hidden ? 'true' : 'false'
+  }, /*#__PURE__*/React.createElement(Cipher, null));
+}
+
+// ─────────────────────────────────────────────────────────
 // Header (fixed running banner)
 // ─────────────────────────────────────────────────────────
 function Runner() {
@@ -1760,6 +1838,7 @@ Object.assign(window, {
   MASTHEAD,
   TICKER_TAGLINE,
   TICKER_ESSAYS,
+  Insignia,
   Runner,
   Hero,
   Ticker,
@@ -1786,6 +1865,6 @@ function App() {
   }, /*#__PURE__*/React.createElement(MorphStage, null)), /*#__PURE__*/React.createElement(Ticker, {
     items: TICKER_ESSAYS,
     label: "essay ticker"
-  }), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Writing, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement(CursorTrail, null));
+  }), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Writing, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement(Insignia, null), /*#__PURE__*/React.createElement(CursorTrail, null));
 }
 ReactDOM.createRoot(document.getElementById('root')).render(/*#__PURE__*/React.createElement(App, null));

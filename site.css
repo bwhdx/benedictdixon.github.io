@@ -122,11 +122,31 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* The paper lives on the root, so it fills the whole canvas once. */
-html { background: var(--grain) var(--paper); }
+/* The paper is a fixed, full-viewport layer behind everything, so it stays
+   still while only the content scrolls over it. A position:fixed
+   pseudo-element rather than background-attachment:fixed, which iOS Safari
+   ignores. It is promoted to its own compositor layer once, so scrolling
+   moves the content over it without repainting the grain. 100lvh keeps it
+   covering the screen when a phone's toolbars collapse. The flat paper on
+   the root shows only in overscroll and where the layer is switched off.
+   Static, so prefers-reduced-motion has nothing to stop here. Sections with
+   their own background (the navy hero, the panels) paint above it. */
+html { background: var(--paper); }
 body { background: transparent; }
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--grain) var(--paper);
+  will-change: transform;
+  contain: strict;
+}
 @media (prefers-contrast: more), print {
-  html { background: var(--paper); }
+  body::before { display: none; }
 }
 
 ::selection { background: var(--ink); color: var(--paper); }
@@ -361,6 +381,64 @@ section {
 .colophon-sign .site { color: var(--ink); letter-spacing: 0.04em; text-transform: none; font-size: 13px; }
 @media (max-width: 800px) {
   .colophon { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── Insignia: the bwhdx mark, fixed bottom-left, back to the top ── */
+/* Ink straight on the paper, in the empty left margin on wide screens.
+   Hidden over the navy surfaces and while the footer's own mark is in
+   view (Insignia in site-content.jsx decides, with IntersectionObserver); a short
+   fade and lift between the two. visibility leaves the tab order and the
+   accessibility tree with it, after the fade. */
+.insignia {
+  --insignia-w: 48px;
+  position: fixed;
+  left: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: block;
+  padding: 6px;
+  color: var(--ink);
+  line-height: 0;
+  transition: opacity 0.28s cubic-bezier(.2,.7,.3,1), transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s;
+}
+.insignia .cipher { width: var(--insignia-w); height: auto; display: block; }
+@media (hover: hover) {
+  .insignia:hover { opacity: 0.8; }
+}
+.insignia[data-hidden="true"] {
+  opacity: 0;
+  transform: translateY(8px);
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.28s cubic-bezier(.2,.7,.3,1), transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s linear 0.28s;
+}
+/* At 1100 px and below the text column comes closer than the mark's
+   width (the .wrap gutter drops to 56 px, then 24 px), so the mark sits on a
+   small paper tile: it stays legible and the text passing beneath it is
+   never mixed with it. A little smaller again on phones. */
+@media (max-width: 1100px) {
+  .insignia {
+    --insignia-w: 40px;
+    left: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    padding: 6px 7px;
+    background: var(--grain) rgba(var(--paper-rgb), 0.94);
+    border: 1px solid var(--ink-hair);
+    border-radius: 4px;
+  }
+}
+@media (max-width: 700px) {
+  .insignia {
+    --insignia-w: 34px;
+    left: 10px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .insignia, .insignia[data-hidden="true"] { transition: none !important; transform: none; }
+}
+@media print {
+  .insignia { display: none; }
 }
 
 /* ── Custom cursor / candle trail ───────────────────────── */

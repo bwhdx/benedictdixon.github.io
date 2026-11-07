@@ -46,10 +46,23 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-/* The paper lives on the root, so it fills the whole canvas once. */
-html { background: var(--grain) var(--paper); }
+/* The paper: a fixed, full-viewport layer that stays still while the
+   content scrolls over it. Kept in step with site.css, which explains it. */
+html { background: var(--paper); }
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh;
+  height: 100lvh;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--grain) var(--paper);
+  will-change: transform;
+  contain: strict;
+}
 @media (prefers-contrast: more), print {
-  html { background: var(--paper); }
+  body::before { display: none; }
 }
 body {
   color: var(--ink);
