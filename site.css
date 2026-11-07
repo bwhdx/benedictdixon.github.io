@@ -1,6 +1,6 @@
 /* ─────────────────────────────────────────────────────────
    Benedict Dixon · An Almanack
-   Palette: Cream + Navy
+   Palette: ochre paper with a fine grain + royal navy ink
    Type: Fraunces (display) · Inter (body) · JetBrains Mono (meta)
    Self-hosted Latin subsets — variable fonts, all weights in one file.
    ───────────────────────────────────────────────────────── */
@@ -51,7 +51,7 @@ a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px #d6c585, 0 0 0 4px #1c267a;
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
   border-radius: 2px;
 }
 
@@ -61,8 +61,8 @@ button:focus-visible,
   top: -64px;
   left: 16px;
   z-index: 1000;
-  background: #1c267a;
-  color: #d6c585;
+  background: var(--ink);
+  color: var(--paper);
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   padding: 10px 16px;
@@ -72,23 +72,36 @@ button:focus-visible,
 }
 .skip-link:focus {
   top: 16px;
-  outline: 2px solid #d6c585;
+  outline: 2px solid var(--paper);
   outline-offset: 2px;
 }
 
 :root {
-  --paper: #d6c585;
-  --paper-dim: #c8b876;
+  /* The paper: warm ochre, the same as the social cards and article
+     covers. --paper-rgb feeds the translucent paper tints. */
+  --paper: #d0b57a;
+  --paper-rgb: 208, 181, 122;
+  --paper-dim: #c3a86d;
   --ink: #1c267a;
   --ink-2: #2a3499;
-  --ink-soft: rgba(28, 38, 122, 0.80);
-  --ink-mute: rgba(28, 38, 122, 0.42);
+  /* Soft and mute ink are a touch stronger than on the old cream, so small
+     meta text keeps at least 4.5:1 on the darker, grained paper. */
+  --ink-soft: rgba(28, 38, 122, 0.86);
+  --ink-mute: rgba(28, 38, 122, 0.46);
   --ink-hair: rgba(28, 38, 122, 0.22);
   --ink-faint: rgba(28, 38, 122, 0.12);
 
   --font-serif: 'Fraunces', 'Times New Roman', serif;
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* The paper's grain: two seeded noise filters as small tiles, a fine
+     grain over a faint uneven tone. The grain tile is drawn at half size,
+     so it stays fine and quiet under text. Static, so nothing moves;
+     rasterised once by the browser and tiled. Kept in step with writing.css. */
+  --grain-fine: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.3  0 0 0 0 0.22  0 0 0 0 0.1  0 0 0 -0.42 0.25'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
+  --grain-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.1  0 0 0 -0.12 0.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
+  --grain: var(--grain-fine) 0 0 / 100px 100px, var(--grain-tone) 0 0 / 960px 960px;
 
   --gutter: 96px;
   --gutter-md: 56px;
@@ -101,13 +114,19 @@ button:focus-visible,
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/* The paper lives on the root, so it fills the whole canvas once. */
+html { background: var(--grain) var(--paper); }
+body { background: transparent; }
+@media (prefers-contrast: more), print {
+  html { background: var(--paper); }
 }
 
 ::selection { background: var(--ink); color: var(--paper); }
@@ -277,7 +296,7 @@ section {
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--gutter);
-  background: rgba(214, 197, 133, 0.85);
+  background: var(--grain) rgba(var(--paper-rgb), 0.94);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--ink-hair);
@@ -289,17 +308,10 @@ section {
   transition: transform 0.4s cubic-bezier(.2,.7,.3,1);
 }
 .runner.hidden { transform: translateY(-100%); }
-.runner .brand { display: flex; align-items: center; gap: 10px; font-weight: 500; }
-.runner .brand .mark {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--ink);
-  color: var(--paper);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-serif);
-  font-size: 13px;
-  letter-spacing: 0;
-}
+.runner .brand { display: flex; align-items: center; font-weight: 500; }
+/* The word mark: the five-candle bwhdx cipher, drawn in currentColor. */
+.cipher { display: block; flex: none; color: var(--ink); overflow: visible; }
+.cipher text { font-family: var(--font-mono); text-transform: none; }
 .runner nav { display: flex; gap: 28px; }
 .runner nav a { color: var(--ink-soft); transition: color 0.18s; padding: 7px 0; }
 .runner nav a:hover, .runner nav a.active { color: var(--ink); }
@@ -314,7 +326,6 @@ section {
 @media (max-width: 480px) {
   .runner { letter-spacing: 0.14em; }
   .runner nav { gap: 16px; }
-  .runner .brand { gap: 8px; }
 }
 
 /* Footer */
@@ -336,6 +347,18 @@ section {
   color: var(--ink);
   margin-bottom: 8px;
 }
+/* Sign-off: the mark at the left, the site at the right. */
+.colophon-sign {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--ink-hair);
+}
+.colophon-sign .cipher { width: 64px; height: auto; }
+.colophon-sign .site { color: var(--ink); letter-spacing: 0.04em; text-transform: none; font-size: 13px; }
 @media (max-width: 800px) {
   .colophon { grid-template-columns: 1fr 1fr; }
 }
@@ -414,7 +437,7 @@ section {
 .morph-stage {
   position: relative;
   height: 500vh;
-  background: var(--paper);
+  background: none; /* the root paper and its grain show through */
   padding: 0 !important;
 }
 .morph-sticky {
@@ -507,7 +530,9 @@ section {
     max-width: 100%;
     padding: 18px 18px 24px;
     border-radius: 6px;
-    background: rgba(214, 197, 133, 0.92);
+    /* The grain sits on the panel too: the blur smooths the root's grain
+       beneath, which would otherwise leave a flat box on the paper. */
+    background: var(--grain) rgba(var(--paper-rgb), 0.92);
     backdrop-filter: blur(8px);
     margin-bottom: 6px;
   }
@@ -604,14 +629,14 @@ section {
   padding: 24px 0 18px;
   background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 60%, rgba(28,38,122,0) 100%);
 }
-.hero-top-bar .meta { color: rgba(214,197,133,0.65); }
+.hero-top-bar .meta { color: rgba(var(--paper-rgb), 0.65); }
 .hero-top-bar .meta-strong { color: var(--paper); }
 .hero-top-grid {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   padding-top: 12px;
-  border-top: 1px solid rgba(214,197,133,0.4);
+  border-top: 1px solid rgba(var(--paper-rgb), 0.4);
 }
 
 /* Bottom navy band — the cover title block */
@@ -629,9 +654,9 @@ section {
   justify-content: space-between;
   align-items: baseline;
   padding-bottom: 12px;
-  border-bottom: 1px solid rgba(214,197,133,0.25);
+  border-bottom: 1px solid rgba(var(--paper-rgb), 0.25);
 }
-.hero-band-top .meta { color: rgba(214,197,133,0.65); }
+.hero-band-top .meta { color: rgba(var(--paper-rgb), 0.65); }
 .hero-title {
   margin-top: 12px !important;
   margin-bottom: 14px !important;
@@ -642,7 +667,7 @@ section {
 .hero-title em {
   font-style: italic;
   font-weight: 300;
-  color: rgba(214,197,133,0.7);
+  color: rgba(var(--paper-rgb), 0.7);
 }
 .hero-band-bottom {
   display: grid;
@@ -650,7 +675,7 @@ section {
   gap: 32px;
   align-items: end;
   padding-top: 10px;
-  border-top: 1px solid rgba(214,197,133,0.25);
+  border-top: 1px solid rgba(var(--paper-rgb), 0.25);
 }
 .hero-tagline-text {
   font-family: var(--font-serif);
@@ -662,7 +687,7 @@ section {
   margin: 0;
   color: var(--paper);
 }
-.hero-tagline-text em { font-style: italic; font-weight: 300; color: rgba(214,197,133,0.85); }
+.hero-tagline-text em { font-style: italic; font-weight: 300; color: rgba(var(--paper-rgb), 0.85); }
 .hero-lines .hero-tagline-text { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; }
 .hero-subline {
   margin: 10px 0 0;
@@ -670,7 +695,7 @@ section {
   font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(214,197,133,0.92);
+  color: rgba(var(--paper-rgb), 0.92);
 }
 
 .hero-actions {
@@ -704,7 +729,7 @@ section {
   color: var(--paper);
   text-align: right;
 }
-.hero-scroll .meta { color: rgba(214,197,133,0.92); }
+.hero-scroll .meta { color: rgba(var(--paper-rgb), 0.92); }
 .hero-scroll .arrow {
   font-family: var(--font-serif);
   font-size: 22px;
@@ -905,7 +930,7 @@ section {
 .dd-callout .kicker, .dd-callout .subhead, .dd-callout p {
   color: var(--paper);
 }
-.dd-callout .kicker { color: rgba(214,197,133,0.65); }
+.dd-callout .kicker { color: rgba(var(--paper-rgb), 0.65); }
 .dd-callout p {
   font-family: var(--font-serif);
   font-style: italic;

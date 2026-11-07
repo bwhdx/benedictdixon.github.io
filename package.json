@@ -6,6 +6,7 @@
   "scripts": {
     "build": "babel . --out-dir . --presets=@babel/preset-react --only='*.jsx' --extensions='.jsx' --out-file-extension=.js && node tools/bundle.cjs",
     "check": "node tools/check-site.cjs",
+    "build:favicons": "tools/generate-favicons.sh",
     "build:og": "node tools/generate-og.cjs && rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png && pngquant --quality=75-95 --strip --force --output assets/og-image.png assets/og-image.png && rm assets/og-image.svg && node tools/generate-og-articles.cjs"
   },
   "devDependencies": {

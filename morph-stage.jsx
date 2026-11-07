@@ -9,7 +9,7 @@
 // ─────────────────────────────────────────────────────────
 
 const INK = '#1c267a';
-const PAPER = '#d6c585';
+const PAPER = '#d0b57a';
 
 // Career timeline, 11 roles in chronological order. Each becomes
 // a single candle in the timeline state. High/low are visual only.

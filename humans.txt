@@ -12,4 +12,4 @@ Medium: https://bwhdx.medium.com/
 Standards: HTML5, CSS3, ES2020+
 Components: React 18 (compiled JSX)
 Type: Fraunces · Inter · JetBrains Mono
-Palette: Royal navy #1c267a on warm cream #d6c585
+Palette: Royal navy #1c267a on warm ochre paper #d0b57a

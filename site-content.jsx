@@ -2,6 +2,43 @@
 // All static markup — JSX is just for componentisation.
 
 // ─────────────────────────────────────────────────────────
+// The word mark: five candles spelling bwhdx, bwhdx in small mono beneath.
+// Each candle closes at its letter's place in the alphabet (a at the foot,
+// z at the top) and opens where the one before closed; falling candles are
+// filled, rising ones hollow. The article pages inline the same SVG, and
+// favicons/favicon.svg draws the candles alone. Drawn in currentColor, so
+// CSS sets the ink.
+// ─────────────────────────────────────────────────────────
+const CIPHER_CANDLES = [
+  // [x, wick top, wick bottom, body top, body height, filled]
+  [10, 25.0, 53.6, 30.0, 18.6, true],
+  [30, 8.1, 53.6, 13.1, 35.5, false],
+  [50, 8.1, 43.5, 13.1, 25.4, true],
+  [70, 33.5, 50.2, 38.5, 6.7, true],
+  [90, 6.4, 50.2, 11.4, 33.8, false],
+];
+
+// With a label it is an image with that name; without one, decoration.
+function Cipher({ label }) {
+  return (
+    <svg className="cipher" viewBox="0 0 100 82" fill="none" stroke="currentColor"
+      strokeLinecap="butt" strokeLinejoin="miter" focusable="false"
+      role={label ? 'img' : undefined} aria-label={label}
+      aria-hidden={label ? undefined : true}>
+      {CIPHER_CANDLES.map(([x, top, bottom, bodyTop, bodyH, filled]) => (
+        <g key={x}>
+          <line x1={x} x2={x} y1={top} y2={bottom} strokeWidth="2.4" />
+          <rect x={x - 4.5} y={bodyTop} width="9" height={bodyH} strokeWidth="2.4"
+            fill={filled ? 'currentColor' : 'none'} />
+        </g>
+      ))}
+      <text x="5.5" y="76" stroke="none" fill="currentColor" fontSize="15" fontWeight="500"
+        letterSpacing="1">b w h d x</text>
+    </svg>
+  );
+}
+
+// ─────────────────────────────────────────────────────────
 // Header (fixed running banner)
 // ─────────────────────────────────────────────────────────
 function Runner() {
@@ -32,7 +69,6 @@ function Runner() {
   return (
     <header className={`runner ${hidden ? 'hidden' : ''}`}>
       <div className="brand">
-        <div className="mark">B</div>
         <span>Benedict W. H. Dixon<span className="brand-long"> · An Almanack · MMXXVI</span></span>
       </div>
       <nav aria-label="Sections">
@@ -456,7 +492,7 @@ function Contact() {
         <footer className="colophon">
           <div>
             <strong>Colophon</strong>
-            Set in Fraunces, Inter &amp; JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm cream.
+            Set in Fraunces, Inter &amp; JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm ochre paper.
           </div>
           <div>
             <strong>Edition</strong>
@@ -472,6 +508,10 @@ function Contact() {
             <strong>© 2026</strong>
             Benedict W. H. Dixon.<br/>
             All rights observed.
+          </div>
+          <div className="colophon-sign">
+            <Cipher label="bwhdx, the word mark of Benedict W. H. Dixon" />
+            <span className="site">benedictdixon.com</span>
           </div>
         </footer>
       </div>

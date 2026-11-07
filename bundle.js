@@ -2,15 +2,15 @@
 
 /* ── portrait-renderers.js ────────────────────────────────────────── */
 // Portrait renderers — each takes a brightness grid (cols×rows of 0-255)
-// and renders it using a different visual primitive. Navy on cream throughout.
+// and renders it using a different visual primitive. Navy on ochre paper throughout.
 
 const PALETTE = {
   ink: '#1c267a',
   // royal navy
-  paper: '#d6c585',
-  // warm cream
+  paper: '#d0b57a',
+  // warm ochre paper
   inkSoft: '#2c3795',
-  paperDark: '#b9a86a'
+  paperDark: '#b49c69'
 };
 
 // ──────────────────────────────────────────────────────────
@@ -535,7 +535,7 @@ window.CursorTrail = CursorTrail;
 // ─────────────────────────────────────────────────────────
 
 const INK = '#1c267a';
-const PAPER = '#d6c585';
+const PAPER = '#d0b57a';
 
 // Career timeline, 11 roles in chronological order. Each becomes
 // a single candle in the timeline state. High/low are visual only.
@@ -1169,6 +1169,59 @@ window.CAREER = CAREER;
 // All static markup — JSX is just for componentisation.
 
 // ─────────────────────────────────────────────────────────
+// The word mark: five candles spelling bwhdx, bwhdx in small mono beneath.
+// Each candle closes at its letter's place in the alphabet (a at the foot,
+// z at the top) and opens where the one before closed; falling candles are
+// filled, rising ones hollow. The article pages inline the same SVG, and
+// favicons/favicon.svg draws the candles alone. Drawn in currentColor, so
+// CSS sets the ink.
+// ─────────────────────────────────────────────────────────
+const CIPHER_CANDLES = [
+// [x, wick top, wick bottom, body top, body height, filled]
+[10, 25.0, 53.6, 30.0, 18.6, true], [30, 8.1, 53.6, 13.1, 35.5, false], [50, 8.1, 43.5, 13.1, 25.4, true], [70, 33.5, 50.2, 38.5, 6.7, true], [90, 6.4, 50.2, 11.4, 33.8, false]];
+
+// With a label it is an image with that name; without one, decoration.
+function Cipher({
+  label
+}) {
+  return /*#__PURE__*/React.createElement("svg", {
+    className: "cipher",
+    viewBox: "0 0 100 82",
+    fill: "none",
+    stroke: "currentColor",
+    strokeLinecap: "butt",
+    strokeLinejoin: "miter",
+    focusable: "false",
+    role: label ? 'img' : undefined,
+    "aria-label": label,
+    "aria-hidden": label ? undefined : true
+  }, CIPHER_CANDLES.map(([x, top, bottom, bodyTop, bodyH, filled]) => /*#__PURE__*/React.createElement("g", {
+    key: x
+  }, /*#__PURE__*/React.createElement("line", {
+    x1: x,
+    x2: x,
+    y1: top,
+    y2: bottom,
+    strokeWidth: "2.4"
+  }), /*#__PURE__*/React.createElement("rect", {
+    x: x - 4.5,
+    y: bodyTop,
+    width: "9",
+    height: bodyH,
+    strokeWidth: "2.4",
+    fill: filled ? 'currentColor' : 'none'
+  }))), /*#__PURE__*/React.createElement("text", {
+    x: "5.5",
+    y: "76",
+    stroke: "none",
+    fill: "currentColor",
+    fontSize: "15",
+    fontWeight: "500",
+    letterSpacing: "1"
+  }, "b w h d x"));
+}
+
+// ─────────────────────────────────────────────────────────
 // Header (fixed running banner)
 // ─────────────────────────────────────────────────────────
 function Runner() {
@@ -1200,9 +1253,7 @@ function Runner() {
     className: `runner ${hidden ? 'hidden' : ''}`
   }, /*#__PURE__*/React.createElement("div", {
     className: "brand"
-  }, /*#__PURE__*/React.createElement("div", {
-    className: "mark"
-  }, "B"), /*#__PURE__*/React.createElement("span", null, "Benedict W. H. Dixon", /*#__PURE__*/React.createElement("span", {
+  }, /*#__PURE__*/React.createElement("span", null, "Benedict W. H. Dixon", /*#__PURE__*/React.createElement("span", {
     className: "brand-long"
   }, " \xB7 An Almanack \xB7 MMXXVI"))), /*#__PURE__*/React.createElement("nav", {
     "aria-label": "Sections"
@@ -1696,7 +1747,13 @@ function Contact() {
     className: "wrap"
   }, /*#__PURE__*/React.createElement("footer", {
     className: "colophon"
-  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Colophon"), "Set in Fraunces, Inter & JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm cream."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Edition"), "Vol. I \xB7 MMXXVI", /*#__PURE__*/React.createElement("br", null), MASTHEAD), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Words"), "Approx. 1,400.", /*#__PURE__*/React.createElement("br", null), "Reading time: ~6 minutes."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "\xA9 2026"), "Benedict W. H. Dixon.", /*#__PURE__*/React.createElement("br", null), "All rights observed."))));
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Colophon"), "Set in Fraunces, Inter & JetBrains Mono. Hero portrait rendered from a brightness sample of a photograph, redrawn in candlesticks. Royal navy on warm ochre paper."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Edition"), "Vol. I \xB7 MMXXVI", /*#__PURE__*/React.createElement("br", null), MASTHEAD), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "Words"), "Approx. 1,400.", /*#__PURE__*/React.createElement("br", null), "Reading time: ~6 minutes."), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("strong", null, "\xA9 2026"), "Benedict W. H. Dixon.", /*#__PURE__*/React.createElement("br", null), "All rights observed."), /*#__PURE__*/React.createElement("div", {
+    className: "colophon-sign"
+  }, /*#__PURE__*/React.createElement(Cipher, {
+    label: "bwhdx, the word mark of Benedict W. H. Dixon"
+  }), /*#__PURE__*/React.createElement("span", {
+    className: "site"
+  }, "benedictdixon.com")))));
 }
 Object.assign(window, {
   HERO_LINE,

@@ -7,7 +7,7 @@ Personal site for [benedictdixon.com](https://benedictdixon.com) — an editoria
 - **Static** — vanilla HTML/CSS/React, deployed via GitHub Pages, no SSR required.
 - **React 18** — pre-compiled JSX (no in-browser Babel). React/React-DOM self-hosted in `vendor/`.
 - **Type** — Fraunces (display), Inter (body), JetBrains Mono (meta). Self-hosted Latin subsets in `assets/fonts/`.
-- **Palette** — royal navy `#1c267a` on warm cream `#d6c585`.
+- **Palette** — royal navy `#1c267a` on warm ochre paper `#d0b57a` with a fine seeded grain (two small SVG noise tiles in `site.css` and `writing.css`). The mark is the five-candle bwhdx cipher.
 
 ## Local dev
 
@@ -15,6 +15,7 @@ Personal site for [benedictdixon.com](https://benedictdixon.com) — an editoria
 npm install
 npm run build      # compile *.jsx → *.js
 npm run build:og   # regenerate assets/og-image.png from the brightness grid
+npm run build:favicons  # rasterise favicons/*.png from the two SVG sources
 npm run check      # read-only publish check; run before every publish
 ```
 
@@ -37,11 +38,14 @@ assets/
   fonts/                         Self-hosted woff2 fonts
   *.json                         Brightness grids for the candlestick portraits
   og-image.png                   Open Graph cover image
-favicons/                        Full favicon set
+favicons/                        Favicon set: favicon.svg (rounded tile) and favicon-maskable.svg
+                                 (full bleed, for iOS and Android masks) are the sources; the PNGs
+                                 are generated from them
 vendor/                          Self-hosted React + React-DOM
 tools/
   generate-og.cjs                Regenerates the OG image from the hero grid
   check-site.cjs                 Read-only publish check (npm run check)
+  generate-favicons.sh           Rasterises the favicon PNGs (npm run build:favicons)
 404.html                         Editorial 404 page
 robots.txt, sitemap.xml          Crawler-facing
 site.webmanifest                 PWA manifest

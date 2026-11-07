@@ -1,11 +1,11 @@
 // Portrait renderers — each takes a brightness grid (cols×rows of 0-255)
-// and renders it using a different visual primitive. Navy on cream throughout.
+// and renders it using a different visual primitive. Navy on ochre paper throughout.
 
 const PALETTE = {
   ink:   '#1c267a',  // royal navy
-  paper: '#d6c585',  // warm cream
+  paper: '#d0b57a',  // warm ochre paper
   inkSoft: '#2c3795',
-  paperDark: '#b9a86a',
+  paperDark: '#b49c69',
 };
 
 // ──────────────────────────────────────────────────────────

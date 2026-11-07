@@ -20,14 +20,14 @@
       "purpose": "any"
     },
     {
-      "src": "favicons/favicon-512.png",
+      "src": "favicons/favicon-maskable-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
     }
   ],
   "theme_color": "#1c267a",
-  "background_color": "#d6c585",
+  "background_color": "#d0b57a",
   "display": "standalone",
   "categories": ["business", "finance"]
 }
