@@ -18,7 +18,7 @@ const ORIGIN = 'https://benedictdixon.com';
 // The cover line. One sentence or two, plain text; it is set under his name
 // on the cover and on the home share card. Swap it here, then run
 // `npm run build` and `npm run build:og`.
-const COVER_LINE = 'I build and run companies end to end, from the architecture to the operation. Co-founder, COO and interim CTO at Kash.';
+const COVER_LINE = 'Serial founder, CTO and COO. I build and run companies end to end, from the architecture to the operation.';
 
 // The analytics beacon is live on a page when its script tag is outside an
 // HTML comment (README, Analytics). The colophon's privacy note follows it,

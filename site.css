@@ -421,8 +421,11 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Running head ───────────────────────────────────────── */
 /* The author and the contents button, with the candle progress strip
-   along the top edge. On phones the mark stands in for the name (the
-   floating insignia has no margin there). */
+   along the top edge. The bwhdx mark leads; the name beside it is hidden
+   while the cover, which sets the name large, is in view, and fades in
+   past it (data-name, from Runner in site-content.jsx). The name keeps its
+   space while hidden, so nothing moves. On phones the mark stands in for
+   the name throughout (the floating insignia has no margin there). */
 .runner {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -446,8 +449,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: -0.005em;
 }
 .runner-verso:hover .runner-name { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
-.runner-mark { display: none; }
+.runner-mark { display: block; }
 .runner-mark .cipher { width: 32px; height: auto; display: block; }
+.runner-verso[data-name="hidden"] .runner-name { opacity: 0; transform: translateX(-6px); }
+@media (prefers-reduced-motion: no-preference) {
+  .runner-name { transition: opacity 0.32s var(--ease-page), transform 0.32s var(--ease-page); }
+}
 .contents-btn {
   display: inline-flex;
   align-items: center;
@@ -470,7 +477,6 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 700px) {
   .runner { gap: 12px; padding: 20px 16px 0 var(--gutter-sm); }
-  .runner-mark { display: block; }
   .runner-verso { gap: 0; }
   .runner-name {
     position: absolute; width: 1px; height: 1px; margin: -1px;
@@ -479,8 +485,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* ── The candle progress row ────────────────────────────── */
-/* A small candlestick chart of the page, one candle per chapter: body
-   height is the chapter's length, the wicks its longest and median
+/* A small candlestick chart of the page, one candle per part of each
+   chapter (its entries and headed blocks): body height is the part's length, the wicks its longest and median
    paragraphs, every body centred on one level so the row never trends.
    Read is filled, ahead is hollow; scroll-motion.js draws and drives it.
    Kept in step with writing.css. */
@@ -1141,8 +1147,9 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Insignia: the bwhdx mark, fixed bottom-left, back to the top ── */
 /* Ink straight on the paper, in the empty left margin on wide screens.
-   Hidden over the navy surfaces and while the footer's own mark is in
-   view (Insignia in site-content.jsx decides, with IntersectionObserver); a short
+   Hidden while the cover is in view (the running head shows the mark
+   there) and while the footer's own mark is in view (Insignia in
+   site-content.jsx decides, with IntersectionObserver); a short
    fade and lift between the two. visibility leaves the tab order and the
    accessibility tree with it, after the fade. */
 .insignia {
@@ -1388,30 +1395,6 @@ html { font-synthesis: none; }   /* never a faked slant or bold */
   .hero-tagline-text { text-wrap: balance; }
 }
 
-/* ── Selected work: outcomes, set with the entry ───────── */
-/* The figures each entry's text already states, pulled out under the
-   role so they read at a glance; the sentence beneath keeps them in
-   context. Lining figures from the serif, the label in italic. */
-.entry-figures {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 36px;
-  margin: 0 0 22px;
-  padding: 14px 0 12px;
-  border-top: 1px solid var(--ink-hair);
-  border-bottom: 1px solid var(--ink-hair);
-}
-.ef { display: flex; flex-direction: column; gap: 2px; }
-.ef-n {
-  font-family: var(--font-serif);
-  font-variation-settings: "opsz" 72;
-  font-size: 30px;
-  line-height: 1.05;
-  letter-spacing: -0.01em;
-}
-.ef-t { font-family: var(--font-serif); font-style: italic; font-size: 15px; line-height: 1.3; }
-
 /* ── Working together, and a clear address ─────────────── */
 .ways { margin: 36px auto 0; }
 .way {
@@ -1559,7 +1542,7 @@ html { font-synthesis: none; }   /* never a faked slant or bold */
   .plate .cipher { width: 40px; }
   .plate-t { font-size: 30pt; }
   .chapter-foot { margin-top: 8mm; }
-  :is(.ledger-row, .entry, .essays li, .lectern li, .toc li, .way, .ef) { break-inside: avoid; }
+  :is(.ledger-row, .entry, .essays li, .lectern li, .toc li, .way) { break-inside: avoid; }
   :is(h2, h3, .part-title) { break-after: avoid; }
   .entry { padding-bottom: 8mm; }
   .entry + .entry > .entry-body { padding-top: 8mm; }

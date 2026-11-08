@@ -36,7 +36,8 @@
 
   // ── The candle progress row ───────────────────────────────
   // A small candlestick chart of the page itself, one candle per section:
-  // the home page's chapters, an essay's headed sections, or even groups of
+  // the parts of the home page's chapters (each marked [data-part]: an
+  // entry, an essay, a headed block), an essay's headed sections, or even groups of
   // paragraphs where an essay has too few headings to chart. The data is
   // honest: a body's height is the section's length in words, the upper
   // wick reaches to its longest paragraph and the lower one to its median
@@ -108,20 +109,52 @@
     };
   }
 
+  // Is a after b in the document (and not inside it)?
+  function follows(a, b) {
+    return !b.contains(a) && !!(b.compareDocumentPosition(a) & Node.DOCUMENT_POSITION_FOLLOWING);
+  }
+
+  // A chapter's parts: the elements marked [data-part] (its entries and
+  // headed blocks), each running to the next. The first part starts at the
+  // chapter itself, so its plate is read as part of it. A chapter with no
+  // marked parts is one section.
+  function chapterSections(ch, i) {
+    var title = document.getElementById(ch.getAttribute('aria-labelledby') || '') || ch.querySelector('h2');
+    var group = 'Chapter ' + ROMAN[i] + (title ? ', ' + textOf(title).replace(/\.$/, '') : '');
+    var marks = Array.prototype.slice.call(ch.querySelectorAll('[data-part]'));
+    var blocks = blocksIn([ch]);
+    if (!marks.length) {
+      var whole = stats(blocks, [ch]);
+      whole.el = ch;
+      whole.focus = title || ch;
+      whole.name = group;
+      return [whole];
+    }
+    return marks.map(function (m, j) {
+      var next = marks[j + 1];
+      var own = blocks.filter(function (b) {
+        return (j === 0 || m.contains(b) || follows(b, m)) && (!next || follows(next, b));
+      });
+      var s = stats(own);
+      s.el = j === 0 ? ch : m;
+      s.focus = j === 0 ? title || ch : m;
+      s.group = group;
+      s.part = m.getAttribute('data-part');
+      s.name = group + ': ' + s.part;
+      return s;
+    });
+  }
+
   // The page's sections, in reading order: { el, focus, name, words,
   // longest, median }. el is where the section starts; focus is what takes
-  // focus when a candle is chosen.
+  // focus when a candle is chosen. On the home page these are the parts of
+  // each chapter; on an essay, its headed sections.
   function findSections() {
     var chapters = Array.prototype.slice.call(document.querySelectorAll('section.chapter'));
     if (chapters.length) {
-      return chapters.map(function (ch, i) {
-        var title = document.getElementById(ch.getAttribute('aria-labelledby') || '') || ch.querySelector('h2');
-        var s = stats(blocksIn([ch]), [ch]);
-        s.el = ch;
-        s.focus = title || ch;
-        s.name = 'Chapter ' + ROMAN[i] + (title ? ', ' + textOf(title).replace(/\.$/, '') : '');
-        return s;
-      });
+      return chapters.reduce(function (out, ch, i) {
+        return out.concat(chapterSections(ch, i));
+      }, []);
     }
     var body = document.querySelector('.article-body') || document.querySelector('main');
     if (!body) return [];
@@ -178,8 +211,12 @@
     });
   }
 
-  // "Section II, How we got here" and "Section III, ..." -> "Sections II to III".
-  function spanName(first, last) {
+  // "Section II, How we got here" and "Section III, ..." -> "Sections II to III";
+  // two parts of one chapter -> "Chapter III, Selected work: kash to Nettle".
+  function spanName(firstS, lastS) {
+    if (firstS.group && firstS.group === lastS.group) return firstS.group + ': ' + firstS.part + ' to ' + lastS.part;
+    var first = firstS.name,
+      last = lastS.name;
     var a = first.replace(/,.*$/, '').split(' '),
       b = last.replace(/,.*$/, '').split(' ');
     if (a.length > 1 && a[0] === b[0]) return a[0] + 's ' + a[1] + ' to ' + b[1];
@@ -188,25 +225,48 @@
 
   // Phones: if the row cannot hold every candle, neighbours are merged.
   function fitSections(sections, max) {
-    if (sections.length <= max) return sections;
-    var per = Math.ceil(sections.length / max);
-    var out = [];
-    for (var i = 0; i < sections.length; i += per) {
-      var g = sections.slice(i, i + per);
-      out.push({
+    // Runs of sections, merged one pair at a time: always the two
+    // neighbours with the fewest words between them, preferring two parts
+    // of one chapter, so only as many candles merge as the row needs and
+    // the long sections keep their own.
+    var runs = sections.map(function (s) {
+      return [s];
+    });
+    var total = function (g) {
+      return g.reduce(function (a, s) {
+        return a + s.words;
+      }, 0);
+    };
+    while (runs.length > max) {
+      var best = -1,
+        bestCost = Infinity;
+      for (var i = 0; i < runs.length - 1; i++) {
+        var a = runs[i],
+          b = runs[i + 1];
+        var apart = a[0].group && a[0].group === b[b.length - 1].group ? 0 : 1;
+        var cost = apart * 1e9 + total(a) + total(b);
+        if (cost < bestCost) {
+          bestCost = cost;
+          best = i;
+        }
+      }
+      runs.splice(best, 2, runs[best].concat(runs[best + 1]));
+    }
+    return runs.map(function (g) {
+      if (g.length === 1) return g[0];
+      return {
         el: g[0].el,
         focus: g[0].focus,
-        name: g.length > 1 ? spanName(g[0].name, g[g.length - 1].name) : g[0].name,
-        words: g.reduce(function (a, s) {
-          return a + s.words;
-        }, 0),
+        group: g[0].group === g[g.length - 1].group ? g[0].group : undefined,
+        part: g[0].part,
+        name: spanName(g[0], g[g.length - 1]),
+        words: total(g),
         longest: Math.max.apply(null, g.map(function (s) {
           return s.longest;
         })),
         median: g[Math.floor((g.length - 1) / 2)].median
-      });
-    }
-    return out;
+      };
+    });
   }
   function span(cls) {
     var el = document.createElement('span');

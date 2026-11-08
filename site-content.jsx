@@ -63,76 +63,66 @@ function Cipher({ label }) {
 }
 
 // ─────────────────────────────────────────────────────────
-// Insignia: the word mark fixed in the bottom-left corner, linking back to
-// the top. It hides where ink would not read or would get in the way, and
-// while the footer's own mark is on screen. Two IntersectionObservers, no
-// scroll handler:
-//  - one watches the surfaces below through a root narrowed to the
-//    insignia's own corner, so it hides only while one is actually under it;
-//  - one watches the footer against the whole viewport.
-// The corner is measured from the element and re-measured on resize.
+// Is the cover in view? One IntersectionObserver on the cover, with the
+// root's top pulled down by the running head, shared by everything that
+// follows it (useSyncExternalStore). The page is prerendered at the top,
+// so the server and the first render say yes; without IntersectionObserver
+// it says no, so the name is never lost.
 // ─────────────────────────────────────────────────────────
-// Surfaces the mark must not sit on: the navy cover.
-const INSIGNIA_AVOID = '#hero';
+const coverView = (() => {
+  let inView = true;
+  let io = null;
+  const subs = new Set();
+  function start() {
+    if (io) return;
+    const hero = document.getElementById('hero');
+    if (!hero || !('IntersectionObserver' in window)) { inView = false; return; }
+    const head = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--runner-h')) || 74;
+    io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting === inView) return;
+      inView = entry.isIntersecting;
+      subs.forEach((f) => f());
+    }, { rootMargin: `-${head}px 0px 0px 0px` });
+    io.observe(hero);
+  }
+  return {
+    subscribe(f) {
+      subs.add(f);
+      start();
+      return () => {
+        subs.delete(f);
+        if (!subs.size && io) { io.disconnect(); io = null; }
+      };
+    },
+    get: () => inView,
+    server: () => true,
+  };
+})();
+const useCoverInView = () => React.useSyncExternalStore(coverView.subscribe, coverView.get, coverView.server);
+
+// ─────────────────────────────────────────────────────────
+// Insignia: the word mark fixed in the bottom-left corner, linking back to
+// the top. It hides while the cover is in view (the running head shows the
+// mark there, and the navy would swallow it) and while the footer's own
+// mark is on screen, so the mark is never on the screen twice.
+// ─────────────────────────────────────────────────────────
 const INSIGNIA_FOOTER = '.colophon';
-const INSIGNIA_SLACK = 12; // px around the mark that also counts as under it
 
 function Insignia() {
-  const ref = React.useRef(null);
-  const [hidden, setHidden] = React.useState(true);
+  const coverInView = useCoverInView();
+  const [footerInView, setFooterInView] = React.useState(false);
 
   React.useEffect(() => {
-    const el = ref.current;
-    if (!el || !('IntersectionObserver' in window)) { setHidden(false); return undefined; }
-
-    const under = new Set();
-    let footerInView = false;
-    const update = () => setHidden(under.size > 0 || footerInView);
-
     const footer = document.querySelector(INSIGNIA_FOOTER);
-    const footerObserver = new IntersectionObserver(([entry]) => {
-      footerInView = entry.isIntersecting;
-      update();
-    });
-    if (footer) footerObserver.observe(footer);
-
-    let cornerObserver = null;
-    function observeCorner() {
-      if (cornerObserver) cornerObserver.disconnect();
-      under.clear();
-      // offset* ignores the hide transform, so this is the resting box.
-      const vw = document.documentElement.clientWidth;
-      const vh = window.innerHeight;
-      const s = INSIGNIA_SLACK;
-      const top = Math.max(0, el.offsetTop - s);
-      const left = Math.max(0, el.offsetLeft - s);
-      const right = Math.max(0, vw - (el.offsetLeft + el.offsetWidth + s));
-      const bottom = Math.max(0, vh - (el.offsetTop + el.offsetHeight + s));
-      cornerObserver = new IntersectionObserver((entries) => {
-        entries.forEach((e) => (e.isIntersecting ? under.add(e.target) : under.delete(e.target)));
-        update();
-      }, { rootMargin: `-${top}px -${right}px -${bottom}px -${left}px` });
-      document.querySelectorAll(INSIGNIA_AVOID).forEach((n) => cornerObserver.observe(n));
-    }
-    observeCorner();
-
-    let frame = 0;
-    function onResize() {
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(observeCorner);
-    }
-    window.addEventListener('resize', onResize);
-    return () => {
-      window.removeEventListener('resize', onResize);
-      cancelAnimationFrame(frame);
-      footerObserver.disconnect();
-      if (cornerObserver) cornerObserver.disconnect();
-    };
+    if (!footer || !('IntersectionObserver' in window)) return undefined;
+    const io = new IntersectionObserver(([entry]) => setFooterInView(entry.isIntersecting));
+    io.observe(footer);
+    return () => io.disconnect();
   }, []);
 
   return (
-    <a ref={ref} className="insignia" href="#hero" aria-label="bwhdx, back to the top"
-      data-hidden={hidden ? 'true' : 'false'}>
+    <a className="insignia" href="#hero" aria-label="bwhdx, back to the top"
+      data-hidden={coverInView || footerInView ? 'true' : 'false'}>
       <Cipher />
     </a>
   );
@@ -242,7 +232,8 @@ function CandleGlyph() {
 
 // ─────────────────────────────────────────────────────────
 // Reading progress as a small candlestick chart of the page along the top
-// of the head, one candle per chapter, filled once read. scroll-motion.js
+// of the head, one candle per part of each chapter ([data-part]: its
+// entries and headed blocks), filled once read. scroll-motion.js
 // draws the candles into this empty row (the writing pages inline the same
 // markup), so React renders it once with no children and never touches them.
 // ─────────────────────────────────────────────────────────
@@ -253,21 +244,25 @@ function CandleProgress() {
 // ─────────────────────────────────────────────────────────
 // The running head: the author and the contents sheet, with the candle
 // progress strip along its top edge. The book's title is on the cover's
-// top line, not repeated here. On phones the mark stands in for the name.
-// The current part still marks the contents sheet's entry.
+// top line, not repeated here. While the cover is in view its name is
+// already on screen, set large, so the head shows the bwhdx mark alone;
+// past the cover the name fades in beside it. On phones the mark always
+// stands in for the name. The current part still marks the contents
+// sheet's entry.
 // ─────────────────────────────────────────────────────────
 function Runner() {
   const part = useCurrentPart();
+  const coverInView = useCoverInView();
   return (
     <header className="runner" data-part={part}>
       <CandleProgress />
-      {/* Named from its text, which starts with the letters the mark shows
-          (bwhdx), so voice control finds it by what it says (WCAG 2.5.3).
-          On phones the name leaves the screen but stays in the name. */}
-      <a className="runner-verso" href="#hero">
+      {/* One name whichever is shown, and it starts with the visible name
+          (WCAG 2.5.3). The name keeps its space while hidden, so nothing
+          beside it moves. */}
+      <a className="runner-verso" href="#hero" aria-label="Benedict W. H. Dixon, home"
+        data-name={coverInView ? 'hidden' : 'shown'}>
         <span className="runner-mark"><Cipher /></span>
-        <span className="sr-only">bwhdx, </span>
-        <span className="runner-name">Benedict W. H. Dixon</span><span className="sr-only">, back to the cover</span>
+        <span className="runner-name">Benedict W. H. Dixon</span>
       </a>
       <ContentsSheet current={part} />
     </header>
@@ -603,7 +598,7 @@ function Career() {
       <div className="wrap">
         <ChapterPlate chapter={c}
           lede="Engineer first, from 2015; then operator, COO and CTO across AI, fintech and blockchain." />
-        <div className="ledger">
+        <div className="ledger" data-part="The ledger">
           <p className="ledger-intro">Engineer at JPMorgan in 2015; co-founder, COO and Interim CTO of kash today. Each role is one line, and its candle is the time spent in it.</p>
           <LedgerAxis />
           <ol className="ledger-rows">
@@ -634,7 +629,7 @@ function Career() {
           </p>
         </div>
 
-        <h3 className="part-title page-col" data-reveal="opener">The long way round</h3>
+        <h3 className="part-title page-col" data-reveal="opener" data-part="The long way round">The long way round</h3>
         <div className="page prose">
           <p>Three expeditions. Fifty-plus countries. London to Mongolia, via Iran, by car. India by tuk-tuk. Sahara to Atlantic, across Morocco.</p>
         </div>
@@ -658,11 +653,14 @@ function Career() {
 // III. Projects
 // ─────────────────────────────────────────────────────────
 // Role and dates come from the ledger (Chapter II), so the two chapters
-// can never disagree. Figures are only those the entry's own text states.
+// can never disagree. Figures sit in the sentences, never pulled out as
+// headline numbers, and only those he has stated himself: on this site
+// (kash's, from his essay "The unit of production has changed") or in his
+// own record. Never a market or trading figure.
 const PROJECTS = [
   {
     co: 'kash',
-    body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.",
+    body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events: 55-plus event-driven microservices.",
     tags: ['Operations', 'Product', 'Technology', 'AI', 'Partnerships'],
   },
   {
@@ -670,13 +668,11 @@ const PROJECTS = [
     body: 'Led vision and development of an L1 from concept. Voi Network reached a $150M fully diluted valuation. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. Exited the role in 2025.',
     tags: ['Ecosystem growth', 'Team leadership', 'Strategic vision'],
     url: 'https://voi.network/',
-    figures: [['25+', 'projects integrated']],
   },
   {
     co: 'Pound Token',
     body: 'Led technical strategy through a successful acquisition. Executed zero-downtime migration reducing operating costs by 94%. Preserved millions in assets during the transition.',
     tags: ['Technical strategy', 'Migration', 'Team retention'],
-    figures: [['94%', 'lower operating costs'], ['Zero', 'downtime in the migration']],
   },
   {
     co: 'Nettle',
@@ -696,7 +692,7 @@ function Projects() {
         <ChapterPlate chapter={c} />
         <ol className="entries">
           {PROJECTS.map((p, i) => (
-            <li key={p.name} className="page entry">
+            <li key={p.name} className="page entry" data-part={p.name}>
               <p className="margin-note">
                 <span className="sc">{c.n}.{i + 1}</span>
                 <span>{p.period}</span>
@@ -704,13 +700,6 @@ function Projects() {
               <div className="entry-body">
                 <h3 className="entry-name">{p.name}</h3>
                 <p className="entry-role">{p.role}</p>
-                {p.figures && (
-                  <ul className="entry-figures" aria-label="Outcomes">
-                    {p.figures.map(([n, t]) => (
-                      <li key={t} className="ef"><span className="ef-n">{n}</span> <span className="ef-t">{t}</span></li>
-                    ))}
-                  </ul>
-                )}
                 <p>{tq(p.body)}</p>
                 {p.url && (
                   <p className="entry-link">
@@ -791,7 +780,7 @@ function EssayIndex() {
   const [lead, ...rest] = ARTICLES;
   return (
     <ol className="essays essays--index">
-      <li className="page essay-lead">
+      <li className="page essay-lead" data-part={tq(lead.title)}>
         <p className="margin-note"><time>{lead.date}</time><span className="essay-read">{lead.read}</span></p>
         <a className="essay-link" href={lead.url}>
           <span className="essay-cover">
@@ -803,7 +792,7 @@ function EssayIndex() {
         </a>
       </li>
       {rest.map((a) => (
-        <li key={a.url} className="page essay-row">
+        <li key={a.url} className="page essay-row" data-part={tq(a.title)}>
           <p className="margin-note"><time>{a.date}</time><span className="essay-read">{a.read}</span></p>
           <a className="essay-link" href={a.url}>
             <span className="essay-thumb">
@@ -831,7 +820,7 @@ function Writing() {
           <a className="text-link" href="/ai/">How I work with AI</a>
         </p>
 
-        <h3 className="part-title page-col" data-reveal="opener">At the lectern</h3>
+        <h3 className="part-title page-col" data-reveal="opener" data-part="At the lectern">At the lectern</h3>
         <ul className="lectern">
           {SPEAKING.map((s) => (
             <li key={s.event} className="page">
@@ -840,7 +829,7 @@ function Writing() {
             </li>
           ))}
         </ul>
-        <div className="page prose">
+        <div className="page prose" data-part="Follow">
           <p className="margin-note">Follow</p>
           <p className="follow">
             <a className="text-link" href="https://x.com/bwhdx" target="_blank" rel="me noreferrer">X, @bwhdx</a>
@@ -882,7 +871,7 @@ function WorkTogether() {
       <div className="page ways">
         {WAYS.map((w) => (
           <React.Fragment key={w.label}>
-            <p className="margin-note">{w.label}</p>
+            <p className="margin-note" data-part={w.label}>{w.label}</p>
             <p className="way">
               {w.text && <span className="way-text">{tq(w.text)}</span>}
               <a className="text-link" href={w.href} target={w.ext ? '_blank' : undefined} rel={w.ext ? 'noreferrer' : undefined}>
@@ -892,7 +881,7 @@ function WorkTogether() {
           </React.Fragment>
         ))}
       </div>
-      <div className="page write-to">
+      <div className="page write-to" data-part="Write to">
         <p className="margin-note">Write to</p>
         <p><a className="write-to-addr" href="mailto:me@benedictdixon.com">me@benedictdixon.com</a></p>
       </div>
@@ -910,7 +899,7 @@ function Contact() {
           <p className="lede">{tq('A strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.')}</p>
         </div>
         <WorkTogether />
-        <ul className="toc toc-contact page-col">
+        <ul className="toc toc-contact page-col" data-part="Elsewhere">
           {CONTACTS.map((k) => (
             <li key={k.label}>
               <a href={k.href} target={k.ext ? '_blank' : undefined}
