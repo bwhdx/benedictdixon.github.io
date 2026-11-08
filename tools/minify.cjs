@@ -8,7 +8,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 
-['beanie_hero_16x9_navySides.json', 'beanie_morph_grid.json'].forEach((name) => {
+['beanie_hero_16x9_navySides.json'].forEach((name) => {
   const p = path.join(ROOT, 'assets', name);
   const raw = fs.readFileSync(p, 'utf8');
   const min = JSON.stringify(JSON.parse(raw));

@@ -1,7 +1,9 @@
 // Top-level composition of the portfolio page: the cover, the contents,
 // five chapters and the colophon. The cover reports how many candles it
 // drew, and the colophon prints that true figure. Once the book is in the
-// DOM, the scroll motion is started over it (scroll-motion.js).
+// DOM, the scroll motion is started over it (scroll-motion.js). The page
+// is rendered to HTML at build (tools/prerender.cjs) and boot.jsx takes it
+// over in the browser.
 
 function App() {
   const [stats, setStats] = React.useState(null);
@@ -27,4 +29,4 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+window.App = App;

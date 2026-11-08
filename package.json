@@ -2,16 +2,21 @@
   "name": "benedictdixon.github.io",
   "version": "1.0.0",
   "private": true,
-  "description": "Benedict W. H. Dixon · An Almanack — personal site.",
+  "description": "Benedict W. H. Dixon \u00b7 An Almanack \u2014 personal site.",
   "scripts": {
-    "build": "babel . --out-dir . --presets=@babel/preset-react --only='*.jsx' --extensions='.jsx' --out-file-extension=.js && node tools/bundle.cjs",
+    "build": "babel . --out-dir . --presets=@babel/preset-react --only='*.jsx' --extensions='.jsx' --out-file-extension=.js && node tools/bundle.cjs && node tools/prerender.cjs && node tools/build-pages.cjs",
     "check": "node tools/check-site.cjs",
     "build:favicons": "tools/generate-favicons.sh",
-    "build:og": "node tools/generate-og.cjs && rsvg-convert -w 1200 -h 630 assets/og-image.svg -o assets/og-image.png && pngquant --quality=75-95 --strip --force --output assets/og-image.png assets/og-image.png && rm assets/og-image.svg && node tools/generate-og-articles.cjs"
+    "build:og": "node tools/generate-cards.cjs",
+    "build:covers": "tools/build-covers.sh",
+    "check:links": "node tools/check-links.cjs"
   },
   "devDependencies": {
     "@babel/cli": "^7.25.0",
     "@babel/core": "^7.25.0",
-    "@babel/preset-react": "^7.25.0"
+    "@babel/preset-react": "^7.25.0",
+    "playwright-core": "^1.65.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
