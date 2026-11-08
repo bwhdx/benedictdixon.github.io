@@ -2,20 +2,14 @@
 // from the template in tools/cards/ in headless Chromium with the site's
 // own fonts and candle portrait renderer.
 //
-//   node tools/generate-cards.cjs [--covers-dir <dir>] [--verbose]
+//   node tools/generate-cards.cjs
 //
 //   home     assets/og-image.png        the navy cover: portrait, name, cover line
 //   ai       assets/og/ai.png           the navy cover with the page's title
-//   <slug>   assets/og/<slug>.png       per essay: the paper card with its
-//                                      cover illustration, or the navy cover
-//                                      with its title when it has no cover
-//
-// An essay's cover is its repo cover (assets/covers/<slug>.jpg). With
-// --covers-dir, an essay without one is drawn from <dir>/cover-<slug>-plain.png
-// if that exists: a pending cover, read to render the card and never copied
-// into the repo.
-//
-// --verbose prints, for each paper card, the sizes the fit rejected and why.
+//   <slug>   assets/og/<slug>.png       per essay: its cover (assets/covers/
+//                                      <slug>.jpg, which carries the title),
+//                                      or the navy cover with its title when
+//                                      it has no cover yet
 //
 // Writes assets/og/cards.json, the manifest: per card its file, alt text,
 // a hash of every input, and the cover it was drawn from. cardStatus()
@@ -36,7 +30,7 @@ const { ROOT, COVER_LINE, essays, decode } = require('./site-data.cjs');
 
 // Bump when the rendering changes outside the hashed template files (the
 // compression settings, the card geometry, the inputs fed to the template).
-const TEMPLATE_VERSION = 1;
+const TEMPLATE_VERSION = 2;
 
 const W = 1200;
 const H = 630;
@@ -47,11 +41,10 @@ const NAME_HTML = 'Benedict W.&nbsp;H. <em>Dixon.</em>';
 
 const CARDS_DIR = path.join(__dirname, 'cards');
 const TEMPLATE_FILES = ['card.html', 'card.css', 'card.js'].map((f) => path.join(CARDS_DIR, f));
-const FONT_FILES = ['fraunces-latin.woff2', 'fraunces-italic-latin.woff2', 'inter-latin.woff2', 'jetbrains-mono-latin.woff2']
+const FONT_FILES = ['fraunces-latin.woff2', 'fraunces-italic-latin.woff2', 'inter-latin.woff2']
   .map((f) => path.join(ROOT, 'assets', 'fonts', f));
 const GRID_FILE = path.join(ROOT, 'assets', 'beanie_hero_16x9_navySides.json');
 const RENDERER_FILE = path.join(ROOT, 'portrait-renderers.jsx');
-const CIPHER_SOURCE = path.join(ROOT, 'site-content.jsx');
 const MANIFEST = path.join(ROOT, 'assets', 'og', 'cards.json');
 
 const rel = (abs) => path.relative(ROOT, abs).split(path.sep).join('/');
@@ -61,18 +54,6 @@ const sha256 = (...parts) => {
   return h.digest('hex');
 };
 const fileHash = (file) => sha256(fs.readFileSync(file));
-
-// The bwhdx mark's data, read from the site's Cipher component so the mark
-// has one source. Fails loudly if the shape of that source changes.
-function cipherData() {
-  const src = fs.readFileSync(CIPHER_SOURCE, 'utf8');
-  const block = (name) => {
-    const m = src.match(new RegExp(`const ${name} = (\\[[\\s\\S]*?\\n\\]);`));
-    if (!m) throw new Error(`${rel(CIPHER_SOURCE)}: ${name} not found`);
-    return JSON.parse(m[1].replace(/\/\/.*$/gm, '').replace(/'/g, '"').replace(/,(\s*[\]}])/g, '$1'));
-  };
-  return { candles: block('CIPHER_CANDLES'), letters: block('CIPHER_LETTERS') };
-}
 
 // Titles are page markup; only <em> and <br> may reach the template.
 function checkTitle(html, where) {
@@ -101,9 +82,7 @@ function pageTitle(file) {
 }
 
 // Every card, in manifest order, with everything that decides its pixels.
-// coverFor(essay) returns { source, file, path } or null; file is absent
-// when the cover cannot be read (a pending cover, from cardStatus).
-function plan(coverFor) {
+function plan() {
   const navy = (key, file, titleHtml, line, alt) => ({
     key, file, variant: 'navy', titleHtml, line, alt, cover: null,
   });
@@ -119,12 +98,12 @@ function plan(coverFor) {
     const titleHtml = checkTitle(e.titleHtml, e.file);
     const title = plainTitle(titleHtml);
     const file = `assets/og/${e.slug}.png`;
-    const cover = coverFor(e);
-    cards.push(cover
+    cards.push(e.cover
       ? {
-        key: e.slug, file, variant: 'paper', titleHtml, line: null, cover,
-        alt: `Share card: the essay title "${title}" set in navy on ochre paper, beside the essay's illustration`
-          + ' in blue ink, with the bwhdx candle mark and benedictdixon.com.',
+        key: e.slug, file, variant: 'cover', titleHtml, line: null,
+        cover: { path: e.cover.file, file: path.join(ROOT, e.cover.file) },
+        alt: `Share card: the essay title "${title}" in navy on ochre paper, with the bwhdx candle mark`
+          + ` and benedictdixon.com, beside the cover illustration. ${e.cover.alt}`,
       }
       : navy(e.slug, file, titleHtml, NAME,
         `Share card: the essay title "${title}" by ${NAME} on a navy book cover, beside a portrait of him drawn in ochre candlesticks.`));
@@ -133,13 +112,13 @@ function plan(coverFor) {
 }
 
 // The hash of everything but the cover's bytes; the card's hash then folds
-// in the cover's own hash, so a pending cover can be checked without it.
+// in the cover's own hash.
 function baseHash(card, shared) {
   return sha256(
-    `template ${TEMPLATE_VERSION}`, shared.template, shared.fonts, JSON.stringify(shared.cipher),
+    `template ${TEMPLATE_VERSION}`, shared.template, shared.fonts,
     card.variant, card.titleHtml, card.line || '',
     card.variant === 'navy' ? shared.grid : '', card.variant === 'navy' ? shared.renderer : '',
-    card.cover ? `${card.cover.source}:${card.cover.path}` : '',
+    card.cover ? card.cover.path : '',
   );
 }
 const cardHash = (base, coverSha) => sha256(base, coverSha || '');
@@ -150,12 +129,7 @@ function sharedInputs() {
     fonts: sha256(...FONT_FILES.map(fileHash)),
     grid: fileHash(GRID_FILE),
     renderer: fileHash(RENDERER_FILE),
-    cipher: cipherData(),
   };
-}
-
-function repoCover(e) {
-  return e.cover ? { source: 'repo', path: e.cover, file: path.join(ROOT, e.cover) } : null;
 }
 
 function readManifest() {
@@ -163,18 +137,12 @@ function readManifest() {
 }
 
 // For the publish check: is every card present and drawn from the current
-// inputs? A card drawn from a pending cover cannot have its cover re-read;
-// it passes when everything else matches and the essay still has no repo
-// cover (the repo cover would win on the next run).
+// inputs?
 function cardStatus() {
   const manifest = readManifest();
   const recorded = (manifest && manifest.cards) || {};
   const shared = sharedInputs();
-  const pending = (e) => {
-    const c = recorded[e.slug] && recorded[e.slug].cover;
-    return c && c.source === 'pending' ? { source: 'pending', path: c.path, sha256: c.sha256 } : null;
-  };
-  const cards = plan((e) => repoCover(e) || pending(e));
+  const cards = plan();
   const out = [];
   for (const card of cards) {
     const status = (ok, reason) => out.push({ key: card.key, file: card.file, ok, reason });
@@ -184,15 +152,11 @@ function cardStatus() {
     if (!fs.existsSync(path.join(ROOT, card.file))) { status(false, 'the card image is missing'); continue; }
     if (entry.file !== card.file) { status(false, `the manifest names ${entry.file}`); continue; }
     if (!entry.cover && card.cover) { status(false, 'drawn without a cover, but the essay now has one'); continue; }
-    if (entry.cover && entry.cover.source === 'pending' && card.cover && card.cover.source === 'repo') {
-      status(false, 'drawn from a pending cover, but the essay now has a repo cover'); continue;
-    }
-    const coverSha = card.cover ? (card.cover.file ? fileHash(card.cover.file) : card.cover.sha256) : null;
+    if (entry.alt !== card.alt) { status(false, 'its alt text changed'); continue; }
+    const coverSha = card.cover ? fileHash(card.cover.file) : null;
     const expected = cardHash(baseHash(card, shared), coverSha);
     if (entry.hash !== expected) { status(false, 'stale: an input changed since the card was drawn'); continue; }
-    if (card.cover && card.cover.source === 'pending') {
-      status(true, `drawn from a pending cover outside the repo (${card.cover.path}); the cover itself cannot be re-checked`);
-    } else status(true, 'current');
+    status(true, 'current');
   }
   const keys = new Set(cards.map((c) => c.key));
   for (const [key, entry] of Object.entries(recorded)) {
@@ -202,30 +166,6 @@ function cardStatus() {
 }
 
 // ── Rendering ───────────────────────────────────────────
-
-function args(argv) {
-  const out = { coversDir: null, verbose: false };
-  for (let i = 0; i < argv.length; i++) {
-    if (argv[i] === '--covers-dir' && argv[i + 1]) out.coversDir = path.resolve(argv[++i]);
-    else if (argv[i] === '--verbose') out.verbose = true;
-    else throw new Error(`unknown argument ${argv[i]}; usage: node tools/generate-cards.cjs [--covers-dir <dir>] [--verbose]`);
-  }
-  if (out.coversDir && !fs.statSync(out.coversDir, { throwIfNoEntry: false })?.isDirectory()) {
-    throw new Error(`--covers-dir ${out.coversDir} is not a directory`);
-  }
-  return out;
-}
-
-// A pending cover is recorded by file name only: where it sits on this
-// machine is no business of the repo.
-function coverResolver(coversDir) {
-  return (e) => {
-    const own = repoCover(e);
-    if (own || !coversDir) return own;
-    const file = path.join(coversDir, `cover-${e.slug}-plain.png`);
-    return fs.existsSync(file) ? { source: 'pending', path: path.basename(file), file } : null;
-  };
-}
 
 // The site's renderer, compiled from its JSX source as the build does, so
 // the card's portrait is the cover's portrait.
@@ -244,7 +184,7 @@ const dataUrl = (file, bytes) => {
 };
 
 // Quantised to a palette at the highest quality that fits the budget: the
-// navy cards fit at the top of the ladder, the paper cards' grain costs
+// navy cards fit at the top of the ladder, the covers' paper grain costs
 // bytes and steps them down. The card replaces the old one only once it is
 // within the budget.
 const QUALITY_LADDER = [85, 80, 75, 70, 65, 60];
@@ -261,10 +201,10 @@ function compress(src, dest) {
   throw new Error(`${rel(dest)} does not fit the ${MAX_BYTES / 1024} KB budget at quality ${QUALITY_LADDER.at(-1)}`);
 }
 
-async function generate({ coversDir, verbose }) {
+async function generate() {
   const { launch } = require('./browser.cjs');
   const shared = sharedInputs();
-  const cards = plan(coverResolver(coversDir));
+  const cards = plan();
   const grid = JSON.parse(fs.readFileSync(GRID_FILE, 'utf8'));
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'cards-'));
   const manifest = { version: TEMPLATE_VERSION, cards: {} };
@@ -280,7 +220,7 @@ async function generate({ coversDir, verbose }) {
       // The cover is read once: the bytes drawn are the bytes hashed.
       const coverBytes = card.cover ? fs.readFileSync(card.cover.file) : null;
       const spec = {
-        variant: card.variant, titleHtml: card.titleHtml, line: card.line, cipher: shared.cipher,
+        variant: card.variant, titleHtml: card.titleHtml, line: card.line,
         cover: coverBytes ? dataUrl(card.cover.file, coverBytes) : null,
       };
       let fit;
@@ -300,12 +240,11 @@ async function generate({ coversDir, verbose }) {
         file: card.file,
         alt: card.alt,
         hash: cardHash(baseHash(card, shared), coverSha),
-        cover: card.cover ? { source: card.cover.source, path: card.cover.path, sha256: coverSha } : null,
+        cover: card.cover ? { path: card.cover.path, sha256: coverSha } : null,
       };
-      const how = card.variant === 'paper' ? `paper, ${card.cover.source} cover, title ${fit.size}px in ${fit.width}px`
-        : `navy, title ${fit.size}px, line ${fit.lineSize}px`;
-      console.log(`${card.file}  ${(bytes / 1024).toFixed(0)} KB at q${quality}  (${how}, ${fit.lines} lines)`);
-      if (verbose && fit.tried && fit.tried.length) console.log(`    rejected: ${fit.tried.join('; ')}`);
+      const how = card.variant === 'cover' ? `cover, ${card.cover.path}`
+        : `navy, title ${fit.size}px, line ${fit.lineSize}px, ${fit.lines} lines`;
+      console.log(`${card.file}  ${(bytes / 1024).toFixed(0)} KB at q${quality}  (${how})`);
     }
   } finally {
     await browser.close();
@@ -318,7 +257,11 @@ async function generate({ coversDir, verbose }) {
 module.exports = { cardStatus };
 
 if (require.main === module) {
-  Promise.resolve().then(() => generate(args(process.argv.slice(2)))).catch((err) => {
+  if (process.argv.length > 2) {
+    console.error('usage: node tools/generate-cards.cjs (no arguments)');
+    process.exit(2);
+  }
+  generate().catch((err) => {
     console.error(err.message);
     process.exitCode = 1;
   });

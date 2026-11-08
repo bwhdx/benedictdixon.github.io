@@ -47,7 +47,10 @@ portrait-renderers.jsx           Candlestick portrait renderer (cover and share 
 writing/book.js                  Running head, contents sheet and code-block fade on the static pages
 assets/
   fonts/                         Self-hosted woff2 fonts
-  covers/                        Essay covers: <slug>.jpg (1400 px) and its sizes and formats
+  covers/                        Essay covers: <slug>.jpg (1400 px, 16:9), its sizes and formats, and
+                                 covers.json, each cover's alt text. A cover opens its essay, heads
+                                 its row in /writing/ and is its share card. To add one: copy it in
+                                 as <slug>.jpg, add its alt text, then build:covers, build:og, build
   beanie_hero_16x9_navySides.json  Brightness grid for the candlestick portrait
   og-image.png, og/              Share cards; og/cards.json records what each was drawn from
 favicons/                        Favicon set: favicon.svg (rounded tile) and favicon-maskable.svg

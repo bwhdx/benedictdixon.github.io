@@ -11,7 +11,7 @@ function siteGlobals() {
       date: printed(e.datePublished).short,
       minutes: e.minutes,
       // The cover's base path; tools/build-covers.sh writes its sizes and formats.
-      cover: e.cover ? `/${e.cover.replace(/\.jpg$/, '')}` : null,
+      cover: e.cover ? e.cover.base : null,
     };
   }
   // Month precision: the ledger's current roles are measured in months, and

@@ -6,8 +6,7 @@
   One sheet, two faces, picked by data-variant on <main>:
     navy   the cover: double-rule frame, top strip, candle portrait on the
            right, the title (and the cover line or byline) bottom left
-    paper  an essay with a cover: the illustration fills the sheet, the
-           title sits top left with the bwhdx mark and the address beneath
+    cover  an essay with a cover: the cover itself fills the sheet
 
   The generator fills the slots and calls window.renderCard (card.js),
   which lays the text out at the largest size that fits.
@@ -28,14 +27,10 @@
     <p class="top-right">benedictdixon.com</p>
   </div>
 
-  <!-- The text column: bottom left on navy, top left on paper. -->
+  <!-- The text column, bottom left on navy. -->
   <div class="column">
     <h1 class="title" data-slot="title"></h1>
     <p class="line" data-slot="line"></p>
-    <div class="sign">
-      <span class="mark" data-slot="mark"></span>
-      <span class="site">benedictdixon.com</span>
-    </div>
   </div>
 </main>
 <script src="card.js"></script>

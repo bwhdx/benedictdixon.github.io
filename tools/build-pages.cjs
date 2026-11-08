@@ -8,10 +8,11 @@
 //   every page     typographer's quotes in text, titles and descriptions
 //                  (never inside code, pre, scripts or URLs); the contents
 //                  sheet in the head; the share card's alt text
-//   each essay     word count and reading time (kicker and JSON-LD); a
-//                  contents list for long essays; the Further reading
-//                  entries; the closing colophon line
-//   the listing    each essay's reading time
+//   each essay     its cover at the top; word count and reading time
+//                  (kicker and JSON-LD); a contents list for long essays;
+//                  the Further reading entries; the closing colophon line
+//   the listing    each essay's reading time and cover, the newest essay's
+//                  row set large
 //   404.html       the three newest essays
 //   sitemap.xml, feed.xml and the essay list in llms.txt, from the essays
 //
@@ -147,9 +148,27 @@ function shareAlt(html, card) {
 
 // ── Essays ───────────────────────────────────────────────
 
+// The cover opens the essay, above its head: the page's first and largest
+// image, so it loads at once and first (never lazily). Its alt text says
+// what the illustration shows; the title it carries is the heading below.
+const ESSAY_COVER_SIZES = '(max-width: 960px) calc(100vw - 48px), 960px';
+function essayCover(html, e) {
+  html = stripBlocks(html, 'cover');
+  if (!e.cover) return html;
+  const figure = `<!-- build:cover --><figure class="essay-cover">${D.coverPicture(e.cover, {
+    sizes: ESSAY_COVER_SIZES, alt: e.cover.alt, eager: true,
+  })}</figure><!-- /build:cover -->\n\n      `;
+  const at = html.indexOf('<article class="article">');
+  if (at < 0) throw new Error(`${e.file}: no <article class="article">`);
+  const head = html.indexOf('<header class="article-head">', at);
+  if (head < 0) throw new Error(`${e.file}: no article head`);
+  return html.slice(0, head) + figure + html.slice(head);
+}
+
 function essayPage(e, byPath, cards) {
   let html = read(e.file);
   const where = e.file;
+  html = essayCover(html, e);
 
   // The reading time never breaks across lines (no-break spaces).
   html = html.replace(/(<div class="kicker-row">\s*<span>[^<]*<\/span>\s*<span>[^<]*? · )~?\d+[ \u00A0]min[ \u00A0]read(<\/span>)/,
@@ -206,12 +225,29 @@ function essayPage(e, byPath, cards) {
 
 // ── Other pages ──────────────────────────────────────────
 
-function listing(byPath, card) {
+// The listing's rows: each essay's cover as a thumbnail, decorative (the
+// title beside it names the essay), loaded as the reader nears it. The
+// newest essay's row is set large, its cover across the column.
+const THUMB_SIZES = '(max-width: 480px) 112px, 168px';
+const FEATURE_SIZES = '(max-width: 960px) calc(100vw - 48px), 608px';
+function listing(byPath, newest, card) {
   let html = read('writing/index.html');
   html = html.replace(/(<a class="post" href="([^"]+)">[\s\S]*?<span class="meta">[^<]*? · )~?\d+ min(<\/span>)/g, (m, a, href, b) => {
     const e = byPath[href];
     if (!e) throw new Error(`writing/index.html lists ${href}, which is not an essay`);
     return `${a}${e.minutes} min${b}`;
+  });
+  // Removed without the whitespace after it, which the row's own markup keeps.
+  html = html.replace(/<!-- build:thumb -->[\s\S]*?<!-- \/build:thumb -->/g, '');
+  html = html.replace(/<li(?: class="post-featured")?><a class="post" href="([^"]+)">/g, (m, href) => {
+    const e = byPath[href];
+    const featured = e === newest;
+    const thumb = e.cover
+      ? `<!-- build:thumb --><span class="post-cover">${D.coverPicture(e.cover, featured
+        ? { sizes: FEATURE_SIZES, eager: true }
+        : { widths: [480, 960], sizes: THUMB_SIZES })}</span><!-- /build:thumb -->`
+      : '';
+    return `<li${featured ? ' class="post-featured"' : ''}><a class="post" href="${href}">${thumb}`;
   });
   html = block(html, 'contents-sheet', contentsSheet({ chapter: 'writing', path: '/writing/' }), 'writing/index.html');
   html = shareAlt(html, card);
@@ -322,7 +358,7 @@ function main() {
   // Reading times can change with the curly pass, never the words; reread.
   const fresh = D.essays();
   const freshByPath = Object.fromEntries(fresh.map((e) => [e.path, e]));
-  listing(freshByPath, cards.home);
+  listing(freshByPath, freshByPath[fresh[0].path], cards.home);
   otherPage('ai/index.html', { chapter: null, path: '/ai/' }, cards.ai);
   otherPage('hosts/index.html', { chapter: null, path: '/hosts/' }, cards.home);
   notFound(fresh);

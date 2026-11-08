@@ -1,386 +1,349 @@
 {
-  "version": 1,
+  "version": 2,
   "cards": {
     "home": {
       "file": "assets/og-image.png",
-      "alt": "Share card for Benedict W. H. Dixon's site: a portrait of him drawn in ochre candlesticks on a navy book cover, with his name and the line \"I build and run companies end to end, from the architecture to the operation. Co-founder, COO and interim CTO at Kash.\"",
-      "hash": "4da2b76b43d4b51eff46f69aa539938f22dc0fe9c4143b43d38f13182796ed9d",
+      "alt": "Share card for Benedict W. H. Dixon's site: a portrait of him drawn in ochre candlesticks on a navy book cover, with his name and the line \"Serial founder, CTO and COO. I build and run companies end to end, from the architecture to the operation.\"",
+      "hash": "ec8691fec4cbea57f66be1beebcc6f962ec5f25899dffa6e9c09ff520927342c",
       "cover": null
     },
     "ai": {
       "file": "assets/og/ai.png",
       "alt": "Share card: the title \"How I work with AI.\" by Benedict W. H. Dixon on a navy book cover, beside a portrait of him drawn in ochre candlesticks.",
-      "hash": "028c1d7ccb46ba6e05a276e7c2e303b5a6a2a87990a88d40b32493356077edd8",
+      "hash": "0c70d1ca2af6a7c6a219dad5027cda4feee946681612dad862f3837944250e50",
       "cover": null
     },
     "the-agent-cant-be-its-own-checker": {
       "file": "assets/og/the-agent-cant-be-its-own-checker.png",
-      "alt": "Share card: the essay title \"The agent can’t be its own checker.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "273c17756c87c1d01dd14370343486e6df01bd9b361231e03c81eda7b5aa6686",
+      "alt": "Share card: the essay title \"The agent can’t be its own checker.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A steel lock plate with two keyholes: one key already turned, the second keyhole empty, waiting for an independent key to close it.",
+      "hash": "eb8ce82274a19abfb4aa249b237e0bb789f90bbfba146aacbefe694b5b4ee833",
       "cover": {
-        "source": "repo",
         "path": "assets/covers/the-agent-cant-be-its-own-checker.jpg",
-        "sha256": "bc4abfc4da14c0e59e6712918c5939dbbdddbfe5fc31f52556124ede6cecaaad"
+        "sha256": "baba34d9c4c7dea70c5e26b30bc396ede6e6702396d9829a201d57f295ddbc55"
       }
     },
     "developing-your-product-plan": {
       "file": "assets/og/developing-your-product-plan.png",
-      "alt": "Share card: the essay title \"Developing your product plan.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "ef21b0c8aee50214263b2a8d6fcbb6e19b9c45e694aa5fb92b7acaa0a7a750e3",
+      "alt": "Share card: the essay title \"Developing your product plan.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A wooden cart wheel, its spokes reaching out from a solid hub to the rim.",
+      "hash": "9266d03ed909b05d231197d39f3fb9b62b9b40d55a88b066d7225f0eadeca0c5",
       "cover": {
-        "source": "pending",
-        "path": "cover-developing-your-product-plan-plain.png",
-        "sha256": "456a135e2b4eccc65074acac0e0a4697a6d180de6605b1a041ec84b5f0cc0cfb"
+        "path": "assets/covers/developing-your-product-plan.jpg",
+        "sha256": "e55c3b510999d701de1dd60f1023a5afb70019b55023ec086f8f628c6121a419"
       }
     },
     "will-the-dogs-eat-the-dog-food": {
       "file": "assets/og/will-the-dogs-eat-the-dog-food.png",
-      "alt": "Share card: the essay title \"Will the dogs eat the dog food?\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "793a126c29b8b8807048fc16cfaed5a5435aa957c91521f0941e4aa99a0e0b71",
+      "alt": "Share card: the essay title \"Will the dogs eat the dog food?\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A dog's bowl licked completely clean, one crumb beside it.",
+      "hash": "10f3ed1c94f057c3020677a0a22f23d4bfd93a30a76432e9974b28831e4d3a14",
       "cover": {
-        "source": "pending",
-        "path": "cover-will-the-dogs-eat-the-dog-food-plain.png",
-        "sha256": "a6b8b8acf686a35164481915d0d871bbe0910fe76206667668035f971ef303a7"
+        "path": "assets/covers/will-the-dogs-eat-the-dog-food.jpg",
+        "sha256": "6138723c60334d1e135246c37d9f85f635865c89d6873b0bcd9dc5cd5765dd65"
       }
     },
     "testing-your-assumptions": {
       "file": "assets/og/testing-your-assumptions.png",
-      "alt": "Share card: the essay title \"Testing your assumptions.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "e3f43cf38e1e00aceea41c60f4c89a6e15741d90a0a0d75b5ea625586d8fe730",
+      "alt": "Share card: the essay title \"Testing your assumptions.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A long stick tapping the ice at the edge of a frozen pond before anyone steps onto it.",
+      "hash": "ffede74d0e068894f0e9a6c13695a99475f4f2bd15042a9fac0837d069dd9878",
       "cover": {
-        "source": "pending",
-        "path": "cover-testing-your-assumptions-plain.png",
-        "sha256": "d13e78f016bab2c08a11a75ae6ca58bd0887523dd0dfea2f7e80d4c3a43a4539"
+        "path": "assets/covers/testing-your-assumptions.jpg",
+        "sha256": "ec1ca2297de1028a5b335dcaefd1edf30ffa21841a3d7a34845d53e4db4b6423"
       }
     },
     "identifying-your-key-assumptions": {
       "file": "assets/og/identifying-your-key-assumptions.png",
-      "alt": "Share card: the essay title \"Identifying your key assumptions.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "448282e365e4badef37e2470ec3873a3cd974a31c9a6f6d15eb5091bdcfad3b6",
+      "alt": "Share card: the essay title \"Identifying your key assumptions.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A sturdy table with three turned legs, its fourth corner held up by a wobbly stack of matchboxes.",
+      "hash": "25ebbdfd38ef0c2c61aaae48e4fce2d753f00390b196f9cb45d6502cdc3f1214",
       "cover": {
-        "source": "pending",
-        "path": "cover-identifying-your-key-assumptions-plain.png",
-        "sha256": "f6cd5685070c1d9ffa4f7575a85154f9ee433768715291c9b217e1743766adf8"
+        "path": "assets/covers/identifying-your-key-assumptions.jpg",
+        "sha256": "2f16f671be5d493ce42b09fd39deee0b075ca1372a87490a73627372982ff0c1"
       }
     },
     "calculating-cac-honestly": {
       "file": "assets/og/calculating-cac-honestly.png",
-      "alt": "Share card: the essay title \"Calculating CAC honestly.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "bf5e2b5aecb1ee5309777d42015898d470adb46c5ff8308279ebe202326ce9e9",
+      "alt": "Share card: the essay title \"Calculating CAC honestly.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. An iceberg at the waterline: a small tip above, a vast mass below.",
+      "hash": "1f326d4ab75b00c627694ac87df7479dd7ba640ce7886df95e653020e6b49b98",
       "cover": {
-        "source": "pending",
-        "path": "cover-calculating-cac-honestly-plain.png",
-        "sha256": "25756fbf6c824e345830029a2257fd9823291a7cdd52f5ad7aeb5cf7cfee8008"
+        "path": "assets/covers/calculating-cac-honestly.jpg",
+        "sha256": "9a7381f5e8bc8fc780667f9774ffcb7f7c62d6277b49b0965f45bc5f520aa2e2"
       }
     },
     "ai-collapsed-the-build": {
       "file": "assets/og/ai-collapsed-the-build.png",
-      "alt": "Share card: the essay title \"AI collapsed the build, not the operation.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "e6a6916e394012aa64ab43778d9807b82076b69850bbd86edcbd8b8af8680992",
+      "alt": "Share card: the essay title \"AI collapsed the build, not the operation.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A finished mantel clock and a hand turning the key in its face: built once, it still has to be wound by hand.",
+      "hash": "23a0fc7d6a48ea5f999ff4287f2f24e30f4f51829b92b0d1503e8c433f74fe85",
       "cover": {
-        "source": "repo",
         "path": "assets/covers/ai-collapsed-the-build.jpg",
-        "sha256": "bf3b9037f000b4e5a09a9e0f75ab5f3e99d0e3db8365893ee10143b2c6ae1e9f"
+        "sha256": "5d778cca1fa74231db3d9f3191b1f01dc84f7584b68b7303a7af0c3e559b9c6e"
       }
     },
     "mapping-the-sales-process": {
       "file": "assets/og/mapping-the-sales-process.png",
-      "alt": "Share card: the essay title \"Mapping the sales process.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "4a001fc84da53837e4fa743979f0840406e8248acde00b859bceb84efc11d990",
+      "alt": "Share card: the essay title \"Mapping the sales process.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A single line of footprints crossing deep, untrodden snow.",
+      "hash": "e64fc875dca8ecb062ebf38026c87274e0267ebae2c8eccf1618b91c5d848390",
       "cover": {
-        "source": "pending",
-        "path": "cover-mapping-the-sales-process-plain.png",
-        "sha256": "505f239d2bd3c458d0dbf3fde6b34f197224132ee8cde08acec1665f2713bfbe"
+        "path": "assets/covers/mapping-the-sales-process.jpg",
+        "sha256": "fe99e2df6d89fd997147b4d166419ff35b8d508d063fcdb3dab120e2d91b8656"
       }
     },
     "the-unit-of-production-has-changed": {
       "file": "assets/og/the-unit-of-production-has-changed.png",
-      "alt": "Share card: the essay title \"The unit of production has changed.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "52a6c2acc390e18a13b1eb3dbe53e09af819b8563e3daee4c41ef178ba0248c1",
+      "alt": "Share card: the essay title \"The unit of production has changed.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A ship's wheel that once needed a crew, steered by a single hand.",
+      "hash": "9aed4da3d631a50f1a5b8fc759800fc4d72f71cdcfecf7bb1d1e3375772c0180",
       "cover": {
-        "source": "repo",
         "path": "assets/covers/the-unit-of-production-has-changed.jpg",
-        "sha256": "321f594e76bb03143262a9aaa14eee39f8cf1f0e8280ce73344fc56ace0c36d6"
+        "sha256": "637460dfee0fc4dfaf0b227466a6a8aa2e73efabba6c5c622e691c1c11bed1f5"
       }
     },
     "the-assistant-that-knows-you": {
       "file": "assets/og/the-assistant-that-knows-you.png",
-      "alt": "Share card: the essay title \"The assistant that knows you.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "b143ca8b196014d3b4af3a4081580197c221c61db3a2f66427b97772ca76cbd3",
+      "alt": "Share card: the essay title \"The assistant that knows you.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A desk lamp bent low over an open notebook full of handwriting, lighting what is already written there.",
+      "hash": "e8ac33b172d7fe381781af77263737103f3366f81d3084d5c26e86dbbaa46cb2",
       "cover": {
-        "source": "pending",
-        "path": "cover-the-assistant-that-knows-you-plain.png",
-        "sha256": "46753ea078d2325abef6acb047a3b6ccc846ad058aff583c09ad9e0411fed8c6"
+        "path": "assets/covers/the-assistant-that-knows-you.jpg",
+        "sha256": "cd9aef00f51927f23df36789aa8208a9faa2bec8c062b4d9a4569aa68842fa5e"
       }
     },
     "calculating-customer-ltv": {
       "file": "assets/og/calculating-customer-ltv.png",
-      "alt": "Share card: the essay title \"Calculating customer LTV.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "e6dce067490fb429686b5008ae1fd688b32208fc30b78145c575050d92785a63",
+      "alt": "Share card: the essay title \"Calculating customer LTV.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A bucket filling from a tap while water leaks from a hole near its base.",
+      "hash": "90da5d9ef7499d6ee297dc90478ef6b587f3539759543397f35a0ac55e2db470",
       "cover": {
-        "source": "pending",
-        "path": "cover-calculating-customer-ltv-plain.png",
-        "sha256": "6fc98316f35bb4dd2d315a3c059398521e4322a239a8e60f65f6011c705676a1"
+        "path": "assets/covers/calculating-customer-ltv.jpg",
+        "sha256": "3047b3127d57aefd431a90aed9625ce5b6222807fb42207040277303e0e2e39e"
       }
     },
     "always-on-assistant": {
       "file": "assets/og/always-on-assistant.png",
-      "alt": "Share card: the essay title \"The assistant that’s always on.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "13c0feb7d9de53f8f4b3453cf3d5c085a8983de1040da39be88960053879c14d",
+      "alt": "Share card: the essay title \"The assistant that’s always on.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A lit lantern hanging beside a front door that is held by a short chain: always on, and only as open as you allow.",
+      "hash": "3170fd87830c948f66ab949bad268cc45433f9bf5a0675e85c0ca95f4035c5af",
       "cover": {
-        "source": "pending",
-        "path": "cover-always-on-assistant-plain.png",
-        "sha256": "50dff8cab6eea92fcd485106716cfe5a51cc547dcd48a68dd4af0fd0b8df5b41"
+        "path": "assets/covers/always-on-assistant.jpg",
+        "sha256": "dcdcbffe9fdb49223d9c5ab04c775237b4a60c77dcabdfca013c86afe933527b"
       }
     },
     "drawing-your-product-brochure": {
       "file": "assets/og/drawing-your-product-brochure.png",
-      "alt": "Share card: the essay title \"Drawing your product brochure.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "51af668370ba53e4f9915aca2717e6510ee5e474ef28fc95b3710a4a7a7b5b03",
+      "alt": "Share card: the essay title \"Drawing your product brochure.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A finished model house set on an empty plot that is only marked out with pegs and string.",
+      "hash": "e374dade981d0c6ae3d0a52952b151623347f8ee47689d798a5e59951fd54dfe",
       "cover": {
-        "source": "pending",
-        "path": "cover-drawing-your-product-brochure-plain.png",
-        "sha256": "b16e57e03e086890c559a5ed38782687dd584f6704caf68f80e20aeb48e2af17"
+        "path": "assets/covers/drawing-your-product-brochure.jpg",
+        "sha256": "2fa1a0cd22ac0fde5b450c785572b6b887b97b46c251da85abc2d48abd9ea549"
       }
     },
     "building-a-second-brain": {
       "file": "assets/og/building-a-second-brain.png",
-      "alt": "Share card: the essay title \"Building a Second Brain that doesn’t die.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "1c0c17c35d773934b41068f8709a006c99acd122b2b8934f260f11b56c385d53",
+      "alt": "Share card: the essay title \"Building a Second Brain that doesn’t die.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A leafy plant growing out of a stack of closed notebooks, its roots wrapped around them.",
+      "hash": "05b39b5eb1bdb414dd7732c7008f685459760351206b199ae5d31e221719ac05",
       "cover": {
-        "source": "pending",
-        "path": "cover-building-a-second-brain-plain.png",
-        "sha256": "dd0dfd9d0dadf703ac7a722b553f6394f39e7b0d2649e7ad75e346b86bcca1c5"
+        "path": "assets/covers/building-a-second-brain.jpg",
+        "sha256": "312b657a25eade12a88adef0a302a5887247e624d55e8be32e55540a51631dca"
       }
     },
     "in-clawd-we-trust": {
       "file": "assets/og/in-clawd-we-trust.png",
-      "alt": "Share card: the essay title \"In Clawd we trust.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "120916f09b810470419f975d01d633ce29224cbae7cfa76c88280442d955ba25",
+      "alt": "Share card: the essay title \"In Clawd we trust.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A hand pointing at one spot on an architect's plan, a set square resting on the sheet: the person directs the build.",
+      "hash": "212f315c68f2c947c8a226d6befb5dd1d1cf58b6de9a1f997b71a4cbf7e5012f",
       "cover": {
-        "source": "repo",
         "path": "assets/covers/in-clawd-we-trust.jpg",
-        "sha256": "0626a4dbac8a59bb88ed67718ea71961c4b096099a8f454d30390a8dc559da09"
+        "sha256": "d3f95568afb8c4aa176057527deb69da0574c890218e242f5b1d13e3ead41f60"
       }
     },
     "setting-your-pricing-framework": {
       "file": "assets/og/setting-your-pricing-framework.png",
-      "alt": "Share card: the essay title \"Setting your pricing framework.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "db30536fc1813909c238872010044b3fd491fb34616ba08b8e50cb24d1922e9b",
+      "alt": "Share card: the essay title \"Setting your pricing framework.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A great carved door, shut, with the small plain key that opens it lying in front.",
+      "hash": "70e17be3cde8a7977e7a1321ba3021f124be27c74acc468c26306c294bd195b1",
       "cover": {
-        "source": "pending",
-        "path": "cover-setting-your-pricing-framework-plain.png",
-        "sha256": "7442538d6d8e45cc8b9ed9f11c4c73d0f60814236860f70a5ad2d88a069e5650"
+        "path": "assets/covers/setting-your-pricing-framework.jpg",
+        "sha256": "a9f77b70905c9c15377d527ca766f830b9cf6cf83254d4920c18f91de64d90be"
       }
     },
     "designing-your-business-model": {
       "file": "assets/og/designing-your-business-model.png",
-      "alt": "Share card: the essay title \"Designing your business model.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "b15d1cefaa5b46905fdc158fccdc040ba956129581491d15b193e95cfb1e2062",
+      "alt": "Share card: the essay title \"Designing your business model.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A water wheel turning in a stream, water pouring onto its paddles.",
+      "hash": "36a0a71be52e857f47b682bee90b528578412604ac1a925cb8cfbb296cb34c19",
       "cover": {
-        "source": "pending",
-        "path": "cover-designing-your-business-model-plain.png",
-        "sha256": "bed35c269ad61ec97974fe15bef3e9e2805859fdc2e391ffacf3804e9ec5e5e6"
+        "path": "assets/covers/designing-your-business-model.jpg",
+        "sha256": "67384a9c1af191f09175766f12993b23fbceabfd845c04971d329bdfe5b8ccbb"
       }
     },
     "calculating-tam-for-follow-on-markets": {
       "file": "assets/og/calculating-tam-for-follow-on-markets.png",
-      "alt": "Share card: the essay title \"Calculating TAM for follow-on markets.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "a5e18baea497324c31f39b15d3f6ae67f24d89e7b38c67bd167c3baa5c0c09f6",
+      "alt": "Share card: the essay title \"Calculating TAM for follow-on markets.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A dinner plate with only crumbs left, beside a cake still untouched under a glass dome.",
+      "hash": "da0173cf4b3665ba3d10b6c606416ae35cea70323c3c4c0ccc5b5f4a37bedd92",
       "cover": {
-        "source": "pending",
-        "path": "cover-calculating-tam-for-follow-on-markets-plain.png",
-        "sha256": "1bc37f7394cb59e42e30060281233ad3b7968d8d711c55170365556a4262c181"
+        "path": "assets/covers/calculating-tam-for-follow-on-markets.jpg",
+        "sha256": "eab096b3905cafcb2a8a75a6bd1bcb0dc644641cfa675188688f6060c4eda3f9"
       }
     },
     "mapping-the-customer-acquisition-process": {
       "file": "assets/og/mapping-the-customer-acquisition-process.png",
-      "alt": "Share card: the essay title \"Mapping the customer acquisition process.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "801a6b7fc61fab9e25318cb637462f4ec608a303bb2f3ca51869c67bb8413d77",
+      "alt": "Share card: the essay title \"Mapping the customer acquisition process.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A small pocket map unfolding into a long zigzag strip of panels covered in route marks.",
+      "hash": "b80bfb1737dae8d4a0967b00f6db5fb6cde953c8cb2ef79f41b59fa2a3177624",
       "cover": {
-        "source": "pending",
-        "path": "cover-mapping-the-customer-acquisition-process-plain.png",
-        "sha256": "3013202fb890913383fdae3063e5ca2e2081ca86710de9414d57c75e8a6872cd"
+        "path": "assets/covers/mapping-the-customer-acquisition-process.jpg",
+        "sha256": "090b4b99a596c59d9f43d0055650875badf1ca1c82ef361a6b956030db93570a"
       }
     },
     "the-decision-making-unit": {
       "file": "assets/og/the-decision-making-unit.png",
-      "alt": "Share card: the essay title \"The decision-making unit.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "a20cd017e85a60e6d7e3759ef224f87a34105a9eb23f45577addafcc14ceea5f",
+      "alt": "Share card: the essay title \"The decision-making unit.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A door with five locks: a hand turns the key in the top one while the four below stay shut.",
+      "hash": "921d93b0a9ea5ba16e379e72a420594063cc8bdf4fe616f7982a6dd77e999d9e",
       "cover": {
-        "source": "pending",
-        "path": "cover-the-decision-making-unit-plain.png",
-        "sha256": "0f354925fb11114cb829c9781a8d58aaa2dd35decd8e62d67e6addd7b9809c5c"
+        "path": "assets/covers/the-decision-making-unit.jpg",
+        "sha256": "f6817107d9fd60d04779767da850993bc4e95747d4cf9542898260e113425f93"
       }
     },
     "charting-your-competitive-position": {
       "file": "assets/og/charting-your-competitive-position.png",
-      "alt": "Share card: the essay title \"Charting your competitive position.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "f68958f84ec7216a6fa3b61e51b178cf4a02cdc1a6c2ac2dc4e5856b5c09cf9c",
+      "alt": "Share card: the essay title \"Charting your competitive position.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A sagging old armchair with a deep dent in its cushion, beside a new chair nobody has sat in.",
+      "hash": "66f232e1c88d6d548e0482183861cdbf25bfbc036300d76422f788093c87c459",
       "cover": {
-        "source": "pending",
-        "path": "cover-charting-your-competitive-position-plain.png",
-        "sha256": "42812f3d01103d31de85a9d8fff80cc8fa2f28e3be0c536ff19915c4601a8f97"
+        "path": "assets/covers/charting-your-competitive-position.jpg",
+        "sha256": "475ce136308cd20fbffd3c0b8b24b178c9acf913d07cff9f43665c9a8e82f2ab"
       }
     },
     "define-your-core": {
       "file": "assets/og/define-your-core.png",
-      "alt": "Share card: the essay title \"Define your core.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "c20d137806b9178c1c5972242e1e49505ea01deb32f6877b2b9cd61da2b5484a",
+      "alt": "Share card: the essay title \"Define your core.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. An intact anvil with a hammer on it, standing in a ring of fallen wall stones.",
+      "hash": "213096892daf0b55f0c480d9f7b70586f08d04464a43821014e90e18c2c3df1e",
       "cover": {
-        "source": "pending",
-        "path": "cover-define-your-core-plain.png",
-        "sha256": "f47e4a008ee5e6ffe480185c3c50edfce40e94c4d085bc328b268a36e0bcbb50"
+        "path": "assets/covers/define-your-core.jpg",
+        "sha256": "91ff30b35595e0f39ab868d45cf51727acd895ab785fe84d64111dece0008fd2"
       }
     },
     "finding-your-first-10-customers": {
       "file": "assets/og/finding-your-first-10-customers.png",
-      "alt": "Share card: the essay title \"Finding your first 10 customers.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "43a50490b03c6a5aa3c0f792c3b6cd3080de2e7012e164f31e32c183c8d8ca1f",
+      "alt": "Share card: the essay title \"Finding your first 10 customers.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A hand holding a fountain pen, its nib on the signature line of a page.",
+      "hash": "b74c5737519705565b6a41d35009ee5389519b6488d53c43bbd3212de1dcc594",
       "cover": {
-        "source": "pending",
-        "path": "cover-finding-your-first-10-customers-plain.png",
-        "sha256": "15376a32b3a87f69b0fc5fd7447cab6e6c134780c85bd7b5a0c20a76ccc72c6e"
+        "path": "assets/covers/finding-your-first-10-customers.jpg",
+        "sha256": "71645e9744c623bd7a790f25f10fafb337e1e929b7af4684166d948b8d2b9ed2"
       }
     },
     "quantifying-your-value-proposition": {
       "file": "assets/og/quantifying-your-value-proposition.png",
-      "alt": "Share card: the essay title \"Quantifying your value proposition.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "5f361778287481e2631c4449a094f24bf983f06d5e4a53c656b08472621d807a",
+      "alt": "Share card: the essay title \"Quantifying your value proposition.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A spring scale weighing a basket of fruit, its pointer swung well along the dial.",
+      "hash": "22af0b8fd46917aa8782d7b9ca5be09740e7736005432d968e5672889b2fbfec",
       "cover": {
-        "source": "pending",
-        "path": "cover-quantifying-your-value-proposition-plain.png",
-        "sha256": "5850506124f3f636ad1647c21939a08299621f27715e1887f7c5313e5058a779"
+        "path": "assets/covers/quantifying-your-value-proposition.jpg",
+        "sha256": "77310f6d2ec1e474836866cf33304bb190607ec7c79708d11335686559415508"
       }
     },
     "why-your-mvp-is-already-too-big": {
       "file": "assets/og/why-your-mvp-is-already-too-big.png",
-      "alt": "Share card: the essay title \"Why your MVP is already too big.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "7400ed7cc9458e384f157e4a4104ad915822340e94ca63f48a9f0bcca66d5fce",
+      "alt": "Share card: the essay title \"Why your MVP is already too big.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A napkin with a few rectangles sketched on it, in front of a tall stack of thick printed documents.",
+      "hash": "919c87b3ed368a6222f520eba3bd7451640439949acb2d27e60a8f0d16be05d4",
       "cover": {
-        "source": "pending",
-        "path": "cover-why-your-mvp-is-already-too-big-plain.png",
-        "sha256": "ec530d4ed9b2100169666f02bf15676b1a6aec2970f71eac4801f2393f1f3185"
+        "path": "assets/covers/why-your-mvp-is-already-too-big.jpg",
+        "sha256": "2d702be680e7bcbcaf46a14f6b1bd85e32efd112f4b91c7148fc2965bbaf6d20"
       }
     },
     "mapping-your-full-customer-journey": {
       "file": "assets/og/mapping-your-full-customer-journey.png",
-      "alt": "Share card: the essay title \"Mapping your full customer journey.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "857831a379187f7bb4cb8061ceafd4ee0a5250d2460fd89b5aa3558cc070e6bc",
+      "alt": "Share card: the essay title \"Mapping your full customer journey.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A long winding path of stepping stones leading up to a front door.",
+      "hash": "e0c07691d6df5690d1da3d8a4b6d8f02d54ca99db8b92f68996ec9bfafb3f4d6",
       "cover": {
-        "source": "pending",
-        "path": "cover-mapping-your-full-customer-journey-plain.png",
-        "sha256": "2f75c1454433fbd1a18f02b0ab1318ea22bc7db62e9da95f41a5710311bd4610"
+        "path": "assets/covers/mapping-your-full-customer-journey.jpg",
+        "sha256": "8f3cbfc51d1a8490e26601942b433bb501d8c0051366edb369562ba278733af8"
       }
     },
     "building-your-persona": {
       "file": "assets/og/building-your-persona.png",
-      "alt": "Share card: the essay title \"Building your persona.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "9a42f62d23b8d11a282af9cfee3d724e745b9006702802fb641a92fa72321eaa",
+      "alt": "Share card: the essay title \"Building your persona.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A signpost whose blank arrows all point up at a single star.",
+      "hash": "59568b004878507e433f3b1177ecedf26ad8d6120183706c9c04759e7026d7da",
       "cover": {
-        "source": "pending",
-        "path": "cover-building-your-persona-plain.png",
-        "sha256": "9476f1019f0411626f716c9175ad2fbcf066e2c5c3a511bdde5123ab20da0be2"
+        "path": "assets/covers/building-your-persona.jpg",
+        "sha256": "19b06084b232cb96dfcdddabff97c99ed36c33adac4f150a4b8adce758b6c764"
       }
     },
     "why-every-tam-slide-is-a-lie": {
       "file": "assets/og/why-every-tam-slide-is-a-lie.png",
-      "alt": "Share card: the essay title \"Why every TAM slide is a lie.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "1d2cdd97222c3555d9a9aa57df6c7f4e870b2fa132fb1193dfd9c4cc28d76e70",
+      "alt": "Share card: the essay title \"Why every TAM slide is a lie.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A hand laying one brick on a short, solid stack, while a huge empty bubble floats above it.",
+      "hash": "485bb28e484538f614cbc81b45bb028feade2e550aeb6a46c0e48f5fbcda04eb",
       "cover": {
-        "source": "pending",
-        "path": "cover-why-every-tam-slide-is-a-lie-plain.png",
-        "sha256": "814c8a314261ec1da3ddc89380cf9b26baf341e7233e42c7a0b7163063020cb9"
+        "path": "assets/covers/why-every-tam-slide-is-a-lie.jpg",
+        "sha256": "f274d885418ca0f3324b093c35e4018b7e4c6606f427e5f46067edf24a0e5ecf"
       }
     },
     "building-your-end-user-profile": {
       "file": "assets/og/building-your-end-user-profile.png",
-      "alt": "Share card: the essay title \"Building your end user profile.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "6e7ee6c2cfbfb1056ea71b9caa0bc918824bdca610587f455ff1d15c036ff4eb",
+      "alt": "Share card: the essay title \"Building your end user profile.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A pair of worn work boots, laces loose, soles caked in mud.",
+      "hash": "321a7aa5378fa10e5d765b21b81d1a091d85a8acfd638e29874f7b1a0729b92c",
       "cover": {
-        "source": "pending",
-        "path": "cover-building-your-end-user-profile-plain.png",
-        "sha256": "760ed0867f5a852e615a2817cd9021f7a2f0edc07302a4180d92bef4cece1838"
+        "path": "assets/covers/building-your-end-user-profile.jpg",
+        "sha256": "e73f93ce004e2dbd6bd24e16d5c5399be11319b59ca20b4f991f69fdf0b3608c"
       }
     },
     "the-beachhead-market": {
       "file": "assets/og/the-beachhead-market.png",
-      "alt": "Share card: the essay title \"The beachhead market.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "e57de071453d6cd7f5fa55a81087ee6424de6bf9cd47ebb5074a3244d363d2d5",
+      "alt": "Share card: the essay title \"The beachhead market.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A small rowing boat pulled up on a narrow beach, a flag planted in the sand beside it.",
+      "hash": "9b0eabacd9a604f949a87cb556b238f6476c804f477fec466801806f8caa9b86",
       "cover": {
-        "source": "pending",
-        "path": "cover-the-beachhead-market-plain.png",
-        "sha256": "57cf216e66d298d768bebf614b9e93dd583d42b07d9537340e0efa3a5303f177"
+        "path": "assets/covers/the-beachhead-market.jpg",
+        "sha256": "d0651e105f70797d6bb5897935faa96cab969799a0ff05572dc011d60b2b8397"
       }
     },
     "market-segmentation": {
       "file": "assets/og/market-segmentation.png",
-      "alt": "Share card: the essay title \"Market segmentation.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "a99c1e7639d32d33225f9935e5d119e7be379508a5fa878ad76c300f81fc3fba",
+      "alt": "Share card: the essay title \"Market segmentation.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A peeled orange split into its segments, one segment drawn apart from the rest.",
+      "hash": "cba504f70324c8c7291d86f42137733d7379161c828fee4b7dfab6af9c8d72b4",
       "cover": {
-        "source": "pending",
-        "path": "cover-market-segmentation-plain.png",
-        "sha256": "c6d6c43466c32afff1002309f2121582d82768b706b46762b8a7416f72c6449f"
+        "path": "assets/covers/market-segmentation.jpg",
+        "sha256": "6bcf0fdf711555e81379b571432225a99a0dd61ebe2fc49d2b1e1417d290a79c"
       }
     },
     "prediction-markets": {
       "file": "assets/og/prediction-markets.png",
-      "alt": "Share card: the essay title \"Prediction markets.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "886faf8b6ca4576d5bbc414b3c113670f50f6e2126813b8d7e578d857d1c9ec2",
+      "alt": "Share card: the essay title \"Prediction markets.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A compass whose needle is made of many separate iron filings lined up to point one way.",
+      "hash": "40c661e6eb05f97a5c07aa0758bb2b5693cd8a408d893e76bad3384cc0a9508e",
       "cover": {
-        "source": "pending",
-        "path": "cover-prediction-markets-plain.png",
-        "sha256": "9c226f23977fe940484ba320116941b9299205697cee7164816af9c81800cd51"
+        "path": "assets/covers/prediction-markets.jpg",
+        "sha256": "9afa03c192a06818a5801da044cc20f51e51763bb4e0b481ebc3ff0971bcd31d"
       }
     },
     "beyond-lean": {
       "file": "assets/og/beyond-lean.png",
-      "alt": "Share card: the essay title \"Beyond Lean.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "5a99ba2e20a976fb25a879ac15f0a25989b85c5a84ac8bb021aa4fd890660620",
+      "alt": "Share card: the essay title \"Beyond Lean.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. Two ladders side by side: the short one stops halfway, the other carries on well above it.",
+      "hash": "1ee0b558398684204e9db5e9d1edaa40c4467cee107cb473b4480b0ca6b362e8",
       "cover": {
-        "source": "pending",
-        "path": "cover-beyond-lean-plain.png",
-        "sha256": "a4484e2bcfbb7f1a6b8f94323e0c3be7ed5f3434b54f1859e190ca5f73036920"
+        "path": "assets/covers/beyond-lean.jpg",
+        "sha256": "6844ebb1d86d4151161cbfe44dea6c1d85a989443d69a9ee683a6e35abe2991a"
       }
     },
     "tesserakt-protocol": {
       "file": "assets/og/tesserakt-protocol.png",
-      "alt": "Share card: the essay title \"Tesserakt Protocol.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "6ef0ba3dde1b75936b12b84945a84bd7f70091b08af05846bec35506f940683e",
+      "alt": "Share card: the essay title \"Tesserakt Protocol.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A wire-frame cube inside a larger cube, every corner joined to its partner by a rod.",
+      "hash": "836f41b2c6ae2b26a895344632b347a11732a8518729d2463efa586d319faf5b",
       "cover": {
-        "source": "pending",
-        "path": "cover-tesserakt-protocol-plain.png",
-        "sha256": "856ac054024c80301158d73c058597e39a1865338121621b92b8121726c5094b"
+        "path": "assets/covers/tesserakt-protocol.jpg",
+        "sha256": "de23a81b5cdbf1b5807e24ce7bf2964407f5061f9d1567816ebb79a4af3b4ed8"
       }
     },
     "the-missing-infrastructure-for-ai-agents": {
       "file": "assets/og/the-missing-infrastructure-for-ai-agents.png",
-      "alt": "Share card: the essay title \"The missing infrastructure for AI agents.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "92abbf54ebb58aef15f98135ac156069108215cfb9cb845e98788e413c4dcbca",
+      "alt": "Share card: the essay title \"The missing infrastructure for AI agents.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A modern car stuck with its wheels sunk in a rutted cart track marked with hoofprints.",
+      "hash": "fe2789157ef9964b9db79af3e286b6fd1fd7d2c7b29a9a6b822359c8605ce559",
       "cover": {
-        "source": "pending",
-        "path": "cover-the-missing-infrastructure-for-ai-agents-plain.png",
-        "sha256": "46b4f2d8505cd5e9fe37dfe3d809fce7b0357208289a2deb412182748c6ca3a0"
+        "path": "assets/covers/the-missing-infrastructure-for-ai-agents.jpg",
+        "sha256": "a1c93bd3f003d3b19dc017ccd88162bfc9c79d3c3f07b21f1045b0b22cc7e458"
       }
     },
     "autonomous-ai-agents": {
       "file": "assets/og/autonomous-ai-agents.png",
-      "alt": "Share card: the essay title \"Autonomous AI Agents.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "1a99af64a23ba2c9ad6d7eca66c5b731c950df253fb2d68b627ee8aa84bceda0",
+      "alt": "Share card: the essay title \"Autonomous AI Agents.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A clockwork bird in flight with a winding key in its back, carrying a sealed envelope in its beak.",
+      "hash": "17f54b089a63cc2a5a61dc2e0ec393ba1dec2f356b2dbc73930269c0727a6f2c",
       "cover": {
-        "source": "pending",
-        "path": "cover-autonomous-ai-agents-plain.png",
-        "sha256": "72046c35d269c2510a41bbe943207cf587a84d0f221b2720329285b3bd8c2908"
+        "path": "assets/covers/autonomous-ai-agents.jpg",
+        "sha256": "c0fd42ab096af805ca9bfcdba9bf4b8f1ca95152885d14aae9c7ca8f82f3f122"
       }
     },
     "the-democratic-myth-of-daos": {
       "file": "assets/og/the-democratic-myth-of-daos.png",
-      "alt": "Share card: the essay title \"The Democratic Myth of DAOs.\" set in navy on ochre paper, beside the essay's illustration in blue ink, with the bwhdx candle mark and benedictdixon.com.",
-      "hash": "7b2c80292d05629d4e6c005982c1361b0b11b5962166db60a654e1a702159d50",
+      "alt": "Share card: the essay title \"The Democratic Myth of DAOs.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A balance scale where a single king piece outweighs a crowd of pawns on the other pan.",
+      "hash": "72248cc224a3a82211076ae5f50505a155476c5af5dd5c6194ed0088c9d39561",
       "cover": {
-        "source": "pending",
-        "path": "cover-the-democratic-myth-of-daos-plain.png",
-        "sha256": "d819406eab26321a0eb73ad68129480e0e8022d90902b08c6af257f3c9678230"
+        "path": "assets/covers/the-democratic-myth-of-daos.jpg",
+        "sha256": "f7e44e01269c73748e1c1b9811e2eb2ef66e9f16ed6ae317d7386391a26a87da"
       }
     }
   }

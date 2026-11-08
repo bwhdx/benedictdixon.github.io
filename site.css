@@ -1448,7 +1448,7 @@ html { font-synthesis: none; }   /* never a faked slant or bold */
 .essay-read { display: block; font-style: normal; font-family: var(--font-sans); font-size: 13px; margin-top: 4px; color: var(--ink-soft); }
 .essay-cover {
   display: block;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 16 / 9;   /* the whole cover: it carries the title, so never cropped */
   overflow: hidden;
   margin: 0 0 20px;
   border: 1px solid var(--ink-hair);
@@ -1459,9 +1459,7 @@ html { font-synthesis: none; }   /* never a faked slant or bold */
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 76% 50%;
 }
-.essay-thumb img { object-position: 50% 50%; }
 .essay-lead .essay-title { font-size: clamp(30px, 3.1vw, 40px); line-height: 1.08; }
 .essay-lead .essay-excerpt { font-size: 19px; }
 .essay-row .essay-link {

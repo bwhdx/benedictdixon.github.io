@@ -113,9 +113,37 @@ function printed(iso) {
   return { short: `${d} ${month.slice(0, 3)} ${y}`, long: `${d} ${month} ${y}` };
 }
 
+// An essay's cover: the original (assets/covers/<slug>.jpg, 1400 px wide)
+// and its alt text from assets/covers/covers.json. An original without alt
+// text is an error, never a silent empty alt.
+const COVERS_DIR = path.join(ROOT, 'assets', 'covers');
+const COVER_WIDTHS = [480, 960, 1400];
+const COVER_SIZE = { width: 1400, height: 787 };
+let coverAlts = null;
 function coverOf(slug) {
   const rel = `assets/covers/${slug}.jpg`;
-  return fs.existsSync(path.join(ROOT, rel)) ? rel : null;
+  if (!fs.existsSync(path.join(ROOT, rel))) return null;
+  coverAlts ||= JSON.parse(fs.readFileSync(path.join(COVERS_DIR, 'covers.json'), 'utf8')).covers;
+  const alt = coverAlts[slug] && coverAlts[slug].alt;
+  if (!alt) throw new Error(`${rel} has no alt text in assets/covers/covers.json`);
+  return { file: rel, base: `/assets/covers/${slug}`, alt };
+}
+
+// A cover as <picture>: AVIF and WebP, the JPEG as the fallback, at the
+// widths tools/build-covers.sh writes. The same markup as CoverPicture in
+// site-content.jsx, for the static pages. width and height give the box
+// its ratio before the image arrives, so nothing moves when it does.
+function coverPicture(cover, { widths = COVER_WIDTHS, sizes, alt = '', eager = false, className }) {
+  const src = (w, ext) => (w === 1400 ? `${cover.base}.${ext}` : `${cover.base}-${w}.${ext}`);
+  const set = (ext) => widths.map((w) => `${src(w, ext)} ${w}w`).join(', ');
+  const fallback = widths.includes(960) ? 960 : widths[0];
+  const load = eager ? ' fetchpriority="high" decoding="async"' : ' loading="lazy" decoding="async"';
+  const esc = (v) => v.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  return `<picture${className ? ` class="${className}"` : ''}>`
+    + `<source type="image/avif" srcset="${set('avif')}" sizes="${sizes}">`
+    + `<source type="image/webp" srcset="${set('webp')}" sizes="${sizes}">`
+    + `<img src="${src(fallback, 'jpg')}" srcset="${set('jpg')}" sizes="${sizes}" alt="${esc(alt)}"`
+    + ` width="${COVER_SIZE.width}" height="${COVER_SIZE.height}"${load}></picture>`;
 }
 
 // Every live essay, newest first. A page marked noindex (the retired
@@ -157,4 +185,5 @@ function essays() {
 module.exports = {
   ROOT, ORIGIN, COVER_LINE, CHAPTERS, ELSEWHERE, KEEP_OUT_OF_SUMMARIES, BEACON_SRC, beaconLive, privacyNote, WPM, CONTENTS_MINUTES, MONTHS,
   decode, stripTags, articleBody, countWords, readMinutes, blogPosting, meta, printed, essays,
+  COVER_WIDTHS, COVER_SIZE, coverPicture,
 };

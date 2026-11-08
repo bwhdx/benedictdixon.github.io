@@ -373,12 +373,27 @@ if (/markets? and what gets built/i.test(listingSrc)) error('writing/index.html'
 
 const cardsTool = path.join(__dirname, 'generate-cards.cjs');
 if (exists('tools/generate-cards.cjs')) {
-  const pending = [];
   for (const c of require(cardsTool).cardStatus()) {
     if (!c.ok) error(c.file, `share card is stale or missing (${c.reason}); run npm run build:og`);
-    else if (/pending/i.test(c.reason || '')) pending.push(c.key);
   }
-  if (pending.length) warn('assets/og', `${pending.length} share cards are drawn from essay covers still awaiting approval, outside the repo: ${pending.join(', ')}`);
+}
+
+// ── Essay covers ─────────────────────────────────────────
+
+// Each cover ships in every size and format the pages offer, opens its
+// essay, and heads its row in the listing (tools/build-pages.cjs).
+const coverFiles = (slug) => D.COVER_WIDTHS.flatMap((w) => ['avif', 'webp', 'jpg']
+  .map((ext) => `assets/covers/${w === 1400 ? slug : `${slug}-${w}`}.${ext}`));
+for (const e of list) {
+  if (!e.cover) { warn(e.file, 'has no cover yet; its share card is the navy cover'); continue; }
+  for (const f of coverFiles(e.slug)) if (!exists(f)) error(f, 'missing; run npm run build:covers');
+  const html = read(e.file);
+  if (!html.includes(`<figure class="essay-cover">`) || !html.includes(`${e.cover.base}-960.jpg`)) {
+    error(e.file, 'does not open with its cover; run npm run build');
+  }
+  if (!new RegExp(`<a class="post" href="${e.path}"><!-- build:thumb -->`).test(read('writing/index.html'))) {
+    error('writing/index.html', `${e.path} has no cover in its row; run npm run build`);
+  }
 }
 
 // ── Report ───────────────────────────────────────────────
