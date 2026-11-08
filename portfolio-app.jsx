@@ -10,7 +10,9 @@ function App() {
     <React.Fragment>
       <a className="skip-link" href="#main-content">Skip to main content</a>
       <Runner />
-      <main id="main-content">
+      {/* The skip link moves focus to <main> itself (tabIndex -1), so the
+          next Tab continues from the first chapter, not the head. */}
+      <main id="main-content" tabIndex={-1}>
         <Hero onStats={setStats} />
         <Contents />
         <About />

@@ -985,6 +985,13 @@ Object.assign(window, {
 // favicons/favicon.svg draws the candles alone. Drawn in currentColor, so
 // CSS sets the ink.
 // ─────────────────────────────────────────────────────────
+// Typographer's quotes: straight quotes and apostrophes in the copy become
+// curly ones (’ for apostrophes and closing quotes, ‘ “ after a space or at
+// the start). Applied to prose strings at render time.
+function curly(str) {
+  return str.replace(/(^|[\s(\[{—–-])'/g, '$1\u2018').replace(/'/g, '\u2019').replace(/(^|[\s(\[{—–-])"/g, '$1\u201C').replace(/"/g, '\u201D');
+}
+const tq = curly;
 const CIPHER_CANDLES = [
 // [x, wick top, wick bottom, body top, body height, filled]
 [10, 25.0, 53.6, 30.0, 18.6, true], [30, 8.1, 53.6, 13.1, 35.5, false], [50, 8.1, 43.5, 13.1, 25.4, true], [70, 33.5, 50.2, 38.5, 6.7, true], [90, 6.4, 50.2, 11.4, 33.8, false]];
@@ -1497,7 +1504,7 @@ function Hero({
     className: "wrap"
   }, /*#__PURE__*/React.createElement("h1", {
     className: "display hero-title"
-  }, "Benedict W. H. ", /*#__PURE__*/React.createElement("em", null, "Dixon.")), /*#__PURE__*/React.createElement("div", {
+  }, 'Benedict W.\u00A0H. ', /*#__PURE__*/React.createElement("em", null, "Dixon.")), /*#__PURE__*/React.createElement("div", {
     className: "hero-band-bottom"
   }, /*#__PURE__*/React.createElement("div", {
     className: "hero-lines"
@@ -1598,7 +1605,7 @@ function About() {
     className: "margin-note"
   }, p.note), /*#__PURE__*/React.createElement("p", {
     className: i === 0 ? 'opener' : undefined
-  }, p.text)))), /*#__PURE__*/React.createElement(ChapterFoot, null)));
+  }, tq(p.text))))), /*#__PURE__*/React.createElement(ChapterFoot, null)));
 }
 
 // ─────────────────────────────────────────────────────────
@@ -1847,13 +1854,15 @@ const PROJECTS = [{
   period: '2024 to 2025',
   body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention. Exited the role in 2025.',
   tags: ['Ecosystem growth', 'Team leadership', 'Strategic vision'],
-  url: 'https://voi.network/'
+  url: 'https://voi.network/',
+  figures: [['$150M', 'ecosystem, from concept'], ['25+', 'projects integrated'], ['45K+', 'users']]
 }, {
   name: 'Pound Token',
   role: 'Chief Technology Officer',
   period: 'Aug 2023 to Aug 2024',
   body: 'Led technical strategy through a successful acquisition. Executed zero-downtime migration reducing operating costs by 94%. Preserved millions in assets during the transition.',
-  tags: ['Technical strategy', 'Migration', 'Team retention']
+  tags: ['Technical strategy', 'Migration', 'Team retention'],
+  figures: [['94%', 'lower operating costs'], ['Zero', 'downtime in the migration']]
 }, {
   name: 'Nettle',
   role: 'Chief Product & Technology Officer, Co-Founder',
@@ -1887,7 +1896,17 @@ function Projects() {
     className: "entry-name"
   }, p.name), /*#__PURE__*/React.createElement("p", {
     className: "entry-role"
-  }, p.role), /*#__PURE__*/React.createElement("p", null, p.body), p.url && /*#__PURE__*/React.createElement("p", {
+  }, p.role), p.figures && /*#__PURE__*/React.createElement("ul", {
+    className: "entry-figures",
+    "aria-label": "Outcomes"
+  }, p.figures.map(([n, t]) => /*#__PURE__*/React.createElement("li", {
+    key: t,
+    className: "ef"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "ef-n"
+  }, n), " ", /*#__PURE__*/React.createElement("span", {
+    className: "ef-t"
+  }, t)))), /*#__PURE__*/React.createElement("p", null, tq(p.body)), p.url && /*#__PURE__*/React.createElement("p", {
     className: "entry-link"
   }, /*#__PURE__*/React.createElement("a", {
     className: "text-link",
@@ -1910,22 +1929,30 @@ const ARTICLES = [{
   date: '3 Nov 2026',
   title: "The agent can't be its own checker",
   excerpt: "Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.",
-  url: '/writing/the-agent-cant-be-its-own-checker/'
+  url: '/writing/the-agent-cant-be-its-own-checker/',
+  read: '5 min read',
+  cover: 'assets/covers/the-agent-cant-be-its-own-checker'
 }, {
   date: '24 Jun 2026',
   title: 'AI collapsed the build, not the operation',
   excerpt: "One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money's on the line, still takes people.",
-  url: '/writing/ai-collapsed-the-build/'
+  url: '/writing/ai-collapsed-the-build/',
+  read: '4 min read',
+  cover: 'assets/covers/ai-collapsed-the-build'
 }, {
   date: '20 Jun 2026',
   title: 'The unit of production has changed',
   excerpt: "Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that's left is judgement.",
-  url: '/writing/the-unit-of-production-has-changed/'
+  url: '/writing/the-unit-of-production-has-changed/',
+  read: '3 min read',
+  cover: 'assets/covers/the-unit-of-production-has-changed'
 }, {
   date: '15 Feb 2026',
   title: 'In Clawd we trust',
   excerpt: 'A year of intensive Claude Code, distilled. The mental model, environment, phased workflow and quality practices that turn it into a 100x force multiplier.',
-  url: '/writing/in-clawd-we-trust/'
+  url: '/writing/in-clawd-we-trust/',
+  read: '20 min read',
+  cover: 'assets/covers/in-clawd-we-trust'
 }];
 const SPEAKING = [{
   event: 'Zebu Live',
@@ -1934,6 +1961,66 @@ const SPEAKING = [{
   event: 'Algorand at Tate Modern',
   topic: 'Tokenomics design and strategy'
 }];
+
+// The essays index: the newest essay leads with its cover
+// and the rest follow as a list, each with its reading time (as stated in
+// the essay's own header) and a small crop of its cover. The covers are
+// decorative here (the title beside them names the essay), so alt is empty.
+function EssayIndex() {
+  const [lead, ...rest] = ARTICLES;
+  return /*#__PURE__*/React.createElement("ol", {
+    className: "essays essays--index"
+  }, /*#__PURE__*/React.createElement("li", {
+    className: "page essay-lead"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "margin-note"
+  }, /*#__PURE__*/React.createElement("time", null, lead.date), /*#__PURE__*/React.createElement("span", {
+    className: "essay-read"
+  }, lead.read)), /*#__PURE__*/React.createElement("a", {
+    className: "essay-link",
+    href: lead.url
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "essay-cover"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: `${lead.cover}.jpg`,
+    srcSet: `${lead.cover}-480.jpg 480w, ${lead.cover}.jpg 1400w`,
+    sizes: "(max-width: 700px) 100vw, 640px",
+    alt: "",
+    width: "1400",
+    height: "787",
+    loading: "lazy",
+    decoding: "async"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "essay-title"
+  }, tq(lead.title)), /*#__PURE__*/React.createElement("span", {
+    className: "essay-excerpt"
+  }, tq(lead.excerpt)), /*#__PURE__*/React.createElement("span", {
+    className: "cue"
+  }, "Read the essay"))), rest.map(a => /*#__PURE__*/React.createElement("li", {
+    key: a.url,
+    className: "page essay-row"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "margin-note"
+  }, /*#__PURE__*/React.createElement("time", null, a.date), /*#__PURE__*/React.createElement("span", {
+    className: "essay-read"
+  }, a.read)), /*#__PURE__*/React.createElement("a", {
+    className: "essay-link",
+    href: a.url
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "essay-thumb"
+  }, /*#__PURE__*/React.createElement("img", {
+    src: `${a.cover}-480.jpg`,
+    alt: "",
+    width: "480",
+    height: "270",
+    loading: "lazy",
+    decoding: "async"
+  })), /*#__PURE__*/React.createElement("span", {
+    className: "essay-title"
+  }, tq(a.title)), /*#__PURE__*/React.createElement("span", {
+    className: "essay-excerpt"
+  }, tq(a.excerpt))))));
+}
 function Writing() {
   const c = chapter('writing');
   return /*#__PURE__*/React.createElement("section", {
@@ -1948,23 +2035,7 @@ function Writing() {
   }), /*#__PURE__*/React.createElement("h3", {
     className: "part-title page-col",
     "data-reveal": "opener"
-  }, "Recent essays"), /*#__PURE__*/React.createElement("ol", {
-    className: "essays"
-  }, ARTICLES.map(a => /*#__PURE__*/React.createElement("li", {
-    key: a.url,
-    className: "page"
-  }, /*#__PURE__*/React.createElement("p", {
-    className: "margin-note"
-  }, /*#__PURE__*/React.createElement("time", null, a.date)), /*#__PURE__*/React.createElement("a", {
-    className: "essay-link",
-    href: a.url
-  }, /*#__PURE__*/React.createElement("span", {
-    className: "essay-title"
-  }, a.title), /*#__PURE__*/React.createElement("span", {
-    className: "essay-excerpt"
-  }, a.excerpt), /*#__PURE__*/React.createElement("span", {
-    className: "cue"
-  }, "Read the essay"))))), /*#__PURE__*/React.createElement("p", {
+  }, "Recent essays"), /*#__PURE__*/React.createElement(EssayIndex, null), /*#__PURE__*/React.createElement("p", {
     className: "page-col more-links"
   }, /*#__PURE__*/React.createElement("a", {
     className: "text-link",
@@ -2049,6 +2120,55 @@ const CONTACTS = [{
   href: 'https://dd.ventures',
   ext: true
 }];
+
+// Working together: the three ways in that the site already
+// names (advisory, speaking, build work through DD Ventures), each in the
+// site's own words with one plain next step, then the address set large.
+const WAYS = [{
+  label: 'Advisory',
+  text: 'Strategy, product and technology for early-stage startups and founders.',
+  action: 'Book a call',
+  href: 'https://calendar.app.google/TkGwibhqQHXMRX5QA',
+  ext: true
+}, {
+  label: 'Speaking',
+  text: "Keynotes and panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.",
+  action: 'For podcast hosts',
+  href: '/hosts/'
+}, {
+  label: 'Building',
+  text: 'Through DD Ventures: AI systems for family offices, and advisory and build work for founders.',
+  action: 'dd.ventures',
+  href: 'https://dd.ventures',
+  ext: true
+}];
+function WorkTogether() {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    className: "page ways"
+  }, WAYS.map(w => /*#__PURE__*/React.createElement(React.Fragment, {
+    key: w.label
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "margin-note"
+  }, w.label), /*#__PURE__*/React.createElement("p", {
+    className: "way"
+  }, /*#__PURE__*/React.createElement("span", {
+    className: "way-text"
+  }, tq(w.text)), /*#__PURE__*/React.createElement("a", {
+    className: "text-link",
+    href: w.href,
+    target: w.ext ? '_blank' : undefined,
+    rel: w.ext ? 'noreferrer' : undefined
+  }, w.action, w.ext && /*#__PURE__*/React.createElement("span", {
+    className: "sr-only"
+  }, " (opens in a new tab)")))))), /*#__PURE__*/React.createElement("div", {
+    className: "page write-to"
+  }, /*#__PURE__*/React.createElement("p", {
+    className: "margin-note"
+  }, "Write to"), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("a", {
+    className: "write-to-addr",
+    href: "mailto:me@benedictdixon.com"
+  }, "me@benedictdixon.com"))));
+}
 function Contact() {
   const c = chapter('contact');
   return /*#__PURE__*/React.createElement("section", {
@@ -2064,7 +2184,7 @@ function Contact() {
     className: "page prose"
   }, /*#__PURE__*/React.createElement("p", {
     className: "lede"
-  }, "I'm also a strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.")), /*#__PURE__*/React.createElement("ul", {
+  }, "I'm also a strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.")), /*#__PURE__*/React.createElement(WorkTogether, null), /*#__PURE__*/React.createElement("ul", {
     className: "toc toc-contact page-col"
   }, CONTACTS.map(k => /*#__PURE__*/React.createElement("li", {
     key: k.label
@@ -2135,7 +2255,8 @@ function App() {
     className: "skip-link",
     href: "#main-content"
   }, "Skip to main content"), /*#__PURE__*/React.createElement(Runner, null), /*#__PURE__*/React.createElement("main", {
-    id: "main-content"
+    id: "main-content",
+    tabIndex: -1
   }, /*#__PURE__*/React.createElement(Hero, {
     onStats: setStats
   }), /*#__PURE__*/React.createElement(Contents, null), /*#__PURE__*/React.createElement(About, null), /*#__PURE__*/React.createElement(Career, null), /*#__PURE__*/React.createElement(Projects, null), /*#__PURE__*/React.createElement(Writing, null), /*#__PURE__*/React.createElement(Contact, null)), /*#__PURE__*/React.createElement(Colophon, {

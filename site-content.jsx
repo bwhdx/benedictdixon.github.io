@@ -9,6 +9,18 @@
 // favicons/favicon.svg draws the candles alone. Drawn in currentColor, so
 // CSS sets the ink.
 // ─────────────────────────────────────────────────────────
+// Typographer's quotes: straight quotes and apostrophes in the copy become
+// curly ones (’ for apostrophes and closing quotes, ‘ “ after a space or at
+// the start). Applied to prose strings at render time.
+function curly(str) {
+  return str
+    .replace(/(^|[\s(\[{—–-])'/g, '$1\u2018')
+    .replace(/'/g, '\u2019')
+    .replace(/(^|[\s(\[{—–-])"/g, '$1\u201C')
+    .replace(/"/g, '\u201D');
+}
+const tq = curly;
+
 const CIPHER_CANDLES = [
   // [x, wick top, wick bottom, body top, body height, filled]
   [10, 25.0, 53.6, 30.0, 18.6, true],
@@ -390,7 +402,7 @@ function Hero({ onStats }) {
       <div className="hero-band">
         <div className="wrap">
           <h1 className="display hero-title">
-            Benedict W. H. <em>Dixon.</em>
+            {'Benedict W.\u00A0H. '}<em>Dixon.</em>
           </h1>
           <div className="hero-band-bottom">
             <div className="hero-lines">
@@ -454,7 +466,7 @@ function About() {
           {ABOUT.map((p, i) => (
             <React.Fragment key={i}>
               {p.note && <p className="margin-note">{p.note}</p>}
-              <p className={i === 0 ? 'opener' : undefined}>{p.text}</p>
+              <p className={i === 0 ? 'opener' : undefined}>{tq(p.text)}</p>
             </React.Fragment>
           ))}
         </div>
@@ -620,6 +632,7 @@ const PROJECTS = [
     body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention. Exited the role in 2025.',
     tags: ['Ecosystem growth', 'Team leadership', 'Strategic vision'],
     url: 'https://voi.network/',
+    figures: [['$150M', 'ecosystem, from concept'], ['25+', 'projects integrated'], ['45K+', 'users']],
   },
   {
     name: 'Pound Token',
@@ -627,6 +640,7 @@ const PROJECTS = [
     period: 'Aug 2023 to Aug 2024',
     body: 'Led technical strategy through a successful acquisition. Executed zero-downtime migration reducing operating costs by 94%. Preserved millions in assets during the transition.',
     tags: ['Technical strategy', 'Migration', 'Team retention'],
+    figures: [['94%', 'lower operating costs'], ['Zero', 'downtime in the migration']],
   },
   {
     name: 'Nettle',
@@ -653,7 +667,14 @@ function Projects() {
               <div className="entry-body">
                 <h3 className="entry-name">{p.name}</h3>
                 <p className="entry-role">{p.role}</p>
-                <p>{p.body}</p>
+                {p.figures && (
+                  <ul className="entry-figures" aria-label="Outcomes">
+                    {p.figures.map(([n, t]) => (
+                      <li key={t} className="ef"><span className="ef-n">{n}</span> <span className="ef-t">{t}</span></li>
+                    ))}
+                  </ul>
+                )}
+                <p>{tq(p.body)}</p>
                 {p.url && (
                   <p className="entry-link">
                     <a className="text-link" href={p.url} target="_blank" rel="noreferrer">
@@ -682,24 +703,32 @@ const ARTICLES = [
     title: "The agent can't be its own checker",
     excerpt: "Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.",
     url: '/writing/the-agent-cant-be-its-own-checker/',
+    read: '5 min read',
+    cover: 'assets/covers/the-agent-cant-be-its-own-checker',
   },
   {
     date: '24 Jun 2026',
     title: 'AI collapsed the build, not the operation',
     excerpt: "One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money's on the line, still takes people.",
     url: '/writing/ai-collapsed-the-build/',
+    read: '4 min read',
+    cover: 'assets/covers/ai-collapsed-the-build',
   },
   {
     date: '20 Jun 2026',
     title: 'The unit of production has changed',
     excerpt: "Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that's left is judgement.",
     url: '/writing/the-unit-of-production-has-changed/',
+    read: '3 min read',
+    cover: 'assets/covers/the-unit-of-production-has-changed',
   },
   {
     date: '15 Feb 2026',
     title: 'In Clawd we trust',
     excerpt: 'A year of intensive Claude Code, distilled. The mental model, environment, phased workflow and quality practices that turn it into a 100x force multiplier.',
     url: '/writing/in-clawd-we-trust/',
+    read: '20 min read',
+    cover: 'assets/covers/in-clawd-we-trust',
   },
 ];
 
@@ -708,6 +737,40 @@ const SPEAKING = [
   { event: 'Algorand at Tate Modern', topic: 'Tokenomics design and strategy' },
 ];
 
+// The essays index: the newest essay leads with its cover
+// and the rest follow as a list, each with its reading time (as stated in
+// the essay's own header) and a small crop of its cover. The covers are
+// decorative here (the title beside them names the essay), so alt is empty.
+function EssayIndex() {
+  const [lead, ...rest] = ARTICLES;
+  return (
+    <ol className="essays essays--index">
+      <li className="page essay-lead">
+        <p className="margin-note"><time>{lead.date}</time><span className="essay-read">{lead.read}</span></p>
+        <a className="essay-link" href={lead.url}>
+          <span className="essay-cover">
+            <img src={`${lead.cover}.jpg`} srcSet={`${lead.cover}-480.jpg 480w, ${lead.cover}.jpg 1400w`}
+              sizes="(max-width: 700px) 100vw, 640px" alt="" width="1400" height="787" loading="lazy" decoding="async" />
+          </span>
+          <span className="essay-title">{tq(lead.title)}</span>
+          <span className="essay-excerpt">{tq(lead.excerpt)}</span>
+          <span className="cue">Read the essay</span>
+        </a>
+      </li>
+      {rest.map((a) => (
+        <li key={a.url} className="page essay-row">
+          <p className="margin-note"><time>{a.date}</time><span className="essay-read">{a.read}</span></p>
+          <a className="essay-link" href={a.url}>
+            <span className="essay-thumb"><img src={`${a.cover}-480.jpg`} alt="" width="480" height="270" loading="lazy" decoding="async" /></span>
+            <span className="essay-title">{tq(a.title)}</span>
+            <span className="essay-excerpt">{tq(a.excerpt)}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 function Writing() {
   const c = chapter('writing');
   return (
@@ -715,18 +778,7 @@ function Writing() {
       <div className="wrap">
         <ChapterPlate chapter={c} />
         <h3 className="part-title page-col" data-reveal="opener">Recent essays</h3>
-        <ol className="essays">
-          {ARTICLES.map((a) => (
-            <li key={a.url} className="page">
-              <p className="margin-note"><time>{a.date}</time></p>
-              <a className="essay-link" href={a.url}>
-                <span className="essay-title">{a.title}</span>
-                <span className="essay-excerpt">{a.excerpt}</span>
-                <span className="cue">Read the essay</span>
-              </a>
-            </li>
-          ))}
-        </ol>
+        <EssayIndex />
         <p className="page-col more-links">
           <a className="text-link" href="/writing/">All writing</a>
           <a className="text-link" href="/ai/">How I work with AI</a>
@@ -768,6 +820,42 @@ const CONTACTS = [
   { label: 'Advisory', value: 'dd.ventures', href: 'https://dd.ventures', ext: true },
 ];
 
+// Working together: the three ways in that the site already
+// names (advisory, speaking, build work through DD Ventures), each in the
+// site's own words with one plain next step, then the address set large.
+const WAYS = [
+  { label: 'Advisory', text: 'Strategy, product and technology for early-stage startups and founders.',
+    action: 'Book a call', href: 'https://calendar.app.google/TkGwibhqQHXMRX5QA', ext: true },
+  { label: 'Speaking', text: "Keynotes and panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.",
+    action: 'For podcast hosts', href: '/hosts/' },
+  { label: 'Building', text: 'Through DD Ventures: AI systems for family offices, and advisory and build work for founders.',
+    action: 'dd.ventures', href: 'https://dd.ventures', ext: true },
+];
+
+function WorkTogether() {
+  return (
+    <React.Fragment>
+      <div className="page ways">
+        {WAYS.map((w) => (
+          <React.Fragment key={w.label}>
+            <p className="margin-note">{w.label}</p>
+            <p className="way">
+              <span className="way-text">{tq(w.text)}</span>
+              <a className="text-link" href={w.href} target={w.ext ? '_blank' : undefined} rel={w.ext ? 'noreferrer' : undefined}>
+                {w.action}{w.ext && <span className="sr-only"> (opens in a new tab)</span>}
+              </a>
+            </p>
+          </React.Fragment>
+        ))}
+      </div>
+      <div className="page write-to">
+        <p className="margin-note">Write to</p>
+        <p><a className="write-to-addr" href="mailto:me@benedictdixon.com">me@benedictdixon.com</a></p>
+      </div>
+    </React.Fragment>
+  );
+}
+
 function Contact() {
   const c = chapter('contact');
   return (
@@ -777,6 +865,7 @@ function Contact() {
         <div className="page prose">
           <p className="lede">I'm also a strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.</p>
         </div>
+        <WorkTogether />
         <ul className="toc toc-contact page-col">
           {CONTACTS.map((k) => (
             <li key={k.label}>
