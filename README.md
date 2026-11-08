@@ -30,10 +30,10 @@ index.html                       Entry point + meta tags + JSON-LD
 site.css                         All styles, including @font-face declarations
 *.jsx / *.js                     React components (source + compiled)
 portfolio-app.jsx                Top-level composition
-site-content.jsx                 Hero, About, Projects, Services, Writing, Contact
-morph-stage.jsx                  Scroll-driven candlestick portrait → career → world morph
+site-content.jsx                 Cover, contents, chapters I to V (career ledger in II), colophon
+scroll-motion.jsx                Scroll motion: candle progress row, plate and row reveals, cover drift
+                                 (CSS scroll-driven animations, with an IntersectionObserver fallback)
 portrait-renderers.jsx           Candlestick portrait renderer (hero)
-cursor-fx.jsx                    Cursor candle-wick trail
 assets/
   fonts/                         Self-hosted woff2 fonts
   *.json                         Brightness grids for the candlestick portraits

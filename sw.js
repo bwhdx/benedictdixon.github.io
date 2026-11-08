@@ -8,7 +8,7 @@
 // Bump CACHE_VERSION to force-evict everything on a deploy that
 // breaks compatibility.
 
-const CACHE_VERSION = 'bd-v27';
+const CACHE_VERSION = 'bd-v28';
 const PRECACHE = [
   '/',
   '/index.html',
@@ -22,7 +22,7 @@ const PRECACHE = [
   '/assets/fonts/jetbrains-mono-latin.woff2',
   '/assets/og-image.png',
   '/assets/beanie_hero_16x9_navySides.json',
-  '/assets/beanie_morph_grid.json',
+  '/scroll-motion.js',
   '/favicons/favicon.svg',
   '/writing/',
 ];

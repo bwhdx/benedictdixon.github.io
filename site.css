@@ -30,8 +30,8 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Reduced motion: cap transition durations so the morph and ticker stay
-   functional but animations are minimised. */
+/* Reduced motion: cap transition durations; the scroll motion is also
+   switched off at its source (section Motion), so content sits in place. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -39,10 +39,6 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  /* Nothing moves: the ticker sits still, left-aligned, and its control
-     is hidden because there is nothing to pause. */
-  .ticker-track { animation: none !important; padding-left: 0 !important; transform: none !important; }
-  .ticker-toggle { display: none !important; }
 }
 
 /* Keyboard focus ring — two-tone box-shadow so it's visible on
@@ -103,6 +99,13 @@ button:focus-visible,
   --grain-tone: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='960' height='960'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006' numOctaves='3' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0 0.1  0 0 0 -0.12 0.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url%28%23g%29'/%3E%3C/svg%3E");
   --grain: var(--grain-fine) 0 0 / 100px 100px, var(--grain-tone) 0 0 / 960px 960px;
 
+  --runner-h: 74px;
+  /* Motion tokens: one easing and one set of durations for the whole book.
+     Scroll-linked motion uses the same curve over a scroll range. */
+  --ease-page: cubic-bezier(0.3, 0.1, 0.25, 1);
+  --dur-settle: 0.6s;
+  --dur-draw: 0.8s;
+
   --gutter: 96px;
   --gutter-md: 56px;
   --gutter-sm: 24px;
@@ -122,31 +125,14 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* The paper is a fixed, full-viewport layer behind everything, so it stays
-   still while only the content scrolls over it. A position:fixed
-   pseudo-element rather than background-attachment:fixed, which iOS Safari
-   ignores. It is promoted to its own compositor layer once, so scrolling
-   moves the content over it without repainting the grain. 100lvh keeps it
-   covering the screen when a phone's toolbars collapse. The flat paper on
-   the root shows only in overscroll and where the layer is switched off.
-   Static, so prefers-reduced-motion has nothing to stop here. Sections with
-   their own background (the navy hero, the panels) paint above it. */
-html { background: var(--paper); }
+/* The paper lives on the root, so it fills the whole canvas once and
+   scrolls with the content: reading down the page moves down the sheet,
+   grain and all. The navy cover and the panels paint their own grounds
+   above it; the insignia is the only fixed thing. */
+html { background: var(--grain) var(--paper); }
 body { background: transparent; }
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 100vh;
-  height: 100lvh;
-  z-index: -1;
-  pointer-events: none;
-  background: var(--grain) var(--paper);
-  will-change: transform;
-  contain: strict;
-}
 @media (prefers-contrast: more), print {
-  body::before { display: none; }
+  html { background: var(--paper); }
 }
 
 ::selection { background: var(--ink); color: var(--paper); }
@@ -171,14 +157,43 @@ a { color: inherit; text-decoration: none; }
 .hairline { height: 1px; background: var(--ink-hair); border: 0; margin: 0; }
 .hairline-strong { height: 1px; background: var(--ink); border: 0; margin: 0; }
 
-/* ── Type ───────────────────────────────────────────────── */
-.meta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+/* ── The book: type ─────────────────────────────────────── */
+/* Prose is set in Fraunces at a text optical size, 19 px on a 1.62
+   leading, about 64 characters to the line. Labels are small caps set
+   from the same face (Fraunces has no true small caps, so they are
+   capitals at a smaller size with open tracking). JetBrains Mono is kept
+   for figures and the cipher; Inter for the career data's roles. */
+:root {
+  --measure: 38rem;
+  --prose: 19px;
+  --leading: 1.62;
+  --rule: rgba(28, 38, 122, 0.3);
 }
+@media (max-width: 700px) {
+  :root { --prose: 18px; --leading: 1.6; }
+}
+
+/* Labels: sentence case in Inter at a readable size and full ink, so they
+   read as signposts rather than ornament. The roman numerals stay in the
+   serif, as the book's own numbering. */
+.sc, .meta, .plate-n, .contents-more-label, .runner-name,
+.contents-btn, .sheet-close, .cue, .colophon-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  text-transform: none;
+  font-style: normal;
+}
+.toc-n {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 14;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  font-style: normal;
+}
+.meta { color: var(--ink); margin: 0; line-height: 1.4; }
 .meta-strong { color: var(--ink); }
 
 .display {
@@ -190,10 +205,7 @@ a { color: inherit; text-decoration: none; }
   font-variation-settings: "opsz" 144, "SOFT" 50;
   margin: 0;
 }
-.display em {
-  font-style: italic;
-  font-weight: 300;
-}
+.display em { font-style: italic; font-weight: 300; }
 
 .heading {
   font-family: var(--font-serif);
@@ -204,183 +216,857 @@ a { color: inherit; text-decoration: none; }
   font-variation-settings: "opsz" 96;
   margin: 0;
 }
-.heading em {
-  font-style: italic;
-  font-weight: 300;
-}
-
-.subhead {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(26px, 3vw, 36px);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
-  margin: 0;
-}
+.heading em { font-style: italic; font-weight: 300; }
 
 .lede {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 300;
-  font-size: clamp(22px, 2.4vw, 30px);
-  line-height: 1.35;
-  letter-spacing: -0.005em;
+  font-size: clamp(21px, 2.2vw, 27px);
+  line-height: 1.38;
   font-variation-settings: "opsz" 36;
   margin: 0;
   color: var(--ink);
 }
 
-.body p {
-  font-family: var(--font-sans);
-  font-size: 17px;
-  line-height: 1.6;
-  margin: 0 0 1em;
-  color: var(--ink);
-}
-.body p:last-child { margin-bottom: 0; }
-
-.drop::first-letter {
+.prose p, .entry-body p {
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-variation-settings: "opsz" 16;
+  font-size: var(--prose);
+  line-height: var(--leading);
+  margin: 0 0 1.05em;
+  color: var(--ink);
+  hanging-punctuation: first;
+  text-wrap: pretty;
+}
+
+.prose p.lede {
   font-style: italic;
-  font-size: 5.5em;
-  line-height: 0.85;
-  float: left;
-  padding: 0.08em 0.08em 0 0;
-  color: var(--ink);
+  font-weight: 300;
+  font-variation-settings: "opsz" 36;
+  font-size: clamp(21px, 2.2vw, 26px);
+  line-height: 1.42;
 }
 
-/* Marginalia — small text in the page edge */
-.margin-note {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 1.5;
-  letter-spacing: 0.06em;
-  color: var(--ink-soft);
+/* The opener: a three-line drop cap, the rest of the first line in small
+   caps. initial-letter where supported, a float everywhere else. */
+.opener::first-line {
   text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.84em;
+  font-weight: 500;
 }
-
-/* Section heads */
-.section-head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 24px;
-  align-items: end;
-  padding: 0 0 24px;
-  border-bottom: 1px solid var(--ink);
-  margin-bottom: 48px;
-}
-.section-head .num {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 0 0 12px;
-}
-.section-head .ttl {
+.opener::first-letter {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(44px, 6vw, 78px);
-  line-height: 0.98;
-  letter-spacing: -0.022em;
-  margin: 0;
+  font-variation-settings: "opsz" 144;
+  color: var(--ink);
 }
-.section-head .ttl em { font-style: italic; font-weight: 300; }
-.section-head .right {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .opener::first-letter { -webkit-initial-letter: 3; initial-letter: 3; margin-right: 0.14em; }
+}
+@supports not ((initial-letter: 3) or (-webkit-initial-letter: 3)) {
+  .opener::first-letter { float: left; font-size: 4.6em; line-height: 0.82; padding: 0.06em 0.1em 0 0; }
+}
+
+.text-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule);
+  transition: text-decoration-color 0.15s;
+}
+.text-link:hover { text-decoration-color: var(--ink); text-decoration-thickness: 2px; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.wide-only { display: inline; }
+@media (max-width: 700px) { .wide-only { display: none; } }
+
+/* ── The page: a text column with a margin for notes ────── */
+/* Notes sit in the left margin, set against the text and aligned with the
+   paragraph they belong to; on narrow screens they fall inline above it.
+   Each note precedes its paragraph in the source, so the reading order is
+   the same at every width. */
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, var(--measure)) minmax(0, 1fr);
+  column-gap: 48px;
+}
+.page > * { grid-column: 2; }
+.page > .margin-note { grid-column: 1; }
+.page-col { max-width: var(--measure); margin-left: auto; margin-right: auto; }
+.margin-note {
+  justify-self: end;
   text-align: right;
-  padding-bottom: 8px;
+  max-width: 14rem;
+  margin: 0.32em 0 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.margin-note .sc { display: block; font-style: normal; margin-bottom: 4px; }
+@media (max-width: 960px) {
+  .page { display: block; max-width: var(--measure); margin-left: auto; margin-right: auto; }
+  .margin-note { justify-self: start; text-align: left; max-width: none; margin: 0 0 6px; font-size: 14.5px; }
+  .margin-note .sc { display: inline; margin: 0 0.6em 0 0; }
 }
 
-/* ── Sections ───────────────────────────────────────────── */
-section {
-  position: relative;
-  padding: 120px 0;
-}
-@media (max-width: 900px) {
-  section { padding: 80px 0; }
+/* ── Chapters ───────────────────────────────────────────── */
+/* overflow-x: clip, because a plate still turned on its spine below the
+   screen reaches past the right edge in 3D; unclipped, that widened the
+   page on phones and tablets (a sideways scroll, and a zoomed-out first
+   screen). clip makes no scroll container, so nothing sticky is affected. */
+.chapter { position: relative; padding: 128px 0 72px; overflow-x: clip; }
+.chapter--plate-only { padding-bottom: 24px; }
+@media (max-width: 700px) {
+  .chapter { padding: 88px 0 56px; }
 }
 
-/* Header / running banner */
+.plate {
+  text-align: center;
+  max-width: 44rem;
+  margin: 0 auto 72px;
+}
+.plate .cipher { width: 52px; height: auto; margin: 0 auto 28px; }
+.plate-n { color: var(--ink); margin: 0 0 14px; }
+.plate-t {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-size: clamp(42px, 6vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+.plate-lede {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 36;
+  font-size: clamp(19px, 1.8vw, 22px);
+  line-height: 1.45;
+  max-width: 34rem;
+  margin: 24px auto 0;
+  text-wrap: balance;
+}
+@media (max-width: 700px) {
+  .plate { margin-bottom: 48px; }
+  .plate .cipher { width: 44px; margin-bottom: 22px; }
+}
+
+.chapter-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: 96px;
+}
+.candle-rule { display: block; width: 168px; height: 28px; color: var(--ink); }
+
+/* ── Running head ───────────────────────────────────────── */
+/* The author and the contents button, with the candle progress strip
+   along the top edge. On phones the mark stands in for the name (the
+   floating insignia has no margin there). */
 .runner {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 56px;
+  height: var(--runner-h);
   z-index: 50;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: 20px var(--gutter) 0;
+  background: var(--grain) rgba(var(--paper-rgb), 0.95);
+  border-bottom: 1px solid var(--ink-hair);
+  color: var(--ink);
+}
+.runner-verso { justify-self: start; display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.runner-name {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 24;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+.runner-verso:hover .runner-name { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.runner-mark { display: none; }
+.runner-mark .cipher { width: 32px; height: auto; display: block; }
+.contents-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.contents-btn:hover { background: var(--ink); color: var(--paper); }
+.candle-glyph { width: 12px; height: 14px; flex: none; }
+/* The name stays on one line at every width. */
+.runner-name { white-space: nowrap; }
+@media (max-width: 1100px) {
+  .runner { padding: 20px var(--gutter-md) 0; }
+}
+@media (max-width: 700px) {
+  .runner { gap: 12px; padding: 20px 16px 0 var(--gutter-sm); }
+  .runner-mark { display: block; }
+  .runner-verso { gap: 0; }
+  .runner-name { display: none; }
+}
+
+/* ── The candle progress row ────────────────────────────── */
+/* A small candlestick chart of the page, one candle per chapter: body
+   height is the chapter's length, the wicks its longest and median
+   paragraphs, every body centred on one level so the row never trends.
+   Read is filled, ahead is hollow; scroll-motion.js draws and drives it.
+   Kept in step with writing.css. */
+/* A strip of its own along the top edge of the head, the full width of
+   the text frame: each section takes an equal cell with its candle at the
+   centre, the hairline beneath runs the whole width, and an ink line
+   draws along it to the reader's place (--cp-at, the current section plus
+   how far into it, over the count; set by scroll-motion.js). It scales on
+   the compositor, so tracking the scroll repaints nothing. */
+.candle-progress {
+  position: absolute;
+  top: 2px;
+  left: var(--gutter);
+  right: var(--gutter);
+  height: 20px;
+  display: flex;
+  pointer-events: none;
+}
+.candle-progress::before,
+.candle-progress::after {
+  content: '';
+  position: absolute;
+  top: 19px; left: 0; right: 0;
+  height: 1px;
+  background: var(--ink-hair);
+}
+.candle-progress::before {
+  background: var(--ink);
+  transform-origin: 0 50%;
+  transform: scaleX(var(--cp-at, 0));
+  z-index: 1;
+}
+.cp-candle {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 22px; height: 20px;
+  margin: 0; padding: 0;
+  border: 0; border-radius: 1px;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  pointer-events: auto;
+}
+.cp-candle[data-state="ahead"] { opacity: 0.5; }
+.cp-candle:hover { opacity: 1; }
+.cp-candle:focus-visible { outline: 1px solid var(--ink); outline-offset: 0; }
+.cp-wick { position: absolute; left: calc(50% - 0.5px); width: 1px; background: currentColor; }
+.cp-body {
+  position: absolute;
+  left: calc(50% - 3.5px); width: 7px;
+  box-sizing: border-box;
+  border: 1px solid currentColor;
+  overflow: hidden;
+  background: rgba(var(--paper-rgb), 1);
+}
+.cp-fill { position: absolute; inset: 0; background: currentColor; transform: scaleY(0); transform-origin: 50% 100%; }
+.cp-candle[data-state="read"] .cp-fill { transform: none; }
+/* The section being read: full ink, its body filling from the foot, and
+   its stretch of the baseline drawn in. */
+.cp-candle[data-state="current"]::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - 6px); width: 12px; top: 19px; z-index: 2;
+  height: 1px;
+  background: currentColor;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cp-candle { transition: opacity 0.2s ease; }
+}
+@media (max-width: 1100px) { .candle-progress { left: var(--gutter-md); right: var(--gutter-md); } }
+@media (max-width: 700px) { .candle-progress { left: 16px; right: 16px; } }
+
+/* ── Contents sheet (native dialog) ─────────────────────── */
+.contents-sheet {
+  padding: 0;
+  border: 0;
+  margin: 0 0 0 auto;
+  width: min(440px, 100vw);
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  background: transparent;
+  color: var(--ink);
+}
+.contents-sheet::backdrop { background: rgba(28, 38, 122, 0.55); }
+.contents-sheet[open] { animation: sheet-in 0.24s cubic-bezier(.2,.7,.3,1); }
+@keyframes sheet-in { from { transform: translateX(24px); opacity: 0; } }
+.sheet-panel {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px 28px 40px;
+  background: var(--grain) var(--paper);
+  border-left: 1px solid var(--ink);
+}
+.sheet-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--gutter);
-  background: var(--grain) rgba(var(--paper-rgb), 0.94);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--ink-hair);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+}
+.sheet-head h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.sheet-close {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
   color: var(--ink);
-  transition: transform 0.4s cubic-bezier(.2,.7,.3,1);
+  cursor: pointer;
 }
-.runner.hidden { transform: translateY(-100%); }
-.runner .brand { display: flex; align-items: center; font-weight: 500; }
-/* The word mark: the five-candle bwhdx cipher, drawn in currentColor. */
-.cipher { display: block; flex: none; color: var(--ink); overflow: visible; }
-.cipher text { font-family: var(--font-mono); text-transform: none; }
-.runner nav { display: flex; gap: 28px; }
-.runner nav a { color: var(--ink-soft); transition: color 0.18s; padding: 7px 0; }
-.runner nav a:hover, .runner nav a.active { color: var(--ink); }
-/* Narrow screens: the nav stays, cut to Writing and Contact, and the
-   brand drops its long tail so both fit at 390 px. */
-@media (max-width: 800px) {
-  .runner { padding: 0 var(--gutter-sm); }
-  .runner nav { gap: 20px; }
-  .runner nav a.nav-wide { display: none; }
-  .runner .brand-long { display: none; }
-}
-@media (max-width: 480px) {
-  .runner { letter-spacing: 0.14em; }
-  .runner nav { gap: 16px; }
+.sheet-close:hover { background: var(--ink); color: var(--paper); }
+.contents-sheet .toc a { padding: 14px 0; }
+.contents-sheet .toc-t { font-size: 22px; }
+.sheet-more { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 28px 0 0; }
+.sheet-more a {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  padding: 6px 0;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule);
 }
 
-/* Footer */
-.colophon {
-  padding: 80px 0 64px;
-  border-top: 1px solid var(--ink);
-  margin-top: 80px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-}
-.colophon strong {
-  display: block;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-/* Sign-off: the mark at the left, the site at the right. */
-.colophon-sign {
-  grid-column: 1 / -1;
+/* ── Contents: the list ─────────────────────────────────── */
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc a {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  padding-top: 40px;
-  border-top: 1px solid var(--ink-hair);
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 0;
+  color: var(--ink);
 }
-.colophon-sign .cipher { width: 64px; height: auto; }
-.colophon-sign .site { color: var(--ink); letter-spacing: 0.04em; text-transform: none; font-size: 13px; }
-@media (max-width: 800px) {
-  .colophon { grid-template-columns: 1fr 1fr; }
+.toc-n { flex: none; width: 2.6em; }
+.toc-t {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 48;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s;
+}
+.toc-dots {
+  flex: 1 1 auto;
+  min-width: 24px;
+  border-bottom: 2px dotted rgba(28, 38, 122, 0.55);
+  transform: translateY(-0.3em);
+}
+.toc-f, .toc-v {
+  flex: none;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+}
+.toc a:hover .toc-t, .toc a:focus-visible .toc-t, .toc a[aria-current] .toc-t { text-decoration-color: var(--ink); }
+.toc a[aria-current] .toc-n { text-decoration: underline; text-underline-offset: 4px; }
+
+.contents-page { padding: 128px 0 40px; scroll-margin-top: var(--runner-h); }
+.chapter { scroll-margin-top: calc(var(--runner-h) - 40px); }
+.contents-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
+  gap: 72px;
+  align-items: start;
+}
+.contents-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  font-size: clamp(56px, 7vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  margin: 0 0 20px;
+}
+.contents-note {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 19px;
+  line-height: 1.45;
+  max-width: 20rem;
+  margin: 0;
+}
+.contents-more-label { margin: 40px 0 4px; }
+.toc-more .toc-t { font-size: clamp(19px, 1.8vw, 22px); font-style: italic; }
+.toc-more .toc-f { font-size: 16px; font-variant-numeric: normal; }
+@media (max-width: 900px) {
+  .toc-n { width: 2.1em; }
+  .contents-page { padding: 88px 0 24px; }
+  .contents-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* ── III. Entries ───────────────────────────────────────── */
+.entries, .essays, .lectern { list-style: none; margin: 0; padding: 0; }
+.entry { padding: 0 0 52px; }
+.entry + .entry > .entry-body { border-top: 1px solid var(--ink-hair); padding-top: 52px; }
+.entry > .margin-note { padding-top: 0.7em; }
+.entry + .entry > .margin-note { padding-top: calc(52px + 0.7em); }
+@media (max-width: 960px) {
+  .entry + .entry { border-top: 1px solid var(--ink-hair); padding-top: 44px; }
+  .entry + .entry > .entry-body { border-top: 0; padding-top: 0; }
+  .entry > .margin-note, .entry + .entry > .margin-note { padding-top: 0; }
+}
+.entry-name {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-variation-settings: "opsz" 96;
+  font-size: clamp(32px, 3.4vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  margin: 0 0 6px;
+}
+.entry-body .entry-role {
+  font-style: italic;
+  font-size: 20px;
+  margin: 0 0 18px;
+}
+.entry-link { margin-top: -0.2em; }
+.entry-body .index-line {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  font-style: italic;
+  margin: 18px 0 0;
+}
+
+/* ── IV. Essays and the lectern ─────────────────────────── */
+.part-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: italic;
+  font-variation-settings: "opsz" 48;
+  font-size: 26px;
+  margin: 0 auto 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ink);
+}
+.part-title + * { margin-top: 0; }
+.essays li { padding: 26px 0; }
+.essays li + li .essay-link { border-top: 0; }
+.essays .margin-note { padding-top: 0.45em; }
+.essay-link { display: block; color: var(--ink); }
+.essay-title {
+  display: block;
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 72;
+  font-size: clamp(25px, 2.4vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s;
+}
+.essay-excerpt {
+  display: block;
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 16;
+  font-size: 18px;
+  line-height: 1.55;
+  margin: 10px 0 12px;
+}
+.cue {
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+.essay-link:hover .essay-title, .essay-link:focus-visible .essay-title { text-decoration-color: var(--ink); }
+.essay-link:hover .cue { text-decoration-thickness: 2px; }
+.more-links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 24px auto 104px; font-family: var(--font-serif); font-size: 19px; }
+.lectern li { padding: 18px 0; border-bottom: 1px solid var(--ink-hair); }
+.lectern .margin-note { padding-top: 0.2em; }
+.lectern-item { margin: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+.lectern-event { font-family: var(--font-serif); font-size: 24px; letter-spacing: -0.01em; }
+.lectern-topic { font-family: var(--font-serif); font-style: italic; font-size: 18px; }
+.lectern + .page { margin-top: 40px; }
+.follow { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+
+/* ── V. Contact ─────────────────────────────────────────── */
+.toc-contact { margin: 40px auto 0; border-top: 1px solid var(--ink); }
+.toc-contact a { padding: 16px 0; border-bottom: 1px solid var(--ink-hair); }
+.toc-contact .toc-t { font-size: 22px; }
+.toc-contact .toc-v { font-style: normal; font-size: 20px; font-variant-numeric: normal; }
+@media (max-width: 480px) {
+  .toc-contact .toc-t { font-size: 19px; }
+  .toc-contact .toc-v { font-size: 17px; }
+}
+
+/* ── Colophon ───────────────────────────────────────────── */
+.colophon {
+  padding: 112px 0 120px;
+  border-top: 1px solid var(--ink);
+  text-align: center;
+}
+.colophon-inner { max-width: calc(36rem + 2 * var(--gutter)); }
+.colophon .cipher { width: 76px; height: auto; margin: 0 auto 28px; }
+.colophon-title { margin: 0 0 20px; font-weight: 500; }
+.colophon p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+  text-wrap: pretty;
+}
+.colophon cite { font-style: normal; }
+.colophon .colophon-edition { font-style: normal; }
+.colophon .colophon-rights { font-style: normal; font-size: 15px; margin-top: 28px; }
+
+/* ── II. The career ledger ──────────────────────────────── */
+/* One row per role: year, company, role, the candle on the shared axis,
+   and the years. Year ticks are drawn once per row as a background, so
+   the ruling costs nothing to animate. On phones the role and the candle
+   move under the company, full width. */
+.ledger { --axis-years: 13; }
+.ledger-intro {
+  max-width: 40rem;
+  margin: 0 0 36px;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.ledger-head, .ledger-row {
+  display: grid;
+  grid-template-columns: 4.2rem 11.5rem minmax(0, 1fr) minmax(0, 36%) 5.4rem;
+  column-gap: 20px;
+  align-items: center;
+}
+.ledger-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+.lh-axis { position: relative; height: 1.4em; }
+.lh-axis span {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 400;
+}
+.lh-years, .lr-years { text-align: right; }
+.ledger-rows { list-style: none; margin: 0; padding: 0; }
+.ledger-row {
+  min-height: 60px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--ink-hair);
+}
+.lr-yr, .lr-years { font-family: var(--font-mono); font-size: 14px; font-variant-numeric: tabular-nums; }
+.lr-co { font-family: var(--font-serif); font-variation-settings: "opsz" 24; font-size: 19px; line-height: 1.25; }
+.lr-role { font-size: 15.5px; line-height: 1.4; }
+.lr-to-date { display: block; font-family: var(--font-sans); font-size: 12.5px; }
+
+.lc {
+  position: relative;
+  display: block;
+  height: 14px;
+  background: linear-gradient(var(--ink-hair), var(--ink-hair)) 0 50% / 100% 1px no-repeat;
+}
+/* Year ticks: one hairline per year across the axis. */
+.lc::before {
+  content: '';
+  position: absolute;
+  inset: 3px 0;
+  background: linear-gradient(to right, var(--ink-hair) 1px, transparent 1px) 0 0 / calc(100% / var(--axis-years)) 100% repeat-x;
+}
+.lc-wick {
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 1px;
+  margin-top: -0.5px;
+  background: var(--ink);
+  opacity: 0.55;
+  transform-origin: 0 50%;
+}
+.lc-body {
+  position: absolute;
+  top: 1px; bottom: 1px;
+  overflow: hidden;
+  border-left: 1.5px solid var(--ink);
+  background: transparent;
+}
+.lc-fill {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--ink);
+  border-left: 0;
+  background: var(--paper);
+}
+.lc-body.is-filled .lc-fill { background: var(--ink); }
+.lc-mark { position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--ink); }
+.ledger-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  align-items: center;
+  margin: 18px 0 0;
+  font-size: 14px;
+}
+.key-item { display: inline-flex; align-items: center; gap: 10px; }
+.key-candle {
+  width: 26px; height: 10px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  box-shadow: -6px 0 0 -4px var(--ink), 6px 0 0 -4px var(--ink);
+}
+.key-candle.is-filled { background: var(--ink); }
+.ledger + .part-title { margin-top: 104px; }
+.toc-routes { margin: 8px auto 0; border-top: 1px solid var(--ink); }
+.toc-routes li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--ink-hair);
+}
+.toc-routes .toc-t { font-size: 21px; text-decoration: none; }
+.toc-routes .toc-v { font-size: 17px; }
+.coda {
+  margin-top: 56px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-variation-settings: "opsz" 36;
+  font-size: clamp(20px, 2vw, 24px);
+  line-height: 1.42;
+  text-align: center;
+  text-wrap: balance;
+}
+@media (max-width: 860px) {
+  .ledger-head { grid-template-columns: 3.6rem minmax(0, 1fr) 4.6rem; }
+  .lh-role, .lh-axis { display: none; }
+  .ledger-row {
+    grid-template-columns: 3.6rem minmax(0, 1fr) 4.6rem;
+    grid-template-areas: "yr co years" "yr role role" "yr lc lc";
+    row-gap: 4px;
+    align-items: baseline;
+    padding: 16px 0 18px;
+  }
+  .lr-yr { grid-area: yr; }
+  .lr-co { grid-area: co; font-size: 19px; }
+  .lr-years { grid-area: years; }
+  .lr-role { grid-area: role; }
+  .lc { grid-area: lc; margin-top: 8px; }
+  .toc-routes li { flex-wrap: wrap; gap: 2px 14px; }
+  .toc-routes .toc-dots { display: none; }
+  .toc-routes .toc-v { flex-basis: 100%; }
+}
+
+/* ── Cover ──────────────────────────────────────────────── */
+/* A flex column: top strip, the portrait filling whatever is left, then
+   the name band. The portrait box has no pixel offsets, so the face fits
+   exactly the space between the two at every size. svh keeps the cover
+   steady while a phone's toolbars come and go (no layout shift). A double
+   rule inset from the edge frames it like a cloth-bound cover. */
+.hero-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* Exactly the first screen at any size: svh is the screen with the
+     phone's toolbars shown, so the cover never resizes as they come and
+     go (dvh would, and the portrait would redraw mid-scroll). No upper
+     cap, so a tall window gets no paper band beneath; the portrait box
+     takes the extra height. 640 px is the floor below which the band
+     would crowd the face, and the cover then scrolls. */
+  height: 100vh;
+  height: 100svh;
+  min-height: 640px;
+  padding: var(--runner-h) 0 0;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--paper);
+}
+/* The frame is two rules: the border, and an outline drawn inside it.
+   Its geometry lives in custom properties because the portrait box below
+   is sized from the same numbers: the face is laid out inside the frame's
+   inner rule, never across it. */
+.hero-section {
+  --frame-x: 20px;          /* frame inset from the cover's sides and foot */
+  --frame-gap: 6px;         /* border to inner rule */
+  --frame-rule: 1px;
+  --frame-inner: calc(var(--frame-x) + var(--frame-rule) + var(--frame-gap) + var(--frame-rule));
+  --frame-air: 14px;        /* breathing room between the inner rule and the candles */
+}
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--runner-h) + 16px) var(--frame-x) var(--frame-x);
+  border: var(--frame-rule) solid rgba(var(--paper-rgb), 0.55);
+  outline: var(--frame-rule) solid rgba(var(--paper-rgb), 0.3);
+  outline-offset: calc(-1 * var(--frame-gap));
+  pointer-events: none;
+  z-index: 5;
+}
+/* Horizontally the box is the frame's inner box less the air, so the
+   renderer's coordinate space is the frame itself and no fit (contain on
+   wide screens, cover on phones, width-bound on tall tablets) can place a
+   candle outside it. Vertically the top strip and the band already sit
+   inside the frame. */
+.hero-portrait {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 8px calc(var(--frame-inner) + var(--frame-air));
+}
+/* The portrait box clips, so the drifting portrait slips under the name
+   band instead of over it. The canvases are placed by the renderer over
+   the candles' own bounds. */
+.hero-portrait { overflow: clip; }
+.hero-drift { position: absolute; inset: 0; }
+.hero-portrait canvas { position: absolute; display: block; }
+.hero-section .meta { color: rgba(var(--paper-rgb), 0.92); }
+.hero-section .meta-strong { color: var(--paper); }
+.hero-top-bar { position: relative; z-index: 3; padding: 34px 0 0; }
+.hero-top-grid, .hero-band-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+}
+.hero-band { position: relative; flex: none; z-index: 4; padding: 0 0 52px; }
+/* The candle count: a quiet caption set under the portrait, right, like
+   a plate's legend. It is unknown until the portrait is drawn and stays
+   unpainted until then, so its arrival changes no visible layout. */
+/* A flex item with auto margins would shrink to its text; it takes the
+   full width (to the .wrap max) so the caption sits right. */
+.hero-caption { position: relative; z-index: 4; flex: none; width: 100%; }
+.hero-count {
+  margin: 0 0 14px;
+  text-align: right;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 14;
+  font-size: 14px;
+  line-height: 1.3;
+  color: rgba(var(--paper-rgb), 0.72);
+}
+.hero-count[data-ready="false"] { visibility: hidden; }
+.hero-title { padding-top: 14px; border-top: 1px solid rgba(var(--paper-rgb), 0.35); }
+.hero-title {
+  margin: 0 0 16px;
+  font-size: clamp(48px, 6.4vw, 104px);
+  line-height: 0.92;
+  color: var(--paper);
+}
+.hero-title em { font-style: italic; font-weight: 300; }
+.hero-band-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(var(--paper-rgb), 0.35);
+}
+.hero-tagline-text {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-variation-settings: "opsz" 48;
+  font-size: clamp(22px, 2.3vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--paper);
+}
+.hero-tagline-text em { font-style: italic; font-weight: 300; }
+.hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 20px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--paper);
+  border: 1px solid var(--paper);
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background-color 0.18s, color 0.18s;
+}
+.hero-cta:hover { background: var(--paper); color: var(--ink); }
+.hero-cta--primary { background: var(--paper); color: var(--ink); }
+.hero-cta--primary:hover { background: transparent; color: var(--paper); }
+/* The second way in is a plain link beside the one button. */
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 4px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 15px;
+  color: var(--paper);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  text-decoration-color: rgba(var(--paper-rgb), 0.55);
+  white-space: nowrap;
+}
+.hero-link:hover { text-decoration-color: var(--paper); }
+.hero-section a:focus-visible { box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--paper); }
+@media (max-width: 700px) {
+  .hero-section { height: auto; min-height: 100vh; min-height: 100svh; }
+  .hero-section { --frame-x: 10px; --frame-gap: 5px; --frame-air: 8px; }
+  .hero-section::after { inset: calc(var(--runner-h) + 10px) var(--frame-x) var(--frame-x); }
+  /* The box takes the face's aspect (set from the grid by HeroPortrait;
+     1.27 is the hero grid's cropped aspect, for the first paint), capped so
+     the name band stays in view on a short phone. */
+  /* At least the face at the frame's full width (its aspect is set from
+     the grid by HeroPortrait; 1.27, the hero grid's cropped aspect, is
+     for the first paint), capped so the band stays in view on a short
+     phone; on a tall phone it grows into the rest of the screen. */
+  .hero-portrait {
+    flex: 1 0 auto;
+    height: min(calc((100vw - 2 * (var(--frame-inner) + var(--frame-air))) / var(--face-aspect, 1.27)), calc(100svh - 470px));
+    min-height: 220px;
+  }
+  .hero-section .wrap { padding-left: 30px; padding-right: 30px; }
+  .hero-top-bar { padding-top: 26px; }
+  .hero-band { padding-bottom: 40px; }
+  .hero-title { font-size: clamp(52px, 16vw, 84px); }
+  .hero-band-bottom { grid-template-columns: 1fr; gap: 18px; }
+  .hero-actions { gap: 10px; flex-wrap: nowrap; }
+  .hero-cta { padding: 0 16px; font-size: 15px; }
 }
 
 /* ── Insignia: the bwhdx mark, fixed bottom-left, back to the top ── */
@@ -412,28 +1098,9 @@ section {
   pointer-events: none;
   transition: opacity 0.28s cubic-bezier(.2,.7,.3,1), transform 0.28s cubic-bezier(.2,.7,.3,1), visibility 0s linear 0.28s;
 }
-/* At 1100 px and below the text column comes closer than the mark's
-   width (the .wrap gutter drops to 56 px, then 24 px), so the mark sits on a
-   small paper tile: it stays legible and the text passing beneath it is
-   never mixed with it. A little smaller again on phones. */
-@media (max-width: 1100px) {
-  .insignia {
-    --insignia-w: 40px;
-    left: 12px;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-    padding: 6px 7px;
-    background: var(--grain) rgba(var(--paper-rgb), 0.94);
-    border: 1px solid var(--ink-hair);
-    border-radius: 4px;
-  }
-}
-@media (max-width: 700px) {
-  .insignia {
-    --insignia-w: 34px;
-    left: 10px;
-    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-  }
-}
+/* Below 1100 px there is no free margin for it, so it steps aside: the
+   running head names the chapter and the colophon carries the mark. */
+@media (max-width: 1100px) { .insignia { display: none; } }
 @media (prefers-reduced-motion: reduce) {
   .insignia, .insignia[data-hidden="true"] { transition: none !important; transform: none; }
 }
@@ -441,762 +1108,156 @@ section {
   .insignia { display: none; }
 }
 
-/* ── Custom cursor / candle trail ───────────────────────── */
-.cursor-candle {
-  position: fixed;
-  pointer-events: none;
-  z-index: 100;
-  width: 6px;
-  background: var(--ink);
-  opacity: 0;
-  border-radius: 0;
-  transition: opacity 0.6s ease-out;
-  mix-blend-mode: multiply;
-  will-change: transform, opacity;
-}
+/* ── Motion ─────────────────────────────────────────────── */
+/* Turning the pages of an almanac. One easing (--ease-page) and one set of
+   durations for the whole book; transform and opacity only, so nothing
+   moves the layout and nothing shifts. Every reveal completes by the time
+   its element is fully on screen, so the text being read never moves.
+   Where the browser has scroll-driven animations the motion is scrubbed by
+   the scroll itself and runs on the compositor; elsewhere scroll-motion.js
+   marks elements .is-in as they arrive and short transitions play once.
+   prefers-reduced-motion: none of this applies and content sits in place;
+   only the progress row keeps tracking the reader's position, in place. */
 
-/* Optional candlestick visual artifacts */
-.tick-mono {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.05em;
-  color: var(--ink-soft);
+/* Shared keyframes. */
+@keyframes page-turn {
+  0% { opacity: 0; transform: perspective(1400px) rotateY(-34deg); }
+  35% { opacity: 1; }
+  100% { opacity: 1; transform: perspective(1400px) rotateY(0deg); }
 }
-.up { color: var(--ink); }
-.down { color: var(--ink); opacity: 0.55; }
+@keyframes candle-rise { from { opacity: 0; transform: scaleY(0.2); } to { opacity: 1; transform: scaleY(1); } }
+@keyframes settle { from { opacity: 0; transform: translate3d(0, 14px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes settle-in-x { from { opacity: 0; transform: translate3d(-10px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes rule-across { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes body-grow {
+  0%, 22% { transform: translate3d(-100%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes cap-in { 0%, 12% { opacity: 0; } 24%, 100% { opacity: 1; } }
+@keyframes figure-in { 0%, 55% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes cover-drift { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, 38%, 0); } }
+@keyframes thin-out { from { opacity: 1; } to { opacity: 0; } }
 
-/* ── Cards / project list / timeline ────────────────────── */
-.list-divided > * {
-  padding: 32px 0;
-  border-top: 1px solid var(--ink-hair);
-}
-.list-divided > *:last-child { border-bottom: 1px solid var(--ink-hair); }
+.plate { transform-origin: 0 50%; }
+.plate .cipher g { transform-box: fill-box; transform-origin: 50% 100%; }
 
-.kicker {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 6px;
-}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* Chapter plates turn in from the spine as they come up the lower
+       half of the screen, and lie flat by the time they reach the middle. */
+    .plate {
+      view-timeline: --plate block;
+      animation: page-turn linear both;
+      animation-timeline: --plate;
+      animation-range: entry 0% cover 32%;
+      animation-timing-function: var(--ease-page);
+    }
+    .plate .cipher g {
+      animation: candle-rise linear both;
+      animation-timeline: --plate;
+      animation-timing-function: var(--ease-page);
+    }
+    .plate .cipher g:nth-of-type(1) { animation-range: entry 30% cover 16%; }
+    .plate .cipher g:nth-of-type(2) { animation-range: entry 38% cover 20%; }
+    .plate .cipher g:nth-of-type(3) { animation-range: entry 46% cover 24%; }
+    .plate .cipher g:nth-of-type(4) { animation-range: entry 54% cover 28%; }
+    .plate .cipher g:nth-of-type(5) { animation-range: entry 62% cover 32%; }
 
-/* Pills (career tags) */
-.pill {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 4px 9px;
-  border: 1px solid var(--ink-hair);
-  border-radius: 999px;
-  color: var(--ink-soft);
-  margin: 4px 6px 0 0;
-}
+    /* Section openers settle into place. */
+    [data-reveal="opener"] {
+      animation: settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 100%;
+      animation-timing-function: var(--ease-page);
+    }
 
-/* Scrollbar dressing — minimal */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--paper-dim); }
-::-webkit-scrollbar-thumb { background: var(--ink); border-radius: 5px; }
+    /* The career: each row draws as the reader reaches it. The year,
+       company and role settle while the row comes on screen; the wick
+       rules across, then the body grows to the tenure and the years
+       appear, all finished by the time the row is a third of the way up
+       the screen. */
+    .ledger-row { view-timeline: --row block; }
+    .ledger-row .lr-yr, .ledger-row .lr-co, .ledger-row .lr-role {
+      animation: settle-in-x linear both;
+      animation-timeline: --row;
+      animation-range: entry 10% entry 100%;
+      animation-timing-function: var(--ease-page);
+    }
+    .ledger-row .lr-co { animation-range: entry 20% entry 100%; }
+    .ledger-row .lr-role { animation-range: entry 30% entry 100%; }
+    .ledger-row .lc-wick {
+      animation: rule-across linear both;
+      animation-timeline: --row;
+      animation-range: entry 20% cover 22%;
+      animation-timing-function: var(--ease-page);
+    }
+    .ledger-row .lc-body, .ledger-row .lc-mark {
+      animation: cap-in linear both;
+      animation-timeline: --row;
+      animation-range: entry 30% cover 30%;
+    }
+    .ledger-row .lc-fill {
+      animation: body-grow linear both;
+      animation-timeline: --row;
+      animation-range: entry 30% cover 30%;
+      animation-timing-function: var(--ease-page);
+    }
+    .ledger-row .lr-years {
+      animation: figure-in linear both;
+      animation-timeline: --row;
+      animation-range: entry 30% cover 30%;
+    }
 
-/* Utility */
-.flex { display: flex; }
-.between { justify-content: space-between; }
-.aend { align-items: flex-end; }
-.acentre { align-items: center; }
-.col { flex-direction: column; }
-.g16 { gap: 16px; }
-.g32 { gap: 32px; }
-.g48 { gap: 48px; }
-.uppercase { text-transform: uppercase; }
-
-/* ── Morph stage ────────────────────────────────────────── */
-.morph-stage {
-  position: relative;
-  height: 500vh;
-  background: none; /* the root paper and its grain show through */
-  padding: 0 !important;
-}
-.morph-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-}
-.morph-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  display: block;
-}
-.morph-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  padding: 80px var(--gutter) 64px;
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
-}
-@media (max-width: 800px) {
-  .morph-overlay {
-    padding: 72px 24px 32px;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto 1fr auto;
+    /* The cover: the portrait trails the page and thins out as it leaves,
+       and comes back on the way up. */
+    #hero { view-timeline: --cover block; }
+    .hero-drift {
+      animation: cover-drift linear both;
+      animation-timeline: --cover;
+      animation-range: exit 0% exit 100%;
+    }
+    .portrait-layer { animation: thin-out linear both; animation-timeline: --cover; }
+    .portrait-layer[data-layer="1"] { animation-range: exit 8% exit 50%; }
+    .portrait-layer[data-layer="2"] { animation-range: exit 18% exit 66%; }
+    .portrait-layer[data-layer="3"] { animation-range: exit 30% exit 84%; }
   }
-}
 
-.morph-meta-tl {
-  grid-column: 1 / 2;
-  grid-row: 1;
-  align-self: start;
-}
-.morph-meta-tl .meta + .meta { margin-top: 6px; }
-
-.morph-phase {
-  grid-column: 2 / 3;
-  grid-row: 1;
-  text-align: right;
-  align-self: start;
-}
-.morph-phase-name {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 17px;
-  margin-top: 6px;
-  color: var(--ink);
-}
-@media (max-width: 800px) {
-  .morph-phase { grid-column: 1; grid-row: 2; text-align: left; margin-top: 12px; }
-}
-
-/* All content cards now live in the LEFT column only.  The right column is
-   reserved for the canvas particles (portrait, candles, map). */
-.morph-card {
-  grid-column: 1 / 2;
-  grid-row: 2 / 4;        /* span middle + bottom rows */
-  align-self: end;
-  max-width: 480px;
-  opacity: 0;
-  pointer-events: none;
-  padding-bottom: 12px;
-}
-.morph-card.in {
-  opacity: 1;
-  pointer-events: auto;
-}
-.morph-card.fading {
-  opacity: 0.35;
-}
-.morph-card .heading { margin: 18px 0 18px; }
-.morph-card .lede { margin-top: 0; }
-
-.portrait-card, .career-card, .map-card {
-  grid-column: 1 / 2;
-}
-
-@media (max-width: 800px) {
-  /* Mobile: cards take the bottom half of viewport; candles fill the top half.
-     Stack vertical and prevent particle overlap. */
-  .morph-card {
-    grid-column: 1 / -1;
-    grid-row: 4;
-    align-self: end;
-    max-width: 100%;
-    padding: 18px 18px 24px;
-    border-radius: 6px;
-    /* The grain sits on the panel too: the blur smooths the root's grain
-       beneath, which would otherwise leave a flat box on the paper. */
-    background: var(--grain) rgba(var(--paper-rgb), 0.92);
-    backdrop-filter: blur(8px);
-    margin-bottom: 6px;
+  /* Without scroll timelines: the same moves, played once on arrival. */
+  .motion-js .plate {
+    transition: opacity var(--dur-settle) var(--ease-page), transform var(--dur-draw) var(--ease-page);
   }
-  .morph-card .heading { font-size: clamp(28px, 8vw, 40px); margin: 10px 0 10px; }
-  .morph-card .lede { font-size: 16px; line-height: 1.35; }
-  .morph-card .career-legend { columns: 1; font-size: 10px; }
-  .morph-card .career-legend li { grid-template-columns: 40px 80px 1fr; }
-  .map-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .map-stats dt { font-size: 28px; }
+  .motion-js .plate:not(.is-in) { opacity: 0; transform: perspective(1400px) rotateY(-34deg); }
+  .motion-js .plate .cipher g { transition: opacity var(--dur-settle) var(--ease-page), transform var(--dur-settle) var(--ease-page); }
+  .motion-js .plate .cipher g:nth-of-type(2) { transition-delay: 0.06s; }
+  .motion-js .plate .cipher g:nth-of-type(3) { transition-delay: 0.12s; }
+  .motion-js .plate .cipher g:nth-of-type(4) { transition-delay: 0.18s; }
+  .motion-js .plate .cipher g:nth-of-type(5) { transition-delay: 0.24s; }
+  .motion-js .plate:not(.is-in) .cipher g { opacity: 0; transform: scaleY(0.2); }
+  .motion-js [data-reveal="opener"] { transition: opacity var(--dur-settle) var(--ease-page), transform var(--dur-settle) var(--ease-page); }
+  .motion-js [data-reveal="opener"]:not(.is-in) { opacity: 0; transform: translate3d(0, 14px, 0); }
+  .motion-js .ledger-row :is(.lr-yr, .lr-co, .lr-role, .lr-years, .lc-wick, .lc-body, .lc-mark, .lc-fill) {
+    transition: opacity var(--dur-settle) var(--ease-page), transform var(--dur-draw) var(--ease-page);
+  }
+  .motion-js .ledger-row .lr-co { transition-delay: 0.05s; }
+  .motion-js .ledger-row .lr-role { transition-delay: 0.1s; }
+  .motion-js .ledger-row .lc-body, .motion-js .ledger-row .lc-mark { transition-delay: 0.2s; }
+  .motion-js .ledger-row .lc-fill { transition-delay: 0.25s; }
+  .motion-js .ledger-row .lr-years { transition-delay: 0.6s; }
+  .motion-js .ledger-row:not(.is-in) :is(.lr-yr, .lr-co, .lr-role) { opacity: 0; transform: translate3d(-10px, 0, 0); }
+  .motion-js .ledger-row:not(.is-in) :is(.lr-years, .lc-body, .lc-mark) { opacity: 0; }
+  .motion-js .ledger-row:not(.is-in) .lc-wick { transform: scaleX(0); }
+  .motion-js .ledger-row:not(.is-in) .lc-fill { transform: translate3d(-100%, 0, 0); }
+
+  /* Anything that takes focus is shown, whatever its reveal state. */
+  [data-reveal]:focus-within { opacity: 1 !important; transform: none !important; }
 }
 
-.career-legend {
-  list-style: none;
-  margin: 0; padding: 0;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  line-height: 1.6;
-  color: var(--ink);
-  columns: 2;
-  column-gap: 24px;
-}
-.career-legend li {
-  break-inside: avoid;
-  display: grid;
-  grid-template-columns: 44px 90px 1fr;
-  gap: 6px;
-  padding: 4px 0;
-  border-top: 1px solid var(--ink-hair);
-}
-.career-legend li:first-child { border-top: none; }
-.career-legend .yr { color: var(--ink-soft); }
-.career-legend .co { color: var(--ink); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
-.career-legend .rl { color: var(--ink-soft); text-transform: none; letter-spacing: 0.02em; }
-
-.map-stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin: 24px 0 0;
-}
-.map-stats > div { padding-top: 12px; border-top: 1px solid var(--ink); }
-.map-stats dt {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 38px;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  margin: 0 0 4px;
-}
-.map-stats dd {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin: 0;
-}
-
-/* ── Hero ───────────────────────────────────────────────── */
-.hero-section {
-  position: relative;
-  height: 100vh;
-  min-height: 800px;
-  padding: 0;
-  overflow: hidden;
-  background: var(--ink);
-}
-.hero-portrait {
-  position: absolute;
-  top: 130px;         /* below the running header + top meta strip */
-  bottom: 200px;
-  left: 0; right: 0;
-  z-index: 1;
-}
-.hero-portrait > div, .hero-portrait canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+/* Phones: the contents label drops under its title, so long titles keep
+   the width of the column. */
 @media (max-width: 700px) {
-  .hero-section { min-height: 640px; }
-  .hero-portrait {
-    top: 110px;
-    bottom: auto;
-    height: 56.25vw; /* exact 16:9 of viewport width */
-  }
-}
-
-.hero-top-bar {
-  position: absolute;
-  top: 56px;          /* sit below the running header, not behind it */
-  left: 0; right: 0;
-  z-index: 3;
-  padding: 24px 0 18px;
-  background: linear-gradient(180deg, var(--ink) 0%, var(--ink) 60%, rgba(28,38,122,0) 100%);
-}
-.hero-top-bar .meta { color: rgba(var(--paper-rgb), 0.65); }
-.hero-top-bar .meta-strong { color: var(--paper); }
-.hero-top-grid {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-top: 12px;
-  border-top: 1px solid rgba(var(--paper-rgb), 0.4);
-}
-
-/* Bottom navy band — the cover title block */
-.hero-band {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  z-index: 4;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 22px 0 26px;
-}
-.hero-band .wrap > * { color: var(--paper); }
-.hero-band-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(var(--paper-rgb), 0.25);
-}
-.hero-band-top .meta { color: rgba(var(--paper-rgb), 0.65); }
-.hero-title {
-  margin-top: 12px !important;
-  margin-bottom: 14px !important;
-  font-size: clamp(44px, 6vw, 96px) !important;
-  line-height: 0.92 !important;
-  color: var(--paper) !important;
-}
-.hero-title em {
-  font-style: italic;
-  font-weight: 300;
-  color: rgba(var(--paper-rgb), 0.7);
-}
-.hero-band-bottom {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 32px;
-  align-items: end;
-  padding-top: 10px;
-  border-top: 1px solid rgba(var(--paper-rgb), 0.25);
-}
-.hero-tagline-text {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(16px, 1.6vw, 20px);
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  max-width: 720px;
-  margin: 0;
-  color: var(--paper);
-}
-.hero-tagline-text em { font-style: italic; font-weight: 300; color: rgba(var(--paper-rgb), 0.85); }
-.hero-lines .hero-tagline-text { font-size: clamp(22px, 2.3vw, 32px); line-height: 1.15; }
-.hero-subline {
-  margin: 10px 0 0;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(var(--paper-rgb), 0.92);
-}
-
-.hero-actions {
-  display: flex;
-  align-items: flex-end;
-  gap: 28px;
-}
-.hero-cta {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--paper);
-  padding: 11px 18px;
-  border: 1px solid var(--paper);
-  border-radius: 999px;
-  white-space: nowrap;
-  transition: background-color 0.18s, color 0.18s;
-}
-.hero-cta:hover { background: var(--paper); color: var(--ink); }
-@media (max-width: 800px) {
-  .hero-actions { justify-content: space-between; align-items: center; }
-}
-.hero-scroll {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 4px;
-  font-family: var(--font-mono);
-  color: var(--paper);
-  text-align: right;
-}
-.hero-scroll .meta { color: rgba(var(--paper-rgb), 0.92); }
-.hero-scroll .arrow {
-  font-family: var(--font-serif);
-  font-size: 22px;
-  line-height: 1;
-  display: inline-block;
-  animation: arrow-bob 2s ease-in-out infinite;
-}
-@keyframes arrow-bob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(6px); }
-}
-
-@media (max-width: 800px) {
-  .hero-band { padding: 24px 0 28px; }
-  .hero-title { font-size: clamp(56px, 18vw, 96px) !important; }
-  .hero-band-bottom { grid-template-columns: 1fr; gap: 16px; }
-}
-
-/* ── Ticker ─────────────────────────────────────────────── */
-.ticker {
-  background: var(--ink);
-  color: var(--paper);
-  overflow: hidden;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  height: 44px;
-  display: flex;
-  align-items: center;
-}
-.ticker-track {
-  display: inline-block;
-  white-space: nowrap;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  animation: ticker 60s linear infinite;
-  padding-left: 100%;
-}
-@keyframes ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-.ticker-track { animation-duration: 90s; animation-delay: -30s; } /* start mid-flow, never an empty band */
-.ticker { position: relative; }
-.ticker.is-paused .ticker-track { animation-play-state: paused; }
-.ticker-toggle {
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 var(--gutter-sm) 0 20px;
-  border: 0;
-  background: var(--ink);
-  box-shadow: -24px 0 16px var(--ink);
-  color: var(--paper);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  cursor: pointer;
-  min-height: 24px;
-}
-.ticker-toggle-glyph { font-size: 9px; letter-spacing: 0; opacity: 0.85; }
-.ticker-toggle:hover { text-decoration: underline; text-underline-offset: 4px; }
-
-/* ── About section ──────────────────────────────────────── */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-@media (max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; gap: 32px; }
-}
-.about-margin {
-  border-left: 1px solid var(--ink-hair);
-  padding-left: 24px;
-  padding-top: 8px;
-}
-.about-margin p { margin: 0 0 12px; }
-
-.three-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-}
-.three-cards article {
-  border-top: 1px solid var(--ink);
-  padding-top: 16px;
-}
-.three-cards .subhead { margin: 8px 0 12px; }
-.three-cards p {
-  font-size: 16px;
-  line-height: 1.6;
-  margin: 0;
-}
-@media (max-width: 900px) {
-  .three-cards { grid-template-columns: 1fr; gap: 24px; }
-}
-
-.achievement-list {
-  list-style: none;
-  padding: 0; margin: 12px 0 0;
-  font-family: var(--font-serif);
-  font-size: clamp(24px, 2.6vw, 34px);
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-}
-.achievement-list li {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: 16px;
-  padding: 18px 0;
-  border-top: 1px solid var(--ink-hair);
-  align-items: baseline;
-}
-.achievement-list li:first-child { border-top: none; padding-top: 8px; }
-.achievement-list em { font-style: italic; font-weight: 300; }
-.ach-num {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  color: var(--ink-soft);
-  padding-top: 8px;
-}
-
-/* ── Projects ───────────────────────────────────────────── */
-.project {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 48px;
-  padding: 40px 0 !important;
-  align-items: start;
-}
-.project-meta .kicker { margin-bottom: 8px; }
-.project-meta .meta { color: var(--ink); }
-.project-body .subhead { margin-bottom: 16px; font-size: 36px; }
-.project-role {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  color: var(--ink-soft);
-  font-size: 0.7em;
-  letter-spacing: 0;
-}
-.project-body p {
-  font-size: 17px;
-  line-height: 1.6;
-  margin: 0 0 16px;
-  max-width: 760px;
-}
-.project-pills { margin-top: 12px; }
-
-@media (max-width: 800px) {
-  .project { grid-template-columns: 1fr; gap: 12px; }
-  .project-body .subhead { font-size: 28px; }
-}
-
-/* ── Services ───────────────────────────────────────────── */
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 48px;
-}
-.services-grid article {
-  border-top: 1px solid var(--ink);
-  padding-top: 16px;
-  display: flex;
-  flex-direction: column;
-}
-.services-grid .subhead { margin: 8px 0 16px; }
-.services-grid .bare-list { margin-top: auto; }
-
-.bare-list {
-  list-style: none;
-  padding: 0; margin: 0;
-  font-family: var(--font-sans);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--ink);
-}
-.bare-list li {
-  padding: 8px 0;
-  border-top: 1px dotted var(--ink-hair);
-}
-.bare-list li:first-child { border-top: none; padding-top: 0; }
-
-.dd-callout {
-  margin-top: 64px;
-  padding: 40px;
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 4px;
-}
-.dd-callout .kicker, .dd-callout .subhead, .dd-callout p {
-  color: var(--paper);
-}
-.dd-callout .kicker { color: rgba(var(--paper-rgb), 0.65); }
-.dd-callout p {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 1.35;
-  margin: 16px 0;
-}
-.dd-callout .link-arrow {
-  color: var(--paper);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-.link-arrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 1px;
-  transition: padding-bottom 0.18s;
-}
-.link-arrow:hover { padding-bottom: 4px; }
-
-@media (max-width: 900px) {
-  .services-grid { grid-template-columns: 1fr; gap: 32px; }
-}
-
-/* ── Writing ────────────────────────────────────────────── */
-.writing-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-.article-link {
-  display: block;
-  padding: 32px 0 !important;
-  transition: transform 0.2s;
-}
-.article-link:hover { transform: translateX(4px); }
-.article-link .subhead {
-  font-size: 28px;
-  margin: 6px 0 10px;
-}
-.article-link p {
-  font-size: 16px;
-  line-height: 1.55;
-  margin: 0 0 12px;
-  color: var(--ink);
-  max-width: 640px;
-}
-.article-link .link-arrow {
-  display: inline-block;
-  border-bottom: 0;
-}
-
-.speaking-item {
-  padding: 16px 0;
-  border-top: 1px solid var(--ink-hair);
-}
-.speaking-item:first-of-type { border-top: 1px solid var(--ink); }
-.speaking-item:last-of-type { border-bottom: 1px solid var(--ink-hair); }
-.speaking-item .meta { margin-top: 4px; }
-
-@media (max-width: 900px) {
-  .writing-grid { grid-template-columns: 1fr; gap: 32px; }
-}
-
-/* ── Reading ────────────────────────────────────────────── */
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 56px;
-}
-.book img {
-  width: 100%;
-  height: auto;
-  background: var(--paper-dim);
-  display: block;
-  filter: contrast(1.04) saturate(0.85);
-  box-shadow: 0 8px 32px rgba(28,38,122,0.12);
-}
-.book-meta { margin-top: 20px; }
-.book-meta p { margin: 0; }
-
-@media (max-width: 900px) {
-  .books-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-}
-@media (max-width: 600px) {
-  .books-grid { grid-template-columns: 1fr; }
-}
-
-/* ── Contact ────────────────────────────────────────────── */
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr); /* keep the signup row inside 390 px */
-  gap: 48px;
-}
-.contact-links {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px 56px;
-  margin-top: 24px;
-  border-top: 1px solid var(--ink);
-  padding-top: 32px;
-}
-.contact-links a {
-  display: block;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--ink-hair);
-  transition: padding-left 0.18s;
-}
-.contact-links a:hover { padding-left: 8px; }
-.contact-links .kicker { margin-bottom: 6px; }
-.contact-value {
-  font-family: var(--font-serif);
-  font-size: 28px;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-.sr-only {
-  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
-}
-/* Email capture — quiet, one line and a field. Visual only for now. */
-.edition-signup {
-  max-width: 720px;
-  padding-top: 8px;
-}
-.edition-signup-line {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 1.35;
-  margin: 0 0 16px;
-  color: var(--ink);
-}
-.edition-signup-row {
-  display: flex;
-  gap: 16px;
-  align-items: stretch;
-}
-.edition-signup input {
-  flex: 1;
-  min-width: 0;
-  font-family: var(--font-serif);
-  font-size: 22px;
-  color: var(--ink);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--ink);
-  padding: 8px 0;
-  border-radius: 0;
-}
-.edition-signup input::placeholder { color: var(--ink-mute); }
-.edition-signup input:focus-visible {
-  outline: none;
-  box-shadow: 0 2px 0 0 var(--ink);
-}
-.edition-signup button {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: transparent;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  padding: 10px 18px;
-  cursor: pointer;
-  transition: background-color 0.18s, color 0.18s;
-}
-.edition-signup button:hover { background: var(--ink); color: var(--paper); }
-
-@media (max-width: 700px) {
-  .contact-links { grid-template-columns: 1fr; }
-  .contact-value { font-size: 22px; }
-}
-
-/* Touch targets on narrow screens (WCAG 2.2): bigger tap area, same look. */
-@media (max-width: 800px) {
-  .link-arrow { position: relative; }
-  .link-arrow::after { content: ''; position: absolute; inset: -12px -6px; }
+  .toc:not(.toc-routes):not(.toc-contact) a { flex-wrap: wrap; row-gap: 2px; }
+  .toc:not(.toc-routes):not(.toc-contact) .toc-dots { display: none; }
+  .toc:not(.toc-routes):not(.toc-contact) .toc-t { flex: 1 1 0; min-width: 0; }
+  .toc:not(.toc-routes):not(.toc-contact) .toc-f { flex-basis: 100%; padding-left: calc(2.1 * 14px + 14px); font-size: 16px; }
+  .toc-more .toc-f { padding-left: 0 !important; }
 }

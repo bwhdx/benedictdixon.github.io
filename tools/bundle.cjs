@@ -1,6 +1,6 @@
 // Concatenate the compiled .js files into a single bundle.js so the browser
 // only fetches one app script instead of five. Order matters — later files
-// reference globals defined earlier (window.Runner, window.MorphStage, etc.).
+// reference globals defined earlier (window.ScrollMotion, window.Runner, etc.).
 
 const fs = require('fs');
 const path = require('path');
@@ -8,9 +8,8 @@ const path = require('path');
 const ROOT = path.join(__dirname, '..');
 
 const ORDER = [
+  'scroll-motion.js',
   'portrait-renderers.js',
-  'cursor-fx.js',
-  'morph-stage.js',
   'site-content.js',
   'portfolio-app.js',
 ];

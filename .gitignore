@@ -6,9 +6,8 @@ assets/og-image.svg
 .superpowers/
 .playwright-mcp/
 
-# Compiled JSX → JS intermediates; only bundle.js ships
+# Compiled JSX → JS intermediates; bundle.js ships, and scroll-motion.js,
+# which the writing pages load on their own
 portrait-renderers.js
-cursor-fx.js
-morph-stage.js
 site-content.js
 portfolio-app.js

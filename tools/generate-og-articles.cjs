@@ -126,7 +126,8 @@ function decodeEntities(s) {
 function extract(file) {
   const html = fs.readFileSync(file, 'utf8');
   const rawTitle = (html.match(/property="og:title" content="([^"]+)"/) || [])[1];
-  const rawKicker = (html.match(/<span>(§ [^<]+)<\/span>/) || [, '§ Essay'])[1];
+  // The essay's kicker in the head's margin: its place in the book.
+  const rawKicker = (html.match(/<div class="kicker-row">\s*<span>([^<]+)<\/span>/) || [, 'Chapter IV, essay'])[1];
   const date = (html.match(/"datePublished": "([^"]+)"/) || [])[1] || '';
   return {
     title: rawTitle && decodeEntities(rawTitle),
