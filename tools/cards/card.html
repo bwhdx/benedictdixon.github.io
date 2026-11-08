@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+  The share card template, rendered by tools/generate-cards.cjs in a
+  headless browser and screenshotted at 1200 x 630. Not part of the site.
+
+  One sheet, two faces, picked by data-variant on <main>:
+    navy   the cover: double-rule frame, top strip, candle portrait on the
+           right, the title (and the cover line or byline) bottom left
+    paper  an essay with a cover: the illustration fills the sheet, the
+           title sits top left with the bwhdx mark and the address beneath
+
+  The generator fills the slots and calls window.renderCard (card.js),
+  which lays the text out at the largest size that fits.
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Share card</title>
+<link rel="stylesheet" href="card.css">
+</head>
+<body>
+<main id="card" class="card" data-variant="navy">
+  <canvas class="ground" width="1200" height="630" aria-hidden="true"></canvas>
+  <div class="portrait" aria-hidden="true"></div>
+
+  <div class="top">
+    <p class="top-left">An Almanack</p>
+    <p class="top-right">benedictdixon.com</p>
+  </div>
+
+  <!-- The text column: bottom left on navy, top left on paper. -->
+  <div class="column">
+    <h1 class="title" data-slot="title"></h1>
+    <p class="line" data-slot="line"></p>
+    <div class="sign">
+      <span class="mark" data-slot="mark"></span>
+      <span class="site">benedictdixon.com</span>
+    </div>
+  </div>
+</main>
+<script src="card.js"></script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+/* The share card's styles (see card.html). Fixed 1200 x 630 sheet; the
+   palette, faces and type settings follow site.css and writing.css, so a
+   card reads as a page of the site. Font sizes the fit adjusts at render
+   time (card.js) are custom properties with their largest value here. */
+
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: block;
+  src: url('../../assets/fonts/fraunces-latin.woff2') format('woff2');
+}
+/* The true italic, so no italic is ever the roman slanted. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: block;
+  src: url('../../assets/fonts/fraunces-italic-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: block;
+  src: url('../../assets/fonts/inter-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: block;
+  src: url('../../assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+
+:root {
+  --paper: #d0b57a;
+  --paper-rgb: 208, 181, 122;
+  --ink: #1c267a;
+  --title-size: 84px;
+  --line-size: 26px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--ink); }
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "calt";
+}
+
+.card { position: relative; width: 1200px; height: 630px; overflow: hidden; }
+.ground { position: absolute; inset: 0; display: none; }
+.portrait { position: absolute; display: none; }
+.portrait canvas { position: absolute; display: block; }
+.top { display: none; }
+.line { display: none; }
+.sign { display: none; }
+
+.title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: var(--title-size);
+  text-wrap: balance;
+}
+.title em { font-style: italic; font-weight: 300; }
+.nb { white-space: nowrap; }
+.title .seg { display: block; text-wrap: balance; }
+
+/* ── Navy: the cover ──────────────────────────────────────
+   The frame is the cover's: a rule inset 20 px from the edge and a
+   second, fainter one 6 px inside it. */
+.card[data-variant="navy"] { background: var(--ink); color: var(--paper); }
+.card[data-variant="navy"]::after {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(var(--paper-rgb), 0.55);
+  outline: 1px solid rgba(var(--paper-rgb), 0.3);
+  outline-offset: -6px;
+  pointer-events: none;
+}
+.card[data-variant="navy"] .top {
+  position: absolute;
+  top: 46px;
+  left: 64px;
+  right: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgba(var(--paper-rgb), 0.92);
+}
+.card[data-variant="navy"] .top-left { color: var(--paper); }
+/* The portrait box: the right of the frame's inner rule, less the air the
+   site leaves between the rule and the candles. */
+.card[data-variant="navy"] .portrait { display: block; left: 600px; top: 88px; right: 50px; bottom: 50px; }
+.card[data-variant="navy"] .column {
+  position: absolute;
+  left: 64px;
+  bottom: 60px;
+  width: 500px;
+}
+.card[data-variant="navy"] .title {
+  padding-top: 14px;
+  border-top: 1px solid rgba(var(--paper-rgb), 0.35);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+}
+.card[data-variant="navy"] .line {
+  display: block;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(var(--paper-rgb), 0.35);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-variation-settings: "opsz" 48;
+  font-size: var(--line-size);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+/* ── Paper: an essay with a cover ─────────────────────────
+   The illustration is drawn on the ground canvas, cover-fit. */
+.card[data-variant="paper"] { background: var(--paper); color: var(--ink); }
+.card[data-variant="paper"] .ground { display: block; }
+.card[data-variant="paper"] .column {
+  position: absolute;
+  left: 72px;
+  top: 72px;
+  width: var(--column-width, 600px);
+}
+.card[data-variant="paper"] .title {
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 96, "SOFT" 50;
+}
+.card[data-variant="paper"] .title em { letter-spacing: 0; }
+.card[data-variant="paper"] .sign {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 36px;
+}
+.mark svg { display: block; width: 76px; height: auto; color: var(--ink); }
+.site {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
