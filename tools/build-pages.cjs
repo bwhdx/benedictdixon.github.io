@@ -151,8 +151,9 @@ function essayPage(e, byPath, cards) {
   let html = read(e.file);
   const where = e.file;
 
-  html = html.replace(/(<div class="kicker-row">\s*<span>[^<]*<\/span>\s*<span>[^<]*? · )~?\d+ min read(<\/span>)/,
-    `$1${e.minutes} min read$2`);
+  // The reading time never breaks across lines (no-break spaces).
+  html = html.replace(/(<div class="kicker-row">\s*<span>[^<]*<\/span>\s*<span>[^<]*? · )~?\d+[ \u00A0]min[ \u00A0]read(<\/span>)/,
+    `$1${e.minutes}\u00A0min\u00A0read$2`);
   html = html.replace(/"wordCount": \d+/, `"wordCount": ${e.words}`);
 
   // A contents list for long essays, after the opening paragraph, and a

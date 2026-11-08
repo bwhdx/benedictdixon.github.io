@@ -314,11 +314,6 @@ button:focus-visible,
 @media (max-width: 960px) {
   .masthead { grid-template-columns: auto minmax(0, 1fr) auto; padding: 20px 20px 0; gap: 16px; }
   .candle-progress { left: 20px; right: 20px; }
-  /* The name leaves the screen but stays the link's name (H4). */
-  .masthead .brand > .brand-name {
-    position: absolute; width: 1px; height: 1px; margin: -1px;
-    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
-  }
 
 }
 @media (max-width: 700px) {
@@ -328,6 +323,17 @@ button:focus-visible,
   .masthead nav a:not(:first-child) { display: none; }
   .runhead { justify-content: flex-start; }
   .runhead-n { display: none; }
+}
+
+/* The name needs about 250 px beside the mark; below 1240 px the head's
+   side columns are narrower, so the name leaves the screen but stays the
+   link's name (the mark's letters lead it). */
+.masthead .brand-name { white-space: nowrap; }
+@media (max-width: 1240px) {
+  .masthead .brand > .brand-name {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
 }
 
 /* ── The page grid ──────────────────────────────────────── */
@@ -355,7 +361,8 @@ button:focus-visible,
   position: absolute;
   top: 0.9em;
   right: calc(100% + var(--margin-gap));
-  width: 13rem;
+  /* No wider than the margin column, which narrows towards 960 px. */
+  width: min(13rem, calc((100vw - var(--measure) - 2 * var(--margin-gap) - 64px) / 2));
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -869,7 +876,8 @@ button:focus-visible,
   position: absolute;
   top: 0.4em;
   right: calc(100% + var(--margin-gap));
-  width: 13rem;
+  /* No wider than the margin column, which narrows towards 960 px. */
+  width: min(13rem, calc((100vw - var(--measure) - 2 * var(--margin-gap) - 64px) / 2));
   text-align: right;
   color: var(--ink);
 }

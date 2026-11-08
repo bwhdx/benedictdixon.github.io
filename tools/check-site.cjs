@@ -297,7 +297,7 @@ const newestEssay = list[0];
 for (const e of list) {
   const html = stripComments(read(e.file));
   const kicker = (html.match(/<div class="kicker-row">[\s\S]*?<\/div>/) || [''])[0];
-  const stated = Number((kicker.match(/ · (\d+) min read</) || [])[1]);
+  const stated = Number((kicker.match(/ · (\d+)[ \u00A0]min[ \u00A0]read</) || [])[1]);
   if (stated !== e.minutes) error(e.file, `reading time is ${stated || 'missing'} min, the text is ${e.words} words (${e.minutes} min); run npm run build`);
   const posting = jsonLd(html, e.file).find((b) => b['@type'] === 'BlogPosting');
   if (posting && posting.wordCount !== e.words) error(e.file, `JSON-LD wordCount ${posting.wordCount} ≠ ${e.words} words; run npm run build`);
