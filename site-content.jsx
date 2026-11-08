@@ -660,7 +660,7 @@ function Career() {
 const PROJECTS = [
   {
     co: 'kash',
-    body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events: around 80 event-driven microservices.",
+    body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events: 80+ event-driven microservices.",
     tags: ['Operations', 'Product', 'Technology', 'AI', 'Partnerships'],
   },
   {
