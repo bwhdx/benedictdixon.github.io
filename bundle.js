@@ -1934,7 +1934,7 @@ function Career() {
 // own record. Never a market or trading figure.
 const PROJECTS = [{
   co: 'kash',
-  body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events: 55-plus event-driven microservices.",
+  body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events: around 80 event-driven microservices.",
   tags: ['Operations', 'Product', 'Technology', 'AI', 'Partnerships']
 }, {
   co: 'Voi Network',
