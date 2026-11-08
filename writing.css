@@ -10,6 +10,15 @@
   font-display: swap;
   src: url('/assets/fonts/fraunces-latin.woff2') format('woff2');
 }
+/* Fraunces' true italic, as on the home page: no italic is ever the
+   roman slanted by the browser. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/assets/fonts/fraunces-italic-latin.woff2') format('woff2');
+}
 @font-face {
   font-family: 'Inter';
   font-style: normal;
@@ -23,6 +32,37 @@
   font-weight: 100 800;
   font-display: swap;
   src: url('/assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+/* Metric-matched fallbacks: while the web fonts load (font-display: swap),
+   the local Times New Roman and Arial are scaled to Fraunces' and Inter's
+   width and line metrics, so the swap barely moves a line. Measured
+   against the self-hosted files at 100 px over essay text. */
+@font-face {
+  font-family: 'Fraunces Fallback';
+  font-style: normal;
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  size-adjust: 92.82%;
+  ascent-override: 105.58%;
+  descent-override: 28.01%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Fraunces Fallback';
+  font-style: italic;
+  src: local('Times New Roman Italic'), local('TimesNewRomanPS-ItalicMT');
+  size-adjust: 88.93%;
+  ascent-override: 110.2%;
+  descent-override: 29.24%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  font-style: normal;
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 106.8%;
+  ascent-override: 90.82%;
+  descent-override: 22.47%;
+  line-gap-override: 0%;
 }
 
 :root {
@@ -39,8 +79,8 @@
   --grain: var(--grain-fine) 0 0 / 100px 100px, var(--grain-tone) 0 0 / 960px 960px;
   --ink-hair: rgba(28, 38, 122, 0.22);
 
-  --font-serif: 'Fraunces', 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Fraunces', 'Fraunces Fallback', 'Times New Roman', serif;
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* Kept in step with site.css: the head's height and the motion tokens. */
@@ -57,6 +97,7 @@ html { background: var(--grain) var(--paper); }
 @media (prefers-contrast: more), print {
   html { background: var(--paper); }
 }
+html { font-synthesis: none; }   /* never a faked slant or bold */
 body {
   color: var(--ink);
   font-family: var(--font-sans);
@@ -64,29 +105,48 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Two-tone focus ring, same as main site */
+/* Keyboard focus in the house style, as on the home page (site.css): the
+   cover's double rule as the ring, in the ink of the surface, and the
+   skip link as a paper tile. Focused or linked-to elements stop clear of
+   the sticky head (WCAG 2.4.11). */
+html { scroll-padding-top: calc(var(--runner-h) + 16px); }
 a:focus-visible,
-button:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink);
-  border-radius: 2px;
+button:focus-visible,
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 1px currentColor;
+  border-radius: 0;
 }
-
 .skip-link {
   position: absolute;
-  top: -64px;
-  left: 16px;
   z-index: 1000;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  padding: 10px 16px;
-  text-decoration: none;
-  border-radius: 4px;
   transition: top 120ms ease-out;
+  top: -96px;
+  left: 20px;
+  padding: 12px 20px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  outline: 1px solid var(--ink);
+  outline-offset: -6px;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
 }
-.skip-link:focus { top: 16px; }
+.skip-link:focus { top: 14px; outline: 1px solid var(--ink); outline-offset: -6px; box-shadow: none; }
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ── The book, on the writing pages ─────────────────────── */
 /* An essay is a chapter: a text column of about 64 characters in
@@ -109,8 +169,8 @@ button:focus-visible {
 .sc,
 .masthead nav a,
 .article-head .kicker-row span:first-child, .article-byline,
-.article-related .related-kicker, .author-bio .bio-kicker,
-.article-foot-nav, .read-next .kicker, .article-colophon strong,
+.author-bio .bio-kicker,
+.article-foot-nav, .article-colophon strong,
 .listing .section-head .num, .listing .category-head .kicker,
 .listing .post-section, .listing-closer .closer-num, .editor-aside .aside-label {
   font-family: var(--font-sans);
@@ -224,9 +284,10 @@ button:focus-visible {
   cursor: pointer;
   pointer-events: auto;
 }
+/* The drawn row stays 20 px; the hit area reaches 26 px (WCAG 2.5.8). */
+.cp-candle::before { content: ''; position: absolute; inset: -2px 0 -4px; }
 .cp-candle[data-state="ahead"] { opacity: 0.5; }
 .cp-candle:hover { opacity: 1; }
-.cp-candle:focus-visible { outline: 1px solid var(--ink); outline-offset: 0; }
 .cp-wick { position: absolute; left: calc(50% - 0.5px); width: 1px; background: currentColor; }
 .cp-body {
   position: absolute;
@@ -253,7 +314,11 @@ button:focus-visible {
 @media (max-width: 960px) {
   .masthead { grid-template-columns: auto minmax(0, 1fr) auto; padding: 20px 20px 0; gap: 16px; }
   .candle-progress { left: 20px; right: 20px; }
-  .masthead .brand > span { display: none; }
+  /* The name leaves the screen but stays the link's name (H4). */
+  .masthead .brand > .brand-name {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
 
 }
 @media (max-width: 700px) {
@@ -277,6 +342,11 @@ button:focus-visible {
 .article > *, .listing > * { grid-column: 2; min-width: 0; }
 @media (max-width: 960px) {
   .article, .listing { display: block; max-width: calc(var(--measure) + 48px); padding: 64px 24px 96px; }
+}
+/* Phones: a narrower gutter and slightly smaller prose, so a line holds
+   about 40 characters rather than 33. */
+@media (max-width: 480px) {
+  .article, .listing { padding-left: 18px; padding-right: 18px; }
 }
 
 /* ── Article head ───────────────────────────────────────── */
@@ -444,6 +514,23 @@ button:focus-visible {
   background: rgba(28, 38, 122, 0.07);
   border-radius: 2px;
 }
+/* Code blocks. When one is wider than the column, its right edge fades
+   to show there is more to scroll (book.js marks it .is-clipped, and
+   .is-scrolled-end once the reader reaches the end). */
+.article-body pre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  background: rgba(28, 38, 122, 0.05);
+  padding: 20px 24px;
+  border-left: 2px solid var(--ink-hair);
+  overflow-x: auto;
+  tab-size: 2;
+}
+.article-body pre.is-clipped:not(.is-scrolled-end) {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+  mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent);
+}
 .article-body hr {
   border: 0;
   height: 28px;
@@ -483,8 +570,8 @@ button:focus-visible {
 .article-body table td:first-child { font-style: italic; width: 40%; }
 .article-body table tr:last-child td { border-bottom: 0; }
 @media (max-width: 700px) {
-  .article-body { font-size: 18px; line-height: 1.62; }
-  .article-body > p.lead, .article-body > p:first-child { font-size: 18px; }
+  .article-body { font-size: 17.5px; line-height: 1.62; }
+  .article-body > p.lead, .article-body > p:first-child { font-size: 17.5px; }
   .article-body table { display: block; overflow-x: auto; font-size: 15px; }
 }
 
@@ -529,41 +616,27 @@ button:focus-visible {
   .author-bio .bio-mark .cipher { width: 56px; }
 }
 
-/* ── Further reading ────────────────────────────────────── */
-.article-related { margin-top: 72px; }
-.article-related .related-kicker {
+/* ── Further reading, as a short contents list ──────────── */
+/* The end of an essay is set as a book's: the essays to read next as a
+   contents list with dotted leaders (written by tools/build-pages.cjs from
+   the links in the block), then the foot and a one-line colophon. */
+.further { margin-top: 72px; }
+.further-title {
   margin: 0;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.005em;
   color: var(--ink);
 }
-.related-grid { display: block; }
-.related-card {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--ink-hair);
-  text-decoration: none;
-  color: var(--ink);
-}
-.related-card .related-title {
-  order: -1;
-  font-family: var(--font-serif);
-  font-size: 22px;
-  line-height: 1.25;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
-  text-decoration-color: transparent;
-  transition: text-decoration-color 0.15s;
-}
-.related-card .related-title em { font-style: italic; font-weight: 300; }
-.related-card .related-meta { font-family: var(--font-serif); font-style: italic; font-size: 15px; }
-.related-card:hover .related-title, .related-card:focus-visible .related-title { text-decoration-color: var(--ink); }
+.further .toc a { padding: 14px 0; border-bottom: 1px solid var(--ink-hair); }
+.further .toc-t { font-size: 22px; }
+.further .toc-f { font-size: 16px; }
 
-/* ── Foot: next, and the colophon ───────────────────────── */
-.article-foot { margin-top: 72px; }
+/* ── Foot: the way back, and the colophon line ──────────── */
+.article-foot { margin-top: 56px; }
 .article-foot-nav {
   display: flex;
   justify-content: space-between;
@@ -576,32 +649,15 @@ button:focus-visible {
 .article-foot-nav a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--rule); padding: 6px 0; }
 .article-foot-nav a:hover { text-decoration-color: var(--ink); }
 .article-foot-nav .nth { color: var(--ink); }
-.read-next {
-  display: block;
-  margin: 40px 0 0;
-  padding: 32px 36px;
-  background: var(--ink);
-  color: var(--paper);
-  border-radius: 2px;
-  text-decoration: none;
-}
-.read-next .kicker { color: var(--paper); margin: 0 0 12px; }
-.read-next h3 {
+.article-end {
+  margin: 20px 0 0;
   font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 1.15;
-  margin: 0 0 12px;
-  color: var(--paper);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.16em;
-  text-decoration-color: transparent;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
 }
-.read-next:hover h3, .read-next:focus-visible h3 { text-decoration-color: var(--paper); }
-.read-next h3 em { font-style: italic; font-weight: 300; }
-.read-next .next-meta { font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--paper); }
-.read-next:focus-visible { box-shadow: 0 0 0 2px var(--paper), 0 0 0 4px var(--ink); }
+/* /ai/ and /hosts/ keep the three-column colophon. */
 .article-colophon {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -619,10 +675,158 @@ button:focus-visible {
 .article-colophon a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--rule); }
 .article-colophon a:hover { text-decoration-color: var(--ink); }
 @media (max-width: 700px) {
-  .read-next { padding: 24px; }
-  .read-next h3 { font-size: 24px; }
   .article-colophon { grid-template-columns: 1fr; gap: 20px; }
 }
+
+/* ── Contents lists (kept in step with site.css) ────────── */
+.toc { list-style: none; margin: 0; padding: 0; }
+.toc a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 12px 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.toc-n {
+  flex: none;
+  width: 2.6em;
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 14;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+.toc-t {
+  font-family: var(--font-serif);
+  font-variation-settings: "opsz" 48;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s;
+}
+.toc-dots {
+  flex: 1 1 auto;
+  min-width: 24px;
+  border-bottom: 2px dotted rgba(28, 38, 122, 0.55);
+  transform: translateY(-0.3em);
+}
+.toc-f { flex: none; font-family: var(--font-serif); font-style: italic; font-size: 17px; }
+.toc a:hover .toc-t, .toc a:focus-visible .toc-t, .toc a[aria-current] .toc-t { text-decoration-color: var(--ink); }
+@media (max-width: 700px) {
+  .toc-n { width: 2.1em; }
+  .toc a { flex-wrap: wrap; row-gap: 2px; }
+  .toc-dots { display: none; }
+  .toc-t { flex: 1 1 0; min-width: 0; font-size: 20px; }
+  .toc-f { flex-basis: 100%; font-size: 15px; }
+  .toc-n + .toc-t + .toc-dots + .toc-f { padding-left: calc(2.1em * 14 / 15 + 14px); }
+}
+
+/* ── A long essay's contents ────────────────────────────── */
+/* Essays of ten minutes or more open with their parts (build-pages.cjs);
+   each part ends with a way back. */
+.article-body > .essay-contents { margin-top: 2em; padding: 18px 0 6px; border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.essay-contents { scroll-margin-top: calc(var(--runner-h) + 16px); }
+.essay-contents-title {
+  margin: 0 0 4px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+}
+.essay-contents .toc a { padding: 8px 0; }
+.essay-contents .toc-t { font-size: 19px; }
+.article-body > .to-contents { margin-top: 1.4em; font-family: var(--font-sans); font-size: 14px; }
+.to-contents a { display: inline-block; padding: 6px 0; text-decoration-color: var(--rule); }
+
+/* ── Contents button and sheet (kept in step with site.css) ─ */
+.contents-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 14px/1 var(--font-sans);
+  cursor: pointer;
+}
+.contents-btn:hover { background: var(--ink); color: var(--paper); }
+.masthead nav { align-items: center; }
+.contents-sheet {
+  padding: 0;
+  border: 0;
+  margin: 0 0 0 auto;
+  width: min(440px, 100vw);
+  max-width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  background: transparent;
+  color: var(--ink);
+}
+.contents-sheet::backdrop { background: rgba(28, 38, 122, 0.55); }
+@media (prefers-reduced-motion: no-preference) {
+  .contents-sheet[open] { animation: sheet-in 0.24s cubic-bezier(.2,.7,.3,1); }
+}
+@keyframes sheet-in { from { transform: translateX(24px); opacity: 0; } }
+.sheet-panel {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 20px 28px 40px;
+  background: var(--grain) var(--paper);
+  border-left: 1px solid var(--ink);
+}
+.sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+}
+.sheet-head h2 { font-family: var(--font-serif); font-weight: 400; font-size: 34px; letter-spacing: -0.01em; margin: 0; }
+.sheet-close {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  font: 500 14px/1 var(--font-sans);
+  cursor: pointer;
+}
+.sheet-close:hover { background: var(--ink); color: var(--paper); }
+.contents-sheet .toc a { padding: 14px 0; }
+/* The chapter you are in: a small filled candle beside its number. */
+.toc a[aria-current="location"] .toc-n { width: auto; min-width: 2.6em; white-space: nowrap; }
+.toc a[aria-current="location"] .toc-n::after {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 15px;
+  margin-left: 8px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) center / 5px 9px no-repeat;
+  vertical-align: -2px;
+}
+.sheet-more { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 28px 0 0; }
+.sheet-more a {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 18px;
+  padding: 6px 0;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--rule);
+}
+.sheet-more a[aria-current] { text-decoration-color: var(--ink); }
 
 /* ── The writing index ──────────────────────────────────── */
 .listing .section-head {
@@ -823,7 +1027,7 @@ button:focus-visible {
 .hosts-photo figcaption {
   margin-top: 10px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -837,7 +1041,7 @@ button:focus-visible {
 .hosts-now strong {
   display: block;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -899,4 +1103,43 @@ button:focus-visible {
     transition: opacity var(--dur-settle) var(--ease-page), transform var(--dur-settle) var(--ease-page);
   }
   .motion-js :is(.article-body > h2, .listing .category-head):not(.is-in) { opacity: 0; transform: translate3d(0, 14px, 0); }
+}
+
+/* ── Off the page (404) ─────────────────────────────────── */
+.off-page .further { margin-top: 56px; }
+.off-page-links { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 32px 0 0; font-family: var(--font-serif); font-style: italic; font-size: 18px; }
+.off-page-links a { color: var(--ink); text-underline-offset: 0.2em; text-decoration-color: var(--rule); padding: 6px 0; }
+
+/* ── Print ──────────────────────────────────────────────── */
+/* An essay on A4, as a page from the book: white paper and navy ink,
+   no web furniture, every heading at full strength (reveals off), the
+   address of each outside link spelled out, headings kept with their
+   text, and the author and title in the running heads. */
+@page essay {
+  size: A4;
+  margin: 20mm 22mm 22mm;
+  @top-left { content: "Benedict W. H. Dixon"; font-family: 'Fraunces', serif; font-size: 9pt; color: #1c267a; }
+  @top-right { content: "An Almanack"; font-family: 'Fraunces', serif; font-style: italic; font-size: 9pt; color: #1c267a; }
+  @bottom-center { content: counter(page); font-family: 'Fraunces', serif; font-size: 9pt; color: #1c267a; }
+}
+@media print {
+  html { background: #fff; }
+  body { page: essay; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .article-body > h2, .listing .category-head, [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .masthead, .skip-link, .candle-progress, .contents-sheet, .further, .article-foot-nav,
+  .author-bio .bio-ctas, .to-contents, .essay-contents, .article-byline::after, .author-bio::before { display: none !important; }
+  .article, .listing { display: block; max-width: none; padding: 0; }
+  .article-body { font-size: 11pt; line-height: 1.5; margin-top: 8mm; }
+  .article-body > p.lead, .article-body > p:first-child { font-size: 11.5pt; }
+  .article-head .ttl { font-size: 28pt; }
+  .article-body h2 { break-after: avoid; }
+  .article-body h2::before { position: static; display: inline; margin-right: 0.6em; }
+  .article-body :is(h3, h4) { break-after: avoid; }
+  .article-body :is(p, li, blockquote) { orphans: 3; widows: 3; }
+  .article-body :is(pre, table, blockquote, figure) { break-inside: avoid; }
+  .article-body pre { white-space: pre-wrap; -webkit-mask-image: none; mask-image: none; }
+  .article-body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; font-style: italic; word-break: break-all; }
+  .author-bio { margin-top: 10mm; break-inside: avoid; }
+  .article-foot { margin-top: 6mm; }
 }

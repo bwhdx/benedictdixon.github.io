@@ -40,6 +40,37 @@
   src: url('assets/fonts/jetbrains-mono-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* Metric-matched fallbacks: while the web fonts load (font-display: swap),
+   the local Times New Roman and Arial are scaled to Fraunces' and Inter's
+   width and line metrics, so the swap barely moves a line. Measured
+   against the self-hosted files at 100 px over essay text. */
+@font-face {
+  font-family: 'Fraunces Fallback';
+  font-style: normal;
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  size-adjust: 92.82%;
+  ascent-override: 105.58%;
+  descent-override: 28.01%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Fraunces Fallback';
+  font-style: italic;
+  src: local('Times New Roman Italic'), local('TimesNewRomanPS-ItalicMT');
+  size-adjust: 88.93%;
+  ascent-override: 110.2%;
+  descent-override: 29.24%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Inter Fallback';
+  font-style: normal;
+  src: local('Arial'), local('ArialMT');
+  size-adjust: 106.8%;
+  ascent-override: 90.82%;
+  descent-override: 22.47%;
+  line-gap-override: 0%;
+}
 
 /* Reduced motion: cap transition durations; the scroll motion is also
    switched off at its source (section Motion), so content sits in place. */
@@ -107,8 +138,8 @@ main:focus { outline: none; }
   --ink-hair: rgba(28, 38, 122, 0.22);
   --ink-faint: rgba(28, 38, 122, 0.12);
 
-  --font-serif: 'Fraunces', 'Times New Roman', serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Fraunces', 'Fraunces Fallback', 'Times New Roman', serif;
+  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* The paper's grain: two seeded noise filters as small tiles, a fine
@@ -441,7 +472,10 @@ a { color: inherit; text-decoration: none; }
   .runner { gap: 12px; padding: 20px 16px 0 var(--gutter-sm); }
   .runner-mark { display: block; }
   .runner-verso { gap: 0; }
-  .runner-name { display: none; }
+  .runner-name {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
 }
 
 /* ── The candle progress row ────────────────────────────── */
@@ -490,9 +524,10 @@ a { color: inherit; text-decoration: none; }
   cursor: pointer;
   pointer-events: auto;
 }
+/* The drawn row stays 20 px; the hit area reaches 26 px (WCAG 2.5.8). */
+.cp-candle::before { content: ''; position: absolute; inset: -2px 0 -4px; }
 .cp-candle[data-state="ahead"] { opacity: 0.5; }
 .cp-candle:hover { opacity: 1; }
-.cp-candle:focus-visible { outline: 1px solid var(--ink); outline-offset: 0; }
 .cp-wick { position: absolute; left: calc(50% - 0.5px); width: 1px; background: currentColor; }
 .cp-body {
   position: absolute;
@@ -617,6 +652,18 @@ a { color: inherit; text-decoration: none; }
 }
 .toc a:hover .toc-t, .toc a:focus-visible .toc-t, .toc a[aria-current] .toc-t { text-decoration-color: var(--ink); }
 .toc a[aria-current] .toc-n { text-decoration: underline; text-underline-offset: 4px; }
+/* The chapter you are in: a small filled candle beside its number. */
+.toc a[aria-current="location"] .toc-n { white-space: nowrap; }
+.toc a[aria-current="location"] .toc-n::after {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 15px;
+  margin-left: 8px;
+  background:
+    linear-gradient(currentColor, currentColor) center / 1px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) center / 5px 9px no-repeat;
+  vertical-align: -2px;
+}
 
 .contents-page { padding: 128px 0 40px; scroll-margin-top: var(--runner-h); }
 .chapter { scroll-margin-top: calc(var(--runner-h) - 40px); }
@@ -770,6 +817,7 @@ a { color: inherit; text-decoration: none; }
 .colophon cite { font-style: normal; }
 .colophon .colophon-edition { font-style: normal; }
 .colophon .colophon-rights { font-style: normal; font-size: 15px; margin-top: 28px; }
+.colophon .colophon-privacy { font-style: normal; font-size: 15px; margin: 0; }
 
 /* ── II. The career ledger ──────────────────────────────── */
 /* One row per role: year, company, role, the candle on the shared axis,
@@ -998,7 +1046,7 @@ a { color: inherit; text-decoration: none; }
   font-variation-settings: "opsz" 14;
   font-size: 14px;
   line-height: 1.3;
-  color: rgba(var(--paper-rgb), 0.72);
+  color: rgba(var(--paper-rgb), 0.92);   /* 5.9:1 on the navy */
 }
 .hero-count[data-ready="false"] { visibility: hidden; }
 .hero-title { padding-top: 14px; border-top: 1px solid rgba(var(--paper-rgb), 0.35); }
@@ -1020,14 +1068,17 @@ a { color: inherit; text-decoration: none; }
 .hero-tagline-text {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-variation-settings: "opsz" 48;
-  font-size: clamp(22px, 2.3vw, 32px);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 24;
+  font-size: clamp(18px, 1.55vw, 23px);
+  line-height: 1.4;
+  letter-spacing: 0;
+  max-width: 34em;
+  text-wrap: pretty;
   margin: 0;
   color: var(--paper);
 }
 .hero-tagline-text em { font-style: italic; font-weight: 300; }
+.nowrap { white-space: nowrap; }
 .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .hero-cta {
   display: inline-flex;
@@ -1323,7 +1374,9 @@ html { font-synthesis: none; }   /* never a faked slant or bold */
     padding-right: calc(var(--frame-inner) + var(--frame-air));
   }
   .hero-count { margin: 10px 0 52px; }
-  .hero-band { grid-column: 2; grid-row: 2 / span 2; align-self: end; }
+  /* The name block sits level with the face, so the navy above it is not
+     left empty. */
+  .hero-band { grid-column: 2; grid-row: 2 / span 2; align-self: center; }
   .hero-band .wrap { max-width: none; margin: 0; padding-right: 24px; }
   .hero-title {
     font-size: clamp(60px, 6vw, 100px);

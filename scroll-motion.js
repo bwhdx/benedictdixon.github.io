@@ -241,6 +241,9 @@
       var btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'cp-candle';
+      // A pointer shortcut only: out of the Tab order, so the first stops
+      // are the name and Contents, whose sheet holds the same sections.
+      btn.tabIndex = -1;
       btn.setAttribute('aria-label', s.name + ', ' + plural(s.words));
       btn.dataset.state = 'ahead';
       var wick = span('cp-wick');

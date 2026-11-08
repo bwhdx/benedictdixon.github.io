@@ -144,13 +144,7 @@ function Insignia() {
 // drift apart. Chapters are numbered, never paged: the site has no pages,
 // so the contents leads each title to a plain label of what is in it.
 // ─────────────────────────────────────────────────────────
-const CHAPTERS = [
-  { id: 'about',    n: 'I',   title: 'Beyond the terminal',         label: 'About' },
-  { id: 'career',   n: 'II',  title: 'A decade-plus, by the year',  label: 'Career' },
-  { id: 'projects', n: 'III', title: 'Selected work',               label: 'Work' },
-  { id: 'writing',  n: 'IV',  title: 'In print and at the lectern', label: 'Writing and talks' },
-  { id: 'contact',  n: 'V',   title: 'Compare notes',               label: 'Contact' },
-];
+const CHAPTERS = window.SITE.chapters;
 
 // The ornament: five candles of one height, hollow and filled in turn,
 // between two hairlines. Equal heights on purpose: rhythm, never a trend.
@@ -228,7 +222,9 @@ function ContentsSheet({ current }) {
             <button type="button" className="sheet-close" onClick={close}>Close</button>
           </div>
           <ContentsList current={current} onPick={close} />
-          <p className="sheet-more"><a href="/writing/">All writing</a><a href="/ai/">How I work with AI</a></p>
+          <p className="sheet-more">
+            {window.SITE.elsewhere.map((l) => <a key={l.href} href={l.href}>{l.title}</a>)}
+          </p>
         </div>
       </dialog>
     </React.Fragment>
@@ -265,9 +261,13 @@ function Runner() {
   return (
     <header className="runner" data-part={part}>
       <CandleProgress />
-      <a className="runner-verso" href="#hero" aria-label="Benedict W. H. Dixon, back to the cover">
+      {/* Named from its text, which starts with the letters the mark shows
+          (bwhdx), so voice control finds it by what it says (WCAG 2.5.3).
+          On phones the name leaves the screen but stays in the name. */}
+      <a className="runner-verso" href="#hero">
         <span className="runner-mark"><Cipher /></span>
-        <span className="runner-name">Benedict W. H. Dixon</span>
+        <span className="sr-only">bwhdx, </span>
+        <span className="runner-name">Benedict W. H. Dixon</span><span className="sr-only">, back to the cover</span>
       </a>
       <ContentsSheet current={part} />
     </header>
@@ -296,7 +296,19 @@ function ChapterFoot() {
 }
 
 const chapter = (id) => CHAPTERS.find((c) => c.id === id);
-const HERO_LINE = <React.Fragment>Building and running companies, <em>end to end.</em></React.Fragment>;
+
+// Facts the build writes once for the whole site (tools/site-data.cjs, put
+// in front of the bundle by tools/bundle.cjs): the cover line, each essay's
+// date, reading time and cover, and the date the page was built.
+const SITE = window.SITE;
+const HERO_LINE = SITE.coverLine;
+
+// A hyphenated word ("Co-founder") is never broken at its hyphen.
+function keepHyphenated(text) {
+  return text.split(/(\S+-\S+)/).map((part, i) => (i % 2
+    ? <span key={i} className="nowrap">{part}</span>
+    : part));
+}
 
 
 // ─────────────────────────────────────────────────────────
@@ -406,7 +418,7 @@ function Hero({ onStats }) {
           </h1>
           <div className="hero-band-bottom">
             <div className="hero-lines">
-              <p className="hero-tagline-text">{HERO_LINE}</p>
+              <p className="hero-tagline-text">{keepHyphenated(HERO_LINE)}</p>
             </div>
             <div className="hero-actions">
               <a className="hero-cta hero-cta--primary" href="#writing">Read the essays</a>
@@ -449,8 +461,8 @@ function Contents() {
 // facts from the career list, not new claims.
 // ─────────────────────────────────────────────────────────
 const ABOUT = [
-  { text: "I started out as an engineer, building payment systems at JPMorgan, then on the R&D team for Amex's referral campaigns. That's where I first got to see beyond the terminal. We went into those design, user interview and research centres, behind the double glass, and got some exposure to the positioning and the marketing side as well. After that came a hedge fund, fintech, and founding my own startups.",
-    note: 'Engineering, 2015 to 2022: JPMorgan, Amex, MAIA, Icon' },
+  { text: "I started out as an engineer, building payment systems at JPMorgan, then on the R&D team for American Express's referral campaigns. That's where I first got to see beyond the terminal. We went into those design, user interview and research centres, behind the double glass, and got some exposure to the positioning and the marketing side as well. After that came a hedge fund, fintech, and founding my own startups.",
+    note: 'Engineering, 2015 to 2022: JPMorgan, American Express, MAIA, Icon' },
   { text: "Then I made a very conscious and intentional move from writing code to running companies and teams. When AI tooling arrived, I went back to building. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.",
     note: 'Running companies, from 2021: Nettle, Pound Token, Voi Network, kash' },
   { text: 'I build end-to-end, full solutions, and I run and operate products and businesses completely end to end.' },
@@ -491,33 +503,61 @@ const LEDGER = [
   { yr: '2018', co: 'American Express', role: 'Engineer, R&D customer acquisition', from: 2018, to: 2019 },
   { yr: '2019', co: 'MAIA / Fulcrum', role: 'Engineer, hedge fund, back to front', from: 2019, to: 2021 },
   { yr: '2021', co: 'Icon Solutions', role: 'Senior engineer, real-time payments', from: 2021, to: 2022 },
-  { yr: '2021', co: 'Nettle', role: 'Chief Product & Technology Officer, co-founder', from: 2021 + 4 / 12, to: 2023 + 7 / 12, founder: true },
+  { yr: '2021', co: 'Nettle', role: 'Co-founder, Chief Product and Technology Officer', from: 2021 + 4 / 12, to: 2023 + 7 / 12, founder: true },
   { yr: '2023', co: 'Pound Token', role: 'Chief Technology Officer', from: 2023 + 7 / 12, to: 2024 + 7 / 12 },
-  { yr: '2024', co: 'Voi Network', role: 'Co-founder, Chief Ecosystem Officer, L1', from: 2024, to: 2025, founder: true },
+  { yr: '2024', co: 'Voi Network', role: 'Co-founder, Chief Ecosystem Officer', from: 2024, to: 2025, founder: true },
   { yr: '2025', co: 'Brdge', role: 'Head of Blockchain', from: 2025 + 1 / 12 },
   { yr: '2025', co: 'DD Ventures', role: 'Founding Partner', from: 2025 + 3 / 12, founder: true },
-  { yr: '2025', co: 'kash', role: 'Co-founder, COO & Interim CTO', from: 2025 + 4 / 12, founder: true },
+  { yr: '2025', co: 'kash', role: 'Co-founder, COO and Interim CTO', from: 2025 + 4 / 12, founder: true },
 ];
 const AXIS = { from: 2014, to: 2027 };
 const AXIS_SPAN = AXIS.to - AXIS.from;
 
-function yearNow() {
-  const d = new Date();
-  return d.getFullYear() + d.getMonth() / 12;
+const yearOf = (d) => d.getFullYear() + d.getMonth() / 12;
+
+// Today, as a fractional year, for the current roles. The page is rendered
+// ahead of time at build, so the first render uses the build date (the
+// browser's first render must match the HTML it takes over); once mounted,
+// it moves to the reader's today.
+function useYearNow() {
+  const [now, setNow] = React.useState(() => {
+    const [y, m] = SITE.builtAt.split('-').map(Number);
+    return y + (m - 1) / 12;
+  });
+  React.useEffect(() => { setNow(yearOf(new Date())); }, []);
+  return now;
 }
-function spanOf(r) {
+
+function spanOf(r, now) {
   if (r.from == null) return null;
-  const to = r.to == null ? yearNow() : r.to;
+  const to = r.to == null ? now : r.to;
   return { from: r.from, to, years: to - r.from, current: r.to == null };
 }
+
+// A role's dates in words, from the ledger: "May 2021 to Aug 2023" where
+// the month is known, "2024 to 2025" where only the year is.
+const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function dateOf(y) {
+  const year = Math.floor(y + 1e-9);
+  const month = Math.round((y - year) * 12);
+  return Number.isInteger(y) ? String(year) : `${MONTHS_SHORT[month]} ${year}`;
+}
+function periodOf(r) {
+  return `${dateOf(r.from)} to ${r.to == null ? 'present' : dateOf(r.to)}`;
+}
+const ledgerRow = (co) => {
+  const row = LEDGER.find((r) => r.co === co);
+  if (!row) throw new Error(`No ledger row for ${co}`);
+  return row;
+};
 const axisPct = (y) => `${(((y - AXIS.from) / AXIS_SPAN) * 100).toFixed(3)}%`;
 
 // One role's candle. The wick is the row's axis; the body is an outer box
 // that clips (its left edge is the open, always drawn) and an inner box,
 // the body itself, that slides out of it. Every moving part is a transform,
 // so the drawing runs on the compositor.
-function LedgerCandle({ row }) {
-  const s = spanOf(row);
+function LedgerCandle({ row, now }) {
+  const s = spanOf(row, now);
   return (
     <span className="lc" aria-hidden="true">
       <span className="lc-wick" />
@@ -557,23 +597,24 @@ const EXPEDITIONS = [
 
 function Career() {
   const c = chapter('career');
+  const now = useYearNow();
   return (
     <section id="career" className="chapter" data-chapter="career" aria-labelledby="career-title">
       <div className="wrap">
         <ChapterPlate chapter={c}
-          lede="A decade-plus building companies across AI, fintech and blockchain. Operator, COO, CTO." />
+          lede="Engineer first, from 2015; then operator, COO and CTO across AI, fintech and blockchain." />
         <div className="ledger">
-          <p className="ledger-intro">Engineer at JPMorgan in 2015; co-founder, COO and interim CTO of kash today. Each role is one line, and its candle is the time spent in it.</p>
+          <p className="ledger-intro">Engineer at JPMorgan in 2015; co-founder, COO and Interim CTO of kash today. Each role is one line, and its candle is the time spent in it.</p>
           <LedgerAxis />
           <ol className="ledger-rows">
             {LEDGER.map((r) => {
-              const s = spanOf(r);
+              const s = spanOf(r, now);
               return (
                 <li key={`${r.yr}-${r.co}`} className={r.founder ? 'ledger-row is-founder' : 'ledger-row'} data-reveal="row">
                   <span className="lr-yr">{r.yr}</span>
                   <span className="lr-co">{r.co}</span>
                   <span className="lr-role">{r.role}</span>
-                  <LedgerCandle row={r} />
+                  <LedgerCandle row={r} now={now} />
                   <span className="lr-years">
                     {s ? (
                       <React.Fragment>
@@ -616,40 +657,36 @@ function Career() {
 // ─────────────────────────────────────────────────────────
 // III. Projects
 // ─────────────────────────────────────────────────────────
+// Role and dates come from the ledger (Chapter II), so the two chapters
+// can never disagree. Figures are only those the entry's own text states.
 const PROJECTS = [
   {
-    name: 'kash',
-    role: 'Co-founder, COO & Interim CTO',
-    period: 'May 2025 to present',
+    co: 'kash',
     body: "Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.",
-    tags: ['Operations', 'Product', 'Technology', 'AI', 'Finance', 'Partnerships'],
-    url: 'https://kash.bot/',
+    tags: ['Operations', 'Product', 'Technology', 'AI', 'Partnerships'],
   },
   {
-    name: 'Voi Network',
-    role: 'Co-founder, Chief Ecosystem Officer',
-    period: '2024 to 2025',
-    body: 'Led vision and development of an L1 from concept to $150M ecosystem. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. 45K+ users with strong token retention. Exited the role in 2025.',
+    co: 'Voi Network',
+    body: 'Led vision and development of an L1 from concept. Voi Network reached a $150M fully diluted valuation. Built and mentored teams across departments. Integrated 25+ projects into the ecosystem. Exited the role in 2025.',
     tags: ['Ecosystem growth', 'Team leadership', 'Strategic vision'],
     url: 'https://voi.network/',
-    figures: [['$150M', 'ecosystem, from concept'], ['25+', 'projects integrated'], ['45K+', 'users']],
+    figures: [['25+', 'projects integrated']],
   },
   {
-    name: 'Pound Token',
-    role: 'Chief Technology Officer',
-    period: 'Aug 2023 to Aug 2024',
+    co: 'Pound Token',
     body: 'Led technical strategy through a successful acquisition. Executed zero-downtime migration reducing operating costs by 94%. Preserved millions in assets during the transition.',
     tags: ['Technical strategy', 'Migration', 'Team retention'],
     figures: [['94%', 'lower operating costs'], ['Zero', 'downtime in the migration']],
   },
   {
-    name: 'Nettle',
-    role: 'Chief Product & Technology Officer, Co-Founder',
-    period: 'May 2021 to Aug 2023',
+    co: 'Nettle',
     body: 'Led product and technology for an innovative fintech payments and loyalty platform. Architected a multi-currency payment system. Accelerated time-to-market through customer-driven development. The company later ceased operations.',
     tags: ['Product strategy', 'Payment systems', 'Team building'],
   },
-];
+].map((p) => {
+  const row = ledgerRow(p.co);
+  return { ...p, name: row.co, role: row.role, period: periodOf(row) };
+});
 
 function Projects() {
   const c = chapter('projects');
@@ -697,50 +734,59 @@ function Projects() {
 // ─────────────────────────────────────────────────────────
 // IV. Writing and speaking
 // ─────────────────────────────────────────────────────────
+// The essays the home page leads with: chosen here, by title and excerpt;
+// the date, reading time and cover are each essay's own, from the build.
 const ARTICLES = [
   {
-    date: '3 Nov 2026',
     title: "The agent can't be its own checker",
     excerpt: "Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.",
     url: '/writing/the-agent-cant-be-its-own-checker/',
-    read: '5 min read',
-    cover: 'assets/covers/the-agent-cant-be-its-own-checker',
   },
   {
-    date: '24 Jun 2026',
     title: 'AI collapsed the build, not the operation',
     excerpt: "One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money's on the line, still takes people.",
     url: '/writing/ai-collapsed-the-build/',
-    read: '4 min read',
-    cover: 'assets/covers/ai-collapsed-the-build',
   },
   {
-    date: '20 Jun 2026',
     title: 'The unit of production has changed',
     excerpt: "Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that's left is judgement.",
     url: '/writing/the-unit-of-production-has-changed/',
-    read: '3 min read',
-    cover: 'assets/covers/the-unit-of-production-has-changed',
   },
   {
-    date: '15 Feb 2026',
     title: 'In Clawd we trust',
     excerpt: 'A year of intensive Claude Code, distilled. The mental model, environment, phased workflow and quality practices that turn it into a 100x force multiplier.',
     url: '/writing/in-clawd-we-trust/',
-    read: '20 min read',
-    cover: 'assets/covers/in-clawd-we-trust',
   },
-];
+].map((a) => {
+  const e = SITE.essays[a.url];
+  if (!e) throw new Error(`No essay at ${a.url}`);
+  return { ...a, date: e.date, read: `${e.minutes} min read`, cover: e.cover };
+});
 
 const SPEAKING = [
   { event: 'Zebu Live', topic: 'Tokenomics design and strategy' },
   { event: 'Algorand at Tate Modern', topic: 'Tokenomics design and strategy' },
 ];
 
-// The essays index: the newest essay leads with its cover
-// and the rest follow as a list, each with its reading time (as stated in
-// the essay's own header) and a small crop of its cover. The covers are
-// decorative here (the title beside them names the essay), so alt is empty.
+// An essay's cover in AVIF and WebP, with the JPEG as the fallback, at the
+// widths tools/build-covers.sh writes (480, 960 and the 1400 original).
+// Decorative here: the title beside it names the essay, so alt is empty.
+const COVER_W = [480, 960, 1400];
+const coverSrc = (base, w, ext) => (w === 1400 ? `${base}.${ext}` : `${base}-${w}.${ext}`);
+function CoverPicture({ base, widths, sizes, width, height }) {
+  const set = (ext) => widths.map((w) => `${coverSrc(base, w, ext)} ${w}w`).join(', ');
+  return (
+    <picture>
+      <source type="image/avif" srcSet={set('avif')} sizes={sizes} />
+      <source type="image/webp" srcSet={set('webp')} sizes={sizes} />
+      <img src={coverSrc(base, widths[0], 'jpg')} srcSet={set('jpg')} sizes={sizes} alt=""
+        width={width} height={height} loading="lazy" decoding="async" />
+    </picture>
+  );
+}
+
+// The essays index: the newest essay leads with its cover and the rest
+// follow as a list, each with its reading time and a small cover.
 function EssayIndex() {
   const [lead, ...rest] = ARTICLES;
   return (
@@ -749,8 +795,7 @@ function EssayIndex() {
         <p className="margin-note"><time>{lead.date}</time><span className="essay-read">{lead.read}</span></p>
         <a className="essay-link" href={lead.url}>
           <span className="essay-cover">
-            <img src={`${lead.cover}.jpg`} srcSet={`${lead.cover}-480.jpg 480w, ${lead.cover}.jpg 1400w`}
-              sizes="(max-width: 700px) 100vw, 640px" alt="" width="1400" height="787" loading="lazy" decoding="async" />
+            <CoverPicture base={lead.cover} widths={COVER_W} sizes="(max-width: 700px) 100vw, 640px" width="1400" height="787" />
           </span>
           <span className="essay-title">{tq(lead.title)}</span>
           <span className="essay-excerpt">{tq(lead.excerpt)}</span>
@@ -761,7 +806,9 @@ function EssayIndex() {
         <li key={a.url} className="page essay-row">
           <p className="margin-note"><time>{a.date}</time><span className="essay-read">{a.read}</span></p>
           <a className="essay-link" href={a.url}>
-            <span className="essay-thumb"><img src={`${a.cover}-480.jpg`} alt="" width="480" height="270" loading="lazy" decoding="async" /></span>
+            <span className="essay-thumb">
+              <CoverPicture base={a.cover} widths={[480]} sizes="160px" width="480" height="270" />
+            </span>
             <span className="essay-title">{tq(a.title)}</span>
             <span className="essay-excerpt">{tq(a.excerpt)}</span>
           </a>
@@ -794,8 +841,6 @@ function Writing() {
           ))}
         </ul>
         <div className="page prose">
-          <p className="margin-note">Open to</p>
-          <p>Keynotes and panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership. <a className="text-link" href="/hosts/">For podcast hosts</a></p>
           <p className="margin-note">Follow</p>
           <p className="follow">
             <a className="text-link" href="https://x.com/bwhdx" target="_blank" rel="me noreferrer">X, @bwhdx</a>
@@ -811,20 +856,19 @@ function Writing() {
 // ─────────────────────────────────────────────────────────
 // V. Contact, then the colophon
 // ─────────────────────────────────────────────────────────
+// Only what the three ways in above do not already offer.
 const CONTACTS = [
-  { label: 'Email', value: 'me@benedictdixon.com', href: 'mailto:me@benedictdixon.com', rel: 'me' },
-  { label: 'Book a call', value: 'Find a time', href: 'https://calendar.app.google/TkGwibhqQHXMRX5QA', ext: true },
   { label: 'LinkedIn', value: '/in/benedict-dixon', href: 'https://www.linkedin.com/in/benedict-dixon/', ext: true, rel: 'me' },
   { label: 'X', value: '@bwhdx', href: 'https://x.com/bwhdx', ext: true, rel: 'me' },
   { label: 'GitHub', value: '@bwhdx', href: 'https://github.com/bwhdx', ext: true, rel: 'me' },
-  { label: 'Advisory', value: 'dd.ventures', href: 'https://dd.ventures', ext: true },
 ];
 
-// Working together: the three ways in that the site already
-// names (advisory, speaking, build work through DD Ventures), each in the
-// site's own words with one plain next step, then the address set large.
+// Working together: the three ways in that the site already names
+// (advisory, speaking, build work through DD Ventures), each with one plain
+// next step, then the address set large. Advisory needs no line of its
+// own: the chapter's lede says it.
 const WAYS = [
-  { label: 'Advisory', text: 'Strategy, product and technology for early-stage startups and founders.',
+  { label: 'Advisory',
     action: 'Book a call', href: 'https://calendar.app.google/TkGwibhqQHXMRX5QA', ext: true },
   { label: 'Speaking', text: "Keynotes and panels on AI, fintech, distributed systems, blockchain and the operator's lens on technical leadership.",
     action: 'For podcast hosts', href: '/hosts/' },
@@ -840,7 +884,7 @@ function WorkTogether() {
           <React.Fragment key={w.label}>
             <p className="margin-note">{w.label}</p>
             <p className="way">
-              <span className="way-text">{tq(w.text)}</span>
+              {w.text && <span className="way-text">{tq(w.text)}</span>}
               <a className="text-link" href={w.href} target={w.ext ? '_blank' : undefined} rel={w.ext ? 'noreferrer' : undefined}>
                 {w.action}{w.ext && <span className="sr-only"> (opens in a new tab)</span>}
               </a>
@@ -863,7 +907,7 @@ function Contact() {
       <div className="wrap">
         <ChapterPlate chapter={c} />
         <div className="page prose">
-          <p className="lede">I'm also a strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.</p>
+          <p className="lede">{tq('A strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.')}</p>
         </div>
         <WorkTogether />
         <ul className="toc toc-contact page-col">
@@ -893,10 +937,11 @@ function Colophon({ candles }) {
         <p>
           This edition of <cite>An Almanack</cite> is set in Fraunces, with Inter and JetBrains Mono,
           in royal navy ink on warm ochre paper. The portrait on the cover is a brightness sample of a
-          photograph, redrawn as candles: hollow for the mid-tones, filled for the highlights
+          photograph, redrawn as candles, each hollow or filled by the brightness under it
           {candles ? <React.Fragment>, {candles.toLocaleString('en-GB')} of them on this screen.</React.Fragment> : '.'}
         </p>
         <p className="colophon-edition">Volume I, MMXXVI. Edition 01.</p>
+        <p className="colophon-privacy">{SITE.privacyNote}</p>
         <p className="colophon-rights">© 2026 Benedict W. H. Dixon · benedictdixon.com</p>
       </div>
     </footer>

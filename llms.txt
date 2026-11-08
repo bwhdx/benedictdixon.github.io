@@ -1,9 +1,9 @@
 # Benedict W. H. Dixon
 
-> Personal site of Benedict W. H. Dixon. Building, leading & learning. Engineer turned operator: JPMorgan, Amex, a hedge fund, fintech, then co-founding companies. Co-founder, COO & Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.
+> Personal site of Benedict W. H. Dixon. Building, leading & learning. Engineer turned operator: JPMorgan, American Express, a hedge fund, fintech, then co-founding companies. Co-founder, COO and Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.
 
 Key facts:
-- Started out as an engineer, building payment systems at JPMorgan, then on the R&D team for Amex's referral campaigns. After that came a hedge fund, fintech, and founding his own startups.
+- Started out as an engineer, building payment systems at JPMorgan, then on the R&D team for American Express's referral campaigns. After that came a hedge fund, fintech, and founding his own startups.
 - Made a very conscious and intentional move from writing code to running companies and teams. When AI tooling arrived, went back to building.
 - A strategic, product and technology advisor to early-stage startups and founders. Always interested to compare notes with people doing the work.
 
@@ -16,16 +16,19 @@ Key facts:
 
 ## The essays
 
-- [AI collapsed the build, not the operation](https://benedictdixon.com/writing/ai-collapsed-the-build/): One person with AI can build what fifty used to; the operation doesn't collapse with it.
-- [The unit of production has changed](https://benedictdixon.com/writing/the-unit-of-production-has-changed/): Three of us built kash, and mine is kind of the fat middle; AI deleted the coordination overhead.
-- [The assistant that knows you](https://benedictdixon.com/writing/the-assistant-that-knows-you/): Point a personal AI at your second brain and it answers from your notes.
-- [The assistant that's always on](https://benedictdixon.com/writing/always-on-assistant/): A personal AI assistant on your own machine, reachable where you already text.
-- [Building a second brain that doesn't die](https://benedictdixon.com/writing/building-a-second-brain/): An Obsidian PKM template wired for Claude Code, open-sourced under MIT.
-- [In Clawd We Trust](https://benedictdixon.com/writing/in-clawd-we-trust/): A year of intensive Claude Code, distilled into a practical guide.
-
-- [Tesserakt Protocol](https://benedictdixon.com/writing/tesserakt-protocol/): Purpose-built infrastructure for AI agents.
-- [The missing infrastructure for AI agents](https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/): Agents are forced through rails built for humans.
-- [Autonomous AI agents](https://benedictdixon.com/writing/autonomous-ai-agents/): Agents representing individuals and businesses, executing in milliseconds.
+<!-- build:essays -->
+- [The agent can’t be its own checker](https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/): Why an AI agent’s ‘done’ can’t close its own work in a company that moves real money, and what does instead.
+- [AI collapsed the build, not the operation](https://benedictdixon.com/writing/ai-collapsed-the-build/): One person with AI can build what fifty used to. But the operation — incidents, maintenance, 3am — doesn’t collapse with the build. Why fewer people is the wrong read.
+- [The unit of production has changed](https://benedictdixon.com/writing/the-unit-of-production-has-changed/): Three of us built kash; mine is the fat middle. AI didn’t just make the typing faster; it deleted the coordination overhead. The cap that’s left is judgement.
+- [The assistant that knows you](https://benedictdixon.com/writing/the-assistant-that-knows-you/): Point your personal AI at your own second brain and it stops guessing: it answers from your notes, in your own words.
+- [The assistant that’s always on](https://benedictdixon.com/writing/always-on-assistant/): A personal AI assistant that runs on your own machine, reaches you on the app you already text in, and only touches what you let it.
+- [Building a Second Brain That Doesn’t Die](https://benedictdixon.com/writing/building-a-second-brain/): An opinionated second brain template for Obsidian PKM, wired for Claude Code — the three calls that make it stick when most systems die in three months.
+- [In Clawd We Trust: A Year of Claude Code, Distilled](https://benedictdixon.com/writing/in-clawd-we-trust/): A practical Claude Code guide on how to use it effectively: the mental model, environment setup, phased workflow and quality practices that compound.
+- [Tesserakt Protocol: Purpose-Built Infrastructure for AI Agents](https://benedictdixon.com/writing/tesserakt-protocol/): A purpose-built AI agent protocol for discovery, matching, negotiation and transaction at machine speed — six layered protocols for trustless commerce.
+- [The Missing Infrastructure for AI Agents](https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/): AI agent infrastructure is missing: agents are forced through rails built for humans when they need machine-speed protocols and cryptographic identity.
+- [Autonomous AI Agents: A Platform for Trustless Business Interactions](https://benedictdixon.com/writing/autonomous-ai-agents/): Autonomous AI agents can represent individuals and businesses on a trustless agent platform, executing decisions in milliseconds rather than weeks.
+- [The Democratic Myth of DAOs: The road to autocracy](https://benedictdixon.com/writing/the-democratic-myth-of-daos/): DAO governance problems explained: how token-weighted voting slides toward oligarchy and autocracy under the banner of radical decentralisation.
+<!-- /build:essays -->
 
 ## Optional
 

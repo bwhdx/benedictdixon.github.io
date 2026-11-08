@@ -36,3 +36,40 @@ if (window.ScrollMotion) window.ScrollMotion.init();
 
   headings.forEach(function (h) { io.observe(h); });
 })();
+
+// The contents sheet: a native modal dialog, so the browser traps focus,
+// Escape closes it and focus returns to the button. A click on the
+// backdrop (the dialog itself, outside its panel) closes it too.
+(function () {
+  var sheet = document.getElementById('contents-sheet');
+  var open = document.querySelector('.contents-btn');
+  if (!sheet || !open || typeof sheet.showModal !== 'function') {
+    if (open) open.hidden = true;
+    return;
+  }
+  function close() { if (sheet.open) sheet.close(); }
+  open.addEventListener('click', function () { sheet.showModal(); });
+  sheet.querySelector('.sheet-close').addEventListener('click', close);
+  sheet.addEventListener('click', function (e) {
+    if (e.target === sheet || e.target.closest('a')) close();
+  });
+})();
+
+// Code blocks wider than the column fade at the right edge until the
+// reader has scrolled to their end (writing.css, Code blocks).
+(function () {
+  var blocks = Array.prototype.slice.call(document.querySelectorAll('.article-body pre'));
+  if (!blocks.length) return;
+  function mark(pre) {
+    pre.classList.toggle('is-clipped', pre.scrollWidth > pre.clientWidth + 1);
+    pre.classList.toggle('is-scrolled-end', pre.scrollLeft + pre.clientWidth >= pre.scrollWidth - 1);
+  }
+  blocks.forEach(function (pre) {
+    mark(pre);
+    pre.addEventListener('scroll', function () { mark(pre); }, { passive: true });
+  });
+  if ('ResizeObserver' in window) {
+    var ro = new ResizeObserver(function (entries) { entries.forEach(function (e) { mark(e.target); }); });
+    blocks.forEach(function (pre) { ro.observe(pre); });
+  }
+})();

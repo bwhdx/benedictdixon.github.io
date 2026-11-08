@@ -3,26 +3,32 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://benedictdixon.com/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://benedictdixon.com/assets/og-image.png</image:loc>
-      <image:title>Benedict W. H. Dixon — An Almanack for Finance, Operations &amp; Code</image:title>
-      <image:caption>Candlestick portrait of Benedict Dixon on a navy book cover.</image:caption>
+      <image:title>Benedict W. H. Dixon, An Almanack</image:title>
+      <image:caption>Benedict W. H. Dixon on the cover of An Almanack: his portrait drawn in candles.</image:caption>
     </image:image>
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://benedictdixon.com/ai/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-11-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/hosts/</loc>
+    <lastmod>2026-11-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/</loc>
@@ -31,164 +37,56 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://benedictdixon.com/writing/developing-your-product-plan/</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/will-the-dogs-eat-the-dog-food/</loc>
+    <lastmod>2026-07-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/testing-your-assumptions/</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/identifying-your-key-assumptions/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/calculating-cac-honestly/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://benedictdixon.com/writing/ai-collapsed-the-build/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/mapping-the-sales-process/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/the-unit-of-production-has-changed/</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/feed.xml</loc>
-    <lastmod>2026-11-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/the-democratic-myth-of-daos/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/autonomous-ai-agents/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/tesserakt-protocol/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/beyond-lean/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/prediction-markets/</loc>
-    <lastmod>2026-10-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/market-segmentation/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/the-beachhead-market/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/building-your-end-user-profile/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/why-every-tam-slide-is-a-lie/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/building-your-persona/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/mapping-your-full-customer-journey/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/why-your-mvp-is-already-too-big/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/quantifying-your-value-proposition/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/finding-your-first-10-customers/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/define-your-core/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/charting-your-competitive-position/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/the-decision-making-unit/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/mapping-the-customer-acquisition-process/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/calculating-tam-for-follow-on-markets/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/designing-your-business-model/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/setting-your-pricing-framework/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/building-a-second-brain/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/in-clawd-we-trust/</loc>
-    <lastmod>2026-07-06</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/drawing-your-product-brochure/</loc>
-    <lastmod>2026-07-06</lastmod>
+    <loc>https://benedictdixon.com/writing/the-assistant-that-knows-you/</loc>
+    <lastmod>2026-08-16</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -205,55 +103,153 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/mapping-the-sales-process/</loc>
+    <loc>https://benedictdixon.com/writing/drawing-your-product-brochure/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/the-assistant-that-knows-you/</loc>
+    <loc>https://benedictdixon.com/writing/building-a-second-brain/</loc>
+    <lastmod>2026-08-16</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/in-clawd-we-trust/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/the-unit-of-production-has-changed/</loc>
-    <lastmod>2026-10-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://benedictdixon.com/writing/calculating-cac-honestly/</loc>
+    <loc>https://benedictdixon.com/writing/setting-your-pricing-framework/</loc>
     <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/identifying-your-key-assumptions/</loc>
-    <lastmod>2026-07-08</lastmod>
+    <loc>https://benedictdixon.com/writing/designing-your-business-model/</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/testing-your-assumptions/</loc>
-    <lastmod>2026-07-18</lastmod>
+    <loc>https://benedictdixon.com/writing/calculating-tam-for-follow-on-markets/</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/will-the-dogs-eat-the-dog-food/</loc>
-    <lastmod>2026-07-27</lastmod>
+    <loc>https://benedictdixon.com/writing/mapping-the-customer-acquisition-process/</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/writing/developing-your-product-plan/</loc>
-    <lastmod>2026-08-05</lastmod>
+    <loc>https://benedictdixon.com/writing/the-decision-making-unit/</loc>
+    <lastmod>2026-07-06</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://benedictdixon.com/hosts/</loc>
-    <lastmod>2026-10-15</lastmod>
+    <loc>https://benedictdixon.com/writing/charting-your-competitive-position/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/define-your-core/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/finding-your-first-10-customers/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/quantifying-your-value-proposition/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/why-your-mvp-is-already-too-big/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/mapping-your-full-customer-journey/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/building-your-persona/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/why-every-tam-slide-is-a-lie/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/building-your-end-user-profile/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/the-beachhead-market/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/market-segmentation/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/prediction-markets/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/beyond-lean/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/tesserakt-protocol/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/the-missing-infrastructure-for-ai-agents/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/autonomous-ai-agents/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://benedictdixon.com/writing/the-democratic-myth-of-daos/</loc>
+    <lastmod>2026-07-06</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
