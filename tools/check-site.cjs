@@ -380,6 +380,21 @@ if (exists('tools/generate-cards.cjs')) {
 
 // ── Essay covers ─────────────────────────────────────────
 
+// An AVIF's pixel size: the largest of its 'ispe' boxes (each is 4 bytes
+// of version and flags, then width and height). Large covers are stored as
+// a grid of 512 px tiles, so the image's own size is the largest box.
+// Chrome draws a grid AVIF with an odd side as empty space while macOS
+// decodes it, so every side must be even.
+function avifSize(f) {
+  const buf = require('fs').readFileSync(f);
+  let at = -1, best = null;
+  while ((at = buf.indexOf('ispe', at + 1)) >= 0 && at + 16 <= buf.length) {
+    const w = buf.readUInt32BE(at + 8), h = buf.readUInt32BE(at + 12);
+    if (!best || w * h > best.w * best.h) best = { w, h };
+  }
+  return best;
+}
+
 // Each cover ships in every size and format the pages offer, opens its
 // essay, and heads its row in the listing (tools/build-pages.cjs).
 const coverFiles = (slug) => D.COVER_WIDTHS.flatMap((w) => ['avif', 'webp', 'jpg']
@@ -387,6 +402,12 @@ const coverFiles = (slug) => D.COVER_WIDTHS.flatMap((w) => ['avif', 'webp', 'jpg
 for (const e of list) {
   if (!e.cover) { warn(e.file, 'has no cover yet; its share card is the navy cover'); continue; }
   for (const f of coverFiles(e.slug)) if (!exists(f)) error(f, 'missing; run npm run build:covers');
+  for (const f of coverFiles(e.slug)) {
+    if (!f.endsWith('.avif') || !exists(f)) continue;
+    const dims = avifSize(f);
+    if (!dims) error(f, 'has no readable size (ispe box)');
+    else if (dims.w % 2 || dims.h % 2) error(f, `is ${dims.w}x${dims.h}: an odd side draws blank in Chrome; run npm run build:covers`);
+  }
   const html = read(e.file);
   if (!html.includes(`<figure class="essay-cover">`) || !html.includes(`${e.cover.base}-960.jpg`)) {
     error(e.file, 'does not open with its cover; run npm run build');

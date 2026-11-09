@@ -118,7 +118,7 @@ function printed(iso) {
 // text is an error, never a silent empty alt.
 const COVERS_DIR = path.join(ROOT, 'assets', 'covers');
 const COVER_WIDTHS = [480, 960, 1400];
-const COVER_SIZE = { width: 1400, height: 787 };
+const COVER_SIZE = { width: 1400, height: 786 };
 let coverAlts = null;
 function coverOf(slug) {
   const rel = `assets/covers/${slug}.jpg`;

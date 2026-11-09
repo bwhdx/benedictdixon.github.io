@@ -18,11 +18,23 @@ trap 'rm -rf "$tmp"' EXIT
 for src in *.jpg; do
   case "$src" in *-480.jpg|*-960.jpg) continue ;; esac
   slug=${src%.jpg}
+  # Chrome draws an AVIF with an odd side as empty space (macOS decodes it
+  # fine), so an original with an odd height loses its bottom row of pixels.
+  h=$(sips -g pixelHeight "$src" | awk '/pixelHeight/ {print $2}')
+  w0=$(sips -g pixelWidth "$src" | awk '/pixelWidth/ {print $2}')
+  h0=$h
+  if [ $((h % 2)) -ne 0 ]; then
+    sips -s formatOptions 92 -c $((h - 1)) "$w0" --cropOffset 0 0 "$src" --out "$tmp/even.jpg" >/dev/null
+    mv "$tmp/even.jpg" "$src"
+    h0=$((h - 1))
+  fi
   for w in 480 960 1400; do
     if [ "$w" = 1400 ]; then out=$slug; jpg=$src
     else
       out=$slug-$w; jpg=$out.jpg
-      sips -s format jpeg -s formatOptions 80 --resampleWidth "$w" "$src" --out "$jpg" >/dev/null
+      # Height to the nearest even number, so no size has an odd side.
+      th=$(( (w * h0 / w0 + 1) / 2 * 2 ))
+      sips -s format jpeg -s formatOptions 80 --resampleHeightWidth "$th" "$w" "$src" --out "$jpg" >/dev/null
     fi
     sips -s format avif -s formatOptions 55 "$jpg" --out "$tmp/$out.avif" >/dev/null
     mv "$tmp/$out.avif" "$out.avif"

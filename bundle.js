@@ -2096,7 +2096,7 @@ function EssayIndex() {
     widths: COVER_W,
     sizes: "(max-width: 700px) 100vw, 640px",
     width: "1400",
-    height: "787"
+    height: "786"
   })), /*#__PURE__*/React.createElement("span", {
     className: "essay-title"
   }, tq(lead.title)), /*#__PURE__*/React.createElement("span", {

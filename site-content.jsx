@@ -784,7 +784,7 @@ function EssayIndex() {
         <p className="margin-note"><time>{lead.date}</time><span className="essay-read">{lead.read}</span></p>
         <a className="essay-link" href={lead.url}>
           <span className="essay-cover">
-            <CoverPicture base={lead.cover} widths={COVER_W} sizes="(max-width: 700px) 100vw, 640px" width="1400" height="787" />
+            <CoverPicture base={lead.cover} widths={COVER_W} sizes="(max-width: 700px) 100vw, 640px" width="1400" height="786" />
           </span>
           <span className="essay-title">{tq(lead.title)}</span>
           <span className="essay-excerpt">{tq(lead.excerpt)}</span>
