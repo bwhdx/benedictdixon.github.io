@@ -9,6 +9,7 @@
     "build:favicons": "tools/generate-favicons.sh",
     "build:og": "node tools/generate-cards.cjs",
     "build:covers": "tools/build-covers.sh",
+    "build:figures": "tools/build-figures.sh",
     "check:links": "node tools/check-links.cjs"
   },
   "devDependencies": {

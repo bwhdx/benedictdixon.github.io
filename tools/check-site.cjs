@@ -12,6 +12,7 @@
 // It also checks what tools/build-pages.cjs and tools/prerender.cjs
 // derive, so a stale build fails here: reading times and word counts,
 // the newest essay in every list, the share cards against their inputs,
+// the covers' and figures' files and sizes,
 // links without an accessible name, faint ink used for text, and the
 // standing ruling that the site keeps clear of markets.
 //
@@ -414,6 +415,36 @@ for (const e of list) {
   }
   if (!new RegExp(`<a class="post" href="${e.path}"><!-- build:thumb -->`).test(read('writing/index.html'))) {
     error('writing/index.html', `${e.path} has no cover in its row; run npm run build`);
+  }
+}
+
+// ── Figures in the text ──────────────────────────────────
+
+// Every image a figure offers exists, every AVIF has even sides (as for
+// the covers), and every figure's image has alt text, a size and lazy
+// loading (tools/build-figures.sh writes the files).
+for (const e of list) {
+  const html = stripComments(read(e.file));
+  for (const fig of html.matchAll(/<figure class="essay-figure">([\s\S]*?)<\/figure>/g)) {
+    const img = (fig[1].match(/<img\b[^>]*>/) || [])[0];
+    if (!img) { error(e.file, 'a figure has no <img>'); continue; }
+    const a = attrs(img);
+    if (!a.alt) error(e.file, `figure ${a.src} has no alt text`);
+    if (!a.width || !a.height) error(e.file, `figure ${a.src} has no width and height`);
+    if (a.loading !== 'lazy') error(e.file, `figure ${a.src} is not loaded lazily`);
+    const urls = new Set();
+    for (const m of fig[1].matchAll(/\b(?:src|srcset)="([^"]+)"/g)) {
+      for (const part of m[1].split(',')) urls.add(part.trim().split(/\s+/)[0]);
+    }
+    for (const u of urls) {
+      if (!u.startsWith('/assets/')) continue;
+      const f = u.slice(1);
+      if (!exists(f)) { error(e.file, `figure image ${u} is missing; run npm run build:figures`); continue; }
+      if (!f.endsWith('.avif')) continue;
+      const dims = avifSize(path.join(ROOT, f));
+      if (!dims) error(f, 'has no readable size (ispe box)');
+      else if (dims.w % 2 || dims.h % 2) error(f, `is ${dims.w}x${dims.h}: an odd side draws blank in Chrome`);
+    }
   }
 }
 

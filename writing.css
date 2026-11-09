@@ -597,6 +597,18 @@ button:focus-visible,
 }
 .article-body table td:first-child { font-style: italic; width: 40%; }
 .article-body table tr:last-child td { border-bottom: 0; }
+/* A figure in the text: a card set across the column, a plate with the
+   same hairline edge as the cover. Its words are in the image, so its alt
+   text carries them; width and height give the box its ratio before the
+   image arrives (tools/build-figures.sh writes the sizes). */
+.article-body > .essay-figure { margin: 2.2em 0; }
+.essay-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ink-hair);
+  background: var(--paper-dim);
+}
 @media (max-width: 700px) {
   .article-body { font-size: 17.5px; line-height: 1.62; }
   .article-body > p.lead, .article-body > p:first-child { font-size: 17.5px; }
@@ -1190,6 +1202,7 @@ button:focus-visible,
   .article-body :is(h3, h4) { break-after: avoid; }
   .article-body :is(p, li, blockquote) { orphans: 3; widows: 3; }
   .article-body :is(pre, table, blockquote, figure) { break-inside: avoid; }
+  .article-body > .essay-figure { max-width: 120mm; margin: 6mm auto; }
   .article-body pre { white-space: pre-wrap; -webkit-mask-image: none; mask-image: none; }
   .article-body a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; font-style: italic; word-break: break-all; }
   .author-bio { margin-top: 10mm; break-inside: avoid; }

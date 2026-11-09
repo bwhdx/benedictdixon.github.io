@@ -16,6 +16,7 @@ npm install
 npm run build          # compile *.jsx, bundle, prerender the home page, update the static pages
 npm run build:og       # regenerate every share card (tools/generate-cards.cjs)
 npm run build:covers   # write the essay covers' sizes and formats (macOS sips, cwebp)
+npm run build:figures  # write the sizes and formats of the figures set inside essays
 npm run build:favicons # rasterise favicons/*.png from the two SVG sources
 npm run check          # read-only publish check; run before every publish
 npm run check:links    # every outside link, over the network; run by hand before publishing
@@ -51,6 +52,10 @@ assets/
                                  covers.json, each cover's alt text. A cover opens its essay, heads
                                  its row in /writing/ and is its share card. To add one: copy it in
                                  as <slug>.jpg, add its alt text, then build:covers, build:og, build
+  figures/                       Figures inside an essay's text: <name>.jpg (1280 px wide, even height)
+                                 and the sizes and formats build:figures writes. Set one in the text as
+                                 <figure class="essay-figure"> with a <picture> (copy an existing one),
+                                 its words in the alt text; npm run check fails a missing file
   beanie_hero_16x9_navySides.json  Brightness grid for the candlestick portrait
   og-image.png, og/              Share cards; og/cards.json records what each was drawn from
 favicons/                        Favicon set: favicon.svg (rounded tile) and favicon-maskable.svg
@@ -64,6 +69,7 @@ tools/
   build-pages.cjs                Keeps the static pages, sitemap, feed and llms.txt in step
   generate-cards.cjs, cards/     Share cards, drawn in the browser with the site's own fonts
   build-covers.sh                Essay cover sizes and formats (AVIF, WebP, JPEG)
+  build-figures.sh               Figure sizes and formats (AVIF, WebP, JPEG)
   check-site.cjs                 Read-only publish check (npm run check)
   check-links.cjs                Outside links (npm run check:links)
   generate-favicons.sh           Rasterises the favicon PNGs (npm run build:favicons)
