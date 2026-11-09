@@ -3,8 +3,8 @@
   "cards": {
     "home": {
       "file": "assets/og-image.png",
-      "alt": "Share card for Benedict W. H. Dixon's site: a portrait of him drawn in ochre candlesticks on a navy book cover, with his name and the line \"Serial founder, CTO and COO. I build and run companies end to end, from the architecture to the operation.\"",
-      "hash": "ec8691fec4cbea57f66be1beebcc6f962ec5f25899dffa6e9c09ff520927342c",
+      "alt": "Share card for Benedict W. H. Dixon's site: a portrait of him drawn in ochre candlesticks on a navy book cover, with his name and the line \"Technical founder and operator. I build the product and run the company around it.\"",
+      "hash": "4853f67fd77dfc9f0b4706016dac0142fd00fbe0c93297d3e479be2cb43a3251",
       "cover": null
     },
     "ai": {
