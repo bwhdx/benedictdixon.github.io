@@ -1,11 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1c267a" stroke-linecap="butt">
-  <!-- The five candles of the bwhdx cipher, without the letters, ink on the ochre paper. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="#1c267a" stroke-linecap="butt" stroke-linejoin="miter">
+  <!-- The five candles of the bwhdx cipher, drawn for icon sizes: wider bodies and thinner lines than the mark, so the hollow w and x stay open in a browser tab. -->
   <rect width="64" height="64" rx="12" fill="#d0b57a" stroke="none"/>
-  <g transform="translate(2 14) scale(0.6)" stroke-width="4.6">
-    <line x1="10" x2="10" y1="25" y2="53.6"/><rect x="5.5" y="30" width="9" height="18.6" fill="#1c267a"/>
-    <line x1="30" x2="30" y1="8.1" y2="53.6"/><rect x="25.5" y="13.1" width="9" height="35.5"/>
-    <line x1="50" x2="50" y1="8.1" y2="43.5"/><rect x="45.5" y="13.1" width="9" height="25.4" fill="#1c267a"/>
-    <line x1="70" x2="70" y1="33.5" y2="50.2"/><rect x="65.5" y="38.5" width="9" height="6.7" fill="#1c267a"/>
-    <line x1="90" x2="90" y1="6.4" y2="50.2"/><rect x="85.5" y="11.4" width="9" height="33.8"/>
-  </g>
+  <line x1="10.4" x2="10.4" y1="27.13" y2="55.0" stroke-width="1.73"/><rect x="7.05" y="32.0" width="6.7" height="18.13" fill="#1c267a" stroke="none"/>
+  <line x1="21.2" x2="21.2" y1="10.66" y2="15.53" stroke-width="1.73"/><line x1="21.2" x2="21.2" y1="50.13" y2="55.0" stroke-width="1.73"/><rect x="18.72" y="16.39" width="4.97" height="32.87" stroke-width="1.73"/>
+  <line x1="32.0" x2="32.0" y1="10.66" y2="45.16" stroke-width="1.73"/><rect x="28.65" y="15.53" width="6.7" height="24.75" fill="#1c267a" stroke="none"/>
+  <line x1="42.8" x2="42.8" y1="35.41" y2="51.69" stroke-width="1.73"/><rect x="39.45" y="40.28" width="6.7" height="6.53" fill="#1c267a" stroke="none"/>
+  <line x1="53.6" x2="53.6" y1="9.0" y2="13.87" stroke-width="1.73"/><line x1="53.6" x2="53.6" y1="46.81" y2="51.69" stroke-width="1.73"/><rect x="51.12" y="14.73" width="4.97" height="31.21" stroke-width="1.73"/>
 </svg>
