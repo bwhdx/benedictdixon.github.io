@@ -2212,7 +2212,7 @@ const CONTACTS = [{
 }];
 
 // Working together: the three ways in that the site already names
-// (advisory, speaking, build work through DD Ventures), each with one plain
+// (advisory, speaking, build work), each with one plain
 // next step, then the address set large. Advisory needs no line of its
 // own: the chapter's lede says it.
 const WAYS = [{
@@ -2227,9 +2227,9 @@ const WAYS = [{
   href: '/hosts/'
 }, {
   label: 'Building',
-  text: 'Through DD Ventures: AI systems for family offices, and advisory and build work for founders.',
-  action: 'dd.ventures',
-  href: 'https://dd.ventures',
+  text: 'Products, platforms and internal tools, designed and built end to end and run in production.',
+  action: 'Book a call',
+  href: 'https://calendar.app.google/TkGwibhqQHXMRX5QA',
   ext: true
 }];
 function WorkTogether() {
