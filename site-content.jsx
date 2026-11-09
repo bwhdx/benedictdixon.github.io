@@ -727,6 +727,11 @@ function Projects() {
 // the date, reading time and cover are each essay's own, from the build.
 const ARTICLES = [
   {
+    title: 'Why my AI spend has levelled off and my output is still rising',
+    excerpt: "Why a flat line in AI spend doesn't mean AI has stopped paying, and why per-person budgets planned to rise with output are planning for hours nobody has.",
+    url: '/writing/why-my-ai-spend-has-levelled-off/',
+  },
+  {
     title: "The agent can't be its own checker",
     excerpt: "Why an AI agent's 'done' can't close its own work in a company that moves real money, and what does instead.",
     url: '/writing/the-agent-cant-be-its-own-checker/',
@@ -735,11 +740,6 @@ const ARTICLES = [
     title: 'AI collapsed the build, not the operation',
     excerpt: "One person with AI can build what used to take fifty. But running it safely, and answering at 3am when money's on the line, still takes people.",
     url: '/writing/ai-collapsed-the-build/',
-  },
-  {
-    title: 'The unit of production has changed',
-    excerpt: "Three of us built kash, and mine is kind of the fat middle. AI deleted the coordination overhead, not just the typing. The cap that's left is judgement.",
-    url: '/writing/the-unit-of-production-has-changed/',
   },
   {
     title: 'In Clawd we trust',

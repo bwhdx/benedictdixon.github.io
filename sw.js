@@ -8,7 +8,7 @@
 // Bump CACHE_VERSION to force-evict everything on a deploy that
 // breaks compatibility.
 
-const CACHE_VERSION = 'bd-v32';
+const CACHE_VERSION = 'bd-v33';
 const PRECACHE = [
   '/',
   '/index.html',

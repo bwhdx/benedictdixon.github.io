@@ -17,6 +17,7 @@ Key facts:
 ## The essays
 
 <!-- build:essays -->
+- [Why my AI spend has levelled off and my output is still rising](https://benedictdixon.com/writing/why-my-ai-spend-has-levelled-off/): Why a flat line in AI spend doesn’t mean AI has stopped paying, and why per-person budgets planned to rise with output are planning for hours nobody has.
 - [The agent can’t be its own checker](https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/): Why an AI agent’s ‘done’ can’t close its own work in a company that moves real money, and what does instead.
 - [AI collapsed the build, not the operation](https://benedictdixon.com/writing/ai-collapsed-the-build/): One person with AI can build what fifty used to. But the operation — incidents, maintenance, 3am — doesn’t collapse with the build. Why fewer people is the wrong read.
 - [The unit of production has changed](https://benedictdixon.com/writing/the-unit-of-production-has-changed/): Three of us built kash; mine is the fat middle. AI didn’t just make the typing faster; it deleted the coordination overhead. The cap that’s left is judgement.

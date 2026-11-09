@@ -13,6 +13,15 @@
       "hash": "0c70d1ca2af6a7c6a219dad5027cda4feee946681612dad862f3837944250e50",
       "cover": null
     },
+    "why-my-ai-spend-has-levelled-off": {
+      "file": "assets/og/why-my-ai-spend-has-levelled-off.png",
+      "alt": "Share card: the essay title \"Why my AI spend has levelled off and my output is still rising.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. An hourglass with a new brass collar at its waist, set by a hand: the same sand falls through, and comes out below as finished pages.",
+      "hash": "1ebe234c26d51d6def3238ea094c5e35e7f94ba61dcb7889cf694bafe9f463d0",
+      "cover": {
+        "path": "assets/covers/why-my-ai-spend-has-levelled-off.jpg",
+        "sha256": "5d03c0c72285af963365c7f1c57899992754b69a6a45bf278d4fecdff1444c36"
+      }
+    },
     "the-agent-cant-be-its-own-checker": {
       "file": "assets/og/the-agent-cant-be-its-own-checker.png",
       "alt": "Share card: the essay title \"The agent can’t be its own checker.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A steel lock plate with two keyholes: one key already turned, the second keyhole empty, waiting for an independent key to close it.",
