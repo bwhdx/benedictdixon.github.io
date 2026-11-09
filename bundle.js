@@ -1731,7 +1731,7 @@ const LEDGER = [{
 }, {
   yr: '2025',
   co: 'kash',
-  role: 'Co-founder, COO and Interim CTO',
+  role: 'Co-founder, COO and CTO',
   from: 2025 + 4 / 12,
   founder: true
 }];
@@ -1864,7 +1864,7 @@ function Career() {
     "data-part": "The ledger"
   }, /*#__PURE__*/React.createElement("p", {
     className: "ledger-intro"
-  }, "Engineer at JPMorgan in 2015; co-founder, COO and Interim CTO of kash today. Each role is one line, and its candle is the time spent in it."), /*#__PURE__*/React.createElement(LedgerAxis, null), /*#__PURE__*/React.createElement("ol", {
+  }, "Engineer at JPMorgan in 2015; co-founder, COO and CTO of kash today. Each role is one line, and its candle is the time spent in it."), /*#__PURE__*/React.createElement(LedgerAxis, null), /*#__PURE__*/React.createElement("ol", {
     className: "ledger-rows"
   }, LEDGER.map(r => {
     const s = spanOf(r, now);

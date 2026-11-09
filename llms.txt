@@ -1,6 +1,6 @@
 # Benedict W. H. Dixon
 
-> Personal site of Benedict W. H. Dixon. Building, leading & learning. Engineer turned operator: JPMorgan, American Express, a hedge fund, fintech, then co-founding companies. Co-founder, COO and Interim CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.
+> Personal site of Benedict W. H. Dixon. Building, leading & learning. Engineer turned operator: JPMorgan, American Express, a hedge fund, fintech, then co-founding companies. Co-founder, COO and CTO at kash. Three of us built kash's whole product. Mine was the fat middle, from the hooks the frontend calls down to indexing on-chain events.
 
 Key facts:
 - Started out as an engineer, building payment systems at JPMorgan, then on the R&D team for American Express's referral campaigns. After that came a hedge fund, fintech, and founding his own startups.

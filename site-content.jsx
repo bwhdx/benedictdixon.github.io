@@ -503,7 +503,7 @@ const LEDGER = [
   { yr: '2024', co: 'Voi Network', role: 'Co-founder, Chief Ecosystem Officer', from: 2024, to: 2025, founder: true },
   { yr: '2025', co: 'Brdge', role: 'Head of Blockchain', from: 2025 + 1 / 12 },
   { yr: '2025', co: 'DD Ventures', role: 'Founding Partner', from: 2025 + 3 / 12, founder: true },
-  { yr: '2025', co: 'kash', role: 'Co-founder, COO and Interim CTO', from: 2025 + 4 / 12, founder: true },
+  { yr: '2025', co: 'kash', role: 'Co-founder, COO and CTO', from: 2025 + 4 / 12, founder: true },
 ];
 const AXIS = { from: 2014, to: 2027 };
 const AXIS_SPAN = AXIS.to - AXIS.from;
@@ -599,7 +599,7 @@ function Career() {
         <ChapterPlate chapter={c}
           lede="Engineer first, from 2015; then operator, COO and CTO across AI, fintech and blockchain." />
         <div className="ledger" data-part="The ledger">
-          <p className="ledger-intro">Engineer at JPMorgan in 2015; co-founder, COO and Interim CTO of kash today. Each role is one line, and its candle is the time spent in it.</p>
+          <p className="ledger-intro">Engineer at JPMorgan in 2015; co-founder, COO and CTO of kash today. Each role is one line, and its candle is the time spent in it.</p>
           <LedgerAxis />
           <ol className="ledger-rows">
             {LEDGER.map((r) => {
