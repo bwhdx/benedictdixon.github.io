@@ -13,6 +13,15 @@
       "hash": "0c70d1ca2af6a7c6a219dad5027cda4feee946681612dad862f3837944250e50",
       "cover": null
     },
+    "a-fix-for-a-hole-an-ai-found": {
+      "file": "assets/og/a-fix-for-a-hole-an-ai-found.png",
+      "alt": "Share card: the essay title \"A fix for a hole an AI found can break things too.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. A long pipe with a patch tied round it by a hand, while further along a drop is still forming at a joint.",
+      "hash": "5961030c466f112abf00c49ef33e1ceede8fdbf949f498c9289d606a4c5bab26",
+      "cover": {
+        "path": "assets/covers/a-fix-for-a-hole-an-ai-found.jpg",
+        "sha256": "f68117d9612edbf9990305e47e5f30a72a89e33ceea8edc6d88e2f97b1044cc8"
+      }
+    },
     "why-my-ai-spend-has-levelled-off": {
       "file": "assets/og/why-my-ai-spend-has-levelled-off.png",
       "alt": "Share card: the essay title \"Why my AI spend has levelled off and my output is still rising.\" in navy on ochre paper, with the bwhdx candle mark and benedictdixon.com, beside the cover illustration. An hourglass with a new brass collar at its waist, set by a hand: the same sand falls through, and comes out below as finished pages.",

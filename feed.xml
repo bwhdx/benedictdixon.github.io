@@ -4,7 +4,7 @@
   <subtitle>Essays on operations, entrepreneurship, AI, blockchain and what gets built.</subtitle>
   <link href="https://benedictdixon.com/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://benedictdixon.com/" rel="alternate" type="text/html"/>
-  <updated>2026-11-09T00:00:00Z</updated>
+  <updated>2026-11-23T00:00:00Z</updated>
   <id>https://benedictdixon.com/</id>
   <author>
     <name>Benedict W. H. Dixon</name>
@@ -15,6 +15,17 @@
   <icon>https://benedictdixon.com/favicons/favicon.svg</icon>
   <logo>https://benedictdixon.com/assets/og-image.png</logo>
   <generator uri="https://benedictdixon.com/">benedictdixon.com</generator>
+
+  <entry>
+    <title>A fix for a hole an AI found can break things too</title>
+    <link href="https://benedictdixon.com/writing/a-fix-for-a-hole-an-ai-found/" rel="alternate" type="text/html"/>
+    <id>https://benedictdixon.com/writing/a-fix-for-a-hole-an-ai-found/</id>
+    <published>2026-11-23T00:00:00Z</published>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <summary>Why a fix for a security hole an AI found is a change like any other, and why the checks before production are what stop it becoming the next outage.</summary>
+    <category term="Building &amp; Technology"/>
+    <category term="AI"/>
+  </entry>
 
   <entry>
     <title>Why my AI spend has levelled off and my output is still rising</title>

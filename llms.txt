@@ -17,6 +17,7 @@ Key facts:
 ## The essays
 
 <!-- build:essays -->
+- [A fix for a hole an AI found can break things too](https://benedictdixon.com/writing/a-fix-for-a-hole-an-ai-found/): Why a fix for a security hole an AI found is a change like any other, and why the checks before production are what stop it becoming the next outage.
 - [Why my AI spend has levelled off and my output is still rising](https://benedictdixon.com/writing/why-my-ai-spend-has-levelled-off/): Why a flat line in AI spend doesn’t mean AI has stopped paying, and why per-person budgets planned to rise with output are planning for hours nobody has.
 - [The agent can’t be its own checker](https://benedictdixon.com/writing/the-agent-cant-be-its-own-checker/): Why an AI agent’s ‘done’ can’t close its own work in a company that moves real money, and what does instead.
 - [AI collapsed the build, not the operation](https://benedictdixon.com/writing/ai-collapsed-the-build/): One person with AI can build what fifty used to. But the operation — incidents, maintenance, 3am — doesn’t collapse with the build. Why fewer people is the wrong read.
